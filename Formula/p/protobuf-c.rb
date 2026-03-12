@@ -4,15 +4,15 @@ class ProtobufC < Formula
   url "https://github.com/protobuf-c/protobuf-c/releases/download/v1.5.2/protobuf-c-1.5.2.tar.gz"
   sha256 "e2c86271873a79c92b58fef7ebf8de1aa0df4738347a8bd5d4e65a80a16d0d24"
   license "BSD-2-Clause"
-  revision 8
+  revision 12
 
   bottle do
-    sha256 cellar: :any, arm64_tahoe:   "3b4d125f9113390e9a309723e2744d3105eaa8002c910547a1a6834651cd3232"
-    sha256 cellar: :any, arm64_sequoia: "724915a627e377fd87c1b0f32a1ea6f1c28e0109f3933252074c29e5313bbba5"
-    sha256 cellar: :any, arm64_sonoma:  "150744be0a14e2b581cc7bd93427daff1f066c6bfe64a69b97e0da1061ad7d0d"
-    sha256 cellar: :any, sonoma:        "43a69b41d651caa5c6fb37c64dedca85dbf76ae506d830bbb5964fbabe29d0db"
-    sha256               arm64_linux:   "95552399f01ec72d01ed1bb60b5aa829f6405abb6336ac68e8cd20baa680a890"
-    sha256               x86_64_linux:  "dd8f855ff761e9757d0cf7e7f1be4446befde9d18c86eda683555d88b49d5cf6"
+    sha256 cellar: :any, arm64_tahoe:   "62765efeffc1718219c4b6ea9c8a89ac60bfea91033d96198e7339dfffcb39dd"
+    sha256 cellar: :any, arm64_sequoia: "512408e7a115af37693098cb9faffbf1683eea4d13e49232c8edfc6f8dbfb439"
+    sha256 cellar: :any, arm64_sonoma:  "f9f5f7aaf834abf0cb6970d9f9e362bfdb6d683ef47242a84013c743d067260c"
+    sha256 cellar: :any, sonoma:        "f5848c768685865a7cc555663ad6a6b1a884718ca7f5d6b871a1a1ebd33337a3"
+    sha256               arm64_linux:   "723ec26a710c65eafaa3bd28680dfba439adec33db21daf303981d08237c3710"
+    sha256               x86_64_linux:  "17d81688a3d374768a86411d0201af0f46a4fd0a62f2c102be5bbd1b7a9a4513"
   end
 
   head do
@@ -27,6 +27,13 @@ class ProtobufC < Formula
   depends_on "pkgconf" => :build
   depends_on "abseil"
   depends_on "protobuf"
+
+  # Apply commit from open PR to support Protobuf 34
+  # PR ref: https://github.com/protobuf-c/protobuf-c/pull/797
+  patch do
+    url "https://github.com/protobuf-c/protobuf-c/commit/d39f001b4578966600de0aaf7fc665eec6e057e5.patch?full_index=1"
+    sha256 "10b5ea9c08f62be10ceb1df24a3211118a94cb0d09efcdf043ac3542368915fb"
+  end
 
   def install
     system "autoreconf", "--force", "--install", "--verbose" if build.head?

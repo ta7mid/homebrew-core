@@ -1,12 +1,21 @@
 class Cmake < Formula
   desc "Cross-platform make"
   homepage "https://www.cmake.org/"
-  url "https://github.com/Kitware/CMake/releases/download/v4.2.1/cmake-4.2.1.tar.gz"
-  mirror "http://fresh-center.net/linux/misc/cmake-4.2.1.tar.gz"
-  mirror "http://fresh-center.net/linux/misc/legacy/cmake-4.2.1.tar.gz"
-  sha256 "414aacfac54ba0e78e64a018720b64ed6bfca14b587047b8b3489f407a14a070"
   license "BSD-3-Clause"
   head "https://gitlab.kitware.com/cmake/cmake.git", branch: "master"
+
+  stable do
+    url "https://github.com/Kitware/CMake/releases/download/v4.2.3/cmake-4.2.3.tar.gz"
+    mirror "http://fresh-center.net/linux/misc/cmake-4.2.3.tar.gz"
+    mirror "http://fresh-center.net/linux/misc/legacy/cmake-4.2.3.tar.gz"
+    sha256 "7efaccde8c5a6b2968bad6ce0fe60e19b6e10701a12fce948c2bf79bac8a11e9"
+
+    # Backport support for Lua 5.5
+    patch do
+      url "https://github.com/Kitware/CMake/commit/6347854fa279cda0682c72dffbb402a0ce29ba51.patch?full_index=1"
+      sha256 "d0c0b08826fc16468dba8672f8a6b77c56062bead4c5c501360e868e511ee91e"
+    end
+  end
 
   # The "latest" release on GitHub has been an unstable version before, and
   # there have been delays between the creation of a tag and the corresponding
@@ -17,14 +26,14 @@ class Cmake < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "60d81644bd73a572793cbcd7a74c4cddbec34ee53ee09e24848d33afaaddb8eb"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "1e06a9009d98f940d2873e2e21cdaad13f622e8866f838991ed06fa44245424c"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "55b4255c8eafdb8b0f4672a441f0ae6b91420a6a363569022f690aea1f39a531"
-    sha256 cellar: :any_skip_relocation, tahoe:         "35e42f8d06ef0caed4c22be018b075c46a1cde0c45ed1b1b31875b6069f7c6bc"
-    sha256 cellar: :any_skip_relocation, sequoia:       "2357e7be073335b1369b2e5201d5d2af3cceeb43bbe4fa97f8a3171359350242"
-    sha256 cellar: :any_skip_relocation, sonoma:        "e4cb6757bef63855fa0969e7f5507de92cd74d739e67cf3e9d40ae6938cb9183"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "657277ecb3da86ef8cbec1d8dd24e2a7fac9d805153634c1c328cafb386e16b9"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8704a4160e387e165b172089faa268727ab5bb43acc66f9fd6ade052d7d18e02"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "ec220979dcce6f31e51f2c91ea1add28d60f0a9607a61641f279115f27216035"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "c3631ec91752e960abbad9049edd4effa34ce2a3eca969d03df843d3c6940d60"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "c1e3122226b839098ac4981fc945b08dac5c43fd6e65ba02a1b96e774578914e"
+    sha256 cellar: :any_skip_relocation, tahoe:         "a8c446217cb2b06087c0764a2de9f40fd3bd9c57163fdbb22fdee738c7545e50"
+    sha256 cellar: :any_skip_relocation, sequoia:       "d84159c07d244bdb386459bf62c58d00e9f1f2425f98893883a4ee8f3e074a8e"
+    sha256 cellar: :any_skip_relocation, sonoma:        "4cc8034607d8d7c835debef687dfcf5c3fe316fd767fce86ca14979d81a221fe"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "139bf32b518db003c7a25f6f29e25e7371f3aa022605b5bb2e23a94074d9f425"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "9b94ff7d2b35b1b560c7752d7ff6b634bd2911aa15f925609d0f0814a1b418a9"
   end
 
   uses_from_macos "ncurses"
@@ -34,12 +43,6 @@ class Cmake < Formula
   end
 
   conflicts_with cask: "cmake-app"
-
-  # The completions were removed because of problems with system bash
-
-  # The `with-qt` GUI option was removed due to circular dependencies if
-  # CMake is built with Qt support and Qt is built with MySQL support as MySQL uses CMake.
-  # For the GUI application please instead use `brew install --cask cmake`.
 
   def install
     args = %W[
@@ -64,6 +67,9 @@ class Cmake < Formula
                                        "-DCMake_BUILD_LTO=ON"
     system "make"
     system "make", "install"
+
+    # Move ctest completion because of problems with macOS system bash 3
+    (share/"bash-completion/completions").install bash_completion/"ctest"
   end
 
   def caveats

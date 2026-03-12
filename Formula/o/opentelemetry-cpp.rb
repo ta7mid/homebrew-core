@@ -1,19 +1,19 @@
 class OpentelemetryCpp < Formula
   desc "OpenTelemetry C++ Client"
   homepage "https://opentelemetry.io/"
-  url "https://github.com/open-telemetry/opentelemetry-cpp/archive/refs/tags/v1.24.0.tar.gz"
-  sha256 "7b8e966affca1daf1906272f4d983631cad85fb6ea60fb6f55dcd1811a730604"
+  url "https://github.com/open-telemetry/opentelemetry-cpp/archive/refs/tags/v1.25.0.tar.gz"
+  sha256 "a0c944a9de981fe1874b31d1fe44b830fc30ee030efa27ee23fc73012a3a13e9"
   license "Apache-2.0"
-  revision 1
+  revision 2
   head "https://github.com/open-telemetry/opentelemetry-cpp.git", branch: "main"
 
   bottle do
-    sha256               arm64_tahoe:   "faf52a14aa58161998cc3fc85498d24cc209501e217afd13d881800711642e33"
-    sha256               arm64_sequoia: "922c750694059731446d1512efa4914f7373342697dc3dd3062dec52918d76f3"
-    sha256               arm64_sonoma:  "d43a44157c777f4908ea67a78b10f8dec8d8a2db9e0aefa8b8338fd66325cad7"
-    sha256 cellar: :any, sonoma:        "3295767db871997ede5861733f22aa2296b430013c99a2ebece5a1b32930e4be"
-    sha256               arm64_linux:   "9b4961d3f07e0c7c06276c0415c58f2910e2a21698b2ee95fbb77b2b0f47a305"
-    sha256               x86_64_linux:  "a056c7e70fc03b1f0a7b8c3f0ef93ab98b85509c3451822984627d255cc05d06"
+    sha256               arm64_tahoe:   "3bc622572218f35b31d0694d7afbc481d9a58f4682cb22ff90b65a0cb7f84cfa"
+    sha256               arm64_sequoia: "2e652c7a3b9106aa9ecdb07981ef0ac0a25a922a0a1fc63a0f07aeefb4340055"
+    sha256               arm64_sonoma:  "299a13c39584b510c11bd9233e5dd946dc73e6c35fcdff7bb9a0ff4acd43322e"
+    sha256 cellar: :any, sonoma:        "3daccbe6544f83c23e7613b5f0ef01ace87ec4fa6a98eee2020afa65a46dacc6"
+    sha256               arm64_linux:   "404220054579f3c682d976672ef29119c757f6915f4854d827a01a348042d31c"
+    sha256               x86_64_linux:  "83d731a65c3df00c5d0ffda2a634917173c0f90c77215135aa4e2de650ac9288"
   end
 
   depends_on "cmake" => :build
@@ -31,12 +31,28 @@ class OpentelemetryCpp < Formula
     depends_on "re2"
   end
 
+  on_linux do
+    depends_on "llvm" => :build if DevelopmentTools.gcc_version < 13
+  end
+
+  fails_with :gcc do
+    version "12"
+    cause "fails handling PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED"
+  end
+
   resource "openetelemetry-proto" do
     url "https://github.com/open-telemetry/opentelemetry-proto/archive/refs/tags/v1.9.0.tar.gz"
     sha256 "2d2220db196bdfd0aec872b75a5e614458f8396557fc718b28017e1a08db49e4"
   end
 
   def install
+    # TODO: Remove after moving CI to Ubuntu 24.04. Cannot use newer GCC as it
+    # will increase minimum GLIBCXX in bottle resulting in a runtime dependency.
+    if OS.linux? && deps.map(&:name).any?("llvm")
+      ENV.llvm_clang
+      ENV.append "LDFLAGS", "-Wl,--as-needed"
+    end
+
     (buildpath/"opentelemetry-proto").install resource("openetelemetry-proto")
 
     ENV.append "LDFLAGS", "-Wl,-undefined,dynamic_lookup" if OS.mac?
@@ -48,11 +64,11 @@ class OpentelemetryCpp < Formula
                     "-DFETCHCONTENT_FULLY_DISCONNECTED=ON",
                     "-DFETCHCONTENT_TRY_FIND_PACKAGE_MODE=ALWAYS",
                     "-DOTELCPP_PROTO_PATH=#{buildpath}/opentelemetry-proto",
+                    "-DWITH_BENCHMARK=OFF",
                     "-DWITH_ELASTICSEARCH=ON",
                     "-DWITH_EXAMPLES=OFF",
                     "-DWITH_OTLP_GRPC=ON",
                     "-DWITH_OTLP_HTTP=ON",
-                    "-DWITH_ABSEIL=ON",
                     "-DWITH_PROMETHEUS=ON",
                     *std_cmake_args
     system "cmake", "--build", "build"

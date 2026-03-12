@@ -1,13 +1,13 @@
 class Libosmium < Formula
   desc "Fast and flexible C++ library for working with OpenStreetMap data"
   homepage "https://osmcode.org/libosmium/"
-  url "https://github.com/osmcode/libosmium/archive/refs/tags/v2.22.0.tar.gz"
-  sha256 "8f74e3f6ba295baa7325ae5606e8f74ad9056f1d6ab4555c50bff6aa8246f366"
+  url "https://github.com/osmcode/libosmium/archive/refs/tags/v2.23.0.tar.gz"
+  sha256 "2e7a4ab34a80843490a1d673811d600e5445e6d39a0cfc42609d0861eba24669"
   license "BSL-1.0"
 
   bottle do
     rebuild 1
-    sha256 cellar: :any_skip_relocation, all: "648276b37fc4f1358b665c6f68308b6387f5069e6726cb8eb0e6cec73a4a108e"
+    sha256 cellar: :any_skip_relocation, all: "cb25dc7303f0d4351ae7929fe2290e908bcd514ff1856ad3a32a34de52fd558a"
   end
 
   depends_on "boost" => :build
@@ -17,12 +17,9 @@ class Libosmium < Formula
 
   uses_from_macos "bzip2"
   uses_from_macos "expat"
-  uses_from_macos "zlib"
 
-  # Backport support for CMake 4
-  patch do
-    url "https://github.com/osmcode/libosmium/commit/7ab87418a0697ac9b7b5f005fbd64dcd99a01124.patch?full_index=1"
-    sha256 "2bb132477a5607d0b11a7d353ab2954df4a3f17e2ab4b6dd02627bf879c29b7d"
+  on_linux do
+    depends_on "zlib-ng-compat"
   end
 
   def install

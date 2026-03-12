@@ -1,18 +1,19 @@
 class Oasis < Formula
   desc "CLI for interacting with the Oasis Protocol network"
   homepage "https://github.com/oasisprotocol/cli"
-  url "https://github.com/oasisprotocol/cli/archive/refs/tags/v0.18.1.tar.gz"
-  sha256 "ee111ac9ad50485862630106f0d8e4eb3a59f72f6c6a3efc70a287d4c1729ee9"
+  url "https://github.com/oasisprotocol/cli/archive/refs/tags/v0.18.5.tar.gz"
+  sha256 "d18e84f2de061944b2e36b6842c7841463c3c448c318c141fc70d16c92cebdcb"
   license "Apache-2.0"
   head "https://github.com/oasisprotocol/cli.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "27bd0f692554e948864e6dfcd324c777b1fb6e3c29868d558a5b2729d9cef17c"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "60b9649684b6746964f7723a1bb79e10f5b39051dd8cc941f6f6b51a7196c025"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "515c918f552e8df1e3c17ebfed83c522a30d19ea62695cbfd953085871a7ba54"
-    sha256 cellar: :any_skip_relocation, sonoma:        "bba8e83b1f9d771e9d56386a831e78786039e3a1e9514cc582711a7b5edc2399"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "39f877df052ac2596fb1bfa11c5583894ea4f6083a36dd055d8f1c91974344a5"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "eecd584537f4629eac282489a13a58d3355a07421236afcbf45a65cb056cc640"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "64084c58a254efa4ee65cca0ce85da5077108f260ae11026d1e2671c6b702fa8"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "ab2e03f7f23391e08f11d7e3d931f9581f12db7f669f9caa8d2a4954a61a212e"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "19c5c1148840be6aafe3690bc4ff89eb0d8271d2e9dfb74cbdce8763bb7d9334"
+    sha256 cellar: :any_skip_relocation, sonoma:        "8b1fd40a83e07b223d510d671c557a3496f535b7542a229122ef4dc8d9f8c85b"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "a82e0e7359489d61ab8c99ba531eb46aa99bd736ed6be1fb7ede3f5dd2debb36"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "4c62e6eea739061fa3fbd6404f0bff990649d364e45681f77ba4137db6e58b0f"
   end
 
   depends_on "go" => :build
@@ -25,6 +26,7 @@ class Oasis < Formula
     ]
 
     system "go", "build", *std_go_args(ldflags:)
+    generate_completions_from_executable(bin/"oasis", shell_parameter_format: :cobra)
   end
 
   test do

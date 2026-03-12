@@ -1,36 +1,34 @@
 class GoAT124 < Formula
   desc "Open source programming language to build simple/reliable/efficient software"
   homepage "https://go.dev/"
-  url "https://go.dev/dl/go1.24.11.src.tar.gz"
-  mirror "https://fossies.org/linux/misc/go1.24.11.src.tar.gz"
-  sha256 "ffdf97766a4c4b135cd53809713978e9ee1a943b2c8e28ad221a5429de30e210"
+  url "https://go.dev/dl/go1.24.13.src.tar.gz"
+  mirror "https://fossies.org/linux/misc/go1.24.13.src.tar.gz"
+  sha256 "639a6204c2486b137df1eb6e78ee3ed038f9877d0e4b5a465e796a2153f858d7"
   license "BSD-3-Clause"
-
-  livecheck do
-    url "https://go.dev/dl/?mode=json"
-    regex(/^go[._-]?v?(1\.24(?:\.\d+)*)[._-]src\.t.+$/i)
-    strategy :json do |json, regex|
-      json.map do |release|
-        next if release["stable"] != true
-        next if release["files"].none? { |file| file["filename"].match?(regex) }
-
-        release["version"][/(\d+(?:\.\d+)+)/, 1]
-      end
-    end
-  end
+  revision 1
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "015118cf40fea9fda481f8a3fb2b0a9993e4c9ab5384bd28164730f7dbb04a51"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "015118cf40fea9fda481f8a3fb2b0a9993e4c9ab5384bd28164730f7dbb04a51"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "015118cf40fea9fda481f8a3fb2b0a9993e4c9ab5384bd28164730f7dbb04a51"
-    sha256 cellar: :any_skip_relocation, sonoma:        "ec19a7aee9048e68358bc52c4998cfc6e28e50b8d27780ff3f0d10cfedfc49d0"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "8112bee8dece9b9a1040212126579e5b1fd48276188bc262e69b4aa2379a0b21"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f61b24360bf1e42a8f5ab284309b81777cdc560426f8e41e5c944ef4e7b11916"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "c5e92d0e6854fce804752c6f1d45620e77467bea4b3c0d608637e518fdf73476"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "c5e92d0e6854fce804752c6f1d45620e77467bea4b3c0d608637e518fdf73476"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "c5e92d0e6854fce804752c6f1d45620e77467bea4b3c0d608637e518fdf73476"
+    sha256 cellar: :any_skip_relocation, sonoma:        "616b47e950116307c0ae4d65268b71e402e8aa3e929682b305b3efe63e2c3391"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "93b46017e4b747affbf00aef9430b83542af6b0d7d976051cbbec640e2db3fc0"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "dca0a28ed7d6045be29ce5f632513d33302302706ef6e6f64cb90f1ff60fe446"
   end
 
   keg_only :versioned_formula
 
+  # EOL with Go 1.26 release (2026-02-10)
+  # Ref: https://go.dev/doc/devel/release#policy
+  deprecate! date: "2026-02-11", because: :unsupported
+
   depends_on "go" => :build
+
+  # patch to fix pkg-config flag sanitization
+  patch do
+    url "https://github.com/golang/go/commit/28fbdf7acb4146b5bc3d88128e407d1344691839.patch?full_index=1"
+    sha256 "2e05f7e16f2320685547a7ebb240163a8b7f1c7bf9d2f6dc4872ff8b27707a35"
+  end
 
   def install
     libexec.install Dir["*"]

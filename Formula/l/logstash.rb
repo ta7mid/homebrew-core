@@ -1,8 +1,8 @@
 class Logstash < Formula
   desc "Tool for managing events and logs"
   homepage "https://www.elastic.co/products/logstash"
-  url "https://github.com/elastic/logstash/archive/refs/tags/v9.2.3.tar.gz"
-  sha256 "6f95b9bc96bb2bb8ccf2c1436c4ae0ec2867efb97cab49ab3a10e378643b1ae6"
+  url "https://github.com/elastic/logstash/archive/refs/tags/v9.3.1.tar.gz"
+  sha256 "323e9f399b863d96ac99154aef6796a5d1b55bc83716282100ca58073a105d45"
   license "Apache-2.0"
   version_scheme 1
   head "https://github.com/elastic/logstash.git", branch: "main"
@@ -13,14 +13,15 @@ class Logstash < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "e25e875d4b30d83e5c80b9cac627fea1e054be013cb1a1fab6bf784cc8f700ef"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "f1966e91954367a5bd47c36cda17a62170b4671ec3b9a979314505aac74bb613"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "0d7ad15324f67880edba5c90b3ec49147fda932ceedef09becc4b7bf3713e44f"
-    sha256 cellar: :any,                 sonoma:        "909d948787c1d22a6c8f426b93847f4a22149dc0cecc20e45dee680a20f2eefe"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "4bbfc62eb411eab726b44d461f7a1d70f6d781ee8556cda06d9552063ad8f8a5"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5d4f611b51a2dd07472032f28851142d0e49a21fb70ea7ea02ed8bc4a3c38c9e"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "0ac666a0fd5760cb2f0a00b4af95888dde04e3dfff76ff786753159e5c18454e"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "454d7331a6d2c2a055f3e98469e686aa1648c76c23d13723c27f7121a5bc1935"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "7faaafee8f883c99f812c0eaca152269f0e1f386de40e134a0c7172e9dc94dd4"
+    sha256 cellar: :any,                 sonoma:        "4b441573f8657954e113b148571fe795a37bfe67606a7128864017fd9431522c"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "6ad07a814db24bf4a6f19feab2b7eff9a4880ac6a1a41d2392bf5de10abedba8"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5e607efd3ae76c4a0d73c0a849546c122c1d4717d764088be9ff15f42288b8fb"
   end
 
+  depends_on "gradle@8" => :build # gradle 9 support issue, https://github.com/elastic/logstash/issues/16641
   depends_on "openjdk@21"
 
   uses_from_macos "ruby" => :build
@@ -33,6 +34,9 @@ class Logstash < Formula
               'apply from: "${projectDir}/x-pack/distributions/internal/observabilitySRE/build-ext.gradle"',
               ""
     ENV["OSS"] = "true"
+
+    # Ensure Logstash core jars are built for the no-JDK artifact.
+    system "gradle", "bootstrap"
 
     # Build the package from source
     system "rake", "artifact:no_bundle_jdk_tar"

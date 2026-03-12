@@ -3,18 +3,18 @@ class Ggshield < Formula
 
   desc "Scanner for secrets and sensitive data in code"
   homepage "https://www.gitguardian.com"
-  url "https://files.pythonhosted.org/packages/f4/e5/0f0ad6bfe109cbebf2f4fb6b4b15c6c6f5221b24860bd8f6fc28c731110d/ggshield-1.46.0.tar.gz"
-  sha256 "01c80d3851c20933b5cc5f93e6e4364881958596fab40bb52c5777b3c7cb9d87"
+  url "https://files.pythonhosted.org/packages/78/18/dedb9c9756104fba2060f77e7102b5dc0af073fb8639c26c6784dd7602a7/ggshield-1.48.0.tar.gz"
+  sha256 "677a6517f4cc8854f4a6bb1f02a9eef5d44dca3f4999e69fa63a44ed8a7680b8"
   license "MIT"
   head "https://github.com/GitGuardian/ggshield.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "5d5c8065722ff4d5215b98180d60a51516b3093ddc18548d53526f159ecf0634"
-    sha256 cellar: :any,                 arm64_sequoia: "322edae9f568439c388c639e7c6fa03d6e1f47f6a0977940bbabdcedf48b9708"
-    sha256 cellar: :any,                 arm64_sonoma:  "cb1ee8ffac16bb9978ff8e5b0032e5a03830e44a43fa5a3e2d7e4327a00574ff"
-    sha256 cellar: :any,                 sonoma:        "41c4f58f99530e2e22398da719b7ccd0193d27e50c555baa2407990572db5bbe"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "84dc28c2d4eaea3bd6987343b163bea6e7890eb38d07b3144c4ab17a587953b9"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "55ba261f3c3400110e66d72c589ef8870c075c3af45bbdc647b8afd7920d234a"
+    sha256 cellar: :any,                 arm64_tahoe:   "ad1ef295e011b13982c5ab458d14e645a7e904ed396f1fa1410f4e93832013c2"
+    sha256 cellar: :any,                 arm64_sequoia: "5019d37e94c475f439071502493b5117159517ca52765bf71c23ced4cca233cb"
+    sha256 cellar: :any,                 arm64_sonoma:  "1df449c173060708a587d3505a5f9c64ec0ccb732e386450b5a7cdb39f44f033"
+    sha256 cellar: :any,                 sonoma:        "710e5cbbe1d480e78728137ae305c75cd86359ec03a95b6db52438b0b95e5114"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "3ad12aa065fe5d153fcecb381843eeed97bd1e25f671b29421713a7e4c5cc433"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e600655c15300ef7c4c3e24e129df3f9a55ecea06e8733ef7f93478a55955aa9"
   end
 
   depends_on "certifi"
@@ -65,8 +65,8 @@ class Ggshield < Formula
   end
 
   resource "packaging" do
-    url "https://files.pythonhosted.org/packages/a1/d4/1fc4078c65507b51b96ca8f8c3ba19e6a61c8253c72794544580a7b6c24d/packaging-25.0.tar.gz"
-    sha256 "d443872c98d677bf60f6a1f2f8c1cb748e8fe762d2bf9d3148b5599295b0fc4f"
+    url "https://files.pythonhosted.org/packages/65/ee/299d360cdc32edc7d2cf530f3accf79c4fca01e96ffc950d8a52213bd8e4/packaging-26.0.tar.gz"
+    sha256 "00243ae351a257117b6a241061796684b084ed1c516a08c48a3f7e147a9d80b4"
   end
 
   resource "platformdirs" do
@@ -110,8 +110,8 @@ class Ggshield < Formula
   end
 
   resource "setuptools" do
-    url "https://files.pythonhosted.org/packages/18/5d/3bf57dcd21979b887f014ea83c24ae194cfcd12b9e0fda66b957c69d1fca/setuptools-80.9.0.tar.gz"
-    sha256 "f36b47402ecde768dbfafc46e8e4207b4360c654f1f3bb84475f0a28628fb19c"
+    url "https://files.pythonhosted.org/packages/82/f3/748f4d6f65d1756b9ae577f329c951cda23fb900e4de9f70900ced962085/setuptools-82.0.0.tar.gz"
+    sha256 "22e0a2d69474c6ae4feb01951cb69d515ed23728cf96d05513d36e42b62b37cb"
   end
 
   resource "truststore" do
@@ -130,8 +130,8 @@ class Ggshield < Formula
   end
 
   resource "urllib3" do
-    url "https://files.pythonhosted.org/packages/ed/63/22ba4ebfe7430b76388e7cd448d5478814d3032121827c12a2cc287e2260/urllib3-2.2.3.tar.gz"
-    sha256 "e7d814a81dad81e6caf2ec9fdedb284ecc9c73076b62654547cc64ccdcae26e9"
+    url "https://files.pythonhosted.org/packages/c7/24/5f1b3bdffd70275f6661c76461e25f024d5a38a46f04aaca912426a2b1d3/urllib3-2.6.3.tar.gz"
+    sha256 "1b62b6884944a57dbe321509ab94fd4d3b307075e0c2eae991ac71ee15ad38ed"
   end
 
   def install

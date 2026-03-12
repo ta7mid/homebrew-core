@@ -1,8 +1,8 @@
 class Electric < Formula
   desc "Real-time sync for Postgres"
   homepage "https://electric-sql.com"
-  url "https://github.com/electric-sql/electric/archive/refs/tags/@core/sync-service@1.2.11.tar.gz"
-  sha256 "363d420cac2e80e025be0d7b66ad689dc4ea816c3be930db5181868f3fd2943b"
+  url "https://github.com/electric-sql/electric/archive/refs/tags/@core/sync-service@1.4.13.tar.gz"
+  sha256 "985fabcbaab84f1f7def99b304bfd772c406b078ccdf8bba02512bc738b37c94"
   license "Apache-2.0"
 
   livecheck do
@@ -11,12 +11,12 @@ class Electric < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "7b053c3f2ca408e0af9da86481305fba5562562cb4384f4460afccf3e78d2ff1"
-    sha256 cellar: :any,                 arm64_sequoia: "a6f82cb3f6b9efdce5541cb18aa3438825bc85141fd3fad0f11872f16b6b527e"
-    sha256 cellar: :any,                 arm64_sonoma:  "49bd1ab87be90e3125bd05513dabe733bb5b6f096f6ccd11561ade7175e29d16"
-    sha256 cellar: :any,                 sonoma:        "ca582bb26edb0afe328a60cbf45ab2d1e10a8ddaa8e89b8d77a6c9316062af56"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "75e89bd1085057474dcf52588bebc47d09897fb8120b63148423ecb44b3c5268"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "90494f206d7c9336cfd3be7a864a39b389da02f5762604b9887bdfc04a75709d"
+    sha256 cellar: :any, arm64_tahoe:   "85fd132c9430fc45e681273b1a57e720de20987c04746906fd2babf1c90a102c"
+    sha256 cellar: :any, arm64_sequoia: "ffcf4e68eea9d1087f0533a144cabe86cb5b42721354ec9836f0248134ab5ef5"
+    sha256 cellar: :any, arm64_sonoma:  "044dc3605ad07f2e9143746feebab9a1cabf99549a46b9f411b667b13723be2e"
+    sha256 cellar: :any, sonoma:        "d58b5f8d3ffde921f6b1cb89bf3c1b69c8ce377fc8d18f306bb6d0fa7b27a82c"
+    sha256               arm64_linux:   "b108f186e3ee4a571c409ae585c452abe2b60573779eb16ebbb9732911518dbd"
+    sha256               x86_64_linux:  "e45e6005b1682867535dfa3bad41de5b5f2d8c4fde5b52161b3c0a1dd06cf1de"
   end
 
   depends_on "elixir" => :build
@@ -25,7 +25,10 @@ class Electric < Formula
   depends_on "openssl@3"
 
   uses_from_macos "ncurses"
-  uses_from_macos "zlib"
+
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
 
   def install
     ENV["MIX_ENV"] = "prod"
@@ -37,6 +40,13 @@ class Electric < Formula
       system "mix", "release"
       libexec.install Dir["_build/application_prod/rel/electric/*"]
       bin.write_exec_script libexec.glob("bin/*")
+    end
+
+    # Remove non-native libraries
+    os = OS.kernel_name.downcase
+    arch = Hardware::CPU.intel? ? "amd64" : Hardware::CPU.arch
+    libexec.glob("lib/ex_sqlean-0.8.8/priv/*").each do |f|
+      rm_r(f) unless f.basename.to_s.match?("#{os}-#{arch}")
     end
   end
 
@@ -64,6 +74,7 @@ class Electric < Formula
       mkdir_p testpath/"persistent/shapes/single_stack/.meta/backups/shape_status_backups"
 
       spawn bin/"electric", "start"
+      sleep 5 if OS.mac? && Hardware::CPU.intel?
 
       output = shell_output("curl -s --retry 5 --retry-connrefused localhost:#{ENV["ELECTRIC_PORT"]}/v1/health")
       assert_match "active", output

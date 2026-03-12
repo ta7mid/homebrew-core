@@ -1,8 +1,8 @@
 class Gmsh < Formula
   desc "3D finite element grid generator with CAD engine"
   homepage "https://gmsh.info/"
-  url "https://gmsh.info/src/gmsh-4.15.0-source.tgz"
-  sha256 "abb2632715bd7d0130ded7144fd6263635cd7dea883b8df61ba4da58ce6a1dfe"
+  url "https://gmsh.info/src/gmsh-4.15.1-source.tgz"
+  sha256 "eba8e4064f6586c8ca880f1cfdf697f4d70f026f398a93b458f247f7e4364fed"
   license "GPL-2.0-or-later"
   head "https://gitlab.onelab.info/gmsh/gmsh.git", branch: "master"
 
@@ -12,12 +12,12 @@ class Gmsh < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "8eb04e36c3e44e8ec280b2e1350be62739d51d49dabb65af74ccae48bb624d05"
-    sha256 cellar: :any,                 arm64_sequoia: "07b486a223634ff27f6e1c8b5a1e38de0f0a5b5b6e535f4cbdb9b3079501c940"
-    sha256 cellar: :any,                 arm64_sonoma:  "bec50ecb00386ad83d5b9a281e908fd157808432d8c578e190a2fea05c6252ca"
-    sha256 cellar: :any,                 sonoma:        "c605fa873208382553ebdff480e0c42cc903e1bf7c0317205b9aae924547c0d4"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "352639817aa70df6abffe79e1b60fbb571a1c9241fd7455ef398fcf1150e9859"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "53ce511f367d4f8650bdbb7070088952ff3e5e6f9424a7a7502e8ac95d485041"
+    sha256 cellar: :any,                 arm64_tahoe:   "1cb373fde7e3f6f31454676fbabb9cb508720c7efb9267316fbfbe80faf54c1a"
+    sha256 cellar: :any,                 arm64_sequoia: "78f00331e2c998f04ab0cd4282dbc15342703bd93a78c3223d2988e52a14478e"
+    sha256 cellar: :any,                 arm64_sonoma:  "838cfe7f30bd56988375465bef943da45392a4215fe5f4eca16385336cc9fdfc"
+    sha256 cellar: :any,                 sonoma:        "2eb1629e09d260b2a9176d62a169649dc778392f35cf7045f643d26232186573"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "86cbc296324aca959e4f5be71c292029f8dd05fcc96090dcaf69af41141ec33d"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "a27ddf2c2994932c0c879eb436ebf6e3036b10670ac3a7964ebb6ed3ce7966ef"
   end
 
   depends_on "cmake" => :build
@@ -30,8 +30,6 @@ class Gmsh < Formula
   depends_on "metis"
   depends_on "opencascade"
 
-  uses_from_macos "zlib"
-
   on_macos do
     depends_on "freetype"
     depends_on "libomp"
@@ -40,6 +38,7 @@ class Gmsh < Formula
   on_linux do
     depends_on "mesa"
     depends_on "mesa-glu"
+    depends_on "zlib-ng-compat"
   end
 
   def install

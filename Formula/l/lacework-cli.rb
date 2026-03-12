@@ -2,8 +2,8 @@ class LaceworkCli < Formula
   desc "CLI for managing Lacework"
   homepage "https://docs.lacework.com/cli"
   url "https://github.com/lacework/go-sdk.git",
-      tag:      "v2.8.4",
-      revision: "edf92c488cac5431929aa5d5474347d17842ff52"
+      tag:      "v2.10.0",
+      revision: "9d92a8de6c7906c19b6bba48fc8203095e5943bc"
   license "Apache-2.0"
   head "https://github.com/lacework/go-sdk.git", branch: "main"
 
@@ -16,13 +16,12 @@ class LaceworkCli < Formula
   end
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "ef5b0d4677650dbf9141ad8f134f605fb28031b898ba3a7b06d5ccfa42c988ac"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "ef5b0d4677650dbf9141ad8f134f605fb28031b898ba3a7b06d5ccfa42c988ac"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "ef5b0d4677650dbf9141ad8f134f605fb28031b898ba3a7b06d5ccfa42c988ac"
-    sha256 cellar: :any_skip_relocation, sonoma:        "5e63961eeb8daaf6e69abb1a4f41d470c833f2de72febce61bc0c2c5020abda0"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "82a76a1ef59c8b66eb18aca312a11f0f82f7c8a653a29503729d61988cc6e3ee"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f68a6ce34e9ca7ef6f7d636d09eea6afe7334b9d3d300a3af510d27817161aa7"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "638af4c6da8b2531c0dfc87408298fa224b1049d0f0995c8e24018ad51d1fba1"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "638af4c6da8b2531c0dfc87408298fa224b1049d0f0995c8e24018ad51d1fba1"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "638af4c6da8b2531c0dfc87408298fa224b1049d0f0995c8e24018ad51d1fba1"
+    sha256 cellar: :any_skip_relocation, sonoma:        "4075e5791e4c938ce23592ed6631ea9eb02b573d1d2a2961d9010ff7784f40f1"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "52f465e2ccfa430a8480307b9112ea6369b6525813498665f562d2a4fa2b9b3f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e8d23930fb2378e73300f504bab1f344a79b4cb954b69813be6a38390e789ba6"
   end
 
   depends_on "go" => :build

@@ -1,8 +1,8 @@
 class Graphviz < Formula
   desc "Graph visualization software from AT&T and Bell Labs"
   homepage "https://graphviz.org/"
-  url "https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/14.1.1/graphviz-14.1.1.tar.xz"
-  sha256 "a786db0c32a5b96e1b7c06b0bcfffe901cba601a6de2d5f365e9132ac88d36b1"
+  url "https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/14.1.3/graphviz-14.1.3.tar.xz"
+  sha256 "fe76529477c22c0cf833ec5a35b430cf710f4705afc465d86292bf13560be584"
   license "EPL-1.0"
   version_scheme 1
 
@@ -12,12 +12,12 @@ class Graphviz < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "3bf56d5aebfdd3aa87ef9a8a3ba07bdc9543e25248f9fa7445137e6eb009aac6"
-    sha256 arm64_sequoia: "d971c776efe727c6b0062a82f6d53c1285a4895415d3a3e44c15aaf63f4123e7"
-    sha256 arm64_sonoma:  "664a9525447c8f2e4a46c93f3601b84ec0ef7b6bde3f9c3ecd86ec59955138c0"
-    sha256 sonoma:        "11bd813376679b5fbe99d6afa75998f552fe5c6d870f83b20aebe2286fdfe4b1"
-    sha256 arm64_linux:   "32b6d83e35da118997251b057e13712a06bd71c0d507a377f6448f555f790f86"
-    sha256 x86_64_linux:  "2affeeb9ac5abec9effb3a0c29dfe5e61c9dcd0de8e4d3d6d0170fc3f8d0cd3d"
+    sha256 arm64_tahoe:   "688ebaa954a60593c897840c5c881c119a183832f42af6ad3c62ed9b6ee5e204"
+    sha256 arm64_sequoia: "a3fb247607668a4d9042342515e5162055df356c4e784d299418726fb9a7a7cf"
+    sha256 arm64_sonoma:  "4cb2f2c06a8709e5cdc61d0377923e11382b5c5c46994bf43e48f43ddc4ce82e"
+    sha256 sonoma:        "599536d416ee8b2bf63bbeefda10ba9ae08b2e4212bdfb2bfecae24a1d350985"
+    sha256 arm64_linux:   "003e46d32c7bcc37979bf25ddbf9f1fe9f774e3537d7c72c7c4edd683683b4f8"
+    sha256 x86_64_linux:  "492e7dd144e65efcf0020337543c459bac72cae906e697e3f89147183fc8e36f"
   end
 
   head do
@@ -42,7 +42,6 @@ class Graphviz < Formula
   uses_from_macos "flex" => :build
   uses_from_macos "python" => :build
   uses_from_macos "expat"
-  uses_from_macos "zlib"
 
   on_macos do
     depends_on "fontconfig"
@@ -50,6 +49,10 @@ class Graphviz < Formula
     depends_on "gdk-pixbuf"
     depends_on "gettext"
     depends_on "harfbuzz"
+  end
+
+  on_linux do
+    depends_on "zlib-ng-compat"
   end
 
   def install

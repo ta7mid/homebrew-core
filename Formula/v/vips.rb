@@ -4,7 +4,7 @@ class Vips < Formula
   url "https://github.com/libvips/libvips/releases/download/v8.18.0/vips-8.18.0.tar.xz"
   sha256 "b85ab92280c30d22f5c8fe2f68b809cddb7eaac437d8c33474475dac84ddc574"
   license "LGPL-2.1-or-later"
-  revision 1
+  revision 2
 
   livecheck do
     url :stable
@@ -12,12 +12,13 @@ class Vips < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "721d7d494bc54c92b622d4b28acd648d5736ed7211f48653c563974bfedc9331"
-    sha256 arm64_sequoia: "4fa8776ab7dd244b9506cba094b4cd7f335bbc1abfff1f2ade54694ef365eb39"
-    sha256 arm64_sonoma:  "a75d4e3c1f674c8a6e5bbf9a4d08845e4f0450bc0175ce513ba149b6a4a25f8c"
-    sha256 sonoma:        "b42a7bf0cdaeb59e672d9eba8d63d2ac801d5f1d6064812dd91ca7070da5990f"
-    sha256 arm64_linux:   "ffc6d3ec7ee70eeeb89d53779beb8dcf53f5f4d640f1612f53eacc35983451c3"
-    sha256 x86_64_linux:  "9a0f52d894c75aa1b7902cb5a46cc2d7cc525fbb0ea315f6630dd83093d08b7d"
+    rebuild 1
+    sha256 arm64_tahoe:   "689d37ea624080ec415c9c84a98a9f372367a3bba5bace54825df4cb63742a3a"
+    sha256 arm64_sequoia: "f657ae55aef6b377b4dc5c08fa6e23217ea80e2fd530d504df6ab427685f7754"
+    sha256 arm64_sonoma:  "0c734907acec118c93fe7a228c8ba399a58c5d0102af9e0befbfe45250539d15"
+    sha256 sonoma:        "c7a91bd09a35e5cd6ffee7870923cc78fbca06315e58951009b5d508dbece754"
+    sha256 arm64_linux:   "fe9c9c0f423ae78c7b6eb21a3b6421d6a897f47dc6b8afe874e1cf2330d83875"
+    sha256 x86_64_linux:  "29bb7ce9cf3af9949a67116db831534d7d5b9d12d0d190fb9ceae03da8d9c5a5"
   end
 
   depends_on "gobject-introspection" => :build
@@ -55,7 +56,10 @@ class Vips < Formula
 
   uses_from_macos "python" => :build
   uses_from_macos "expat"
-  uses_from_macos "zlib"
+
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
 
   def install
     # mozjpeg needs to appear before libjpeg, otherwise it's not used

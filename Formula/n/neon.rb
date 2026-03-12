@@ -1,9 +1,9 @@
 class Neon < Formula
   desc "HTTP and WebDAV client library with a C interface"
   homepage "https://notroj.github.io/neon/"
-  url "https://notroj.github.io/neon/neon-0.36.0.tar.gz"
-  mirror "https://fossies.org/linux/www/neon-0.36.0.tar.gz"
-  sha256 "70cc7f2aeebde263906e185b266e04e0de92b38e5f4ecccbf61e8b79177c2f07"
+  url "https://notroj.github.io/neon/neon-0.37.0.tar.gz"
+  mirror "https://fossies.org/linux/www/neon-0.37.0.tar.gz"
+  sha256 "9358cf29e11127b1a3196621d07159d3b013a0b79ebc388a25488a51443b8b81"
   license "LGPL-2.0-or-later"
 
   livecheck do
@@ -12,12 +12,12 @@ class Neon < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "6d24e6d4a85eedc5d3e115e585075840bf3687cc48031b8a1fbab682b21a4302"
-    sha256 cellar: :any,                 arm64_sequoia: "457b1f8bdf13be7880864513ab979fed41850619a84251b7e423fb37c7c11c9c"
-    sha256 cellar: :any,                 arm64_sonoma:  "eacd2712bf83e32b980871881b39dcb81f913d46bd9beeb00ccf7f7e7f23919c"
-    sha256 cellar: :any,                 sonoma:        "267c2a5593558bf587b795fc7d84f0611a93faabcd96061a5b3786adca45a526"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "97b5dba9ec6a14e4083d43f7d0855eb056b1f08e4265685615e25a70142a2599"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "3f194476fbe5b1d585ac0e4cb3f02befedb39f724f9bae67d83c01d2a6624fbe"
+    sha256 cellar: :any,                 arm64_tahoe:   "c13455e41cec857d37b5694facce12480f5e8640af9c09ba5c8233fa2a6f7902"
+    sha256 cellar: :any,                 arm64_sequoia: "fda6ce8a77530afd41a9630db2946645f76bc777c3273f55ac05ff0dd5456e78"
+    sha256 cellar: :any,                 arm64_sonoma:  "e064408f35e3be5d16302e1a4a9130ed27bf5a76a046b54df3f12482442f4527"
+    sha256 cellar: :any,                 sonoma:        "40eebc8ea0f2265fdec954b7c084e941a987dc7461671fab43cd54cff1a69d38"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "44aeeff65f81018f7112e859eeed4f8b3f96d77093398967b817fab4200367a1"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5b0b63351daff119266643ef63d4e185fd55388984f3118ca19bfa878db22a3f"
   end
 
   depends_on "pkgconf" => :build
@@ -25,7 +25,10 @@ class Neon < Formula
   depends_on "openssl@3"
 
   uses_from_macos "libxml2"
-  uses_from_macos "zlib"
+
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
 
   def install
     # Fix compile with newer Clang

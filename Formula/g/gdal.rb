@@ -1,10 +1,10 @@
 class Gdal < Formula
   desc "Geospatial Data Abstraction Library"
   homepage "https://gdal.org/en/stable/"
-  url "https://github.com/OSGeo/gdal/releases/download/v3.12.1/gdal-3.12.1.tar.gz"
-  sha256 "266cbadf8534d1de831db8834374afd95603e0a6af4f53d0547ae0d46bd3d2d1"
+  url "https://github.com/OSGeo/gdal/releases/download/v3.12.2/gdal-3.12.2.tar.gz"
+  sha256 "458a899feea38000258144517fedc6662ebba255971669d2901ba77e9e8fbf79"
   license "MIT"
-  revision 1
+  revision 2
 
   livecheck do
     url "https://download.osgeo.org/gdal/CURRENT/"
@@ -12,12 +12,12 @@ class Gdal < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "844ea4e12cb613ed804d23d3214d3298cb14dfb13d5d8c226163f0a427e41a45"
-    sha256 arm64_sequoia: "d04a32aceedb0fb32de7b322e3c156cc8bf6f10b0235a3a94e303e784ad150f8"
-    sha256 arm64_sonoma:  "8afe531b9fa3e364b1be26000981f2163a9ffc3b302a6ff5fad71c82562fa4da"
-    sha256 sonoma:        "3adefd7229a79fa7d99955877f0bca4b8410a3dd3913b4560414c9f9632b6c6b"
-    sha256 arm64_linux:   "5da0d234589d53362f087ef3a95bddd781a340658e50d6c290d935a9bd156686"
-    sha256 x86_64_linux:  "c8015e5c4c402203bb9c061d1897189fe0c38ed73722a58a2e50662705ebffba"
+    sha256 arm64_tahoe:   "d6c2cf070c3e93fb6ed0ec2493ab083f39cced2967b593a55cc07eaf3c809d84"
+    sha256 arm64_sequoia: "4e75ebb59e6e0c40de8848e2cc97f99256a809248ba992071e4093d92abac51f"
+    sha256 arm64_sonoma:  "e55006b160303f883ea727457edfd4d677d773e9f0e2957dd024658c7f9dfd95"
+    sha256 sonoma:        "011e3ecd47a1f0ba8507ed13e3c379819a9fb89755054e1e5d0cf99bcffa8a0c"
+    sha256 arm64_linux:   "7d9b46652a12074c977661c7b544fc3ed9687c7501a95ec8dab3b6b7197fa778"
+    sha256 x86_64_linux:  "77732d353a4680d7bbcfa551f18e178476e158c3d0841736b168bf70a547d653"
   end
 
   head do
@@ -75,7 +75,6 @@ class Gdal < Formula
 
   uses_from_macos "curl"
   uses_from_macos "expat"
-  uses_from_macos "zlib"
 
   on_macos do
     depends_on "minizip"
@@ -84,16 +83,21 @@ class Gdal < Formula
 
   on_linux do
     depends_on "util-linux"
+    depends_on "zlib-ng-compat"
   end
 
   conflicts_with "avce00", because: "both install a cpl_conv.h header"
   conflicts_with "cpl", because: "both install cpl_error.h"
 
-  # Backport fix for poppler 26+ compatibility, remove in next release
-  # PR ref: https://github.com/OSGeo/gdal/pull/13664
+  # fix for poppler 26.02+ compatibility, upstream pr ref, https://github.com/OSGeo/gdal/pull/13850
+  # remove in 3.12.3 release
   patch do
-    url "https://github.com/OSGeo/gdal/commit/28a15cb76d26a27be96ab8b8bc8fcb52c153c3a9.patch?full_index=1"
-    sha256 "89171ad0d0e9edd531022011c59d1d0ae21910b4c69c44ab453c5722c82fe297"
+    url "https://github.com/OSGeo/gdal/commit/8f2e654223e9fbde0978eea0d8f03ad6f091ad8c.patch?full_index=1"
+    sha256 "51d3016957ef82cae333780c82523979aae7c338d9c38fd9b6d18f971e171335"
+  end
+  patch do
+    url "https://github.com/OSGeo/gdal/commit/c8ff7e31650cb61acf40903928aabf2514754038.patch?full_index=1"
+    sha256 "8f57f13342b1d7e7fcfc5920a9e4943478661f126d45a5646b99cdae8ceff264"
   end
 
   def python3

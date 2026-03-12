@@ -1,25 +1,26 @@
 class Lmod < Formula
   desc "Lua-based environment modules system to modify PATH variable"
   homepage "https://lmod.readthedocs.io"
-  url "https://github.com/TACC/Lmod/archive/refs/tags/9.0.5.tar.gz"
-  sha256 "7d5b5db9f252dff7469d3a5369b7b58dbbfd4b3a879a97ee21954f26e04b13e3"
+  url "https://github.com/TACC/Lmod/archive/refs/tags/9.1.2.tar.gz"
+  sha256 "b7277482677a22c3396b88a1290406ca20bb2564c59632403ca98373f132e65a"
   license "MIT"
+  revision 1
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "7517a87455dc9a52a896c35dd8036dc7aba34b7742deb6d2fc932aa3e73341af"
-    sha256 cellar: :any,                 arm64_sequoia: "b69db71ff9e0cc5a11c88e689b8046e7bc42a5c6406ba128f65196ec4b734cb4"
-    sha256 cellar: :any,                 arm64_sonoma:  "9415728157c8e19e1b681e5446e4d41446cb30e98adfe6fd6fd53f4644414718"
-    sha256 cellar: :any,                 sonoma:        "51d4b1b2ed9b6986060ff517134b2558f73589c41469af414e68e8a3ea774d89"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "cc1c0b52c6caf7d3a92f377e624863ea5401c78c802c3d1f5ed1c8e7639d7f2c"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "3eb551c67e48d20a359d0dc484c622016d88682022eb173410fc4c47a8a4458a"
+    sha256 cellar: :any,                 arm64_tahoe:   "af03a89fc1d744660b257657f05ac2166f1e8106015055f858c420848ba6f128"
+    sha256 cellar: :any,                 arm64_sequoia: "6c0f9c7f34b31d47fe54d69604ea319a0f5f143dd40a5026232e9abb81d4564e"
+    sha256 cellar: :any,                 arm64_sonoma:  "48d0e1256c983210d2a260aea66ef3a2a4539a8dd97e15cb5b56f04ca93ae71e"
+    sha256 cellar: :any,                 sonoma:        "792f834bde8fdc698b1b87325d39ea4eadedcdf52a5f77e717f0989bcd409366"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "45da9ab7608952a9069d56325c70bc77a5d663222ade80316ac0573bf1a05d5b"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6f2f8a407a09c4dcc6738fedcaf6a7fd370ae803cca94935d183ec9bd4a35f80"
   end
 
   depends_on "luarocks" => :build
   depends_on "pkgconf" => :build
-  depends_on "lua"
+  depends_on "lua@5.4" # due to luaposix
   depends_on "tcl-tk"
 
-  uses_from_macos "bc" => :build
+  uses_from_macos "bc-gh" => :build
   uses_from_macos "libxcrypt"
 
   on_macos do
@@ -32,8 +33,8 @@ class Lmod < Formula
   end
 
   resource "luafilesystem" do
-    url "https://github.com/lunarmodules/luafilesystem/archive/refs/tags/v1_8_0.tar.gz"
-    sha256 "16d17c788b8093f2047325343f5e9b74cccb1ea96001e45914a58bbae8932495"
+    url "https://github.com/lunarmodules/luafilesystem/archive/refs/tags/v1_9_0.tar.gz"
+    sha256 "1142c1876e999b3e28d1c236bf21ffd9b023018e336ac25120fb5373aade1450"
   end
 
   resource "luaposix" do
@@ -42,7 +43,8 @@ class Lmod < Formula
   end
 
   def install
-    luaversion = Formula["lua"].version.major_minor
+    lua = Formula["lua@5.4"]
+    luaversion = lua.version.major_minor
     luapath = libexec/"vendor"
     ENV["LUA_PATH"] = "?.lua;" \
                       "#{luapath}/share/lua/#{luaversion}/?.lua;" \
@@ -51,7 +53,7 @@ class Lmod < Formula
 
     resources.each do |r|
       r.stage do
-        system "luarocks", "make", "--tree=#{luapath}"
+        system "luarocks", "make", "--tree=#{luapath}", "--lua-dir=#{lua.opt_prefix}"
       end
     end
 
@@ -59,6 +61,7 @@ class Lmod < Formula
     ENV["TCL_PKG_CONFIG_DIR"] = ENV["PKG_CONFIG_PATH"]
 
     system "./configure", "--with-siteControlPrefix=yes", "--prefix=#{prefix}"
+    ENV.deparallelize # Work around "install: mkdir .../share/man: File exists"
     system "make", "install"
 
     # Remove man page which conflicts with `modules` formula

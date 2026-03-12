@@ -3,17 +3,17 @@ class Nuitka < Formula
 
   desc "Python compiler written in Python"
   homepage "https://nuitka.net"
-  url "https://files.pythonhosted.org/packages/d8/fb/51df3b30b0f9b3e73f3ba6bea8b94516b16035297c4b3452aaa632a130ae/nuitka-2.8.9.tar.gz"
-  sha256 "b178cd437f2110c46943b368db51d20d57d586a13f8f6323ab1be4e51e2fabf8"
+  url "https://files.pythonhosted.org/packages/f8/40/f73e578922084f9e465b30abdb9963aadcc087b5a9399033472d9ef641ab/nuitka-4.0.5.tar.gz"
+  sha256 "45e7d90266e76fe64eeb8d196c17666d7cd7cffbf68d6a24f233c3c03b6feaa8"
   license "Apache-2.0"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "3843745296f914fc447ad794833e5bc065645820add59313b84143c5aaac68d0"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "128651e5cc6d1bd82f10f9e2365ff9e864214a46fe5e123c01f1991a6747a35c"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "a3f582a07716c0d17b8a7023e29e3566b4b415e4cc85c95855d8b26716bc5b6f"
-    sha256 cellar: :any_skip_relocation, sonoma:        "17bd159c492558db4cdb1a5560235b5c3bc6089eac98b7a8c0e2346d9cb836fd"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "57875adb7566cd846d1377dd56980af61270a3e0ede8bc91b878a19f20ed4be8"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "a06f6ca3e71e207a6016cad7811b2eb98bcdc918008eddcf37c60bba646a7825"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "92979853818f218052f3a17d1ceed99ce8fa8fe696ce5ac3c74745bf07fa0d94"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "2c5377b959419b49a64d707aca4fc241fb4aed50d6bc6bd4863167236b093d11"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "f210135299a233b78e8ddf5e2b10031578220fe1fcfd212d27696aaa52a646e9"
+    sha256 cellar: :any_skip_relocation, sonoma:        "da06900cb9d813d0e494e97e76c7387298a32e2c56618399e263c26bccd8c6b7"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "0c29720cf610b3974974b252e49e7ccd496528d9f63b0a695518618eebddcb38"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "c7f31906f17bd02c389d6d5a129745741e48a17f5c37ab8e0792619add636981"
   end
 
   depends_on "ccache"
@@ -21,16 +21,6 @@ class Nuitka < Formula
 
   on_linux do
     depends_on "patchelf"
-  end
-
-  resource "ordered-set" do
-    url "https://files.pythonhosted.org/packages/4c/ca/bfac8bc689799bcca4157e0e0ced07e70ce125193fc2e166d2e685b7e2fe/ordered-set-4.1.0.tar.gz"
-    sha256 "694a8e44c87657c59292ede72891eb91d34131f6531463aab3009191c77364a8"
-  end
-
-  resource "zstandard" do
-    url "https://files.pythonhosted.org/packages/fd/aa/3e0508d5a5dd96529cdc5a97011299056e14c6505b678fd58938792794b1/zstandard-0.25.0.tar.gz"
-    sha256 "7713e1179d162cf5c7906da876ec2ccb9c3a9dcbdffef0cc7f70c3667a205f0b"
   end
 
   def install

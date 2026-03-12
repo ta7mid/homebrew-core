@@ -5,6 +5,7 @@ class Rpm < Formula
     "GPL-2.0-only",
     "LGPL-2.0-or-later", # rpm-sequoia
   ]
+  revision 1
   version_scheme 1
   head "https://github.com/rpm-software-management/rpm.git", branch: "master"
 
@@ -24,16 +25,15 @@ class Rpm < Formula
     regex(/RPM\s+v?(\d+(?:\.\d+)+)/i)
   end
 
-  no_autobump! because: :requires_manual_review
+  no_autobump! because: :incompatible_version_format
 
   bottle do
-    rebuild 1
-    sha256 arm64_tahoe:   "817cfbba4fe88dd1ca4446d936bb6c4cae68f70af1895e72b2d9af20186fc6ea"
-    sha256 arm64_sequoia: "2ceece493065a153759bd8a81b001e1ae817b0315bd322aaf0190cd84b063910"
-    sha256 arm64_sonoma:  "4bf279262ec127bb86a4b685f6a7e8ea3b854d865c71a173d2b3e4a1401db64b"
-    sha256 sonoma:        "11d285a8bf603a8d7ae76af2d102c6c34ecf272cc5378335a3b6e5684605560d"
-    sha256 arm64_linux:   "eda731a1351179e9a65f885cdf588db00f9e417b670328366bce636c13143916"
-    sha256 x86_64_linux:  "70eaf4ff4ead4d9aa599087e5be5998ab22827cfef4f54d1ed5e682b61f7c05b"
+    sha256 arm64_tahoe:   "9c214ce074bddb955970b60106ebc155f0783a04e2af65080268ccecf7bd499b"
+    sha256 arm64_sequoia: "ec075b7ef916195ac245a831715ca4305641d607f5c82e9f81b437aa20d5ab8e"
+    sha256 arm64_sonoma:  "cc9845e73233b057da077d3504d8f5a19fcedffdac8a38965246b6c162030b49"
+    sha256 sonoma:        "862e0efee8b4876888c728c3921168cc1cb8ae74d4a787ef81278cd96d873e71"
+    sha256 arm64_linux:   "c8a0598905a3f1eb1c6ca3ea74e9e1313434a6055b9a45ff7c2500facfed373b"
+    sha256 x86_64_linux:  "936bb8258a1b95397a71270123f6298891fab5b9829c80447721693aa7e45a56"
   end
 
   depends_on "cmake" => :build
@@ -55,9 +55,7 @@ class Rpm < Formula
   depends_on "xz"
   depends_on "zstd"
 
-  uses_from_macos "llvm" => :build
   uses_from_macos "bzip2"
-  uses_from_macos "zlib"
 
   on_macos do
     depends_on "gettext"
@@ -65,7 +63,9 @@ class Rpm < Formula
   end
 
   on_linux do
+    depends_on "llvm@21" => :build # LLVM 22 fails for nettle-sys
     depends_on "elfutils"
+    depends_on "zlib-ng-compat"
   end
 
   conflicts_with "rpm2cpio", because: "both install `rpm2cpio` binaries"

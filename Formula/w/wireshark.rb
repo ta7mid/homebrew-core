@@ -1,11 +1,23 @@
 class Wireshark < Formula
   desc "Network analyzer and capture tool - without graphical user interface"
   homepage "https://www.wireshark.org"
-  url "https://www.wireshark.org/download/src/all-versions/wireshark-4.6.2.tar.xz"
-  mirror "https://1.eu.dl.wireshark.org/src/all-versions/wireshark-4.6.2.tar.xz"
-  sha256 "e218e3b3899e5d6e35a5fe95eeeabead587ed084cbf5fc330ac827f9a3137de8"
   license "GPL-2.0-or-later"
+  revision 1
   head "https://gitlab.com/wireshark/wireshark.git", branch: "master"
+
+  stable do
+    url "https://www.wireshark.org/download/src/all-versions/wireshark-4.6.4.tar.xz"
+    mirror "https://1.eu.dl.wireshark.org/src/all-versions/wireshark-4.6.4.tar.xz"
+    sha256 "fbeab3d85c6c8a5763c8d9b7fe20b5c69ca9f9e7f2b824bedc73135bdca332e2"
+
+    # Apply Fedora's backport of Lua 5.5 support. Includes following commits:
+    # https://gitlab.com/wireshark/wireshark/-/commit/ec16791d8d68f9045400a0610a5a10b1ea544dfd
+    # https://gitlab.com/wireshark/wireshark/-/commit/1bf12a13e71a6ec1a79cfc73767d35e815b839dd
+    patch do
+      url "https://src.fedoraproject.org/rpms/wireshark/raw/aa822250ea9ebe0b4199522aba92b3c931488a0b/f/wireshark-0010-find-lua-5.5.patch"
+      sha256 "48d682f99981bad6fa26cae9f4b1d96246b51d701136ba9d89d82d5ddd91bbdc"
+    end
+  end
 
   # Upstream indicates stable releases with an even-numbered minor (see:
   # https://wiki.wireshark.org/Development/ReleaseNumbers).
@@ -15,12 +27,13 @@ class Wireshark < Formula
   end
 
   bottle do
-    sha256                               arm64_tahoe:   "f1c57cfcff8e28866bf2161773c39a0b622eb8fdda2edb8cf9badbcaf9a676c2"
-    sha256                               arm64_sequoia: "c07b8664fded4bab8eedc80ce6feadc88e043701d0f4adfe7a52037d436b407b"
-    sha256                               arm64_sonoma:  "e136afb70669f85f65a301733f24967679f28fb5e7c0a9ed6db0e6afef626874"
-    sha256                               sonoma:        "afc306a19328cef605903e076bff92fb72f9967fad010d1ba195881317723983"
-    sha256                               arm64_linux:   "fd9477bdf9dc7223e491f4623610bab76edd6282d5e148f45559cf0f3663ccd0"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "65efa7ce93b490166771cf392e9149189b37156149d4093b6b22b26458fa41ab"
+    rebuild 1
+    sha256                               arm64_tahoe:   "fb70cc4a30876469e96717a747f113ea408fe6e3af51584735055646d226fd13"
+    sha256                               arm64_sequoia: "6e18b24d8a0333bf7cfd1c92f602ff0d6019580451d1bc7858c8b106f8599550"
+    sha256                               arm64_sonoma:  "85ee2997391e87141421c168fa4497388c9889eb8be390cd4a3294a3065a4a96"
+    sha256                               sonoma:        "27ac99b2d325d07a4f4324dc50ecb59de4bf3f07423cc76b91f91baa151c7bc6"
+    sha256                               arm64_linux:   "ba445c07c071e8f8661506084b2a92df131e29b1a8cb877d69b2f8670714ceb4"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1b488d1d3c7496b88afaef35ba42f43deceae3dbb8a3dee416691fcddd56c6ee"
   end
 
   depends_on "cmake" => :build
@@ -45,21 +58,25 @@ class Wireshark < Formula
   uses_from_macos "krb5"
   uses_from_macos "libpcap"
   uses_from_macos "libxml2"
-  uses_from_macos "zlib"
 
   on_macos do
     depends_on "libgpg-error"
   end
 
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
+
   conflicts_with cask: "wireshark-app"
 
   def install
+    lua = Formula["lua"]
     plugindir = lib/"wireshark/plugins/#{version.major}-#{version.minor}"
     args = %W[
       -DENABLE_BROTLI=OFF
       -DENABLE_SNAPPY=OFF
-      -DLUA_INCLUDE_DIR=#{Formula["lua"].opt_include}/lua
-      -DLUA_LIBRARY=#{Formula["lua"].opt_lib/shared_library("liblua")}
+      -DLUA_INCLUDE_DIR=#{lua.opt_include}/lua
+      -DLUA_LIBRARY=#{lua.opt_lib/shared_library("liblua")}
       -DCARES_INCLUDE_DIR=#{Formula["c-ares"].opt_include}
       -DGCRYPT_INCLUDE_DIR=#{Formula["libgcrypt"].opt_include}
       -DGNUTLS_INCLUDE_DIR=#{Formula["gnutls"].opt_include}

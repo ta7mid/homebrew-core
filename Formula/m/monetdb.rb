@@ -1,8 +1,8 @@
 class Monetdb < Formula
   desc "Column-store database"
   homepage "https://www.monetdb.org/"
-  url "https://www.monetdb.org/downloads/sources/Dec2025/MonetDB-11.55.1.tar.xz"
-  sha256 "a5848beef0908ee5b4477beb66a9fa72ee1ab8d5bb4eec5cafcc3fa9dc32b299"
+  url "https://www.monetdb.org/downloads/sources/Dec2025-SP1/MonetDB-11.55.3.tar.xz"
+  sha256 "9592aa0fb18aeb22ceb6a4f9b60cd7960362832704e3625a025673e89e861a51"
   license "MPL-2.0"
   head "https://www.monetdb.org/hg/MonetDB", using: :hg
 
@@ -11,16 +11,15 @@ class Monetdb < Formula
     regex(/href=.*?MonetDB[._-]v?(\d+(?:\.\d+)+)\.t/i)
   end
 
-  no_autobump! because: :requires_manual_review
+  no_autobump! because: :bumped_by_upstream
 
   bottle do
-    rebuild 1
-    sha256 arm64_tahoe:   "088ee9cc35814652e59b13eb0e8be109b2cc48054684670233e6103450dce94e"
-    sha256 arm64_sequoia: "217891c7ccab24f60e2668c49742b2a6c65b0040d7a6d3b35b01d017a22d2d1c"
-    sha256 arm64_sonoma:  "6b68ffafb0d7dcc1dfacb33dadc151eb55c6d6f7dfee7592c55d532e2222f9fb"
-    sha256 sonoma:        "74235d4b82a8b2e4a0f01dc6c54252ab487f46e2432d372301f2e33ab312a6f0"
-    sha256 arm64_linux:   "863a28ebac90f2fa1fd5c25e0a1b03f6aaeb8a9c978dac4b00a75c49e20d896c"
-    sha256 x86_64_linux:  "511467df6002ea0e9b6266e99f29d49947daa4d202f3309a96723eb62fb00054"
+    sha256 arm64_tahoe:   "7c3536841c412cfa0564540cf569935c9f4d93cff2d85f82c7f7c89398a83ed5"
+    sha256 arm64_sequoia: "dda5c447aea4bba4d87909d719fe9ac8afc147e76ded673b820f9201776b150a"
+    sha256 arm64_sonoma:  "71254a64a8b98c14ae26bf322263af2a8baaaa85efbd8fbfa16b2e5542a90fdc"
+    sha256 sonoma:        "d2414b833b2874a2bc8224d97561e4fe68b89811d7e7b807b99ed944faeb9fa4"
+    sha256 arm64_linux:   "d247bbffc4afc7e931a9354938e2b3ff9168aa9c5b70333df1d4e221855730a3"
+    sha256 x86_64_linux:  "447f37b30a3e92f8886a1c80eda479ae058519fe1c47b457e3a8a444f6eeea71"
   end
 
   depends_on "bison" => :build # macOS bison is too old
@@ -34,7 +33,10 @@ class Monetdb < Formula
 
   uses_from_macos "python" => :build
   uses_from_macos "bzip2"
-  uses_from_macos "zlib"
+
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
 
   def install
     system "cmake", "-S", ".", "-B", "build",

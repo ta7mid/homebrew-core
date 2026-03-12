@@ -5,8 +5,6 @@ class FastqTools < Formula
   sha256 "0cd7436e81129090e707f69695682df80623b06448d95df483e572c61ddf538e"
   license "MIT"
 
-  no_autobump! because: :requires_manual_review
-
   bottle do
     sha256 cellar: :any,                 arm64_tahoe:    "f57dd1230850ef71d77be3507a7b7067f4d0a22eb574fffc98c1f5fe1a62bbe4"
     sha256 cellar: :any,                 arm64_sequoia:  "676774cb2b0ed5421d985f2e97120b61d9b0e376b21ca90415bf6e25ba98407a"
@@ -22,6 +20,10 @@ class FastqTools < Formula
     sha256 cellar: :any_skip_relocation, arm64_linux:    "6705cf6567e0d7c7f8fcb8af52cfc0bd8dcf62b6ad61339ed00433fbeb2f16d5"
     sha256 cellar: :any_skip_relocation, x86_64_linux:   "abd98e72c698e16a077443d29259f946f7ac36c6e5f5a6e172be5466c4cbf2cd"
   end
+
+  # Last release on 2020-10-30 and needs EOL `pcre`
+  deprecate! date: "2026-01-12", because: :unmaintained
+  disable! date: "2027-01-12", because: :unmaintained
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build

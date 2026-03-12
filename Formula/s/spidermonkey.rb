@@ -1,9 +1,9 @@
 class Spidermonkey < Formula
   desc "JavaScript-C Engine"
   homepage "https://spidermonkey.dev"
-  url "https://archive.mozilla.org/pub/firefox/releases/140.6.0esr/source/firefox-140.6.0esr.source.tar.xz"
-  version "140.6.0"
-  sha256 "6c35c9ab507521033c8fd49f1b4c85ee158f33ed36f5781a663f116c3d604dc9"
+  url "https://archive.mozilla.org/pub/firefox/releases/140.8.0esr/source/firefox-140.8.0esr.source.tar.xz"
+  version "140.8.0"
+  sha256 "57a7f339ef68273f6597d8074a841fa053f63a21d1f609ab0074a26c063282e6"
   license "MPL-2.0"
   head "https://hg.mozilla.org/mozilla-central", using: :hg
 
@@ -15,12 +15,12 @@ class Spidermonkey < Formula
   end
 
   bottle do
-    sha256 cellar: :any, arm64_tahoe:   "c749bb76f6363333acbcf705d9936cf36450e4da47cadc4e456f5702b223ca11"
-    sha256 cellar: :any, arm64_sequoia: "1734a82e9d5333bd3434ce02151f5ee13af55d253dfd79adfc75e03723d46b50"
-    sha256 cellar: :any, arm64_sonoma:  "04218b35486476fdccc660a110a1cc2280946a86342bf757bd448be5f60f6cd8"
-    sha256 cellar: :any, sonoma:        "1478653b3f9fb1e702f00a821fdadef21cb397cef3868020f47f39cc01992855"
-    sha256               arm64_linux:   "71d1d04ba50bafabea079dfd589005f04ccee55da06e5eff6ebe42c227802705"
-    sha256               x86_64_linux:  "f7304a3979145c0e123ca04d5ed068c448da88b23564219dfcaf29de7a88a6cd"
+    sha256 cellar: :any, arm64_tahoe:   "31428b379fd3f3ee7d8316162170efe9805fe333f1ab3838801b218a95e45570"
+    sha256 cellar: :any, arm64_sequoia: "33d1b4e4835b535de8a9364fa45572ad89ad28f23cea3df9883e124e5fd2194e"
+    sha256 cellar: :any, arm64_sonoma:  "2a8199c9eb28fa0cb5af798971eef50c6dd11fed18ccab1755c59558ba126a98"
+    sha256 cellar: :any, sonoma:        "fb366b9a3e485e86929a7be919148742f7f37f1a7df24083d6ee9533cd3b3dca"
+    sha256               arm64_linux:   "b275c51aa42ac9ace563319362280c5aaa00080e3a11420050f53d7159f74ea7"
+    sha256               x86_64_linux:  "f82c9a804de4870c366e5518d3ef87096a39eb0c01defc9214e81aff9e53beb1"
   end
 
   depends_on "cbindgen" => :build
@@ -33,7 +33,10 @@ class Spidermonkey < Formula
 
   uses_from_macos "llvm" => :build # for llvm-objdump
   uses_from_macos "m4" => :build
-  uses_from_macos "zlib"
+
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
 
   # From python/mozbuild/mozbuild/test/configure/test_toolchain_configure.py
   fails_with :gcc do

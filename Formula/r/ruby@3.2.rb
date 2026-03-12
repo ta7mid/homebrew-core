@@ -1,10 +1,9 @@
 class RubyAT32 < Formula
   desc "Powerful, clean, object-oriented scripting language"
   homepage "https://www.ruby-lang.org/"
-  url "https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.9.tar.gz"
-  sha256 "abbad98db9aeb152773b0d35868e50003b8c467f3d06152577c4dfed9d88ed2a"
+  url "https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.10.tar.gz"
+  sha256 "880acb05e08da8c559c56a13e512bae1b472da67c72ebb750c765f9c2134e689"
   license "Ruby"
-  revision 1
 
   livecheck do
     url "https://www.ruby-lang.org/en/downloads/"
@@ -12,12 +11,13 @@ class RubyAT32 < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "850eb4a323d765ee686a0ef2cba9a79a2ad4b581b3c22c5c9a263a38c019c68d"
-    sha256 arm64_sequoia: "c0333a8d58a19c18dd1dfd2fc4d794e0b56683a6263dbfb7b6e7d8c31ee8916e"
-    sha256 arm64_sonoma:  "a1c5d10b027435c318c39a0f35592f5b5329a68a0d928ba6081f3337ae39af74"
-    sha256 sonoma:        "12d8ff67cd5fd2dc4b1ca2b5a0fca0c85ff8ef287fa0cac6932e4a1ada24c999"
-    sha256 arm64_linux:   "d7399b88bbc194a82cc7d89c4aca3988b978c065ee6f5020e12fbce4bcaee37a"
-    sha256 x86_64_linux:  "a5990cbc9859fad46e2d5ed3d255bb306d67b6061460e89aa76a31cc11faf793"
+    rebuild 1
+    sha256 arm64_tahoe:   "9fe16a31e4a4b150fc8a44081a038345c07945a220041e35c4f56af262b3dca3"
+    sha256 arm64_sequoia: "dd94650488ad007ec2692bb2b0bcb3de1eba6bc3d9eec8b0ae55ce9c422b4d9a"
+    sha256 arm64_sonoma:  "6a7f6a7a342802319e1362c95f724705b66309ce94581ea8dcecc71c33d90fc0"
+    sha256 sonoma:        "2febca65e2693bfa578996c8cee5ee80d9c10f1ebd7dc5edaa7e9a537de5c843"
+    sha256 arm64_linux:   "9db798b59ca915800926592094b17b61571eed949eeeb2b06011a9c394d62301"
+    sha256 x86_64_linux:  "d438055d3bb5e59d2805deecd907fc5f84dc61d0d97b1c1f155026a283d08c3b"
   end
 
   keg_only :versioned_formula
@@ -34,7 +34,10 @@ class RubyAT32 < Formula
   uses_from_macos "libffi"
   uses_from_macos "libxcrypt"
   uses_from_macos "ncurses"
-  uses_from_macos "zlib"
+
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
 
   # Should be updated only when Ruby is updated (if an update is available).
   # The exception is Rubygem security fixes, which mandate updating this

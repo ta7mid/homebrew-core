@@ -1,8 +1,8 @@
 class RancherCli < Formula
   desc "Unified tool to manage your Rancher server"
   homepage "https://github.com/rancher/cli"
-  url "https://github.com/rancher/cli/archive/refs/tags/v2.13.1.tar.gz"
-  sha256 "e6893558d3168007e504e19977ec4c7e6cf58beb6c864214911b97a344b5e978"
+  url "https://github.com/rancher/cli/archive/refs/tags/v2.13.3.tar.gz"
+  sha256 "2d2b134fdf8ce3871b1eed94ef9b15757741f1e5351640e71e5c8455d5c2fa27"
   license "Apache-2.0"
   head "https://github.com/rancher/cli.git", branch: "main"
 
@@ -15,12 +15,12 @@ class RancherCli < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "ae6472a611147be8c3e6604358082b77ac363bbe295140f05bbf3f37196d5c8f"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "cd4dca5ce9053229492f01df52ac90fc6a16937e91018e0a988861a05865e6b2"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "183806c3c5f0974d8a009bcb2fd2272242288266d240c7238876a5532f29b01b"
-    sha256 cellar: :any_skip_relocation, sonoma:        "ad28c818048573b0b7bd1ec264e9dd58b5e3bf7db9fe4ac8ae9fb8f575ecb5c9"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "fbe160b9fe6e257ecbd17d6dbdee630017feb8ab916e1ac2225ca85036f26ae4"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "4b68a9824ccd9f1458dba3500509040842d4acdca2eef0666b67a630c700ad8c"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "d19498f5fbf9d6da4751b053053f32b0c571c3ad97269c508f164e6c7bac812e"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "0f058c0428ebb65b21bddb16827e1e5adc3bcdf6e242b5b0bc4ae3732a29dc17"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "3dc3e647e882f404c8d4f97bc18d80696f5d68b010d6df9b75f2ebe5551b6c9d"
+    sha256 cellar: :any_skip_relocation, sonoma:        "c365c63cb1da6c58c481fb1072a2ffc60af8b7b157a96d8b8584e49213ca476d"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "881f2c3eb390c3d44382bb88bca1b41d1cc313b18a817748a14357bb0e7b2533"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "620509749bd540523b51029db60bdc48256c17babda4b4ab8765f705cbe1287f"
   end
 
   depends_on "go" => :build
@@ -30,7 +30,7 @@ class RancherCli < Formula
   end
 
   test do
-    assert_match "Failed to parse SERVERURL", shell_output("#{bin}/rancher login localhost -t foo 2>&1", 1)
+    assert_match "failed to parse SERVERURL", shell_output("#{bin}/rancher login localhost -t foo 2>&1", 1)
     assert_match "invalid token", shell_output("#{bin}/rancher login https://127.0.0.1 -t foo 2>&1", 1)
   end
 end

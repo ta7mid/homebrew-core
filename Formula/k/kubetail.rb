@@ -1,8 +1,8 @@
 class Kubetail < Formula
   desc "Logging tool for Kubernetes with a real-time web dashboard"
   homepage "https://www.kubetail.com/"
-  url "https://github.com/kubetail-org/kubetail/archive/refs/tags/cli/v0.10.1.tar.gz"
-  sha256 "87311cdba53c74c6c03a2d51c87491a2c656beb8187c1ef86cce3430a1faf5eb"
+  url "https://github.com/kubetail-org/kubetail/archive/refs/tags/cli/v0.12.1.tar.gz"
+  sha256 "ff0d591fbe9352af6dc2f3035321f14d71449f7d09c7b3c918af3016c7c7979c"
   license "Apache-2.0"
   head "https://github.com/kubetail-org/kubetail.git", branch: "main"
 
@@ -12,17 +12,15 @@ class Kubetail < Formula
   end
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "620792ab465f0707a318e1cd2129e27ed919a6a5bb2850c7b6f22e4b80fdf009"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "3a0333a453f77283f5bc88f0ae0086950b8ed0f78659c7812e4ff376293fb871"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "40905b20f5df1d0cff517507777e421de4067342b658c894e7326a1bd1c5b922"
-    sha256 cellar: :any_skip_relocation, sonoma:        "520af592cb2987e51ece834729345a728a6d39eff301468ea87fd697d4187238"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "77f3c6448afe6b34ba85fc650ea8427e4e1d6ff003fb474f5ca4a8a330f7bdfc"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "a9c88bf00cfe3c8f05e621f5df273a11ae42fd4bfd69ed17795f4882f2f746f2"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "717dd6e239a45e68ece97265688fea1c44b6a07529280085747b0e0db2e2c115"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "710079a6599de47d5126cab911b4f4b692b6f0213d1aed68edf2326349cb5038"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "194398b929ba8aa5af586102c4d040615200fff36cf2c712c8832008cf5decca"
+    sha256 cellar: :any_skip_relocation, sonoma:        "88201f21bb227b1cfbf8ae780a2e0e15c411951d14c63bca7cdc18fe636d7701"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "4f7eea257b39ad88a4b2566bf7bf32180aaf6ca5c514e01fbe62e45611abcea0"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "749143efe2df6f2dab026faad224960e578be4bb56234b20f398d08330b333be"
   end
 
   depends_on "go" => :build
-  depends_on "make" => :build
   depends_on "node" => :build
   depends_on "pnpm" => :build
 

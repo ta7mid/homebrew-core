@@ -1,8 +1,8 @@
 class CodeCli < Formula
   desc "Command-line interface built-in Visual Studio Code"
   homepage "https://github.com/microsoft/vscode"
-  url "https://github.com/microsoft/vscode/archive/refs/tags/1.107.1.tar.gz"
-  sha256 "695707e9a46ce79fc03faece47db443ff940df0e59c5094562a0b9e0610caea2"
+  url "https://github.com/microsoft/vscode/archive/refs/tags/1.111.0.tar.gz"
+  sha256 "591246c3f17b81d2062e89fd757ce92be6910ed02b0adb8de74d12d1e655a0f3"
   license "MIT"
   head "https://github.com/microsoft/vscode.git", branch: "main"
 
@@ -12,19 +12,21 @@ class CodeCli < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "f82d1150524244e70ed69039b20dd91d012092dcd33003e9bc0018d5c52f1c37"
-    sha256 cellar: :any,                 arm64_sequoia: "bbd000e3b9ccaa7f964a7c08b04d0395f9e2f2e2ee4b225c8439529bbad9de37"
-    sha256 cellar: :any,                 arm64_sonoma:  "5a4079e45fad1350180c6ea6ed091f30a3c04bafe03cb5dbac745904aa4ad435"
-    sha256 cellar: :any,                 sonoma:        "3ba11d52e5010e3ca9daaa46716355ac1b1159055931871c87ef36ab8296ecf0"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "66e07843828e633e9ee82f9a76ddb58fcbd08b8e1e1fd39a22a6ef38ebd79427"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ea039df5125d16a7640615ed3a80be00724050efef72ead4866dc5e0ac5b1b1d"
+    sha256 cellar: :any,                 arm64_tahoe:   "e00df0bc7137eb6bb656c0b0f982f6d5d309b808b2c5f123ff02a509e63e1638"
+    sha256 cellar: :any,                 arm64_sequoia: "b0727953081376e15af767805d14ab339a43c368f83d6670fca12861e1ba1da4"
+    sha256 cellar: :any,                 arm64_sonoma:  "1029a389632ac963b55af3af853488a7baf10e11d320151b10a5307195fa67fa"
+    sha256 cellar: :any,                 sonoma:        "3727c4c180db54c3e2f9e8714f005feb7bec744ce52bddff3a188d0219159d51"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "b6ea21fc51a16c2abb1224748f88d02363d187dfdd93898fabd3aed0d228c4f6"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d254ce701b2a7ba1a4ef2b7f2d755bc9638fefd49ee5d629a702ea4967e6e238"
   end
 
   depends_on "pkgconf" => :build
   depends_on "rust" => :build
   depends_on "openssl@3"
 
-  uses_from_macos "zlib"
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
 
   conflicts_with cask: "visual-studio-code"
 

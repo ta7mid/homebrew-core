@@ -1,17 +1,18 @@
 class GnomePapers < Formula
   desc "Document viewer for PDF and other document formats aimed at the GNOME desktop"
   homepage "https://apps.gnome.org/Papers/"
-  url "https://download.gnome.org/sources/papers/49/papers-49.3.tar.xz"
-  sha256 "76975d9d1fd2f88c368fec8c31f0e56fa9dd93a1b8e85faceaa403c59a55aa90"
+  url "https://download.gnome.org/sources/papers/49/papers-49.5.tar.xz"
+  sha256 "6e2a7a5870f7e10da5804cab4784b2f6bb55f97a4045ce5a64c36796bf2ff4bd"
   license "GPL-2.0-or-later"
+  revision 1
 
   bottle do
-    sha256 arm64_tahoe:   "9f2c3af5775239cd9d03d1f9def7bfbc12c006512d94b86e37c73fe7080dbcdc"
-    sha256 arm64_sequoia: "60af9749a0c0c6a6811c0e5d0f84713096108ad6728319a5e2c6a546682ae8f2"
-    sha256 arm64_sonoma:  "b793d8c0f725c6e82332d5195e61fcd13b8b9524376ee5e5bb8dedff28038642"
-    sha256 sonoma:        "9240c47a486c04448e5a38c4530740ba5a67b9686b0a6387120bcefad56a751e"
-    sha256 arm64_linux:   "b512d3ff17158ce152193324fa6ed538809b04b8b2128fb8dc76915486af6ec2"
-    sha256 x86_64_linux:  "5ae7266d7dbdf1e6524b98fe6c9845fa6db17eff43ea3156654c9833e9035922"
+    sha256 arm64_tahoe:   "370a47022b8c21f98270b2b449a8c8c08045ed0780c201b372acf8dc287f7a1c"
+    sha256 arm64_sequoia: "d029e50d905768aea97d012150b7b2c457ad20d983e556b8f2187ccb56d1d3db"
+    sha256 arm64_sonoma:  "f5ffc33055e9cafaf632921c61b8a26c0b92eb9404e7aee591dd2510172beff1"
+    sha256 sonoma:        "756689b9e62df2e95f1c4c07a6f7ca4a3d8af5cc3e94d1f02d9c2e6b8a0361a6"
+    sha256 arm64_linux:   "c43b4e7bcd47f203ba7e2f2c3f8392a2c7a24e7b09cd12577d2ead78d00da4b3"
+    sha256 x86_64_linux:  "d643a29cb56291b1de17639b14c65b3045dc3b46f2aca66bbb20b57e67d2f2d1"
   end
 
   depends_on "blueprint-compiler" => :build

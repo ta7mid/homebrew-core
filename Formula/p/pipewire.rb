@@ -1,8 +1,8 @@
 class Pipewire < Formula
   desc "Server and user space API to deal with multimedia pipelines"
   homepage "https://pipewire.org"
-  url "https://gitlab.freedesktop.org/pipewire/pipewire/-/archive/1.4.9/pipewire-1.4.9.tar.gz"
-  sha256 "8066a7b220069e4c6e3b02bd2b6ea303bba66df255023c07c99323449ba8fe3c"
+  url "https://gitlab.freedesktop.org/pipewire/pipewire/-/archive/1.6.1/pipewire-1.6.1.tar.gz"
+  sha256 "fe129cab5e5c262f4d8b22a7eba559b5f847e560a4904e8618124eeaca9a579c"
   license all_of: ["GPL-2.0-only", "LGPL-2.1-or-later", "MIT"]
   head "https://gitlab.freedesktop.org/pipewire/pipewire.git", branch: "master"
 
@@ -15,8 +15,8 @@ class Pipewire < Formula
   end
 
   bottle do
-    sha256 arm64_linux:  "6d572cd52c0c3329c53e77a3d6c1d4a6bdd001fb78ddb641248a5e93486892e4"
-    sha256 x86_64_linux: "0c0e172381438d5b4abc7b2b478bcee91342ae768a9b11b5e584157a6c1f1304"
+    sha256 arm64_linux:  "544f1ab162307ccde4b2bc079f713c31d4640cd32045888f5c16d75d3ba05ad6"
+    sha256 x86_64_linux: "f78d471efe27b82424ce1f14e573e134cbf27ab24a5dd56ec0fcbfc26c87db53"
   end
 
   depends_on "meson" => :build
@@ -37,7 +37,7 @@ class Pipewire < Formula
   depends_on "systemd"
 
   def install
-    args = %w[
+    args = %W[
       -Dexamples=disabled
       -Dtests=disabled
       -Dudevrulesdir=#{lib}/udev/rules.d

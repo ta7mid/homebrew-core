@@ -1,19 +1,18 @@
 class Roadrunner < Formula
   desc "High-performance PHP application server, load-balancer and process manager"
   homepage "https://docs.roadrunner.dev/docs"
-  url "https://github.com/roadrunner-server/roadrunner/archive/refs/tags/v2025.1.6.tar.gz"
-  sha256 "1c825bce9a6818ace1c5d3b99e8502a826135da54416dcd710575f10ce05535a"
+  url "https://github.com/roadrunner-server/roadrunner/archive/refs/tags/v2025.1.8.tar.gz"
+  sha256 "bfd0bd9194dda9abdf801e08391bf8612f48fae0711e9666585db7a8de89209b"
   license "MIT"
   head "https://github.com/roadrunner-server/roadrunner.git", branch: "master"
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "b922ac0ecd0179a39819d0edeaa742f1b30b0d7286328855f29037604aab67d2"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "472f6a45ee68efd04ce26ca7699a491aa248ae5d7c97e0cb6b316f90322c402f"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "72d3cf7858eda319631a473b9b9e83afa9246cea0f1ceabf483311f4f1c6bd52"
-    sha256 cellar: :any_skip_relocation, sonoma:        "19af5af4666d61a0617a1ef23ebdaa0da06867596b34c818d7ab6ab9db277ce4"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "95ce21d357fef7dedac29f4ea7ac12f08d65c8bf2d2acead1bd393c707c55776"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8a39ac075f5765d0af6bc24d9d4ecbea1d080085f26db587109fe84adf980295"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "15b363ad65b815275959e84d8cd26461b269082911b926a2a906e2051aaec4b3"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "a204357f57e1b40a17824caf40542522ad1c8dabc2c10966cce63bf65fe66233"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "0189c13cf869b0389cf2c72cf4d294ac5d1928a6d768fed472be644577cda126"
+    sha256 cellar: :any_skip_relocation, sonoma:        "edffd14122adeb2d797ef4598180617e6e85a4d3c540eae53d31702872a6a05b"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "7d8d6f6f1d77cf76745139f4ee1422064736eed0d96cf6e3439543bd9c0ebe38"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "660ed163a724ed704069f39206316f971b138fe80981316cec6a781b6aa7c161"
   end
 
   depends_on "go" => :build

@@ -1,24 +1,11 @@
 class Groonga < Formula
   desc "Fulltext search engine and column store"
   homepage "https://groonga.org/"
+  url "https://github.com/groonga/groonga/releases/download/v16.0.0/groonga-16.0.0.tar.gz"
+  sha256 "e8cec40d59c848617912d988c69ca67445c19fd2d8fcb5b6080eded2df89d545"
   license "LGPL-2.1-or-later"
+  revision 1
   head "https://github.com/groonga/groonga.git", branch: "main"
-
-  stable do
-    url "https://github.com/groonga/groonga/releases/download/v15.2.1/groonga-15.2.1.tar.gz"
-    sha256 "77d9aa56e33c0986bbec6ddd2ee897aba6c347cff45fce988f2708145e0c9d77"
-
-    # Workaround for missing CMake file. Remove when fixed in release.
-    # PR ref: https://github.com/groonga/groonga/pull/2709
-    resource "FindGroongalibedit.cmake" do
-      url "https://raw.githubusercontent.com/groonga/groonga/refs/tags/v15.2.1/cmake/FindGroongalibedit.cmake"
-      sha256 "26319863f76345bff0fbb4cfde5c1c43430a18b1a36cc58bfe7d26d2910e8d34"
-
-      livecheck do
-        formula :parent
-      end
-    end
-  end
 
   livecheck do
     url :homepage
@@ -26,13 +13,12 @@ class Groonga < Formula
   end
 
   bottle do
-    rebuild 1
-    sha256 arm64_tahoe:   "7e677574b1e5f58027a942e95bfdfaf83929b1649b0e6124bf731fdec3ddf95c"
-    sha256 arm64_sequoia: "18d2125ac4a6eddcdca35550f582cec3efde710fda909c9da275f222365abdd7"
-    sha256 arm64_sonoma:  "880fc3354150cc996293d03a6fe1457908354161c9df347f2b8ecf66dcdea179"
-    sha256 sonoma:        "7a67513a26fb0a93c62cfc3e409b0e5207d154f62ea2aa0bc7cae10a435c2dc4"
-    sha256 arm64_linux:   "3496071b3581e7d2a3bcc921fae28f52bc43b43c3db123e6265988c397b145a4"
-    sha256 x86_64_linux:  "835fe23e517c8169a36f6389cdc88d83e7d95f60edd8ea4bb94bba3c4c861af7"
+    sha256 arm64_tahoe:   "7910a742eb29d2d570423205b3aacd0abc396276d6215c0f811f3e38d0f46714"
+    sha256 arm64_sequoia: "5795febcb34f83e6240adf67cbc328776f0c85177dd034c41b81e7c2a1056005"
+    sha256 arm64_sonoma:  "10d42b2a81b4c3df9d49725fad36bdd75f8644d553da6bbaed91991ac73f1f11"
+    sha256 sonoma:        "2b488a31fe2550ccaac8501b78c52d52ab32f6355d34355af724f768252807fd"
+    sha256 arm64_linux:   "c31791814bce7fe99918d95d8a1b9406eaeb6d0de2538ac79bd5a8544874f690"
+    sha256 x86_64_linux:  "785265fa1be880554dcc9587daa48652897cff9baf7752c99b9d3c774bf13e79"
   end
 
   depends_on "cmake" => :build
@@ -46,7 +32,10 @@ class Groonga < Formula
   depends_on "zstd"
 
   uses_from_macos "libedit"
-  uses_from_macos "zlib"
+
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
 
   link_overwrite "lib/groonga/plugins/normalizers/"
   link_overwrite "share/doc/groonga-normalizer-mysql/"
@@ -58,11 +47,6 @@ class Groonga < Formula
   end
 
   def install
-    if build.stable?
-      odie "Remove FindGroongalibedit.cmake resource!" if (buildpath/"cmake/FindGroongalibedit.cmake").exist?
-      resource("FindGroongalibedit.cmake").stage(buildpath/"cmake")
-    end
-
     # Removed bundled libraries but keep files needed by build scripts even when unused
     rm_r(Dir["vendor/*"] - ["vendor/CMakeLists.txt", "vendor/mecab", "vendor/mruby", "vendor/plugins"])
 

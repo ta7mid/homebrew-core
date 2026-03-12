@@ -1,8 +1,8 @@
 class ElanInit < Formula
   desc "Lean Theorem Prover installer and version manager"
   homepage "https://github.com/leanprover/elan"
-  url "https://github.com/leanprover/elan/archive/refs/tags/v4.1.2.tar.gz"
-  sha256 "7d31b3d1d69857b11611363bd94bfdc4f0525a85077f20f823abf65b39ccc350"
+  url "https://github.com/leanprover/elan/archive/refs/tags/v4.2.0.tar.gz"
+  sha256 "451f194ab00395524d3843e3a0841273ce91ac2136bd1ef6f62c7d8f63c3dd17"
   license any_of: ["Apache-2.0", "MIT"]
   head "https://github.com/leanprover/elan.git", branch: "master"
 
@@ -12,14 +12,12 @@ class ElanInit < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "61ef80b2085b384cd60d93316b4739c4de6d218e374ea603b1b6d1dc66dd2a50"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "b4902a5f8381b8b51b1bd53bf09e9547795d327c16292cbd5cea895a232bff0d"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "244c72110dc59e51a7b8248b82ce1773277cc3c61f45ca5ed1bfd49d2af58b25"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "36c1f08f1df2453875145833443e4666498b85d02e194b3c1ad5c6bf9401cd31"
-    sha256 cellar: :any_skip_relocation, sonoma:        "ac4eb727726c26fe57df0136286bd192cdeea784f19dea1975b111721a4dbe26"
-    sha256 cellar: :any_skip_relocation, ventura:       "1a334d939336097ded29ac2578ac4d4813a97097f815d9bcfa4870b5923536b7"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "36c8e9b09da80ed74aaf314080958e8d1d03615aa6306ab1b9d898e45fd9f812"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "af3db622b0392ebdda14742c19a9830c656336614c3c8036d2bde87ebe44c273"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "fe5bf4830ff487e53a02d5afa3d8af13e1727402263fe60de611b99a5edcde8f"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "8c3b4bb4aa9a3ebcb3452ec39c97a02fb632d69380856c60ec00360dd8a4a773"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "27bfce3b10497a7df56d8e41fcfc3b80f92f69cee55877cfeb896ee0194246b3"
+    sha256 cellar: :any_skip_relocation, sonoma:        "b14211f6be8ebc77c0a1294a39e1d0186e9b5b28d664e7abd0d4cce8e5d8a6b9"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "150bea6fedf58f7439874d62ecee7b797d956e8a9a5e92d6c9690ae9dcfcc30b"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "12a9d025de3fe9ff78a480f2a3ba29f85d029aa28e62b8409c79f8964eb9a420"
   end
 
   depends_on "pkgconf" => :build
@@ -29,10 +27,10 @@ class ElanInit < Formula
 
   uses_from_macos "bzip2"
   uses_from_macos "curl"
-  uses_from_macos "zlib"
 
   on_linux do
     depends_on "xz"
+    depends_on "zlib-ng-compat"
   end
 
   conflicts_with "lean-cli", because: "both install `lean` binaries"
@@ -40,7 +38,7 @@ class ElanInit < Formula
   def install
     ENV["RELEASE_TARGET_NAME"] = "homebrew-build"
 
-    system "cargo", "install", "--features", "no-self-update", *std_cargo_args
+    system "cargo", "install", *std_cargo_args(features: "no-self-update")
 
     %w[lean leanpkg leanchecker leanc leanmake lake elan].each do |link|
       bin.install_symlink "elan-init" => link

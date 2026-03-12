@@ -2,9 +2,9 @@ class PhpAT84 < Formula
   desc "General-purpose scripting language"
   homepage "https://www.php.net/"
   # Should only be updated if the new version is announced on the homepage, https://www.php.net/
-  url "https://www.php.net/distributions/php-8.4.16.tar.xz"
-  mirror "https://fossies.org/linux/www/php-8.4.16.tar.xz"
-  sha256 "f66f8f48db34e9e29f7bfd6901178e9cf4a1b163e6e497716dfcb8f88bcfae30"
+  url "https://www.php.net/distributions/php-8.4.18.tar.xz"
+  mirror "https://fossies.org/linux/www/php-8.4.18.tar.xz"
+  sha256 "957a9b19b4a8e965ee0cc788ca74333bfffaadc206b58611b6cd3cc8b2f40110"
   license all_of: [
     "PHP-3.01",
 
@@ -29,7 +29,6 @@ class PhpAT84 < Formula
     "TCL",                   # 7
     "Zlib",                  # 8
   ]
-  revision 1
 
   livecheck do
     url "https://www.php.net/downloads?source=Y"
@@ -37,12 +36,12 @@ class PhpAT84 < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "f108ffdada9ca05239407126aabc1ec23e732a58f695ddd047e5b599af1076aa"
-    sha256 arm64_sequoia: "5dd81ca01cc44121d2f83e5ecd9bc2f680df25a3de1e3258e9e99c1d7d6ce5bd"
-    sha256 arm64_sonoma:  "3088899ea89f3c51f0b03cf24de632335f0d47b390cc03237594464ace7fa071"
-    sha256 sonoma:        "f524314a180bfbf935a43e15bb388698a275e293f8af0ad39f356ae37a092e4b"
-    sha256 arm64_linux:   "72f8c32354de8d463679966131f063c440454d58eac806368ed67122e791e8c6"
-    sha256 x86_64_linux:  "ed43578fa58a3516a4ebf488d955e25d9497cb4d3f85cffdcaf0fd47ad614db0"
+    sha256 arm64_tahoe:   "ce2b06a084d3a39e0b2eb3a4bf8f9826f9148f47dcfe1571c5e72f5d29b75a5d"
+    sha256 arm64_sequoia: "5113b30693b68ac094007e7f5ed5afb074222b925faf683c63a7cd010612107f"
+    sha256 arm64_sonoma:  "0c01685a6e384d5976bb1032a09b1ed5186b4b7789fd521201a553cb3201b16e"
+    sha256 sonoma:        "0d43e2323e06fb148f8ec911e877495ba97a1173dd599bb2147c5d2968aa6d3c"
+    sha256 arm64_linux:   "88caf758680cbf8fffe19ea283724489b5717bddf1646863fa35cc84b2c6e5d3"
+    sha256 x86_64_linux:  "b407a58fc5d044e46ffa6c19e2619b70358bae5e0e30dada275556f9638adf46"
   end
 
   keg_only :versioned_formula
@@ -80,10 +79,13 @@ class PhpAT84 < Formula
   uses_from_macos "libffi"
   uses_from_macos "libxml2"
   uses_from_macos "libxslt"
-  uses_from_macos "zlib"
 
   on_macos do
     depends_on "gettext"
+  end
+
+  on_linux do
+    depends_on "zlib-ng-compat"
   end
 
   def install
@@ -430,7 +432,7 @@ class PhpAT84 < Formula
     EOS
 
     begin
-      pid = spawn Formula["httpd"].opt_bin/"httpd", "-X", "-f", "#{testpath}/httpd.conf"
+      pid = spawn Formula["httpd"].opt_bin/"httpd", "-X", "-f", testpath/"httpd.conf"
       sleep 10
       assert_match expected_output, shell_output("curl -s 127.0.0.1:#{port}")
 
@@ -438,7 +440,7 @@ class PhpAT84 < Formula
       Process.wait(pid)
 
       fpm_pid = spawn sbin/"php-fpm", "-y", "fpm.conf"
-      pid = spawn Formula["httpd"].opt_bin/"httpd", "-X", "-f", "#{testpath}/httpd-fpm.conf"
+      pid = spawn Formula["httpd"].opt_bin/"httpd", "-X", "-f", testpath/"httpd-fpm.conf"
       sleep 10
       assert_match expected_output, shell_output("curl -s 127.0.0.1:#{port}")
     ensure

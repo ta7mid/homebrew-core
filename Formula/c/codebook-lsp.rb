@@ -1,8 +1,8 @@
 class CodebookLsp < Formula
   desc "Code-aware spell checker language server"
   homepage "https://github.com/blopker/codebook"
-  url "https://github.com/blopker/codebook/archive/refs/tags/v0.3.28.tar.gz"
-  sha256 "7add54d84ae75d0194e5834f42608c0314d33a9ce94f589d557e0f3647d223b2"
+  url "https://github.com/blopker/codebook/archive/refs/tags/v0.3.32.tar.gz"
+  sha256 "f91b19ca180222320e4460783d3045e99427a4c65f806b958b920b5fe0b5d52b"
   license "MIT"
   head "https://github.com/blopker/codebook.git", branch: "main"
 
@@ -12,12 +12,12 @@ class CodebookLsp < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "160630699034ce3439b40fb741c7ee93b673b7d2614866206541da6029e44ba2"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "d4c356d38291632baa129176f99c435356ba8c682b97c2cb115b5e495725237f"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "65ce6912f0d74876097f65e98430bcf4ad5303964f3da87b113553806b0dc2c5"
-    sha256 cellar: :any_skip_relocation, sonoma:        "c3995f957ad7c5e8fad02634c2a9aaa78d14ca83f151ac53a296fab5ff8bf4d1"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "58d73fad2e809cbdf734a3adfdafb9bcbbbfdabeb61a4aa98e019cdcce9813e8"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "7857f69eeb5c928b78eb2f24be55c2fe8c66e5560375f1d15ae98cdb2ad52f14"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "3abda2fafee9490098aff0338666848fde8294344333a58f2f9d80c3d713e619"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "f62fb564fae8fef9139b2b5e5f41a2edf4ccfc11afb18154dc9578eb99eca98e"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "7b943f206a92cf2ee416a7747a365df85031adf98b357d11baceeef1dc0199e1"
+    sha256 cellar: :any_skip_relocation, sonoma:        "026a396e48499e3852e6646357ad28963099c070ec0703198bfaa11c0a8d80e8"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "588f67cac5aaaa24ea0d94c8b91014522ae9d0efdbceff77b354e32e4afd0b53"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "cd8f1ee7ab2baef63d1b58a9ea619d1d056eb8900e68e7f3f39a22adceb91523"
   end
 
   depends_on "rust" => :build

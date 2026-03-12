@@ -1,8 +1,8 @@
 class PythonFreethreading < Formula
   desc "Interpreted, interactive, object-oriented programming language"
   homepage "https://www.python.org/"
-  url "https://www.python.org/ftp/python/3.14.2/Python-3.14.2.tgz"
-  sha256 "c609e078adab90e2c6bacb6afafacd5eaf60cd94cf670f1e159565725fcd448d"
+  url "https://www.python.org/ftp/python/3.14.3/Python-3.14.3.tgz"
+  sha256 "d7fe130d0501ae047ca318fa92aa642603ab6f217901015a1df6ce650d5470cd"
   license "Python-2.0"
 
   livecheck do
@@ -10,14 +10,15 @@ class PythonFreethreading < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "c4e44996a1c5039ad3ef1a62ca62f23f61378e254489745b5dd1808820a42603"
-    sha256 arm64_sequoia: "3754f1ded413890fa9b7bf3febcfdd599291a40efb3c4d8df7213de8fa1d3456"
-    sha256 arm64_sonoma:  "f4a720480acc3ab9d88782af590534687bad18cee3e55533d8af23d1f8e17895"
-    sha256 tahoe:         "56e47f44bf050e33bd866498f925f513f22a167e7a81ee0194551d2cbd89dca9"
-    sha256 sequoia:       "ec771da1d9f72dc9d8add6daa4edba3354fea80af0c4ccbc9d3e0dbf378e4c43"
-    sha256 sonoma:        "7acdfd03bb9d482041f04add33c0bd2390e9093959f5502c325d0651e5567c9f"
-    sha256 arm64_linux:   "6776898cc755dad3eff3dd97848b8be64d8b9615b9809b0a00a2a8696d93ffb7"
-    sha256 x86_64_linux:  "00fd027c6ee94b887d61e8b571038f577d86429f2918ca14aafbce6efbe1a8a6"
+    rebuild 1
+    sha256 arm64_tahoe:   "055db8b1347ab3f3b190b9fdbdf7e3c62cdf2f39756affd88989d2cad2f2b5d2"
+    sha256 arm64_sequoia: "06e124574b48f7efedd1afefe23f14033b896e4e53c6939010726f2d02a8594b"
+    sha256 arm64_sonoma:  "4ff7f46f9e7ba3fea15c5c30a68d9fe5d05956e3175c586b8941fca5b3b8f835"
+    sha256 tahoe:         "0d69a978bfae96e6ab5a6d7e089ed90feadb3d35383a06987eda4aea39d74dcf"
+    sha256 sequoia:       "616ef8e629182c1507e943548caf7ffbca112b377102b7567bdf81f63238a235"
+    sha256 sonoma:        "b2fd8d27207a880e1297d90a657966f6f70ef05d6a49dcec98cad8c36210f8e1"
+    sha256 arm64_linux:   "21628837f08926d9f08dbb32729aff60f386a4246accc3a26372251b24ea0640"
+    sha256 x86_64_linux:  "848c4bef3cb80b4195a2499a5fe03d38130fb019180be113818020ee9a58b463"
   end
 
   depends_on "pkgconf" => :build
@@ -36,12 +37,12 @@ class PythonFreethreading < Formula
   uses_from_macos "libxcrypt"
   uses_from_macos "ncurses"
   uses_from_macos "unzip"
-  uses_from_macos "zlib"
 
   on_linux do
     depends_on "berkeley-db@5"
     depends_on "libnsl"
     depends_on "libtirpc"
+    depends_on "zlib-ng-compat"
   end
 
   pypi_packages package_name:   "",
@@ -53,14 +54,19 @@ class PythonFreethreading < Formula
     sha256 "18f63100d6f94385c6ed57a72073443e1a71a4acb4339491615d0f16d6ff01b2"
   end
 
+  resource "packaging" do
+    url "https://files.pythonhosted.org/packages/65/ee/299d360cdc32edc7d2cf530f3accf79c4fca01e96ffc950d8a52213bd8e4/packaging-26.0.tar.gz"
+    sha256 "00243ae351a257117b6a241061796684b084ed1c516a08c48a3f7e147a9d80b4"
+  end
+
   resource "pip" do
-    url "https://files.pythonhosted.org/packages/fe/6e/74a3f0179a4a73a53d66ce57fdb4de0080a8baa1de0063de206d6167acc2/pip-25.3.tar.gz"
-    sha256 "8d0538dbbd7babbd207f261ed969c65de439f6bc9e5dbd3b3b9a77f25d95f343"
+    url "https://files.pythonhosted.org/packages/44/c2/65686a7783a7c27a329706207147e82f23c41221ee9ae33128fc331670a0/pip-26.0.tar.gz"
+    sha256 "3ce220a0a17915972fbf1ab451baae1521c4539e778b28127efa79b974aff0fa"
   end
 
   resource "wheel" do
-    url "https://files.pythonhosted.org/packages/8a/98/2d9906746cdc6a6ef809ae6338005b3f21bb568bea3165cfc6a243fdc25c/wheel-0.45.1.tar.gz"
-    sha256 "661e1abd9198507b1409a20c02106d9670b2576e916d58f520316666abca6729"
+    url "https://files.pythonhosted.org/packages/89/24/a2eb353a6edac9a0303977c4cb048134959dd2a51b48a269dfc9dde00c8a/wheel-0.46.3.tar.gz"
+    sha256 "e3e79874b07d776c40bd6033f8ddf76a7dad46a7b8aa1b2787a83083519a1803"
   end
 
   # Modify default sysconfig to match the brew install layout.

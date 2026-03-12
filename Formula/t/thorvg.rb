@@ -1,8 +1,8 @@
 class Thorvg < Formula
   desc "Lightweight portable library used for drawing vector-based scenes and animations"
   homepage "https://www.thorvg.org"
-  url "https://github.com/thorvg/thorvg/archive/refs/tags/v0.15.16.tar.gz"
-  sha256 "a7fc0aaf9e1aa5c1bc8f4f2035571ce87136a3c65fd9b3019eb25f9c58fba83c"
+  url "https://github.com/thorvg/thorvg/archive/refs/tags/v1.0.1.tar.gz"
+  sha256 "061343ed560f08ef2f7b48a7f6b684ae6bfd50b7904599d8581e466b2531844f"
   license "MIT"
   head "https://github.com/thorvg/thorvg.git", branch: "main"
 
@@ -12,12 +12,12 @@ class Thorvg < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "9d87490684470b10afc64c6fe45a03468145bed36759cf41365e04352953ee24"
-    sha256 cellar: :any,                 arm64_sequoia: "69d5298cd5ac913d954b5ee999023788c0db21d00c5e63de95c79aea3a64e783"
-    sha256 cellar: :any,                 arm64_sonoma:  "a8ccd6d8af86d06fb8c5f782185b3b6e70d29d9cf00b03eeded13eba58c3bad2"
-    sha256 cellar: :any,                 sonoma:        "653d87f6b405b6f5aa45abc702f25fab2200d2f8ab5c3f86b079b8404931747a"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "0138144a2810b47dcebdba850819b1f1b50c04ad303f829014fae922e8470b17"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "aab00cb963c786ef524be4a1550989521a9970beb22d4265888df40e099a1f55"
+    sha256 cellar: :any,                 arm64_tahoe:   "e2d6bbaef2d44857ee10e04b8cdef4181378f16495bf934431017fe33616caf7"
+    sha256 cellar: :any,                 arm64_sequoia: "bf507d64b82cce95df0890fd89fe8e9c8ef60317cb5c0ea73f9e2c7e85abf4a0"
+    sha256 cellar: :any,                 arm64_sonoma:  "29a288e9a939e872d978d5c794097ef1035be761b5360e56805c0b7c27f54030"
+    sha256 cellar: :any,                 sonoma:        "f3120164f30377e309a1649e623091393eddea76a05f8078b13f44280ff63a14"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "e7da32b612dba76ae26837527dc1ef78552a61b713a4e8314970ca62d34b5a4c"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "9034ea438c681c3317640249c36bb9bb37e8cf7841f337771f638550fa32baa4"
   end
 
   depends_on "meson" => :build
@@ -36,7 +36,6 @@ class Thorvg < Formula
       -Dbindings=capi
       -Dthreads=true
       -Dlog=false
-      -Dexamples=false
       -Dtests=false
     ]
 
@@ -46,7 +45,7 @@ class Thorvg < Formula
   end
 
   test do
-    assert_match version.to_s, shell_output("pkgconf --modversion thorvg")
+    assert_match version.to_s, shell_output("pkgconf --modversion thorvg-1")
 
     (testpath/"test.cpp").write <<~CPP
       #include <thorvg.h>
@@ -55,19 +54,13 @@ class Thorvg < Formula
 
       int main()
       {
-          Result result = Initializer::init(CanvasEngine::Sw, 1);
-
-          if (result != Result::Success)
-          {
-              return 1;
-          }
-
-          Initializer::term(CanvasEngine::Sw);
+          Initializer::init(1);
+          Initializer::term();
           return 0;
       }
     CPP
 
-    system ENV.cxx, "test.cpp", "-o", "test", "-std=c++11", "-I#{include}", "-L#{lib}", "-lthorvg"
+    system ENV.cxx, "test.cpp", "-o", "test", "-std=c++11", "-I#{include}/thorvg-1", "-L#{lib}", "-lthorvg-1"
     system "./test"
   end
 end

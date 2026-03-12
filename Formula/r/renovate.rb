@@ -1,23 +1,24 @@
 class Renovate < Formula
   desc "Automated dependency updates. Flexible so you don't need to be"
   homepage "https://github.com/renovatebot/renovate"
-  url "https://registry.npmjs.org/renovate/-/renovate-42.78.0.tgz"
-  sha256 "81a4b30eed77ac59ebc77bae6f74ad3c1e3c6fee148d92ee793c797127b9a25e"
+  url "https://registry.npmjs.org/renovate/-/renovate-43.64.0.tgz"
+  sha256 "a720ff7fb6ea86a5c6a437c00624e0b819cc27d726a5010b9e112aa1284844b1"
   license "AGPL-3.0-only"
 
-  # There are thousands of renovate releases on npm and the page the `Npm`
-  # strategy checks is several MB in size and can time out before the request
-  # resolves. This checks the first page of tags on GitHub (to minimize data
-  # transfer).
+  # livecheck needs to surface multiple versions for version throttling but
+  # there are thousands of renovate releases on npm. The package page showing
+  # versions is several MB in size (and the registry response is 10x that),
+  # so curl can time out before the response finishes. This checks releases on
+  # GitHub as a workaround, as it provides information on multiple versions
+  # but has a much smaller size.
   livecheck do
-    url "https://github.com/renovatebot/renovate/tags"
-    regex(%r{href=["']?[^"' >]*?/tag/v?(\d+(?:\.\d+)+)["' >]}i)
-    strategy :page_match
+    url :homepage
+    strategy :github_releases
     throttle 10
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "acacd570613f83186aca010515a0ce7448ff4f7a47429ef44ef8ec1d6e75e430"
+    sha256 cellar: :any_skip_relocation, all: "6cc068a33fbc0efb2f6d90cc5f501c5bf90f08d3239ebf995a736723c70d1c4b"
   end
 
   depends_on "node@24"

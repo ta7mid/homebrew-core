@@ -1,18 +1,18 @@
 class Nanobot < Formula
   desc "Build MCP Agents"
   homepage "https://www.nanobot.ai/"
-  url "https://github.com/nanobot-ai/nanobot/archive/refs/tags/v0.0.49.tar.gz"
-  sha256 "23fe611b9c6fbc1a920ace9b276a25d225afab12d0a10eb130793d31ee934761"
+  url "https://github.com/nanobot-ai/nanobot/archive/refs/tags/v0.0.58.tar.gz"
+  sha256 "1d8c3ff1141ad4b7a0c7edebc603a11b41b68190e499229c4e3a435e0d71b5f4"
   license "Apache-2.0"
   head "https://github.com/nanobot-ai/nanobot.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "443205e01209dc98837d85afb39f6d5a0cc5ead0096bcb2f4bd926d74016a9d2"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "443205e01209dc98837d85afb39f6d5a0cc5ead0096bcb2f4bd926d74016a9d2"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "443205e01209dc98837d85afb39f6d5a0cc5ead0096bcb2f4bd926d74016a9d2"
-    sha256 cellar: :any_skip_relocation, sonoma:        "35b487a53675723119cfc1c50e6f3458ccb3636d393e4ae76db481da051b9169"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "42ae822720a5defdbe391b3f8fce3407bbdb007a27122e90c10e2b96392b7de7"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5ac363ced7f0e85ea2137bf863a3d7b773634763635a44d0517c92ef912884a8"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "407a9c1fb5256f98a8092bbdd276cf22de1c900d872245c2611a8267bc0fcf8f"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "407a9c1fb5256f98a8092bbdd276cf22de1c900d872245c2611a8267bc0fcf8f"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "407a9c1fb5256f98a8092bbdd276cf22de1c900d872245c2611a8267bc0fcf8f"
+    sha256 cellar: :any_skip_relocation, sonoma:        "dc7c1eb99de31b1fcdad4360f82cd98b142f8e5df8124593a9315137cb215a9d"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "33767e9579efee179865eee7407490827d3295959d6bd05326baf3f3b2d4ac50"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "957c9f7ecade288ad1cd253e10f012131ec4b409e1e4948e65e7035eeead8d85"
   end
 
   depends_on "go" => :build
@@ -24,6 +24,8 @@ class Nanobot < Formula
       -X github.com/nanobot-ai/nanobot/pkg/version.BaseImage=ghcr.io/nanobot-ai/nanobot:v#{version}
     ]
     system "go", "build", *std_go_args(ldflags:)
+
+    generate_completions_from_executable(bin/"nanobot", shell_parameter_format: :cobra)
   end
 
   test do

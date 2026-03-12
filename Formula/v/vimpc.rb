@@ -7,8 +7,6 @@ class Vimpc < Formula
   revision 1
   head "https://github.com/boysetsfrog/vimpc.git", branch: "master"
 
-  no_autobump! because: :requires_manual_review
-
   bottle do
     sha256 arm64_tahoe:   "8013c280a8da6f6acbe6df84589b721620b2ae2d171374a8a1775e80636d213a"
     sha256 arm64_sequoia: "1fcf1d047f24ee3ba7d4ef487535073559d3cd25129d607581784f2625e40bcf"
@@ -19,6 +17,10 @@ class Vimpc < Formula
     sha256 arm64_linux:   "7228a6e08f338c414bd766a2616bc2b25dab0daad7d6c0c381c62724f634a1c9"
     sha256 x86_64_linux:  "20f51a883a9520406f7cbfd7e8c8d9bc533efbb03ce4ecd63e3578aca351daa4"
   end
+
+  # Last release on 2014-03-02 and needs EOL `pcre`
+  deprecate! date: "2026-01-11", because: :unmaintained
+  disable! date: "2027-01-11", because: :unmaintained
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build

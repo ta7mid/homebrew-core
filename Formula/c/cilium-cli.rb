@@ -1,8 +1,8 @@
 class CiliumCli < Formula
   desc "CLI to install, manage & troubleshoot Kubernetes clusters running Cilium"
   homepage "https://cilium.io"
-  url "https://github.com/cilium/cilium-cli/archive/refs/tags/v0.18.9.tar.gz"
-  sha256 "acb6eb456ef94f39ae11a61e67b123a72ab1c64ba3825822f058083b9d44703f"
+  url "https://github.com/cilium/cilium-cli/archive/refs/tags/v0.19.2.tar.gz"
+  sha256 "8bc461a4401a370e646431e336f595fcbb4de67fb1f4421ff62dcb7e65aa0321"
   license "Apache-2.0"
   head "https://github.com/cilium/cilium-cli.git", branch: "main"
 
@@ -15,13 +15,12 @@ class CiliumCli < Formula
   end
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "80aff4481b56e2bcef6162956a3dcd1562fb3c422b4ec628995819b813914e50"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "af38b91deaa250aec770810349c1d4d0ee24d52666cf91feccf79e1402ccaa47"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "33297c988c7b9f1d0337ef5cc2a062945da06e5e84e5e136ce76b9e532dca096"
-    sha256 cellar: :any_skip_relocation, sonoma:        "4bee0c81a4ab6023ac5f4d896510162f3e1f17f9a5e688a6ac5bb81799e2e9cc"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "e4dbf1f812a76e811948ddbf1b9b4d6d5d5cd7ece54dc39b873affa77e8dfd07"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ac9a667bb699f3089fddc5bac0fd0d2c5cda92b848d52089ce5344b13895d708"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "54eba32d3d61fd60049204b95b7ff9af619c662b509a9c93b5678d499fb95bb6"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "14753fa7919582262483e59d3136ade3085a8be53c11dd0d480e61839063eea8"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "370205fc6b8cd62d261fc437aec4a09462c8cde7266d299c1f6496e82a4e9187"
+    sha256 cellar: :any_skip_relocation, sonoma:        "d6a2820b9d2f7624108d07036300e28994101eac65c5362cd21855d4a9c41ddc"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "4d1b32d342ea69ccfe10e83e9269a939eb38a1bd2ec6b850e08f0f2ec66fc1fb"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f690811ae700c1272ef28a56c8ccd973b7b163106ebd7ea1ae087b397432ae2d"
   end
 
   depends_on "go" => :build
@@ -42,7 +41,7 @@ class CiliumCli < Formula
 
   test do
     assert_match("cilium-cli: v#{version}", shell_output("#{bin}/cilium version"))
-    assert_match("Kubernetes cluster unreachable", shell_output("#{bin}/cilium install 2>&1", 1))
+    assert_match("kubernetes cluster unreachable", shell_output("#{bin}/cilium install 2>&1", 1))
     assert_match("Error: Unable to enable Hubble", shell_output("#{bin}/cilium hubble enable 2>&1", 1))
   end
 end

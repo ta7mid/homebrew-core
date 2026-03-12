@@ -1,8 +1,8 @@
 class Nim < Formula
   desc "Statically typed compiled systems programming language"
   homepage "https://nim-lang.org/"
-  url "https://nim-lang.org/download/nim-2.2.6.tar.xz"
-  sha256 "657b0e3d5def788148d2a87fa6123fa755b2d92cad31ef60fd261e451785528b"
+  url "https://nim-lang.org/download/nim-2.2.8.tar.xz"
+  sha256 "114191afa083c5059dcbe5ce88dbe4f42542cff04e2c3017668ee438bc0b8cfc"
   license "MIT"
   head "https://github.com/nim-lang/Nim.git", branch: "devel"
 
@@ -12,12 +12,12 @@ class Nim < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "c0688a91212a72fc992d8f31de012836cd9208ef8bde75d12e0bbcae16c09d99"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "2089e5cf9fff042e85ccab2d0947331d498fe8f49340e39a15a8b5be997f9f22"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "0dd2909403de9a9ded249f6b53c49bffda04a8a0cc2461a7b1277d6ea2a4ccd4"
-    sha256 cellar: :any_skip_relocation, sonoma:        "2d365ff3b3902000c40f57d79c789c97fccb49ef301d6e4c4ae1f750385e759f"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "578bea2b65484e81ced453b0b1ad2d8cab385a3264c56cdcf062dc12e8cab2b0"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "b58fc4d51978785b666cf205bbc877fc88bea7965c2dbc1dd98184507a78a61e"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "ed1e5ea4489b098183c94449ca5425fc0fa93a3cec7720c4c08d3be93a9ec21e"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "1847d116b5613476d499f155da55fc35f8fe02115bc8b5331e155738788d464d"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "20abcdaeda5013bd6d2777851c741e6e75a890a865321a0040294f632da320f5"
+    sha256 cellar: :any_skip_relocation, sonoma:        "e2077dc8d5b25cabe267e09ea90e30de33f8fd7c8bbae0318463a2c90f3e72de"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "9a893ead409772de2d741e2e0d6ef86943bf02b574605091ed1da10ed5e42924"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "691f0d65552531875e738502c32e31247a1b7ddd224341dc3ba2fa70d26ad84b"
   end
 
   depends_on "help2man" => :build
@@ -27,6 +27,38 @@ class Nim < Formula
   end
 
   conflicts_with "atlas", "mongodb-atlas-cli", because: "both install `atlas` executable"
+
+  # Apply commits from open PR to replace `pcre` with `pcre2`
+  # PR ref: https://github.com/nim-lang/Nim/pull/24405
+  # Issue ref: https://github.com/nim-lang/Nim/issues/23668
+  patch do
+    url "https://github.com/nim-lang/Nim/commit/8c2ec2a7b010ef1a43b967205324ac83d11815d1.patch?full_index=1"
+    sha256 "f9171dba1817a83aada2960aab68b988fb6b3e766aa50b9527acc3daeafa6364"
+  end
+  patch do
+    url "https://github.com/nim-lang/Nim/commit/817af7edfcfca41e60e07b258c0943613783dd55.patch?full_index=1"
+    sha256 "120d313213c34bd3d48ae02baaa84dc5a0e80a88a6cae4de6a6164aefd6ff300"
+  end
+  patch do
+    url "https://github.com/nim-lang/Nim/commit/ce1761dff9e79d00bc012938ad6be37caa2edcfd.patch?full_index=1"
+    sha256 "06ecc37ab1c349a154cf05f1ca468ed0044e59e812d6401fc2a0f076717cbabc"
+  end
+  patch do
+    url "https://github.com/nim-lang/Nim/commit/cb802af44e3c684a8738684ebdd84df31aeabf09.patch?full_index=1"
+    sha256 "b9d5c030510018822c59714f26b933f822e462856f970ec918af6d4c6a9d285f"
+  end
+  patch do
+    url "https://github.com/nim-lang/Nim/commit/27fc4fedb5c1be6a4ec27f7d0d0c913a63f792b4.patch?full_index=1"
+    sha256 "f012298fe2ef8201fc303f8a7e91dcb10662f3382693ec899e0a505dd90872cc"
+  end
+  patch do
+    url "https://github.com/nim-lang/Nim/commit/0e3ac706156887ce143681da42b21874c2b20774.patch?full_index=1"
+    sha256 "625c837b002bfd492b60cecce812ecdd2d42bd4b3117526f6d3004661949ce90"
+  end
+  patch do
+    url "https://github.com/nim-lang/Nim/commit/07de39cde6341ae278b47d64f73dd9c823dd18c5.patch?full_index=1"
+    sha256 "33b5787281af6bcd4c30354de8ad49457a3360f3acfb000230b162aad114fe4c"
+  end
 
   def install
     if build.head?
@@ -65,18 +97,18 @@ class Nim < Formula
   end
 
   test do
-    (testpath/"hello.nim").write <<~EOS
+    (testpath/"hello.nim").write <<~NIM
       echo("hello")
-    EOS
+    NIM
     assert_equal "hello", shell_output("#{bin}/nim compile --verbosity:0 --run #{testpath}/hello.nim").chomp
 
-    (testpath/"hello.nimble").write <<~EOS
+    (testpath/"hello.nimble").write <<~NIM
       version = "0.1.0"
       author = "Author Name"
       description = "A test nimble package"
       license = "MIT"
       requires "nim >= 0.15.0"
-    EOS
+    NIM
     assert_equal "name: \"hello\"\n", shell_output("#{bin}/nimble dump").lines.first
   end
 end

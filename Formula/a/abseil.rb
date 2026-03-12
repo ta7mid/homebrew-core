@@ -1,18 +1,18 @@
 class Abseil < Formula
   desc "C++ Common Libraries"
   homepage "https://abseil.io"
-  url "https://github.com/abseil/abseil-cpp/archive/refs/tags/20250814.1.tar.gz"
-  sha256 "1692f77d1739bacf3f94337188b78583cf09bab7e420d2dc6c5605a4f86785a1"
+  url "https://github.com/abseil/abseil-cpp/archive/refs/tags/20260107.1.tar.gz"
+  sha256 "4314e2a7cbac89cac25a2f2322870f343d81579756ceff7f431803c2c9090195"
   license "Apache-2.0"
   head "https://github.com/abseil/abseil-cpp.git", branch: "master"
 
   bottle do
-    sha256                               arm64_tahoe:   "a420c5f258edbae66fd2f5ac17320d46fd1e9e884f1cbb7cb23c9711e46d67f8"
-    sha256                               arm64_sequoia: "fc8915867a2ee9678dc1603c12d4b69e4c88fc5e5e4d71b44b1279e7a598bcc1"
-    sha256                               arm64_sonoma:  "327300ffe635b76ee159dafd5cdc48f5a6ff9757673673b75d8a86ed6ca08475"
-    sha256 cellar: :any,                 sonoma:        "15a4561cad35249b0f19cb876e874e4a8d892e287267985c24a47cb6835ec66d"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "cd2d71f5e2f747eda4d887d3d841ae87f6d1e02d337ae635f54c1444daacc6bd"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6f1d2a133d4f0273361ac12b4b9286ce855a53914dbdd2d85b095efe779f62a1"
+    sha256                               arm64_tahoe:   "90697dc0727974c4a873ed19e63c30bc4c9525566cbd0ff968f980ce15047ae8"
+    sha256                               arm64_sequoia: "5b62b81ba6ae8a78d728573226fb1d3abb14a14806e648dca9bfba84e77d5fb4"
+    sha256                               arm64_sonoma:  "e8854f6a2420abecbbaa1c74bbebc2e5427e7688c35d370e88dd8e9620b37be0"
+    sha256 cellar: :any,                 sonoma:        "e26f9da379d1a093b080e00ce65f550a8c1568edc2d66eec623ec3938fe0ea5f"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "33017a9d85883c652d83a8df3098066e3f482ec3c07d1247461587c9761df664"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "df32cf7d435a18a293204adadceea594bc6c2889765d500d98acc7fb769671ac"
   end
 
   depends_on "cmake" => [:build, :test]

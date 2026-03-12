@@ -2,9 +2,10 @@ class Mavsdk < Formula
   desc "API and library for MAVLink compatible systems written in C++17"
   homepage "https://mavsdk.mavlink.io/main/en/index.html"
   url "https://github.com/mavlink/MAVSDK.git",
-      tag:      "v3.14.0",
-      revision: "7cbd8e5af40892bbb62f6025ee3ff14a70765829"
+      tag:      "v3.15.0",
+      revision: "721efdc45eedfe8761ceb7280dedca6004b1ea92"
   license "BSD-3-Clause"
+  revision 2
 
   livecheck do
     url :stable
@@ -12,12 +13,12 @@ class Mavsdk < Formula
   end
 
   bottle do
-    sha256               arm64_tahoe:   "edb6d86b154e1bca5a93bd122a0447ac5ad517d0ff12e5efaeff44e40e44a816"
-    sha256               arm64_sequoia: "92b14108d9cffd84e10455bb4158bcc897796f8a4f69510a12e9833576eba065"
-    sha256               arm64_sonoma:  "48bd81ed09f69599383a34c5f2ce0ce4454995d5e0ed46e5a3e670c3b00c02f0"
-    sha256 cellar: :any, sonoma:        "dc6aaea275b9cdf997cfb20c7b1dc74df5484b4c144def04d723b65b13b83ead"
-    sha256               arm64_linux:   "c0ba43579483e7724e8fd6638f9456bbc1ddf34693730cb3a2fd72f7039abe68"
-    sha256               x86_64_linux:  "bd8e0a1b77fd2375005d10cc182ccaf51eea4009c9988365f6f9506a1e448ebd"
+    sha256               arm64_tahoe:   "b4c2267cdd5c13cbea9450373d53f150a47305068a6e381c16030f14fd7f3108"
+    sha256               arm64_sequoia: "e977610e20027c3a1c1e03fec9987add8337794933d10592d038268cbc03eef5"
+    sha256               arm64_sonoma:  "f28aba3616c9fa4b7663e2c4cc23dda6df6a9b17b65f38ad496fb9429f07c63e"
+    sha256 cellar: :any, sonoma:        "210f69bfaabdecde96e11b2993bbc54e5de7519d779d8aa8167384d9f9235440"
+    sha256               arm64_linux:   "e01af51e70622e212cb392f8b5fc66dacc612256f8fc1c311115f70efb0adf12"
+    sha256               x86_64_linux:  "0566773e4cfaf2d8606cf25b56df0d686c019fbb457b348d9e9c00c5e3af7d0d"
   end
 
   depends_on "cmake" => :build
@@ -34,10 +35,12 @@ class Mavsdk < Formula
   depends_on "tinyxml2"
   depends_on "xz"
 
-  uses_from_macos "zlib"
-
   on_macos do
     depends_on "llvm" if DevelopmentTools.clang_build_version <= 1100
+  end
+
+  on_linux do
+    depends_on "zlib-ng-compat"
   end
 
   fails_with :clang do
@@ -61,8 +64,6 @@ class Mavsdk < Formula
   end
 
   def install
-    ENV.llvm_clang if OS.mac? && (DevelopmentTools.clang_build_version <= 1100)
-
     # Fix version being reported as `v#{version}-dirty`
     inreplace "CMakeLists.txt", "OUTPUT_VARIABLE VERSION_STR", "OUTPUT_VARIABLE VERSION_STR_IGNORED"
 
@@ -105,9 +106,6 @@ class Mavsdk < Formula
   end
 
   test do
-    # Force use of Clang on Mojave
-    ENV.clang if OS.mac?
-
     (testpath/"test.cpp").write <<~CPP
       #include <iostream>
       #include <mavsdk/mavsdk.h>
@@ -118,8 +116,7 @@ class Mavsdk < Formula
           return 0;
       }
     CPP
-    system ENV.cxx, "-std=c++17", testpath/"test.cpp", "-o", "test",
-                    "-I#{include}", "-L#{lib}", "-lmavsdk"
+    system ENV.cxx, "-std=c++17", "test.cpp", "-o", "test", "-I#{include}", "-L#{lib}", "-lmavsdk"
     assert_match "v#{version}-#{tap.user}", shell_output("./test").chomp
 
     assert_equal "Usage: #{bin}/mavsdk_server [Options] [Connection URL]",

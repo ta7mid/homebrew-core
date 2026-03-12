@@ -1,29 +1,28 @@
 class Fb303 < Formula
   desc "Thrift functions for querying information from a service"
   homepage "https://github.com/facebook/fb303"
-  url "https://github.com/facebook/fb303/archive/refs/tags/v2026.01.05.00.tar.gz"
-  sha256 "467219abcfffa39bd50d2893ef0345c242b709a49782a5080ee933c6c652b5cb"
+  url "https://github.com/facebook/fb303/archive/refs/tags/v2026.03.09.00.tar.gz"
+  sha256 "181667e31f10171053da03ea568e40f5cf90582c153b29e6d7cda62d527a1624"
   license "Apache-2.0"
   head "https://github.com/facebook/fb303.git", branch: "main"
 
   bottle do
-    sha256                               arm64_tahoe:   "782cf36178ff286f635ced00d7b0631f8d2c1244d80542d0bfa19d4d3e84dbdc"
-    sha256                               arm64_sequoia: "526a3968425c50824d083213a13edd94c20ffc9c4ce49507390202a74d6dc675"
-    sha256                               arm64_sonoma:  "37fb156b2230f35b93497ce892b8dbb86917cf0e297b49821fe5cb75605c6aa7"
-    sha256 cellar: :any,                 sonoma:        "6769e492ca61575c5cba52601361cbe71b84d14b6a40e2b052f5f591f4596bc9"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "d5b3ed22afd92a2251af3a1eaabb98ca7ac49f120232cd67e10824ca596f0159"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "4b90013661682e094a6ed3aa1e6e75d3ce5186f3507fe7dc32d293042998b860"
+    sha256                               arm64_tahoe:   "0a808a63ee60b931f4828e10d41bea0179c9a0cd46100f527db74f4cd5aa853b"
+    sha256                               arm64_sequoia: "d6b593c2bc4e3b5d397e9544dfaa48b44767d8b67538c99a0288d91998a8c046"
+    sha256                               arm64_sonoma:  "0cb82ffd341653b7012e4dc2cb97b363fc6f8df315bd55bc550bd563a1e77f96"
+    sha256 cellar: :any,                 sonoma:        "4f70f5d6b91a15945fbe168d3eabea982a1c219d8482595026602cb9a1a2fad9"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "7e341af852c1f86f706ba9f9c8184e42bbfe8c112f244ddfa724994c953eda76"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "18b4fc0525c76bcdb701bb160313e59b16a9ab9605b502361e70274f2026b163"
   end
 
-  depends_on "cmake" => :build
-  depends_on "mvfst" => :build
+  depends_on "cmake" => [:build, :test]
+  depends_on "fizz" => [:build, :test]
+  depends_on "mvfst" => [:build, :test]
   depends_on "fbthrift"
-  depends_on "fizz"
   depends_on "fmt"
   depends_on "folly"
   depends_on "gflags"
   depends_on "glog"
-  depends_on "openssl@3"
 
   def install
     shared_args = ["-DBUILD_SHARED_LIBS=ON", "-DCMAKE_INSTALL_RPATH=#{rpath}"]
@@ -45,19 +44,30 @@ class Fb303 < Formula
       }
     CPP
 
+    (testpath/"CMakeLists.txt").write <<~CMAKE
+      cmake_minimum_required(VERSION 4.0)
+      project(test LANGUAGES CXX)
+      set(CMAKE_CXX_STANDARD 20)
+
+      list(APPEND CMAKE_MODULE_PATH "#{Formula["fizz"].opt_libexec}/cmake")
+      list(APPEND CMAKE_MODULE_PATH "#{Formula["fbthrift"].opt_libexec}/cmake")
+      find_package(FBThrift CONFIG REQUIRED)
+      find_package(wangle CONFIG REQUIRED)
+      find_package(fb303 CONFIG REQUIRED)
+
+      add_executable(test test.cpp)
+      target_link_libraries(test fb303::fb303_thrift_cpp)
+    CMAKE
+
+    ENV.delete "CPATH" if OS.mac?
     if Tab.for_formula(Formula["folly"]).built_as_bottle
       ENV.remove_from_cflags "-march=native"
       ENV.append_to_cflags "-march=#{Hardware.oldest_cpu}" if Hardware::CPU.intel?
     end
 
-    ENV.append "CXXFLAGS", "-std=c++20"
-    system ENV.cxx, *ENV.cxxflags.split, "test.cpp", "-o", "test",
-                    "-I#{include}", "-I#{Formula["openssl@3"].opt_include}",
-                    "-L#{lib}", "-lfb303_thrift_cpp",
-                    "-L#{Formula["folly"].opt_lib}", "-lfolly",
-                    "-L#{Formula["glog"].opt_lib}", "-lglog",
-                    "-L#{Formula["fbthrift"].opt_lib}", "-lthriftprotocol", "-lthriftcpp2",
-                    "-lthriftmetadata", "-lthrifttyperep", "-ldl"
+    args = OS.mac? ? [] : ["-DCMAKE_BUILD_RPATH=#{lib};#{HOMEBREW_PREFIX}/lib"]
+    system "cmake", "-S", ".", "-B", ".", *args, *std_cmake_args
+    system "cmake", "--build", "."
     assert_equal "BaseService", shell_output("./test").strip
   end
 end

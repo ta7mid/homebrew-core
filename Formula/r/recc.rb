@@ -1,18 +1,19 @@
 class Recc < Formula
   desc "Remote Execution Caching Compiler"
   homepage "https://buildgrid.gitlab.io/recc"
-  url "https://gitlab.com/BuildGrid/buildbox/buildbox/-/archive/1.3.50/buildbox-1.3.50.tar.gz"
-  sha256 "69cd2d9f8ad2b45d94871df12552e3b0f6ab96dd3e6c331544a531deefdc3962"
+  url "https://gitlab.com/BuildGrid/buildbox/buildbox/-/archive/1.3.54/buildbox-1.3.54.tar.gz"
+  sha256 "467b83cff48bbde7efc0978edbca0201e572c9a4d95de59a6ce7c81234909710"
   license "Apache-2.0"
+  revision 1
   head "https://gitlab.com/BuildGrid/buildbox/buildbox.git", branch: "master"
 
   bottle do
-    sha256 arm64_tahoe:   "117cc660f49e0ce6a8dca86dc38ecc313a7f97afe7a097c8b460c41a067b9d9f"
-    sha256 arm64_sequoia: "ba2e778c3c8de07d8bbfe90656f729d7d3e7ec19eb7f7dca714f7bb3631f54e8"
-    sha256 arm64_sonoma:  "3bc2e31de256e414ddcdd9987e8c582ba39c11b13ea3ddc68b090cdf07b596ee"
-    sha256 sonoma:        "be9fdb1609a515725ce84b4aa0919374246dc16985ff3b9ec81a6ccbbac08a2f"
-    sha256 arm64_linux:   "cb2129dfff701e32fb4bc1d35b453c8a1ee83673108bf8ff39a9dcb0becc14e5"
-    sha256 x86_64_linux:  "41535db51969b46e34b16ece1f0f5b402ae7fcc658d8387b473cc38cc08d89fd"
+    sha256 arm64_tahoe:   "5065da3e3d6469b8e57fc8704412baa24fff628dc1ede8356d2d760a3d679929"
+    sha256 arm64_sequoia: "002e87d2f10ac3812211e0a1ee5fbaf3fce1f6d924ce7029993f253d5e354311"
+    sha256 arm64_sonoma:  "d722829b150feae2e3fa6586dbbfe79f93ecaba8760b1e21d6a5683aabb54ad6"
+    sha256 sonoma:        "895df59b21c62eeaf60d9a8c63f92587490d39d91b6c2fa6266b3f97cd0253dd"
+    sha256 arm64_linux:   "1dd164b99e5f3d8e32184e868030488e4bff8b40cc7116affb41a4f215a08478"
+    sha256 x86_64_linux:  "00f7441651bca0c8763117e16765e8e84b570e45df73c7aa8000397bbb4352ed"
   end
 
   depends_on "cmake" => :build
@@ -30,7 +31,6 @@ class Recc < Formula
   depends_on "re2"
 
   uses_from_macos "curl"
-  uses_from_macos "zlib"
 
   on_macos do
     depends_on "gflags"
@@ -39,6 +39,7 @@ class Recc < Formula
   on_linux do
     depends_on "pkgconf" => :build
     depends_on "util-linux"
+    depends_on "zlib-ng-compat"
   end
 
   def install

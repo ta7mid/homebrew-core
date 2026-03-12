@@ -1,21 +1,24 @@
 class CubejsCli < Formula
   desc "Cube.js command-line interface"
   homepage "https://cube.dev/"
-  url "https://registry.npmjs.org/cubejs-cli/-/cubejs-cli-1.6.2.tgz"
-  sha256 "f39eb64f3c2aa64f079eaa6e162c44d5e88b6b647abd4a3594330aacb9c1aba9"
+  url "https://registry.npmjs.org/cubejs-cli/-/cubejs-cli-1.6.22.tgz"
+  sha256 "7137ba1e947bf8dd98a370067a55b872d89aec24bcbc310ba5c67bf864679232"
   license "Apache-2.0"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "aa1f4e6aac313693c7c5719ceb328ecdd9649974d1cd72408caf0658545fb11b"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "9af4a4039df281b7e2964ec5527a81e08b79d5e32092bdaa1c9f480d7852c966"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "9af4a4039df281b7e2964ec5527a81e08b79d5e32092bdaa1c9f480d7852c966"
-    sha256 cellar: :any_skip_relocation, sonoma:        "7963734ec433edd6e23796b54232651269f9f5b85249c7fd8d45b48da5a5044e"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "3b516f4b841bee3f05fc2378dda1dac3d87828dfce846d37997aa4bebe2167b5"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "3b516f4b841bee3f05fc2378dda1dac3d87828dfce846d37997aa4bebe2167b5"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "c4339a9a9791e6c75512206183795068685d15726cdf4bbbbb17c7042f400a8d"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "1b2eeef9bc57a5ee2359748f71cd582ffe80b4534a7e9eddda57daa25570de29"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "1b2eeef9bc57a5ee2359748f71cd582ffe80b4534a7e9eddda57daa25570de29"
+    sha256 cellar: :any_skip_relocation, sonoma:        "b5496c57f22d6b8f23269f0e44b8b7cfcf9546f5b421d86f5ec29be7c7542ec6"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "0d3f31d344f736606b4046b574e641c3fd2208a2a4eda893af603973b13cd415"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0d3f31d344f736606b4046b574e641c3fd2208a2a4eda893af603973b13cd415"
   end
 
   depends_on "node"
-  uses_from_macos "zlib"
+
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
 
   def install
     system "npm", "install", *std_npm_args

@@ -4,18 +4,18 @@ class MetaPackageManager < Formula
 
   desc "Wrapper around all package managers with a unifying CLI"
   homepage "https://kdeldycke.github.io/meta-package-manager/"
-  url "https://files.pythonhosted.org/packages/55/04/b6c2432a812ec3cbb184a124fbc45b75af63d89e6cb7bebf354635a22937/meta_package_manager-6.0.2.tar.gz"
-  sha256 "6d84f35f890414640f30d37c8ff7a3cfb35a0f96de277473ae637f2717fc304a"
+  url "https://files.pythonhosted.org/packages/b8/f4/82cd0e83ece5a234bb293eb506f0025cc3c21fbe0d378bad2927ba88b274/meta_package_manager-6.1.1.tar.gz"
+  sha256 "9caf2dcc11f3fe799c9455a3c047df25583a030e44e53447ed099d2fce4f6396"
   license "GPL-2.0-or-later"
   head "https://github.com/kdeldycke/meta-package-manager.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "b25afb472cae7499a3875d0bae44219deab49bab3a3c1b37f9f5a0680939d4f1"
-    sha256 cellar: :any,                 arm64_sequoia: "d3813424f0ca25789892d568b696a819fa5b2b003ea4671cf0cad15596608346"
-    sha256 cellar: :any,                 arm64_sonoma:  "c0866878a32e53852cb26d00e610d73a2026af9b6408dbccafc62933d5257097"
-    sha256 cellar: :any,                 sonoma:        "53467bd9a6ebd747ca1b9228882083d53e9f789b98fe0974d5745202ae49242e"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "27afeb4cbfe200c86c1758a620e2d49883b31b2dd235fc3bdb938fbd43a3414f"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e7f162a4ba3a6e2035bcce2d16b88746b3f2a6b9e30f9c6bc8d5a70bc5ac98ae"
+    sha256 cellar: :any,                 arm64_tahoe:   "ddd5f593aa9dfe592942f2d6cb0950c14f72653926e7cba1766f112f9e763749"
+    sha256 cellar: :any,                 arm64_sequoia: "6d422e403cb3505968e07338756363a2db214f966cee845f58a60b9330a87406"
+    sha256 cellar: :any,                 arm64_sonoma:  "93e731999ac87bcf03e9e8c891a65b49c9991e2b445acfd986b8b477b257aaf5"
+    sha256 cellar: :any,                 sonoma:        "168547b17d8f3f52c8d8a25fc6d205d808851babe6557530b4b9949ae608fc03"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "1ed4f169cd936a567d6c42499e8f9d842769cd899464146d23aec49fdbe35327"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "01139918a037f338405f48a55be40ee52083a090ce38712ded832c565373c4ae"
   end
 
   depends_on "rust" => :build
@@ -71,8 +71,8 @@ class MetaPackageManager < Formula
   end
 
   resource "click-extra" do
-    url "https://files.pythonhosted.org/packages/50/2a/79e85d7683fd97037326dbdad60524c075ef01dad2adad0a6d6fa40c41a4/click_extra-7.4.0.tar.gz"
-    sha256 "869cd811074a4c5049fb241087e55242bf36ee328133ae932f37730833d9b9d9"
+    url "https://files.pythonhosted.org/packages/ec/9f/b12162e9da04f4d26bf9f1f055c597f3620ebbfd041d6c9a06c2a13dd293/click_extra-7.5.1.tar.gz"
+    sha256 "df11522e33a3c5a7e9418d8b5b8882d92107c8ce7539fd0d7450b86f6ab7b7c5"
   end
 
   resource "cloup" do
@@ -101,8 +101,8 @@ class MetaPackageManager < Formula
   end
 
   resource "extra-platforms" do
-    url "https://files.pythonhosted.org/packages/fb/df/73e313d4ecca7b703b6f369d9ed0c2c0d4d8a149e1c675e9915f8426a513/extra_platforms-6.0.0.tar.gz"
-    sha256 "ff0d392e390d2447183af4b300dd4569d2dbf760adf1e30c2b0cefb30ee58488"
+    url "https://files.pythonhosted.org/packages/69/13/f3c798301018f336533918768fe64a3aeab02e9e3d110ff778296e50b8e0/extra_platforms-8.0.0.tar.gz"
+    sha256 "39c5f47f071f8710ce3cba8373fd7744a2a3dc37d5716cc227c23b47e211e5b5"
   end
 
   resource "fqdn" do
@@ -171,8 +171,8 @@ class MetaPackageManager < Formula
   end
 
   resource "pyparsing" do
-    url "https://files.pythonhosted.org/packages/33/c1/1d9de9aeaa1b89b0186e5fe23294ff6517fce1bc69149185577cd31016b2/pyparsing-3.3.1.tar.gz"
-    sha256 "47fad0f17ac1e2cad3de3b458570fbc9b03560aa029ed5e16ee5554da9a2251c"
+    url "https://files.pythonhosted.org/packages/f3/91/9c6ee907786a473bf81c5f53cf703ba0957b23ab84c264080fb5a450416f/pyparsing-3.3.2.tar.gz"
+    sha256 "c777f4d763f140633dcb6d8a3eda953bf7a214dc4eff598413c070bcdc117cbc"
   end
 
   resource "python-dateutil" do
@@ -271,8 +271,8 @@ class MetaPackageManager < Formula
   end
 
   resource "wcwidth" do
-    url "https://files.pythonhosted.org/packages/24/30/6b0809f4510673dc723187aeaf24c7f5459922d01e2f794277a3dfb90345/wcwidth-0.2.14.tar.gz"
-    sha256 "4d478375d31bc5395a3c55c40ccdf3354688364cd61c4f6adacaa9215d0b3605"
+    url "https://files.pythonhosted.org/packages/c2/62/a7c072fbfefb2980a00f99ca994279cb9ecf310cb2e6b2a4d2a28fe192b3/wcwidth-0.5.3.tar.gz"
+    sha256 "53123b7af053c74e9fe2e92ac810301f6139e64379031f7124574212fb3b4091"
   end
 
   resource "webcolors" do
@@ -286,10 +286,6 @@ class MetaPackageManager < Formula
   end
 
   def install
-    # hatch does not support a SOURCE_DATE_EPOCH before 1980.
-    # Remove after https://github.com/pypa/hatch/pull/1999 is released.
-    ENV["SOURCE_DATE_EPOCH"] = "1451574000"
-
     rewrite_shebang detected_python_shebang, "meta_package_manager/bar_plugin.py"
     virtualenv_install_with_resources
 

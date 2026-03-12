@@ -2,20 +2,19 @@ class Xonsh < Formula
   include Language::Python::Virtualenv
 
   desc "Python-powered, cross-platform, Unix-gazing shell language and command prompt"
-  # xon.sh homepage bug report, https://github.com/xonsh/xonsh/issues/5984
-  homepage "https://github.com/xonsh/xonsh"
-  url "https://files.pythonhosted.org/packages/a3/d8/e485a7bdb64a126957c93b9db78ae8c608cd94975384e2cebc7af83f26a1/xonsh-0.22.0.tar.gz"
-  sha256 "e4bd25a1d6be698444634212029109cefedccc3a6a85f2bacfde33bfd5461488"
+  homepage "https://xon.sh"
+  url "https://files.pythonhosted.org/packages/ff/d5/644e5f4dcc283d69a6454a01edfe0783931fdc90ccf3b6654ad3290cd59d/xonsh-0.22.7.tar.gz"
+  sha256 "80f0298c111cb70d5e2d637982dcf402b2573ce712ab0c8134904774531d4709"
   license "BSD-2-Clause-Views"
   head "https://github.com/xonsh/xonsh.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "a9857457790f51d202fc5137e65a54fe37b2c21793d77f9143b8354490abef89"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "dc52f11cf105d3d74d0df1861dd43a12bf2d139397fd187be1271b3c94bdeffb"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "eebe77eb788c07e779b3a45010013d37be7e43660918aadc30340c9f4e42e879"
-    sha256 cellar: :any_skip_relocation, sonoma:        "f26333b693f682ad8dead49becf04f8d54d2fb33f962c56c413adaedd5e2144e"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "9b7519ed63022cf2d544028edfed2ee8d4016ec7177496e2b6224cb7705a6eb5"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0d44edbfe919dc9101989f3fec3e34dfee8b614323deb4008ecb71c4a446bb4a"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "25c81d79f86cce2b62d2a9071c8a91bc1b89f58d28e6df156343b444f69b51be"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "4ef829ed1d5688a910496b9a63c2df8a09161571e579a9bed8701b9a08567a90"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "bad1f5c16bf3e8a2cd4a1df5b14e5a9cb6c39561f5449c80f90ef4c02b97486e"
+    sha256 cellar: :any_skip_relocation, sonoma:        "61c7f2883d153b302a1b05a758f029239d3caa9477470c48b94664b4eab50197"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "d9437df713e0c504a075f565b54c2fc984fb675684ec182b74a062886932ea35"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "062342a344e2e6b136d1dd387eac643a8806925b016a2063111da7f3ec20dc68"
   end
 
   depends_on "python@3.14"
@@ -43,8 +42,8 @@ class Xonsh < Formula
   end
 
   resource "wcwidth" do
-    url "https://files.pythonhosted.org/packages/24/30/6b0809f4510673dc723187aeaf24c7f5459922d01e2f794277a3dfb90345/wcwidth-0.2.14.tar.gz"
-    sha256 "4d478375d31bc5395a3c55c40ccdf3354688364cd61c4f6adacaa9215d0b3605"
+    url "https://files.pythonhosted.org/packages/35/a2/8e3becb46433538a38726c948d3399905a4c7cabd0df578ede5dc51f0ec2/wcwidth-0.6.0.tar.gz"
+    sha256 "cdc4e4262d6ef9a1a57e018384cbeb1208d8abbc64176027e2c2455c81313159"
   end
 
   def install

@@ -3,17 +3,17 @@ class Weasyprint < Formula
 
   desc "Convert HTML to PDF"
   homepage "https://www.courtbouillon.org/weasyprint"
-  url "https://files.pythonhosted.org/packages/fd/bc/79a65b3a406cb62a1982fec8b49134b25a3b31abb094ca493c9fddff5492/weasyprint-67.0.tar.gz"
-  sha256 "fdfbccf700e8086c8fd1607ec42e25d4b584512c29af2d9913587a4e448dead4"
+  url "https://files.pythonhosted.org/packages/db/3e/65c0f176e6fb5c2b0a1ac13185b366f727d9723541babfa7fa4309998169/weasyprint-68.1.tar.gz"
+  sha256 "d3b752049b453a5c95edb27ce78d69e9319af5a34f257fa0f4c738c701b4184e"
   license "BSD-3-Clause"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "9a13e25782eb66bc61c9fdb2b6dd8214e892ec7f9ca65f7aa881b4ba50e26d23"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "bf6b50e830ca26ed2d95b4e7ea2cab5750607a5fa3b7f3d44b0a76ed77743d6b"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "55519279b9eb08818dc0856ca21eefa82191fca6050cbe0b8e142031b48f555b"
-    sha256 cellar: :any_skip_relocation, sonoma:        "43acc2f3b33fd45e6b49bc706288a29e690bee7ce7b46b302a5b765d23100a8b"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "927cc2f3e9ab183f0513bb20eda729ef9dbc8709e824fbe9751fe30de43896c6"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "c286338dff7175a9c6ed5852e7acd1531db68ace9701f344defd221105a18314"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "031aa66d26dc231f9ea3b0d56a27a55962381e5875c254d67b48904c08619a81"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "5342009dfc97255caf0fda8cc60faec3455a371956061cbb2ef79f445a847ecd"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "d0cff21a9d3773e2146e1a9b6c101a23335b033802aabcef822ae4a3965e4378"
+    sha256 cellar: :any_skip_relocation, sonoma:        "be1086b36546513304773eb63c3ff67a0f824791d5a5b39eaeef37c600036517"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "862d7c0ab7dd6d3a45cd796a9164bbf1b9c4728be75845e125edbb6aa63caf69"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e4e3a5701bc03df9c9304efc3b342e3762f8c85b2bfb8a790eb1d504d651ddd5"
   end
 
   depends_on "pango"
@@ -40,13 +40,13 @@ class Weasyprint < Formula
   end
 
   resource "fonttools" do
-    url "https://files.pythonhosted.org/packages/33/f9/0e84d593c0e12244150280a630999835a64f2852276161b62a0f98318de0/fonttools-4.61.0.tar.gz"
-    sha256 "ec520a1f0c7758d7a858a00f090c1745f6cde6a7c5e76fb70ea4044a15f712e7"
+    url "https://files.pythonhosted.org/packages/ec/ca/cf17b88a8df95691275a3d77dc0a5ad9907f328ae53acbe6795da1b2f5ed/fonttools-4.61.1.tar.gz"
+    sha256 "6675329885c44657f826ef01d9e4fb33b9158e9d93c537d84ad8399539bc6f69"
   end
 
   resource "pycparser" do
-    url "https://files.pythonhosted.org/packages/fe/cf/d2d3b9f5699fb1e4615c8e32ff220203e43b248e1dfcc6736ad9057731ca/pycparser-2.23.tar.gz"
-    sha256 "78816d4f24add8f10a06d6f05b4d424ad9e96cfebf68a4ddc99c65c0720d00c2"
+    url "https://files.pythonhosted.org/packages/1b/7d/92392ff7815c21062bea51aa7b87d45576f649f16458d78b7cf94b9ab2e6/pycparser-3.0.tar.gz"
+    sha256 "600f49d217304a5902ac3c37e1281c9fe94e4d0489de643a9504c5cdfdfc6b29"
   end
 
   resource "pydyf" do

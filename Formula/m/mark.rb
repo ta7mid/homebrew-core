@@ -1,18 +1,18 @@
 class Mark < Formula
   desc "Sync your markdown files with Confluence pages"
   homepage "https://github.com/kovetskiy/mark"
-  url "https://github.com/kovetskiy/mark/archive/refs/tags/v15.2.0.tar.gz"
-  sha256 "d745df0a437e31b4f66765b2a631cd73d31e474be85e98c728ef4c1c105a1bb9"
+  url "https://github.com/kovetskiy/mark/archive/refs/tags/v15.4.0.tar.gz"
+  sha256 "dbe2fe89e545a5bb3c958bbfb6f8121eb9a4c073574f6fe7e1cbb252106a2859"
   license "Apache-2.0"
   head "https://github.com/kovetskiy/mark.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "dad4da391e6a1f4da882060708dca73782265472632a6b58a1653de214a09dc9"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "dad4da391e6a1f4da882060708dca73782265472632a6b58a1653de214a09dc9"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "dad4da391e6a1f4da882060708dca73782265472632a6b58a1653de214a09dc9"
-    sha256 cellar: :any_skip_relocation, sonoma:        "eb7b86e1e2b8734cb55f42e56b4bbfe943321c6c9595ecde62b5fe6248698efd"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "bf4a022d033224bf20b549fe12982cf4785dac58ac0690a188ff07c1e0c7691b"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ad76bf6ab90e0a11f201eae370a6acec8886da06c2bfd57c855ab18705bea330"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "51b947bad8e1db8e433d8d4b3a9318cf7e8a665efb5096fa3f29eb70d714f42b"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "51b947bad8e1db8e433d8d4b3a9318cf7e8a665efb5096fa3f29eb70d714f42b"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "51b947bad8e1db8e433d8d4b3a9318cf7e8a665efb5096fa3f29eb70d714f42b"
+    sha256 cellar: :any_skip_relocation, sonoma:        "37afa062ef7ee811a966930bc17f646ad50a99cea99d61763774bccc07818134"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "d8e028ab0a2cb588f1b52a4b10e33618062c47370d9a1eb204b40b390f2413be"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "3024ddee1d7fef1b297bade38277d6823f131624a350f567a77c3adcd80c54b7"
   end
 
   depends_on "go" => :build

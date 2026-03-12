@@ -3,24 +3,27 @@ class Watchman < Formula
 
   desc "Watch files and take action when they change"
   homepage "https://github.com/facebook/watchman"
-  url "https://github.com/facebook/watchman/archive/refs/tags/v2026.01.05.00.tar.gz"
-  sha256 "7f9e86182ec54edd2a84f892d1fa72c61867e62fe5905fce2d2088589d9248e2"
+  url "https://github.com/facebook/watchman/archive/refs/tags/v2026.03.09.00.tar.gz"
+  sha256 "de969937e947f3a2cd86e77adc2f491b3872e326b9d203396a2a04212cb4175f"
   license "MIT"
   head "https://github.com/facebook/watchman.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "1cb8ea4e38e3a40f38a42149e75a702fd790b105c7214652bd37c94a7f776468"
-    sha256 cellar: :any,                 arm64_sequoia: "e6654727a4c372d024f74c1937bbc5ad04da406007b7dcc9b65de7cca785d6c9"
-    sha256 cellar: :any,                 arm64_sonoma:  "6bbdc01cda9885de2fc276893de7fbce002a9f998af3534b00239e785b3a1883"
-    sha256 cellar: :any,                 sonoma:        "858bf320a93cc3063e8be894195335ffadb126973d71095b29c072c549e81d4e"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "e6bf9caf3197b80adc58fcf9df746f7ff267dbcc7197cf192fc623ad3db2ca19"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "7913fba94530be62f4c6d66ab431cdf32155e81c26f527d49d8b90c62679b74f"
+    sha256 cellar: :any,                 arm64_tahoe:   "4a12837411cf1692f01c96a50e0f6e12b985f40e84e2d4a65b1928a82647f15e"
+    sha256 cellar: :any,                 arm64_sequoia: "cb65443eaae7cd0543fa70b601ff9338b49fb0e918a888d2ebd911b2a600cbd1"
+    sha256 cellar: :any,                 arm64_sonoma:  "d52174ee81cb22e56adccad547a4d274f9e19b0fa03c8cb4ae4ad2c46b144aa4"
+    sha256 cellar: :any,                 sonoma:        "6e603ef7a1ff69e91b257ce0bbab54ed1ad3ed4bab9805634d153b36c2f2d3e7"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "253d6c22df259e199b5f5b15a14d274e7fb5597e34c70fa499ee4274c3ce7e71"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "02abee4f145785860e5a828218b50cee9a2279ee71e1027ddcda084e925c8461"
   end
 
   depends_on "cmake" => :build
   depends_on "cpptoml" => :build
+  depends_on "gflags" => :build
   depends_on "googletest" => :build
+  depends_on "libevent" => :build
   depends_on "mvfst" => :build
+  depends_on "openssl@3" => :build
   depends_on "pkgconf" => :build
   depends_on "python-setuptools" => :build
   depends_on "rust" => :build
@@ -29,16 +32,14 @@ class Watchman < Formula
   depends_on "fbthrift"
   depends_on "fmt"
   depends_on "folly"
-  depends_on "gflags"
   depends_on "glog"
-  depends_on "libevent"
-  depends_on "openssl@3"
   depends_on "pcre2"
   depends_on "python@3.14"
 
   on_linux do
     depends_on "boost"
     depends_on "libunwind"
+    depends_on "openssl@3"
   end
 
   def install

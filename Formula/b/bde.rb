@@ -1,8 +1,8 @@
 class Bde < Formula
   desc "Basic Development Environment: foundational C++ libraries used at Bloomberg"
   homepage "https://github.com/bloomberg/bde"
-  url "https://github.com/bloomberg/bde/archive/refs/tags/4.34.0.0.tar.gz"
-  sha256 "dd16a272c56a0cecce1574adca307d2ea370c95bc076730d89cd32f577704286"
+  url "https://github.com/bloomberg/bde/archive/refs/tags/4.36.0.0.tar.gz"
+  sha256 "70b5f5a28a8084c5ef551a478a27d165192813b4af77b3c1ed66234b6bc673d1"
   license "Apache-2.0"
 
   livecheck do
@@ -11,12 +11,12 @@ class Bde < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "71f25b98683dd1bdd1ee6bb9647c8bd855371f9cf791532e75578642145ef838"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "f756419bd6f238c93eb9c3bc4d6f6270009240b03345e633c13613d4d8a24ace"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "62a0c88bb8c19285bc3049ccf5ab0f063420a86f8aa0afdeeaf50b80cc9c00e8"
-    sha256 cellar: :any_skip_relocation, sonoma:        "782b69336382423e2b0413983980d41c66e6c80b47919e3579100a7e43d6cb73"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "e9d4944a7587e69c9d1e7ca36d00b264414b825431bbe4736529dc24a1f5b4fa"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1770edc03a970b802307c2c5dea094146473df22d30f0b771f700cf298ad195f"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "ca9c771cf655b9eb228a5697d58033f1ffbdb1a6ba9700792182658dd18fdcd0"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "506a1ca18af9b72ce73aa3b53d64d22c68f6b4041ceb8df163e08e13e5c47708"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "edecd76f30383c2bb91bab3b252d182068dfe083d67cf73fd8fc4daff0bd2219"
+    sha256 cellar: :any_skip_relocation, sonoma:        "8a3f3680c9e40707e2d09bd2b4f2766874ef6720570c9220d31efd05c980135f"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "307ddc4826c42486b6c7784d3b623e0ed5d55abded02d243aee14c43ffa631e2"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "929c4e3fea86df27636afa9c09fa872f897322ba3c673abb31ae7f77e807c400"
   end
 
   depends_on "cmake" => :build
@@ -25,8 +25,8 @@ class Bde < Formula
   depends_on "pcre2"
 
   resource "bde-tools" do
-    url "https://github.com/bloomberg/bde-tools/archive/refs/tags/4.33.0.0.tar.gz"
-    sha256 "3b8538d7e3e02e849abda6ff79ca7807a1726f303acc2d4d5e50639d5ddf842b"
+    url "https://github.com/bloomberg/bde-tools/archive/refs/tags/4.36.0.0.tar.gz"
+    sha256 "3467289d98034e874db39040b39ca4c110c275a926b939577b2f18e1ad7d3615"
 
     livecheck do
       regex(/^v?(\d+\.\d+\.\d+\.\d+)$/i)

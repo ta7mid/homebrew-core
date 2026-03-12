@@ -1,18 +1,17 @@
 class Dicebear < Formula
   desc "CLI for DiceBear - An avatar library for designers and developers"
   homepage "https://github.com/dicebear/dicebear"
-  url "https://registry.npmjs.org/dicebear/-/dicebear-9.2.4.tgz"
-  sha256 "ab8e430f1b4fb999372cf78b274e04ca999fff16891f19ece63f63ab7f7aa373"
+  url "https://registry.npmjs.org/dicebear/-/dicebear-9.4.0.tgz"
+  sha256 "f81355aa528371341dbf7007ae84f42dd0b0fcca50896762a19b6b6763f46af2"
   license "MIT"
 
   bottle do
-    rebuild 1
-    sha256                               arm64_tahoe:   "1b976223644c8e073419d9faab43f37ea04cf575b2ffc6273335c9b3bdbdb05c"
-    sha256                               arm64_sequoia: "8b3bbe8b750c33981cd3682062ac7842bea26e9d996dc61ed42478b454421b34"
-    sha256                               arm64_sonoma:  "c7a5f82835088e08c93ee24cc708c74d0757a487ab611725442a485d990b5e14"
-    sha256                               sonoma:        "cdffe3248922f05d9a5374bcd987bfc6216cf2d4ff5c73e3040f14040f99e464"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "22a9186779dfb53b76481329c4d8888185ebb087d5c1af3b4094272a05bb24dd"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "303a1d6e868ebe7d9b6d46eef48cbc17b5dd9d5d58338a804a8c659535536aa9"
+    sha256                               arm64_tahoe:   "55aca3510b08bb12217b0c7bb4937271c377811b52627818ddd2cb0b3508ecd2"
+    sha256                               arm64_sequoia: "89e7408bf53a7c86d2b6034c44edc344bc5925e721de6244891c8955cb9fe4f6"
+    sha256                               arm64_sonoma:  "3ef4baa4b9f36759430529c67805365e4709e82112f1d964f28f5ebf40de71fe"
+    sha256                               sonoma:        "7b27b7280579f6919e3a6496bf10ebdb6011e7bf9090934101d22845848ae70a"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "9ae0ef7bbad82a96d4537de2e2fa3bf042586025b224633cb75b336c79686e86"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d6081b3bd16dfe70f338afb92cf77cb88023a6abf0e54707c547dcf380c3e345"
   end
 
   depends_on "pkgconf" => :build
@@ -32,13 +31,13 @@ class Dicebear < Formula
   end
 
   resource "node-gyp" do
-    url "https://registry.npmjs.org/node-gyp/-/node-gyp-12.0.0.tgz"
-    sha256 "bbe606e43a53869933de6129c5158e9b67e43952bc769986bcd877070e85fd1c"
+    url "https://registry.npmjs.org/node-gyp/-/node-gyp-12.2.0.tgz"
+    sha256 "8689bbeb45a3219dfeb5b05a08d000d3b2492e12db02d46c81af0bee5c085fec"
   end
 
   def install
     ENV["SHARP_FORCE_GLOBAL_LIBVIPS"] = "1"
-    system "npm", "install", *std_npm_args, *resources.map(&:cached_download)
+    system "npm", "install", *std_npm_args(ignore_scripts: false), *resources.map(&:cached_download)
     bin.install_symlink libexec.glob("bin/*")
 
     # Remove prebuilts which still get installed as optional dependencies

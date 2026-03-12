@@ -3,19 +3,18 @@ class Black < Formula
 
   desc "Python code formatter"
   homepage "https://black.readthedocs.io/en/stable/"
-  url "https://files.pythonhosted.org/packages/c4/d9/07b458a3f1c525ac392b5edc6b191ff140b596f9d77092429417a54e249d/black-25.12.0.tar.gz"
-  sha256 "8d3dd9cea14bff7ddc0eb243c811cdb1a011ebb4800a5f0335a01a68654796a7"
+  url "https://files.pythonhosted.org/packages/e1/c5/61175d618685d42b005847464b8fb4743a67b1b8fdb75e50e5a96c31a27a/black-26.3.1.tar.gz"
+  sha256 "2c50f5063a9641c7eed7795014ba37b0f5fa227f3d408b968936e24bc0566b07"
   license "MIT"
-  revision 1
   head "https://github.com/psf/black.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "402beac3c1d2bd7f25ed2402fa584dda5e7bf45dad3de070d689f199f2bb16f5"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "43a52505fb33ff82d69e8e5c36d2c32da8e308f1966734190eb6fba53d639ea7"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "307969881ca959d61eb92f210fa146f27f1017619a07a3c0a0327447065f8e62"
-    sha256 cellar: :any_skip_relocation, sonoma:        "af624c170d77a534de6b48fb2473e411f0b9f93d593e57e102e4aeced9fd0bb6"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "60e23cb57c81013f0f2fd171aa6534d08569bb6ab626f0ad6e126cdb37ad2fa7"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "15be293675f539fe4d3695a9a70e9850c2e90b744f39870c35c8ed94dd70e9c3"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "96118b6e32413b7879c394752f3cb3ef4fd4efc3035daf0da144c063c0e942ee"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "ea8f271ff0f113fd2fd82903d2f87b9ebc0631a9eeff0451a9f01611bfe2530c"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "6fe48c23c3e5998e647b6f945bdfb55fe8a1cb6e8ad1f6bff911ceae087a61b1"
+    sha256 cellar: :any_skip_relocation, sonoma:        "87884189df4bed87a8799a9859be0ae31478ed1a0063c43e7e53f7491c4a27b5"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "e963e008be247360d59d8f9d7a6de2fd1286ea987fef75ae351cde29f32292ce"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d9d28b297fc52782fda080508702a900e4f1b1de5dac0d1d2cf0178bd385ed8e"
   end
 
   depends_on "python@3.14"
@@ -58,8 +57,8 @@ class Black < Formula
   end
 
   resource "multidict" do
-    url "https://files.pythonhosted.org/packages/80/1e/5492c365f222f907de1039b91f922b93fa4f764c713ee858d235495d8f50/multidict-6.7.0.tar.gz"
-    sha256 "c6e99d9a65ca282e578dfea819cfa9c0a62b2499d8677392e09feaf305e9e6f5"
+    url "https://files.pythonhosted.org/packages/1a/c2/c2d94cbe6ac1753f3fc980da97b3d930efe1da3af3c9f5125354436c073d/multidict-6.7.1.tar.gz"
+    sha256 "ec6652a1bee61c53a3e5776b6049172c53b6aaba34f18c9ad04f82712bac623d"
   end
 
   resource "mypy-extensions" do
@@ -68,18 +67,18 @@ class Black < Formula
   end
 
   resource "packaging" do
-    url "https://files.pythonhosted.org/packages/a1/d4/1fc4078c65507b51b96ca8f8c3ba19e6a61c8253c72794544580a7b6c24d/packaging-25.0.tar.gz"
-    sha256 "d443872c98d677bf60f6a1f2f8c1cb748e8fe762d2bf9d3148b5599295b0fc4f"
+    url "https://files.pythonhosted.org/packages/65/ee/299d360cdc32edc7d2cf530f3accf79c4fca01e96ffc950d8a52213bd8e4/packaging-26.0.tar.gz"
+    sha256 "00243ae351a257117b6a241061796684b084ed1c516a08c48a3f7e147a9d80b4"
   end
 
   resource "pathspec" do
-    url "https://files.pythonhosted.org/packages/c2/97/39352be14d20d377a387828daf9d3f765fad1ff29bd49913d5bbf4cefe61/pathspec-1.0.0.tar.gz"
-    sha256 "9ada63a23541746b0cf7d5672a39ea77eac31dd23a80470be90df83537512131"
+    url "https://files.pythonhosted.org/packages/fa/36/e27608899f9b8d4dff0617b2d9ab17ca5608956ca44461ac14ac48b44015/pathspec-1.0.4.tar.gz"
+    sha256 "0210e2ae8a21a9137c0d470578cb0e595af87edaa6ebf12ff176f14a02e0e645"
   end
 
   resource "platformdirs" do
-    url "https://files.pythonhosted.org/packages/cf/86/0248f086a84f01b37aaec0fa567b397df1a119f73c16f6c7a9aac73ea309/platformdirs-4.5.1.tar.gz"
-    sha256 "61d5cdcc6065745cdd94f0f878977f8de9437be93de97c1c12f853c9c0cdcbda"
+    url "https://files.pythonhosted.org/packages/19/56/8d4c30c8a1d07013911a8fdbd8f89440ef9f08d07a1b50ab8ca8be5a20f9/platformdirs-4.9.4.tar.gz"
+    sha256 "1ec356301b7dc906d83f371c8f487070e99d3ccf9e501686456394622a01a934"
   end
 
   resource "propcache" do
@@ -88,13 +87,13 @@ class Black < Formula
   end
 
   resource "pytokens" do
-    url "https://files.pythonhosted.org/packages/4e/8d/a762be14dae1c3bf280202ba3172020b2b0b4c537f94427435f19c413b72/pytokens-0.3.0.tar.gz"
-    sha256 "2f932b14ed08de5fcf0b391ace2642f858f1394c0857202959000b68ed7a458a"
+    url "https://files.pythonhosted.org/packages/b6/34/b4e015b99031667a7b960f888889c5bd34ef585c85e1cb56a594b92836ac/pytokens-0.4.1.tar.gz"
+    sha256 "292052fe80923aae2260c073f822ceba21f3872ced9a68bb7953b348e561179a"
   end
 
   resource "yarl" do
-    url "https://files.pythonhosted.org/packages/57/63/0c6ebca57330cd313f6102b16dd57ffaf3ec4c83403dcb45dbd15c6f3ea1/yarl-1.22.0.tar.gz"
-    sha256 "bebf8557577d4401ba8bd9ff33906f1376c877aa78d1fe216ad01b4d6745af71"
+    url "https://files.pythonhosted.org/packages/23/6e/beb1beec874a72f23815c1434518bfc4ed2175065173fb138c3705f658d4/yarl-1.23.0.tar.gz"
+    sha256 "53b1ea6ca88ebd4420379c330aea57e258408dd0df9af0992e5de2078dc9f5d5"
   end
 
   def install

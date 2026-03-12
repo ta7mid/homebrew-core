@@ -2,7 +2,7 @@ class Bloaty < Formula
   desc "Size profiler for binaries"
   homepage "https://github.com/google/bloaty"
   license "Apache-2.0"
-  revision 44
+  revision 47
   head "https://github.com/google/bloaty.git", branch: "main"
 
   stable do
@@ -17,15 +17,13 @@ class Bloaty < Formula
     end
   end
 
-  no_autobump! because: :requires_manual_review
-
   bottle do
-    sha256 cellar: :any, arm64_tahoe:   "a3b4c5a5b27a5ba273b2b7a1fd34d2ba0798b1dc4ba333b6d6e3d5fa8c590840"
-    sha256 cellar: :any, arm64_sequoia: "82c6c79536703aa6ef95ee29af7501baf710f42275aeb746f0eeb53f78f144f0"
-    sha256 cellar: :any, arm64_sonoma:  "2d2540ebff2617bf68e481155cd0d9a21c6652dc9e9eb18b63c8522b74585106"
-    sha256 cellar: :any, sonoma:        "d1a3dcc3d9d2dda73e9696a600e03e07928ee12954e0b803754092fcc5ebb8e3"
-    sha256               arm64_linux:   "8b836d6a3f88992c0b8e595f925dd4c31dcd9965e56bd69a6d608567bd748f64"
-    sha256               x86_64_linux:  "108d66f2cc2edd4fda4049da1ddb75c2f7510e2086bccdb69836f93843064fd0"
+    sha256 cellar: :any, arm64_tahoe:   "8507646f190fe173225906c0923b9c2e2356ffbf136e83fc1b46195554eeb2f9"
+    sha256 cellar: :any, arm64_sequoia: "55576bb3216cf53753a2294afdcf5e5c91a3212cf454d9f47b86595df5068d3d"
+    sha256 cellar: :any, arm64_sonoma:  "3c68980aba821d97e636c0ec9678df2686ea82528cf35e0afd5a81239b7a5682"
+    sha256 cellar: :any, sonoma:        "314e73716cf224d6a2a10909c26ffada90e233dae48fdcf824d0ecb809ae73ef"
+    sha256               arm64_linux:   "eca2391e6a009ead0ec9c5522d332b9d135650d48ba198d102485c461b3b5ec6"
+    sha256               x86_64_linux:  "479a5fda2ce669c98311acf9d70b15f91b5c5a761365a525ea76c14d93a95edb"
   end
 
   depends_on "cmake" => :build
@@ -36,6 +34,9 @@ class Bloaty < Formula
   depends_on "re2"
 
   def install
+    # Workaround until new release with
+    # https://github.com/google/bloaty/commit/9677d4938ec5be44f04eae774c94e10d339fd3a7
+    ENV.append "CXXFLAGS", "-include stdexcept"
     # https://github.com/protocolbuffers/protobuf/issues/9947
     ENV.append_to_cflags "-DNDEBUG"
     # Remove vendored dependencies

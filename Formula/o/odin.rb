@@ -2,25 +2,29 @@ class Odin < Formula
   desc "Programming language with focus on simplicity, performance and modern systems"
   homepage "https://odin-lang.org/"
   url "https://github.com/odin-lang/Odin.git",
-      tag:      "dev-2026-01",
-      revision: "393fec2f668ce2c1c7f2e885ab3e479d34e1e896"
-  version "2026-01"
+      tag:      "dev-2026-03",
+      revision: "1a5126c6b793ada0290984e66eedef5377e18838"
+  version "2026-03"
   license "Zlib"
   head "https://github.com/odin-lang/Odin.git", branch: "master"
 
   bottle do
-    sha256                               arm64_tahoe:   "facc287f0c4d7103d31f124035e1aa6a2d4e5f891053f360105a100dee3c74c6"
-    sha256                               arm64_sequoia: "b510bc9582346aab405737508ff652798ca4100ccb11a33c0f4a2cb13f8bc99e"
-    sha256                               arm64_sonoma:  "7112fe2858144d4a5045c5ac8f020a8d68603b9c14fac25f0cc0155b1b49cda8"
-    sha256 cellar: :any,                 sonoma:        "1824525945f8a4aabebb4b90cbdeec2a59b0dad2241e327cebd49b17aa678cb4"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "d4ffc4b57e4413d551a9c167b5304aa70d77e162e0c0871955afa44cf2ba53d8"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "7f7b633d6e62641d94efbc29f74c249c0c329118c9a226280f97b44ab8b5fd80"
+    sha256                               arm64_tahoe:   "2432901ed4cb2745f97a7618322b1b33fb516def8d3bf0a8046d8477818256fe"
+    sha256                               arm64_sequoia: "6a92b353b4d3ada9ddc510aa96f165cbbbcf76deeb64e9e9b93415aa1e923830"
+    sha256                               arm64_sonoma:  "a28896b6fdd65142fba0fd5b8bed26d767c3f47f4bed5ee23197a173d8617a23"
+    sha256 cellar: :any,                 sonoma:        "73fb5688190b00eab33c36b2af4daf09b1aed50df69c9d39880ea2be5f35f71b"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "001bc271f15ba3987d90372f298598e02d13e911a6cca1fd9ce7cf11fe1f151f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "fe81ac4b5a9e97890e3a95cd386ddd120a46fe9ea3ecf1c382c3c8614c901d27"
   end
 
   depends_on "glfw" => :no_linkage
-  depends_on "lld"
-  depends_on "llvm"
+  depends_on "lld@21"
+  depends_on "llvm@21"
   depends_on "raylib"
+
+  fails_with :gcc do
+    cause "requires Clang"
+  end
 
   resource "raygui" do
     url "https://github.com/raysan5/raygui/archive/refs/tags/4.0.tar.gz"
@@ -29,7 +33,6 @@ class Odin < Formula
 
   def install
     llvm = deps.map(&:to_formula).find { |f| f.name.match?(/^llvm(@\d+(\.\d+)*)?$/) }
-    ENV.llvm_clang if OS.linux?
     ENV["LLVM_CONFIG"] = (llvm.opt_bin/"llvm-config").to_s
     ENV.append "LDFLAGS", "-Wl,-rpath,#{llvm.opt_lib}" if OS.linux?
 

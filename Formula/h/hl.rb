@@ -1,8 +1,8 @@
 class Hl < Formula
   desc "Fast and powerful log viewer and processor"
   homepage "https://github.com/pamburus/hl"
-  url "https://github.com/pamburus/hl/archive/refs/tags/v0.34.1.tar.gz"
-  sha256 "f62d5bd271653f4ce46736648b03b8e68b55c552afe667a4c8a52c1b8a3b85ca"
+  url "https://github.com/pamburus/hl/archive/refs/tags/v0.36.0.tar.gz"
+  sha256 "533a33033fc15a65a3952c77466f25943a52744334dda8749e15168580f355e7"
   license "MIT"
   head "https://github.com/pamburus/hl.git", branch: "master"
 
@@ -12,12 +12,12 @@ class Hl < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "320e12bf8979beb2e174f4d79dc4e37919f0b9e551e1cf32a9785e8c78dd1920"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "0c314af89417d4ded8184e3e880e5ff7570c2447852d3a8225a08760e0f8b894"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "c1a53bdcd74f3fc77754fa9c3ed58baf48a940ab7e5cb4a36b342431b8be833b"
-    sha256 cellar: :any_skip_relocation, sonoma:        "d83f355a2ae2ecfe67a68bc51f426991152a52f610729b61068e3b43a9ab4409"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "868a4c32935ddb99da379d1659cc51f4db0f8a6b8aec91271af24b416d88fccf"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "41e9b5dcaa9e7f60dfea74be1599d0b0fba23169a1bdc2e2d12bad1294b628dd"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "368470b373ed3e94d1c0399da6e734d77fee38f3003889ec70067e22bf8dea18"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "67b3b61531ea1ff7785f5b8906f2f48ece5c8dc2f64d75046fc4ecafb13ae326"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "ea3c2c6574a0af1e992d43d86a1d7509a9d2f2b5ff0fd508abce4163acf9c027"
+    sha256 cellar: :any_skip_relocation, sonoma:        "c24b898374873ac90daf92d03ea1a2d7cf3960f82a7350e1b307cc82d64a9186"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "c3713e3f60bdacb31ed3fb0e78c3b26d7169fe5a82db9b72f075e8d039cdaa53"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "7e5d6ca53dfa346c6a91721790589fd4b7b0c4b345f70eaefb6bb6288b3ad46e"
   end
 
   depends_on "rust" => :build
@@ -33,12 +33,12 @@ class Hl < Formula
     assert_match version.to_s, shell_output("#{bin}/hl --version")
 
     (testpath/"sample.log").write <<~EOS
-      time="2025-02-17 12:00:00" level=INFO msg="Starting process"
-      time="2025-02-17 12:01:00" level=ERROR msg="An error occurred"
-      time="2025-02-17 12:02:00" level=INFO msg="Process completed"
+      time="2026-02-28 12:00:00" level=INFO msg="Starting process"
+      time="2026-02-28 12:01:00" level=ERROR msg="An error occurred"
+      time="2026-02-28 12:02:00" level=INFO msg="Process completed"
     EOS
 
     output = shell_output("#{bin}/hl --level ERROR sample.log")
-    assert_equal "Feb 17 12:01:00.000 [ERR] An error occurred", output.chomp
+    assert_equal "2026-02-28 12:01:00.000 [ERR] An error occurred", output.chomp
   end
 end

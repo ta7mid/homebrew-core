@@ -1,8 +1,8 @@
 class NodeAT24 < Formula
   desc "Open-source, cross-platform JavaScript runtime environment"
   homepage "https://nodejs.org/"
-  url "https://nodejs.org/dist/v24.12.0/node-v24.12.0.tar.xz"
-  sha256 "6d3e891a016b90f6c6a19ea5cbc9c90c57eef9198670ba93f04fa82af02574ae"
+  url "https://nodejs.org/dist/v24.14.0/node-v24.14.0.tar.xz"
+  sha256 "9fe025ef4028aba95d16e7810518bf4a5e8abfb0bdc07d8a3fdbb0afd538d77f"
   license "MIT"
 
   livecheck do
@@ -11,12 +11,12 @@ class NodeAT24 < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "86333fe67ffad02f393ff41f340f19e9c5613f6e4ed002a359b8795ab63cdb0e"
-    sha256 cellar: :any,                 arm64_sequoia: "3aa447bf6d32299a5db29d089fc23a0db4ed19b554c3425e10832b774e9922c6"
-    sha256 cellar: :any,                 arm64_sonoma:  "779cb156b8b733db913d15088fd638fbafd343e546ecadb473e22d231a60fd64"
-    sha256 cellar: :any,                 sonoma:        "fe1fdf48c619eaf5d2109d8dbe805b387825860013a02f24f559b04a0df56bfc"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "e2142b7b3ee4de355c35eb0761870a4cd7907637911dc3f2727799fb510cd26c"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "fd72a99ee37783e021ba426d6d029685d84bfebc94ecc480db2d2ee8fe06b346"
+    sha256 cellar: :any,                 arm64_tahoe:   "4ab56411492a2b11fc044f60beecace8e8e4f7d3b22f8797de643b8a916fec1a"
+    sha256 cellar: :any,                 arm64_sequoia: "d9917d98c7f6792669976075ae837a1f068b6ea0298a3404e94c39915726a02e"
+    sha256 cellar: :any,                 arm64_sonoma:  "d4018b06a7abac57601f7ffa13480f65510c3e398791d19523e63cbc9888a14d"
+    sha256 cellar: :any,                 sonoma:        "e6bc37612f20fe6ebba94cefd75290dd491f8d83465714f53283c6f6cb342965"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "6f8fdca75eaf9fa19a183ac527c8524559f9afa5367750516e44664b44dc585a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ca2790b3946db40e8efc36be13cfbe72fd59b8e5bc81a2fc760f22d6c62c8eba"
   end
 
   keg_only :versioned_formula
@@ -29,6 +29,7 @@ class NodeAT24 < Formula
   depends_on "python@3.13" => :build
   depends_on "brotli"
   depends_on "c-ares"
+  depends_on "hdrhistogram_c"
   depends_on "icu4c@78"
   depends_on "libnghttp2"
   depends_on "libnghttp3"
@@ -41,10 +42,13 @@ class NodeAT24 < Formula
   depends_on "zstd"
 
   uses_from_macos "python"
-  uses_from_macos "zlib"
 
   on_macos do
     depends_on "llvm" => :build if DevelopmentTools.clang_build_version <= 1699
+  end
+
+  on_linux do
+    depends_on "zlib-ng-compat"
   end
 
   # https://github.com/swiftlang/llvm-project/commit/078651b6de4b767b91e3e6a51e5df11a06d7bc4f
@@ -75,6 +79,7 @@ class NodeAT24 < Formula
       --shared
       --shared-brotli
       --shared-cares
+      --shared-hdr-histogram
       --shared-libuv
       --shared-nghttp2
       --shared-nghttp3
@@ -89,6 +94,8 @@ class NodeAT24 < Formula
       --shared-brotli-libpath=#{Formula["brotli"].lib}
       --shared-cares-includes=#{Formula["c-ares"].include}
       --shared-cares-libpath=#{Formula["c-ares"].lib}
+      --shared-hdr-histogram-includes=#{Formula["hdrhistogram_c"].include}
+      --shared-hdr-histogram-libpath=#{Formula["hdrhistogram_c"].lib}
       --shared-libuv-includes=#{Formula["libuv"].include}
       --shared-libuv-libpath=#{Formula["libuv"].lib}
       --shared-nghttp2-includes=#{Formula["libnghttp2"].include}
@@ -119,10 +126,16 @@ class NodeAT24 < Formula
 
     # TODO: Try to devendor these libraries.
     # - `--shared-ada` needs the `ada-url` formula, but requires C++20
+    # - `--shared-gtest` is only used for building the test suite, which we don't run here.
+    # - `--shared-merve` is not available as dependency in Homebrew.
+    # - `--shared-nbytes` is not available as dependency in Homebrew.
     # - `--shared-simdutf` seems to result in build failures.
     # - `--shared-http-parser` and `--shared-uvwasi` are not available as dependencies in Homebrew.
     ignored_shared_flags = %w[
       ada
+      gtest
+      merve
+      nbytes
       http-parser
       simdutf
     ].map { |library| "--shared-#{library}" }

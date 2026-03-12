@@ -12,8 +12,6 @@ class Pgloader < Formula
     strategy :github_latest
   end
 
-  no_autobump! because: :requires_manual_review
-
   bottle do
     rebuild 2
     sha256 cellar: :any,                 arm64_tahoe:   "f5baa53cabbdcdba97c61a8734543b06ffecf1edfb6a072fffe33673b6adda14"
@@ -34,12 +32,7 @@ class Pgloader < Formula
 
   on_linux do
     # Patchelf will corrupt the SBCL core which is appended to binary.
-    on_arm do
-      pour_bottle? only_if: :default_prefix
-    end
-    on_intel do
-      pour_bottle? only_if: :default_prefix
-    end
+    pour_bottle? only_if: :default_prefix
   end
 
   def install

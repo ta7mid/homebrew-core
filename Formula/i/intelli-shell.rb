@@ -1,25 +1,28 @@
 class IntelliShell < Formula
   desc "Like IntelliSense, but for shells"
   homepage "https://lasantosr.github.io/intelli-shell/"
-  url "https://github.com/lasantosr/intelli-shell/archive/refs/tags/v3.3.1.tar.gz"
-  sha256 "041dc22be0928626fb0562d7bc859490a4e0e6bb9c32ddbe1cdfad08f39623d8"
+  url "https://github.com/lasantosr/intelli-shell/archive/refs/tags/v3.4.0.tar.gz"
+  sha256 "e2b3fcdda6fa0564f47fb3dc5ce06729f0dc9532e538bb847dad1e684f545e4b"
   license "Apache-2.0"
   head "https://github.com/lasantosr/intelli-shell.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "40e6b5b79d074d6fc3d2af0db31ecd5a499835402439f3222659eab86422492d"
-    sha256 cellar: :any,                 arm64_sequoia: "c84ad3d3ef3ad543f4cf61b5feebbae780f105bab408ef1bbd814fda49927315"
-    sha256 cellar: :any,                 arm64_sonoma:  "1e6ec12a1e63c9e79757c09d9bde9e0094be059491b2df5b3750fd621e6ba31a"
-    sha256 cellar: :any,                 sonoma:        "1fab7b9946ed3d1473d86025a075903370e98af07803a1da89bbe8dbbfa03d65"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "2eba1cae4caae6ac000a0e8bdec810058a228e84b47ece650686fe0fa97a7c09"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8087a9fc93157572e14c27674b89c30b7fbb1695c4498fc2c0c967cbb8d13bee"
+    rebuild 1
+    sha256 cellar: :any,                 arm64_tahoe:   "a866f596b657e9767f18ccb6662f0140a030991ad2bf4a4ca4eb15febc910820"
+    sha256 cellar: :any,                 arm64_sequoia: "08150e5234950a8396d798dbd9bc570a368d421a050688c05898bc9ec631957c"
+    sha256 cellar: :any,                 arm64_sonoma:  "b801a9ef49f818cf25141f208cff0baef2a0d65518d159428f0daee1e3f9435b"
+    sha256 cellar: :any,                 sonoma:        "4511eb7a9ef917c8eea3fad6488c93c7db468442842794fbd2b1fe2275a679b4"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "92ab652310a0c3d980648ef0565c44a782e2b6dda87e7b3c5d9a5d0d8adf2e72"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "26198ee83287fa56bee15edace4c0a166cfc64b3c3ec17b41dfc746b3d823ef3"
   end
 
   depends_on "pkgconf" => :build
   depends_on "rust" => :build
   depends_on "openssl@3"
 
-  uses_from_macos "zlib"
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
 
   def install
     system "cargo", "install", *std_cargo_args

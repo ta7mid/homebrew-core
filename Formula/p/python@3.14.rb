@@ -1,9 +1,10 @@
 class PythonAT314 < Formula
   desc "Interpreted, interactive, object-oriented programming language"
   homepage "https://www.python.org/"
-  url "https://www.python.org/ftp/python/3.14.2/Python-3.14.2.tgz"
-  sha256 "c609e078adab90e2c6bacb6afafacd5eaf60cd94cf670f1e159565725fcd448d"
+  url "https://www.python.org/ftp/python/3.14.3/Python-3.14.3.tgz"
+  sha256 "d7fe130d0501ae047ca318fa92aa642603ab6f217901015a1df6ce650d5470cd"
   license "Python-2.0"
+  revision 1
 
   livecheck do
     url "https://www.python.org/ftp/python/"
@@ -11,15 +12,14 @@ class PythonAT314 < Formula
   end
 
   bottle do
-    rebuild 1
-    sha256 arm64_tahoe:   "dd33d75c8933865d6e139ba2f356336d451ce2a059091ffedea203673ee6be32"
-    sha256 arm64_sequoia: "ab3c31672d8783cf59ace7dcd40727c6a51a445a7a5a10b01ec51d505f1274b3"
-    sha256 arm64_sonoma:  "7edaf92eefd507ee8e8a8bc34c97e1bbc3a1ff7af39429ce80b39a86abb7bfef"
-    sha256 tahoe:         "960914ebc70473c211faffdf279cf885b58ee72802b2b1f5ca59a10722f32570"
-    sha256 sequoia:       "07cf53b5761512ceb559761f16e57ba0d2defdba3e1dd32b14c04a493a29197d"
-    sha256 sonoma:        "1d0c8dd6dcd3835244ae016654c5257bbb8943df766c801755ee3f911f88333e"
-    sha256 arm64_linux:   "4484f23889804026d999ed92e58db34bb76fa2821926b754b9a02da604f1cecc"
-    sha256 x86_64_linux:  "0553ae247aa4909c616a27e587546bcd24b1e540f4ff9ccfcbec8d2806fbf770"
+    sha256 arm64_tahoe:   "80a428380c870eb928b4818d6f2637cbef24402834d5284dc40e2d9a2f9b8c6f"
+    sha256 arm64_sequoia: "d580fc90bcef4f91d5753508210dee01ec42bb0524cafc67b1f5e2d5489821c3"
+    sha256 arm64_sonoma:  "967505665b5b9b3939c2881917b3b039751dab0f4508d18f7437e7389baf349b"
+    sha256 tahoe:         "3cc48ceb42147fd7b384ea0c9a970d1acaca1bf48e50bba9812e71b0af0774bd"
+    sha256 sequoia:       "c5a513e1fa9174f99b2a3c597e41ce89c9014cf3143224f6fc2b4dde55d01546"
+    sha256 sonoma:        "668504f52bb7d9e7f6450eaf4818b078af2f1070e144994a729004afd2cde270"
+    sha256 arm64_linux:   "d212a5efb3c03cef2bad9e21da98ebfc8e8237c6afdf91ecbf2a3a93314a108a"
+    sha256 x86_64_linux:  "17a301e694a8bd3391a3f90ecff70f8e9b5f934d004e9981027d4ec6ddc29da7"
   end
 
   depends_on "pkgconf" => :build
@@ -35,10 +35,10 @@ class PythonAT314 < Formula
   uses_from_macos "libffi"
   uses_from_macos "ncurses"
   uses_from_macos "unzip"
-  uses_from_macos "zlib"
 
   on_linux do
     depends_on "berkeley-db@5"
+    depends_on "zlib-ng-compat"
   end
 
   link_overwrite "bin/idle3"
@@ -66,14 +66,19 @@ class PythonAT314 < Formula
     sha256 "18f63100d6f94385c6ed57a72073443e1a71a4acb4339491615d0f16d6ff01b2"
   end
 
+  resource "packaging" do
+    url "https://files.pythonhosted.org/packages/65/ee/299d360cdc32edc7d2cf530f3accf79c4fca01e96ffc950d8a52213bd8e4/packaging-26.0.tar.gz"
+    sha256 "00243ae351a257117b6a241061796684b084ed1c516a08c48a3f7e147a9d80b4"
+  end
+
   resource "pip" do
-    url "https://files.pythonhosted.org/packages/fe/6e/74a3f0179a4a73a53d66ce57fdb4de0080a8baa1de0063de206d6167acc2/pip-25.3.tar.gz"
-    sha256 "8d0538dbbd7babbd207f261ed969c65de439f6bc9e5dbd3b3b9a77f25d95f343"
+    url "https://files.pythonhosted.org/packages/44/c2/65686a7783a7c27a329706207147e82f23c41221ee9ae33128fc331670a0/pip-26.0.tar.gz"
+    sha256 "3ce220a0a17915972fbf1ab451baae1521c4539e778b28127efa79b974aff0fa"
   end
 
   resource "wheel" do
-    url "https://files.pythonhosted.org/packages/8a/98/2d9906746cdc6a6ef809ae6338005b3f21bb568bea3165cfc6a243fdc25c/wheel-0.45.1.tar.gz"
-    sha256 "661e1abd9198507b1409a20c02106d9670b2576e916d58f520316666abca6729"
+    url "https://files.pythonhosted.org/packages/89/24/a2eb353a6edac9a0303977c4cb048134959dd2a51b48a269dfc9dde00c8a/wheel-0.46.3.tar.gz"
+    sha256 "e3e79874b07d776c40bd6033f8ddf76a7dad46a7b8aa1b2787a83083519a1803"
   end
 
   # Modify default sysconfig to match the brew install layout.

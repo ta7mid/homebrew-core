@@ -4,15 +4,16 @@ class Mpv < Formula
   url "https://github.com/mpv-player/mpv/archive/refs/tags/v0.41.0.tar.gz"
   sha256 "ee21092a5ee427353392360929dc64645c54479aefdb5babc5cfbb5fad626209"
   license :cannot_represent
+  revision 3
   head "https://github.com/mpv-player/mpv.git", branch: "master"
 
   bottle do
-    sha256               arm64_tahoe:   "49e900d3bffca0107e0ebd716a14150abe69160c9ea3d55ab0f5933627e21374"
-    sha256               arm64_sequoia: "96266e7c8086e412a21dfebbaaf0205f6d4d9ebd59642a625931c0f378893734"
-    sha256               arm64_sonoma:  "3dcf4533e71b8116dd2e53740cfffceaeca77d541d57124d181b4c5432d9aa2b"
-    sha256 cellar: :any, sonoma:        "b8d5b2bd8cb1f592710babd8ca55529e56b28280243a412f5687c18a75d60f67"
-    sha256               arm64_linux:   "e55246a636094d6b20ea1dc64cec64f98ab97cbc6815107d9a791b92fcf729ee"
-    sha256               x86_64_linux:  "a563e0f84bd7a2f47c2b7875d7a91b453c4f4c99f09261c860e00828701e4c56"
+    sha256               arm64_tahoe:   "62fb8fa00d4e5acfbc2a4205e6fdab481df3948f7e98e2f153eaa01a38c20198"
+    sha256               arm64_sequoia: "99fcb3a69832822620ea41296af7b2e71a8565e71286cc0825a854e2004c69b7"
+    sha256               arm64_sonoma:  "070275c6f03a5f743821459e05542e5518ecb8b75f202deff1e732f11d5788a3"
+    sha256 cellar: :any, sonoma:        "fef537744382c65ff62fb3d64b1d18f171d568e8b5ce00fbd1f6d9b7129c447e"
+    sha256               arm64_linux:   "c3acb7d4c41c7733d672b8ab558c371a7ceb725c8d2fee5f7617df11a0557b96"
+    sha256               x86_64_linux:  "a4e8f082ff1c243cf5affd384e6826ba06df3dc3b15076abe2e2cf5df5b36af2"
   end
 
   depends_on "docutils" => :build
@@ -36,8 +37,6 @@ class Mpv < Formula
   depends_on "yt-dlp"
   depends_on "zimg"
 
-  uses_from_macos "zlib"
-
   on_macos do
     depends_on "molten-vk"
   end
@@ -58,6 +57,7 @@ class Mpv < Formula
     depends_on "pulseaudio"
     depends_on "wayland"
     depends_on "wayland-protocols" => :no_linkage # needed by mpv.pc
+    depends_on "zlib-ng-compat"
   end
 
   conflicts_with cask: "stolendata-mpv", because: "both install `mpv` binaries"

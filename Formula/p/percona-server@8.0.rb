@@ -1,9 +1,10 @@
 class PerconaServerAT80 < Formula
   desc "Drop-in MySQL replacement"
   homepage "https://www.percona.com"
-  url "https://downloads.percona.com/downloads/Percona-Server-8.0/Percona-Server-8.0.44-35/source/tarball/percona-server-8.0.44-35.tar.gz"
-  sha256 "e1e88d2b35f37394c086c748290bf2850927b0e89549291b6570c563ea889d81"
+  url "https://downloads.percona.com/downloads/Percona-Server-8.0/Percona-Server-8.0.45-36/source/tarball/percona-server-8.0.45-36.tar.gz"
+  sha256 "137cdb24a1f5b8afbd1fef38457b98ead8d73e3cc73c22a3c6facc94ab3871de"
   license "BSD-3-Clause"
+  revision 1
 
   livecheck do
     url "https://www.percona.com/products-api.php", post_form: {
@@ -20,12 +21,12 @@ class PerconaServerAT80 < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "1b593f330e052cbe3378781c8343d55ad00cc3642342c84a00d0e54552ad14dd"
-    sha256 arm64_sequoia: "d92a648b10b1ab4596fe96f71cb25e8ac919f3eab58c46ca4bbf1ff14a2c849a"
-    sha256 arm64_sonoma:  "115668a1f7b7fabfcaa12f021bf1682c460450f7c6ea775694c0ff4686ecb9d1"
-    sha256 sonoma:        "627858962683ad8510b2623932b9f357611e3d77fda58ad1c0863680e9f6281f"
-    sha256 arm64_linux:   "c5599014dcf12eb2490e3d52c7682f745fd3bbf8ddfa91c3f9ae2429e1a5143d"
-    sha256 x86_64_linux:  "84f9d51c5358bfc3b1f799394dec508dc106712f2118ea047f169386a44e2e5b"
+    sha256 arm64_tahoe:   "8d1085dec7cc7631c4929ac837fec2ec57f590e75ccf2d3fe066e2024e1d225e"
+    sha256 arm64_sequoia: "bc72e11ee7033e38c148238d8d55c7a50234630634d85a8fc9a6f3cf4867fb48"
+    sha256 arm64_sonoma:  "3e12cce04c3d64890b09bf7b3032196e2f30e07ebd3d55f8f8c0c9e9ee51673c"
+    sha256 sonoma:        "3065b5003bdd8f1d46ff506c7e761c22ed177ed59838abb197469ff05bcbae81"
+    sha256 arm64_linux:   "04cca0bfc655282db7cc633c2cc5eb0a0d5e49aa6a67fd10fd4e8393cb88fbd2"
+    sha256 x86_64_linux:  "724bdd9892cc431aa64868659b10c83a2c6773e71fb01da78ec23017d99c9d13"
   end
 
   keg_only :versioned_formula
@@ -44,7 +45,7 @@ class PerconaServerAT80 < Formula
   depends_on "openldap" # Needs `ldap_set_urllist_proc`, not provided by LDAP.framework
   depends_on "openssl@3"
   depends_on "protobuf"
-  depends_on "zlib" # Zlib 1.2.13+
+  depends_on "zlib-ng-compat" # Zlib 1.2.13+
   depends_on "zstd"
 
   uses_from_macos "curl"

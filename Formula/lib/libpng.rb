@@ -1,9 +1,9 @@
 class Libpng < Formula
   desc "Library for manipulating PNG images"
-  homepage "http://www.libpng.org/pub/png/libpng.html"
-  url "https://downloads.sourceforge.net/project/libpng/libpng16/1.6.53/libpng-1.6.53.tar.xz"
-  mirror "https://sourceforge.mirrorservice.org/l/li/libpng/libpng16/1.6.53/libpng-1.6.53.tar.xz"
-  sha256 "1d3fb8ccc2932d04aa3663e22ef5ef490244370f4e568d7850165068778d98d4"
+  homepage "https://www.libpng.org/pub/png/libpng.html"
+  url "https://downloads.sourceforge.net/project/libpng/libpng16/1.6.55/libpng-1.6.55.tar.xz"
+  mirror "https://sourceforge.mirrorservice.org/l/li/libpng/libpng16/1.6.55/libpng-1.6.55.tar.xz"
+  sha256 "d925722864837ad5ae2a82070d4b2e0603dc72af44bd457c3962298258b8e82d"
   license "libpng-2.0"
 
   livecheck do
@@ -12,12 +12,12 @@ class Libpng < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "eca4924a22d83e3ccdee21f3d54e5370cb691ff90659402189a54258618dc8e2"
-    sha256 cellar: :any,                 arm64_sequoia: "9be8313689149a8cc6623088b1140dac0ff9cf529f5dfde84f2d160a1b0ef588"
-    sha256 cellar: :any,                 arm64_sonoma:  "94405130a3d82ced17b97585f36171fe811600f692758d8da3fc7dac48a9be85"
-    sha256 cellar: :any,                 sonoma:        "74a8f9da8a81eca68dee3a5db2f5db4f1ba2f460d7a0f9961786fc10b29f163f"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "0bfc841433eedc64cf64c838fbe3d8b3c54f667e43325f6511aecf35b2ec8ea5"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e6f6b36b4272633f7fa5be109719410df8d71814634a21e07509a605af1ee360"
+    sha256 cellar: :any,                 arm64_tahoe:   "18e55305589da2de3f27d7162aa331bcaf020e3f50d1310fe14d4539d3d90281"
+    sha256 cellar: :any,                 arm64_sequoia: "3219ece24a16bfc3b51f052101fc38213ff27fa12bfc866d6f7e4a28f70a9581"
+    sha256 cellar: :any,                 arm64_sonoma:  "8f97640017cc367b9ef1049352f3cda54fd34686ec6b04eb58f34b8c26b85dbb"
+    sha256 cellar: :any,                 sonoma:        "878c3075639e125f47cd730b7af85e4b1087dee15b08d9a9cbdaff6abf9ab8dc"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "65fe1a45dab0ee25b54582b37968a5c5fb5e065ff22ad9debf05b948ca0525c6"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "41f6eb3ea4da5e7996f09d3eb6ba9b02db91752f4b70c31abaee9a8bad1b7aa1"
   end
 
   head do
@@ -28,9 +28,19 @@ class Libpng < Formula
     depends_on "libtool" => :build
   end
 
-  uses_from_macos "zlib"
+  on_linux do
+    depends_on "zlib-ng-compat"
+
+    # Use Fedora's regenerated test PNG for zlib-ng-compat compression
+    resource "pngtest.png" do
+      url "https://src.fedoraproject.org/rpms/libpng/raw/49e9a06ca115aaa911dd3419ee79c1870d1428fb/f/pngtest.png"
+      sha256 "f925a657a5343cfb724414c01e87afd4d60b1f82a46edc0e11f016a126f84064"
+    end
+  end
 
   def install
+    resource("pngtest.png").stage(buildpath) if OS.linux?
+
     system "./configure", "--disable-silent-rules", *std_configure_args
     system "make"
     system "make", "test"
@@ -44,7 +54,7 @@ class Libpng < Formula
     (testpath/"test.c").write <<~C
       #include <png.h>
 
-      int main()
+      int main(void)
       {
         png_structp png_ptr;
         png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);

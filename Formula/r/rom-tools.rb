@@ -1,9 +1,9 @@
 class RomTools < Formula
   desc "Tools for Multiple Arcade Machine Emulator"
   homepage "https://www.mamedev.org/"
-  url "https://github.com/mamedev/mame/archive/refs/tags/mame0284.tar.gz"
-  version "0.284"
-  sha256 "54c9ab67953247c655be47f06575fe3a156f75e2192cfd88e5b865f165057217"
+  url "https://github.com/mamedev/mame/archive/refs/tags/mame0286.tar.gz"
+  version "0.286"
+  sha256 "ef05eb7521c841e7571b57cdd67bb729fb60ea76725a8fe27e74d805bbab9580"
   license "GPL-2.0-or-later"
   head "https://github.com/mamedev/mame.git", branch: "master"
 
@@ -14,31 +14,31 @@ class RomTools < Formula
   no_autobump! because: :incompatible_version_format
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "d76811f6d42d2495733f5502c8caee4e990a3b7dd97417262f2f0ab4fb055da1"
-    sha256 cellar: :any,                 arm64_sequoia: "f76e1989e8056628f6aa2061158c11b90bb252e3209f2ae9aae1cdbdd0a81462"
-    sha256 cellar: :any,                 arm64_sonoma:  "853309be5f6fa248f3aab5d1606499750a0c0ed083232cd1606547f0e26ea7ed"
-    sha256 cellar: :any,                 sonoma:        "65f0820c71ee3ad0bab34cc37e393843b98ba1e31e89085fea3ed02f2a12a17d"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "f0956f4a17733bb9cea415ef4c041fab0090ad166cd0c3895cc3c9b114ebcee0"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "331268dcab62db99a485fdd069c45e009b6c9c6251f4d28ffa3b0af0c70bf9bd"
+    sha256 cellar: :any,                 arm64_tahoe:   "5b5c8d91efbea5a5da2cc7e816d09fe4b118115590bbb5e45d44a3671eda0cbf"
+    sha256 cellar: :any,                 arm64_sequoia: "9787600a6a1fa2b7d8338c8d2138d9d091f1f1f4445f1675f7f237d945b1b48a"
+    sha256 cellar: :any,                 arm64_sonoma:  "901f6b61da192d76fcdbd75384a7d74d658b759d035f4069c3525233ccb394e3"
+    sha256 cellar: :any,                 sonoma:        "196e97e1f51ef78b61daa4976e1435e83c5598700a6d64249cff29076300704f"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "bb0e6fbd357bf02c9361275a4efe55b87659abe2c45cbcd8447441800ba0b007"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "2f03e3ff456f73878f7c97cdf0c406db9273bf488e128445f46de915cb0ce846"
   end
 
   depends_on "asio" => :build
   depends_on "pkgconf" => :build
   depends_on "flac"
-  depends_on "sdl2"
+  depends_on "sdl3"
   depends_on "utf8proc"
   depends_on "zstd"
 
   uses_from_macos "python" => :build
   uses_from_macos "expat"
-  uses_from_macos "zlib"
 
   on_linux do
     depends_on "portaudio" => :build
     depends_on "portmidi" => :build
     depends_on "pulseaudio" => :build
     depends_on "qtbase" => :build
-    depends_on "sdl2_ttf" => :build
+    depends_on "sdl3_ttf" => :build
+    depends_on "zlib-ng-compat"
   end
 
   def install
@@ -58,6 +58,7 @@ class RomTools < Formula
       USE_SYSTEM_LIB_FLAC=1
       USE_SYSTEM_LIB_UTF8PROC=1
       USE_SYSTEM_LIB_ZSTD=1
+      OSD=sdl3
       VERBOSE=1
     ]
     if OS.linux?

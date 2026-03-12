@@ -1,36 +1,22 @@
 class Pdftoipe < Formula
   desc "Reads arbitrary PDF files and generates an XML file readable by Ipe"
   homepage "https://github.com/otfried/ipe-tools"
-  url "https://github.com/otfried/ipe-tools/archive/refs/tags/v7.2.29.1.tar.gz"
-  sha256 "604ef6e83ad8648fa09c41a788549db28193bb3638033d69cac2b0b3f33bd69b"
+  url "https://github.com/otfried/ipe-tools/archive/refs/tags/v7.2.29.2.tar.gz"
+  sha256 "c8de0dc7eb8fa959c96539fb19ebfb8e16f459e9b4ef9259aeb30b76072cd083"
   license "GPL-2.0-or-later"
-  revision 13
-
-  no_autobump! because: :requires_manual_review
+  revision 1
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "e458140ae6523ea3475820d032dd70f5a393a265888a8c1d3b7ff1973517d320"
-    sha256 cellar: :any,                 arm64_sequoia: "80eaeb8f45bbb3a96b00dd9987b0d4db8f4b6d4a4002225c801ccf7b999d39d3"
-    sha256 cellar: :any,                 arm64_sonoma:  "44bbb9e7b11499efa631d60cdd7e3547b92d75901549113b496707085d8fbd1f"
-    sha256 cellar: :any,                 sonoma:        "76fa0169012ab888fe0c67b3881dcdbb5698a600805f64223c8318c2be1a9763"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "267054e95a5198879301dfd50d7395fe431a993f6aa1f0c5e30981a6cca5262e"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "81410873242c35cda5b1bc12c56a11ded781ef6c2947ef40b876286823ff3822"
+    sha256 cellar: :any,                 arm64_tahoe:   "7b0514955c452b9caac3b8fe502f4b1aa3eb6c05666002e0b39d0ea3f76ce91f"
+    sha256 cellar: :any,                 arm64_sequoia: "4eb658e9e51ce83bd51a0a8e40f3cfd5cad8642e2d44bab8f0d7a6ef4733bad5"
+    sha256 cellar: :any,                 arm64_sonoma:  "991c0fabc47c9bc3f94110137b364f23c9f1cc46a0acd680c7f554d63039f7b9"
+    sha256 cellar: :any,                 sonoma:        "32faef4740ea692d32d316e2b5f87e2b989274dfea7796f396d8e314e2e1e941"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "118fdfe3d540b443edf3f3b1bb874b58d5855e11f4c13c93ceaa724a4f5a3ef4"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "91a47d78a7cdc55924649eaa4987a062a0f84e00c0909d59d63303129e3d74cf"
   end
 
   depends_on "pkgconf" => :build
   depends_on "poppler"
-
-  # Backport fix for `poppler` 25+ compatibility
-  # PR ref: https://github.com/otfried/ipe-tools/pull/72
-  # PR ref: https://github.com/otfried/ipe-tools/pull/77
-  patch do
-    url "https://github.com/otfried/ipe-tools/commit/0da954e50fbdedf43796291853890fe36248bc16.patch?full_index=1"
-    sha256 "65f7010897fa4dd94cfa933d986cae6978ddd4e33e2aa1479ec7c11786e100c3"
-  end
-  patch do
-    url "https://github.com/otfried/ipe-tools/commit/2f59d3b747a23cd4b13b09ebee9f703b8129116c.patch?full_index=1"
-    sha256 "b1b48088c9dd4067d862d788643c750fc6981102cd85f62a85f898948ca33771"
-  end
 
   def install
     cd "pdftoipe" do

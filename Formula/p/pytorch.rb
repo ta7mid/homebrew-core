@@ -3,25 +3,25 @@ class Pytorch < Formula
 
   desc "Tensors and dynamic neural networks"
   homepage "https://pytorch.org/"
-  url "https://github.com/pytorch/pytorch/releases/download/v2.9.1/pytorch-v2.9.1.tar.gz"
-  sha256 "e17504700ebc4c87f9b57059df1c4d790b769458c04db144c7a92aea90f2c92b"
+  # TODO: Restore pybind11 dependency after https://github.com/pytorch/pytorch/pull/175115
+  url "https://github.com/pytorch/pytorch/releases/download/v2.10.0/pytorch-v2.10.0.tar.gz"
+  sha256 "fa8ccbe87f83f48735505371c1c313b4aa6db400b0ae4f8a02844d1e150c695f"
   license "BSD-3-Clause"
-  revision 2
+  revision 1
 
   livecheck do
     url :stable
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
-  no_autobump! because: :requires_manual_review
-
   bottle do
-    sha256 cellar: :any, arm64_tahoe:   "0378aa9aaff7ab0f0f6248f77d3f15962ee495824c75bde199422bc1b7b1ceaa"
-    sha256 cellar: :any, arm64_sequoia: "794f481e7c7ad1cb29d1145c71802105552acfe21c8ed0ed426662cb159b2d15"
-    sha256 cellar: :any, arm64_sonoma:  "e62117ca1ae0a388fec39cd96d9fd6f4673f6dec8ba40206e37aad86bc2ddd9f"
-    sha256 cellar: :any, sonoma:        "080a46a8d84a3b9c64a3bdc7d0f9cea2a1b8500fa05e6df7143a7edb69e19ece"
-    sha256               arm64_linux:   "ac2b140c034a18f16eb266f39ed36bcdf1cb6bb2e31d3893d83f5a8e32471585"
-    sha256               x86_64_linux:  "2ead036936b526139cb60da3945b45b6c2dc323d6697880ab362bc8da75b9de6"
+    rebuild 1
+    sha256 cellar: :any,                 arm64_tahoe:   "63bef9653ffea52b0418406343673d61d137edd56c75ab52bd9247a504203544"
+    sha256 cellar: :any,                 arm64_sequoia: "acbec880dbd2f7398a36d0e7de30b1b88fabc2a41e96aa44c1b59c859cbe74de"
+    sha256 cellar: :any,                 arm64_sonoma:  "25ba8700f37898762be52667f3d31e0f485fa8d11b8a1646a21b856017b01d54"
+    sha256 cellar: :any,                 sonoma:        "ba21766bc8fcf614d323ff14c7062565938d0143051a399f6e372567e53ef28b"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "d2c0ff7a4af0ee81ec4f2bab2deab20d477694608ad5394adc7d491348b75199"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "cb6e20482b80d3e090f09861c09a6ba2f311bb5645f4ad309e1ddac891716f54"
   end
 
   depends_on "cmake" => :build
@@ -34,9 +34,10 @@ class Pytorch < Formula
   depends_on "libyaml"
   depends_on macos: :monterey # MPS backend only supports 12.3 and above
   depends_on "numpy"
+  depends_on "onnx"
   depends_on "openblas"
   depends_on "protobuf"
-  depends_on "pybind11"
+  # TODO: depends_on "pybind11"
   depends_on "sleef"
 
   on_macos do
@@ -44,17 +45,17 @@ class Pytorch < Formula
   end
 
   pypi_packages package_name:     "torch[opt-einsum]",
-                extra_packages:   "pyyaml",
+                extra_packages:   %w[pyyaml packaging],
                 exclude_packages: "numpy"
 
   resource "filelock" do
-    url "https://files.pythonhosted.org/packages/58/46/0028a82567109b5ef6e4d2a1f04a583fb513e6cf9527fcdd09afd817deeb/filelock-3.20.0.tar.gz"
-    sha256 "711e943b4ec6be42e1d4e6690b48dc175c822967466bb31c0c293f34334c13f4"
+    url "https://files.pythonhosted.org/packages/1d/65/ce7f1b70157833bf3cb851b556a37d4547ceafc158aa9b34b36782f23696/filelock-3.20.3.tar.gz"
+    sha256 "18c57ee915c7ec61cff0ecf7f0f869936c7c30191bb0cf406f1341778d0834e1"
   end
 
   resource "fsspec" do
-    url "https://files.pythonhosted.org/packages/24/7f/2747c0d332b9acfa75dc84447a066fdf812b5a6b8d30472b74d309bfe8cb/fsspec-2025.10.0.tar.gz"
-    sha256 "b6789427626f068f9a83ca4e8a3cc050850b6c0f71f99ddb4f542b8266a26a59"
+    url "https://files.pythonhosted.org/packages/d5/7d/5df2650c57d47c57232af5ef4b4fdbff182070421e405e0d62c6cdbfaa87/fsspec-2026.1.0.tar.gz"
+    sha256 "e987cb0496a0d81bba3a9d1cee62922fb395e7d4c3b575e57f547953334fe07b"
   end
 
   resource "jinja2" do
@@ -73,13 +74,18 @@ class Pytorch < Formula
   end
 
   resource "networkx" do
-    url "https://files.pythonhosted.org/packages/6c/4f/ccdb8ad3a38e583f214547fd2f7ff1fc160c43a75af88e6aec213404b96a/networkx-3.5.tar.gz"
-    sha256 "d4c6f9cf81f52d69230866796b82afbccdec3db7ae4fbd1b65ea750feed50037"
+    url "https://files.pythonhosted.org/packages/6a/51/63fe664f3908c97be9d2e4f1158eb633317598cfa6e1fc14af5383f17512/networkx-3.6.1.tar.gz"
+    sha256 "26b7c357accc0c8cde558ad486283728b65b6a95d85ee1cd66bafab4c8168509"
   end
 
   resource "opt-einsum" do
     url "https://files.pythonhosted.org/packages/8c/b9/2ac072041e899a52f20cf9510850ff58295003aa75525e58343591b0cbfb/opt_einsum-3.4.0.tar.gz"
     sha256 "96ca72f1b886d148241348783498194c577fa30a8faac108586b14f1ba4473ac"
+  end
+
+  resource "packaging" do
+    url "https://files.pythonhosted.org/packages/65/ee/299d360cdc32edc7d2cf530f3accf79c4fca01e96ffc950d8a52213bd8e4/packaging-26.0.tar.gz"
+    sha256 "00243ae351a257117b6a241061796684b084ed1c516a08c48a3f7e147a9d80b4"
   end
 
   resource "pyyaml" do
@@ -88,8 +94,8 @@ class Pytorch < Formula
   end
 
   resource "setuptools" do
-    url "https://files.pythonhosted.org/packages/18/5d/3bf57dcd21979b887f014ea83c24ae194cfcd12b9e0fda66b957c69d1fca/setuptools-80.9.0.tar.gz"
-    sha256 "f36b47402ecde768dbfafc46e8e4207b4360c654f1f3bb84475f0a28628fb19c"
+    url "https://files.pythonhosted.org/packages/86/ff/f75651350db3cf2ef767371307eb163f3cc1ac03e16fdf3ac347607f7edb/setuptools-80.10.1.tar.gz"
+    sha256 "bf2e513eb8144c3298a3bd28ab1a5edb739131ec5c22e045ff93cd7f5319703a"
   end
 
   resource "sympy" do
@@ -132,7 +138,8 @@ class Pytorch < Formula
     ENV["USE_NNPACK"] = "OFF"
     ENV["USE_OPENMP"] = "ON"
     ENV["USE_SYSTEM_EIGEN_INSTALL"] = "ON"
-    ENV["USE_SYSTEM_PYBIND11"] = "ON"
+    ENV["USE_SYSTEM_ONNX"] = "ON"
+    ENV["USE_SYSTEM_PYBIND11"] = "OFF"
     ENV["USE_SYSTEM_SLEEF"] = "ON"
     ENV["USE_MPS"] = "ON" if OS.mac?
     ENV["USE_KLEIDIAI"] = "OFF"
@@ -154,7 +161,7 @@ class Pytorch < Formula
 
     # Expose C++ API
     torch = venv.site_packages/"torch"
-    include.install_symlink ((torch/"include").children - [torch/"include/fmt"])
+    include.install_symlink ((torch/"include").children - [torch/"include/fmt", torch/"include/pybind11"])
     lib.install_symlink (torch/"lib").children
     (share/"cmake").install_symlink (torch/"share/cmake").children
   end

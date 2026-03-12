@@ -4,7 +4,7 @@ class IncludeWhatYouUse < Formula
   url "https://include-what-you-use.org/downloads/include-what-you-use-0.25.src.tar.gz"
   sha256 "be81f9d5498881462465060ddc28b587c01254255c706d397d1a494d69eb5efd"
   license "NCSA"
-  revision 1
+  revision 2
   head "https://github.com/include-what-you-use/include-what-you-use.git", branch: "master"
 
   # This omits the 3.3, 3.4, and 3.5 versions, which come from the older
@@ -17,19 +17,21 @@ class IncludeWhatYouUse < Formula
   end
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any,                 arm64_tahoe:   "febb29971c3e8ec198cc46aab490b9d5a1b1f9897618ab0c08d571fc7e405e24"
-    sha256 cellar: :any,                 arm64_sequoia: "213bdf2e2a8094c3f9e80f9453529e459075b00667aa3869488ca330633c8d7e"
-    sha256 cellar: :any,                 arm64_sonoma:  "ce1afe4cf2eda64076bcecc7ac53578564fded555d6786ab46b5b26fd8022679"
-    sha256 cellar: :any,                 sonoma:        "5525b7f43377fd15a36821b00c8fcda1cffa466315fc189881cd843e6a14ec54"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "8c63e00abc6b27ee41877b9dab66a79f961be696bd0899649dc48c4e7ba02a9b"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "33758f6714ab8c29596918913cd70a1f162406e4ea2c161ba5a55f932bf4d90c"
+    sha256 cellar: :any,                 arm64_tahoe:   "cb16a8422501ee26489ab0dc70d2137f66fab074435382c390efa33271290a24"
+    sha256 cellar: :any,                 arm64_sequoia: "680eeeb2004d29b000e4b24ff69136cb988f903b8a9ede72be642427a9128965"
+    sha256 cellar: :any,                 arm64_sonoma:  "e90a4915c7ab8fe751a8dc6038539657d1ce3b1d9ddd76c19cb92af846946fe1"
+    sha256 cellar: :any,                 sonoma:        "d0f141120aaede9cf0d38d68b2f09907b02aadcd4b36abcf44fb14e82c06e15c"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "fe1f672fc5f6b859f9b7935ef7ec93826ec067eca641b6bc45c4aaea888bf424"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "de767ccb3a6ffb9f5fa5ac5e71202381a2aeb4b22de7d1df06c96a262f431e5c"
   end
 
   depends_on "cmake" => :build
-  depends_on "llvm"
+  depends_on "llvm@21"
   uses_from_macos "ncurses"
-  uses_from_macos "zlib"
+
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
 
   def llvm
     deps.map(&:to_formula).find { |f| f.name.match?(/^llvm(@\d+(\.\d+)*)?$/) }

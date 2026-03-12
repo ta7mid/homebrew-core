@@ -1,18 +1,18 @@
 class Dockerize < Formula
   desc "Utility to simplify running applications in docker containers"
   homepage "https://github.com/jwilder/dockerize"
-  url "https://github.com/jwilder/dockerize/archive/refs/tags/v0.9.9.tar.gz"
-  sha256 "b06e64264d5e267c37f383034fb487e6777c7e8cd04cfbd0830a50af47f93c2b"
+  url "https://github.com/jwilder/dockerize/archive/refs/tags/v0.10.1.tar.gz"
+  sha256 "98b5bd6f1697949acccf33a89c6a60909b95f3d643046238cd92cb0732669e0d"
   license "MIT"
   head "https://github.com/jwilder/dockerize.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "c0b161cb30622dabf4afdafc49715370921ab14799ef7b383a5ab9def661563b"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "c0b161cb30622dabf4afdafc49715370921ab14799ef7b383a5ab9def661563b"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "c0b161cb30622dabf4afdafc49715370921ab14799ef7b383a5ab9def661563b"
-    sha256 cellar: :any_skip_relocation, sonoma:        "15309a6b39c26ef26304b7d5e5078e6576e58eb55b46bc165f28ec164f306532"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "81bb9b9581c048b526a36e2c9e1c656f20990ed200b8530d592b06c86337afa2"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d9cdc334727728bb3b112a142780619c7e5acb69c376d84c8ff8a8ae0c41c87a"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "f11cdaaadf3434f6eacf93310f50f4b24cc3d5ff74ed48ca322505c43af781f0"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "f11cdaaadf3434f6eacf93310f50f4b24cc3d5ff74ed48ca322505c43af781f0"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "f11cdaaadf3434f6eacf93310f50f4b24cc3d5ff74ed48ca322505c43af781f0"
+    sha256 cellar: :any_skip_relocation, sonoma:        "7ab1876ed7855b1165f7b0820dd03a7b7107e4e432fff92f194a31ca64a3602d"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "013dd928d8a83a2e8302f7e827f417bba4ad5c0d4caab4e1d360a2b5a89e433f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "85ea8ba2c930682aec4943fd03d4684a500f026e384192c82d0db7b7038587fb"
   end
 
   depends_on "go" => :build

@@ -2,8 +2,8 @@ class Argocd < Formula
   desc "GitOps Continuous Delivery for Kubernetes"
   homepage "https://argoproj.github.io/cd/"
   url "https://github.com/argoproj/argo-cd.git",
-      tag:      "v3.2.3",
-      revision: "2b6251dfedb54de40596272a73ed1fb19d740219"
+      tag:      "v3.3.3",
+      revision: "ff239dcd20c578ecbf5265914cdc5c2f98d85535"
   license "Apache-2.0"
 
   # There can be a notable gap between when a version is tagged and a
@@ -18,12 +18,12 @@ class Argocd < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "026b51cd9b34e1fcbd0297deb55b368baf8cb6d6de2a97f3c6577c7f523f4b61"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "7b39322e70b0ddbbee9053a0da1de3ab3fc6dd7f715681c3cdc33b393ffa03e6"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "414a194b1434d76d93842e79fa19e94a8f83acb0ae40e03d5f2944693f0bf4f8"
-    sha256 cellar: :any_skip_relocation, sonoma:        "aa0b243086940a8c74db483d19ad5b937a88866c2bf039955ece1e9ba23e58bd"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "972dc51e16a0124f8270e9b82fd0b6b536549587560355d1d3164f6416c8203c"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "dad709f98b77f06faee9c83a2b3c25db5c0c7a4abd7fd805703951d8617eca90"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "ba5fd2101b02be3021ec24204d9603955f66dbc6715c0ebed5ff356943dd3a3c"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "6385dc751fc272574cfa6a035b35a2b4bb5bd719a5adcda279355cedcc454094"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "eb30cae42f277550a469021e6fb5b50e02632578067669b9010d40cf91c1c1d0"
+    sha256 cellar: :any_skip_relocation, sonoma:        "db468bf3724a1f3a86a19baf49d4ebbb9eb3858adbd09de38eb20e6682af5e76"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "070344a2c1064d535df3d204ebcd8a015751a0e51b4e64f49eb6d9bd217d2b58"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "57cb277a7ac92b1c5c79f2e03b7163fe8464e1c1777837e955991d556fb1ef9c"
   end
 
   depends_on "go" => :build
@@ -38,7 +38,7 @@ class Argocd < Formula
     ) do
       system "yarn", "--cwd", "ui", "build"
     end
-    system "make", "cli-local"
+    system "make", "cli-local", "GIT_TAG=v#{version}"
     bin.install "dist/argocd"
 
     generate_completions_from_executable(bin/"argocd", "completion")

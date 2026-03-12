@@ -1,9 +1,9 @@
 class Snort < Formula
   desc "Flexible Network Intrusion Detection System"
   homepage "https://www.snort.org"
-  url "https://github.com/snort3/snort3/archive/refs/tags/3.10.0.0.tar.gz"
-  mirror "https://fossies.org/linux/misc/snort3-3.10.0.0.tar.gz"
-  sha256 "fbd6619e612998330f8459486158a3ea571473218628d9011982aaf238e480e2"
+  url "https://github.com/snort3/snort3/archive/refs/tags/3.11.1.0.tar.gz"
+  mirror "https://fossies.org/linux/misc/snort3-3.11.1.0.tar.gz"
+  sha256 "9465d19b0925088266504e8962e97e55359bafd6a19f66b4169dcd21ef1d8ec5"
   license "GPL-2.0-only"
   head "https://github.com/snort3/snort3.git", branch: "master"
 
@@ -16,12 +16,12 @@ class Snort < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "4fb4b1c2607726513d9d0ed202c3a0a23d0d236141d1676ed4a6021606fbc9ac"
-    sha256 cellar: :any,                 arm64_sequoia: "64dd5b9d69229c10ba034befce6ed483279b01d527365493ada3892907585498"
-    sha256 cellar: :any,                 arm64_sonoma:  "6ae3223cb870e302a25bac2b1b904d630fef3cf50ca4ebeb8d7c45ecc2e8fd67"
-    sha256 cellar: :any,                 sonoma:        "499562e2c285def293c0aececfa9de7babac25e8ab4f46d06f37cee4728d9980"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "be45db270eba7ccea6e7e5654408334f8a20f92df080109dce8672077f2d1c32"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e1a108b5b3da511f2844970fc4dacd316c041123f53cc019b0fb8698a505b69a"
+    sha256 cellar: :any,                 arm64_tahoe:   "177d8367bd804e840b652dc80456c60fbd0fc36de2dec314c237f6dc63f9051a"
+    sha256 cellar: :any,                 arm64_sequoia: "b903c3400cb3755afb8106fc2db4602021ac30d07b0f9ddd22e39152e516c6a4"
+    sha256 cellar: :any,                 arm64_sonoma:  "77f4d9d73697341aab981f275d2e995cbdd5548716ca88d8836afb26357735e7"
+    sha256 cellar: :any,                 sonoma:        "c08a26e8c78cd44ea33713777630d0aecd8e54dd081ece075fe8408083c29fbc"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "6d611cb0f3e8dddbe82d7014d246da1ac49c7b1d04109c74ebee550d30693cdf"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "cf72acf3710c8cd48b1e88606e59bfd1e87645147563831ec5fab7614f0263c6"
   end
 
   depends_on "cmake" => :build
@@ -38,10 +38,9 @@ class Snort < Formula
   depends_on "vectorscan"
   depends_on "xz" # for lzma.h
 
-  uses_from_macos "zlib"
-
   on_linux do
     depends_on "libunwind"
+    depends_on "zlib-ng-compat"
   end
 
   def install

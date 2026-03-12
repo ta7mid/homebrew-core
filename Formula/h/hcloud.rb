@@ -1,18 +1,18 @@
 class Hcloud < Formula
   desc "Command-line interface for Hetzner Cloud"
   homepage "https://github.com/hetznercloud/cli"
-  url "https://github.com/hetznercloud/cli/archive/refs/tags/v1.59.0.tar.gz"
-  sha256 "3b4b1d872c72a3da31204f743cf442cc4c5c84993f651d178d5bce0f0a7d0293"
+  url "https://github.com/hetznercloud/cli/archive/refs/tags/v1.61.0.tar.gz"
+  sha256 "e99b116586d8040f33994bb1ef232b7def058fcd43f24abd3db22e822da11419"
   license "MIT"
   head "https://github.com/hetznercloud/cli.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "3edd4f84988d4f16eeabcc916bcc03f84c740846d751037f0dc0f667ae1575e8"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "366cf0fd8bca1bad9fa653d822a4478b6d3cf6cfe5ab63c0ae71cc7d452dd497"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "6b4e23b8fabd79c550c7f92efb47d7f94721a433630cd87c6c7b31d0c9e86e8f"
-    sha256 cellar: :any_skip_relocation, sonoma:        "57c5e0bba57ad7e4a3eee85f74127e7fd451a254e47f2d8bbdefc58a85868d0d"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "8a8b42ebda51fa798ffd9457fe3473b080b61c2e2ce62534251b64a8cd987186"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "637dedf40f8132fa4053cbc01143d0c50c94bf2017666128311ce6e93e018148"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "5d6f30a931983997ef14b383558216328b786b64eec64d11fa1248bca2c70742"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "8ca3416fdeadd625d4655b08e0e8ae5436f01910c8ebcab9ec755f45eac63c58"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "a8a3496527433273f3c9505319aef57bf99595094a3424853d8ae3b275c39094"
+    sha256 cellar: :any_skip_relocation, sonoma:        "58471d520acb9f6854a3cf0e1e90cdb38085493b4b5429c54bb4e0a9549a3f1f"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "d72dfad8b325798ee9e47b7a53a157bba678073b1c669128855a7670b9daa7ca"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "cef8841a8741b1736526db75fb1e52ff14cb31afc7a5cdac2a57d96ef6cb2e93"
   end
 
   depends_on "go" => :build

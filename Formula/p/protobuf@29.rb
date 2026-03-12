@@ -1,10 +1,10 @@
 class ProtobufAT29 < Formula
   desc "Protocol buffers (Google's data interchange format)"
   homepage "https://protobuf.dev/"
-  url "https://github.com/protocolbuffers/protobuf/releases/download/v29.5/protobuf-29.5.tar.gz"
-  sha256 "a191d2afdd75997ba59f62019425016703daed356a9d92f7425f4741439ae544"
+  url "https://github.com/protocolbuffers/protobuf/releases/download/v29.6/protobuf-29.6.tar.gz"
+  sha256 "877bf9f880631aa31daf2c09896276985696728137fcd43cc534a28c5566d9ba"
   license "BSD-3-Clause"
-  revision 1
+  compatibility_version 1
 
   livecheck do
     url :stable
@@ -12,14 +12,13 @@ class ProtobufAT29 < Formula
   end
 
   bottle do
-    sha256 cellar: :any, arm64_tahoe:   "bd19655ceb70bf16498679c0ae2b3cc6a5fe120757ba3849427cd05b382c0a8c"
-    sha256 cellar: :any, arm64_sequoia: "528c423462116bb411a5da6b965361d4ad205ca0b6b53434efc4acbd3d5e87bd"
-    sha256 cellar: :any, arm64_sonoma:  "92323b0b9e90b9431c6c9f3c6f6b048e2f9439da2e5bc36a1ef0a5a633fd7387"
-    sha256 cellar: :any, arm64_ventura: "363d21aa93375caf21806c54c3da022f1bb880729dc87d0171a6731e4692dbdc"
-    sha256 cellar: :any, sonoma:        "da3395782f6666eba1a9c48b159e6ccfaa26e4ce7c6c37101168b1d5d885ec00"
-    sha256 cellar: :any, ventura:       "83642e846f15ceb4211e66ec55aefdb63eb8facf4e9684aa083885b0422ad1f7"
-    sha256               arm64_linux:   "0a567f7ee0d6a937c22e38176da87de07e014ce967af46cde6b39a2ec5cfcc49"
-    sha256               x86_64_linux:  "5c29ea136cda77ada1aefd78d66c9150e674fbc52f821670721a8abbe7bab3d7"
+    rebuild 1
+    sha256 cellar: :any, arm64_tahoe:   "529447bb3f3cc0a131ee1a171eef643cf78257d0acc9ab2f83c29751981f60d2"
+    sha256 cellar: :any, arm64_sequoia: "67f2fdacf96b6bfe81ea3049b8a5295d62fa8b3f6dee4d32da6df963c20a1495"
+    sha256 cellar: :any, arm64_sonoma:  "44e99b689da10554f1b40f3141b7db369475c1ddef85ecc9ba9b8c7b011007e8"
+    sha256 cellar: :any, sonoma:        "6543a4d360f528ef50d620460019436745aa4a0c21a56258197492894eba15a9"
+    sha256               arm64_linux:   "838ffb210791c6591c7552126560a2d75df09a01166f34c47f702e03d52a8a08"
+    sha256               x86_64_linux:  "763ca704e1f0a497bfd7fd508b5ae440478d65531e78c22dd595785015e6cdf6"
   end
 
   keg_only :versioned_formula
@@ -31,7 +30,10 @@ class ProtobufAT29 < Formula
   depends_on "cmake" => :build
   depends_on "googletest" => :build
   depends_on "abseil"
-  uses_from_macos "zlib"
+
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
 
   # Backport to expose java-related symbols
   patch do

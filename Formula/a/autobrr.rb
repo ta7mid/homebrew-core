@@ -1,18 +1,18 @@
 class Autobrr < Formula
   desc "Modern, easy to use download automation for torrents and usenet"
   homepage "https://autobrr.com/"
-  url "https://github.com/autobrr/autobrr/archive/refs/tags/v1.71.0.tar.gz"
-  sha256 "3ddb6f8899fc88f1166e698a1bad1a91bacd7b6757023f54b6dcf6201ff52d97"
+  url "https://github.com/autobrr/autobrr/archive/refs/tags/v1.74.0.tar.gz"
+  sha256 "6e7b57cd426e530296b396639bbf141df0b041382aafda36e5bb34cd0e696756"
   license "GPL-2.0-or-later"
   head "https://github.com/autobrr/autobrr.git", branch: "develop"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "826116e8d968c435a881dbaad33e50e93459f38fa9d8e730a259340d7f942003"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "96832397bb69f8a4d9f1eb91b836101c526f1b6287a32f4624e198133075efe5"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "1fd8fa2d934f195b3e242149ebf182153eaea9e92d7b69af8bbe45bf6f2cf31f"
-    sha256 cellar: :any_skip_relocation, sonoma:        "6811e365db7f0fd9c6194860a29cb84201e292af0494bb4fb84f06fc4bd04630"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "3fffb4efd249307329077b328867b6e74237481abc4d3c8edb4826395859ab15"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "7c5f65c163ce46ec6e65bca73d2ba913961f6bb4fd0140fd026d269ec43e8a21"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "9067b34617ba19ece4d82b7d66cbbc073242ccc55ca744eed77bc2db6bbbc6d3"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "8b5c24f057e57f88a7f1f6f738d838959e670e0bfb8baa98cab1bb92d1eb55dd"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "ad8b325c771dfde86d6d1e7721c3878f517ecb646b5e25017eca56d08910d23b"
+    sha256 cellar: :any_skip_relocation, sonoma:        "91e171a66aa7f03fcdaac4b432c1d9b302fd0aba1c600f26e4589e16cfd3373e"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "41933edc1c94184c804b25c0381cfc2409eeea723f43a593bdf0abd85a3b320b"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "3d7f742308801c6cf1f91300fc44b53143afd12425b8ebe4c245f72d5db114e1"
   end
 
   depends_on "go" => :build
@@ -50,7 +50,7 @@ class Autobrr < Formula
       sessionSecret = "secret-session-key"
     TOML
 
-    pid = spawn bin/"autobrr", "--config", "#{testpath}/"
+    pid = spawn bin/"autobrr", "--config", testpath/""
     begin
       sleep 4
       system "curl", "-s", "--fail", "http://127.0.0.1:#{port}/api/healthz/liveness"

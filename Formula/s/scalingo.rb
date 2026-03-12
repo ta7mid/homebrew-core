@@ -1,17 +1,17 @@
 class Scalingo < Formula
   desc "CLI for working with Scalingo's PaaS"
   homepage "https://doc.scalingo.com/cli"
-  url "https://github.com/Scalingo/cli/archive/refs/tags/1.41.1.tar.gz"
-  sha256 "92a37e60eed5e9b08d9b5a75bc124e8d08eac584c1af302d180a5bed3301549c"
+  url "https://github.com/Scalingo/cli/archive/refs/tags/1.43.3.tar.gz"
+  sha256 "95c77046cd346c2de68bcb4dfa0174be832f95c39981651a9a42c50373162b68"
   license "BSD-4-Clause"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "52f6a6dd1a7dc82ee310bfe0e57fea2dac9270e9a2f8d19d070ab77522e03aa0"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "52f6a6dd1a7dc82ee310bfe0e57fea2dac9270e9a2f8d19d070ab77522e03aa0"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "52f6a6dd1a7dc82ee310bfe0e57fea2dac9270e9a2f8d19d070ab77522e03aa0"
-    sha256 cellar: :any_skip_relocation, sonoma:        "f3118ea055d30fcc2b235f69dc40b95261bf43c9fe4ec7d535841a13ca8135ae"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "63fcb0ee5fc3c93c87dffd1297febf99e5cc26c5a8f6e568d7770e6d4fb965bc"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "bdd06674b064865e949bab6d5954432a6a56af556b61294c5c65acba8135e63a"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "0ede9e78d28988316269f81dc81b5a95fe075489ede838e4dd90fd8180baa7e5"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "0ede9e78d28988316269f81dc81b5a95fe075489ede838e4dd90fd8180baa7e5"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "0ede9e78d28988316269f81dc81b5a95fe075489ede838e4dd90fd8180baa7e5"
+    sha256 cellar: :any_skip_relocation, sonoma:        "87157b18caf471d78de28bb20cf21510a210ed604ae49e0b54761635bcd84a9e"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "2ad4511b9269f728ae7de96c000f57bb674a55c1e42266369d84e93cbb068af4"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "a8b345871e08309192d7daa52b8f51a64ae4108f18f8862c4a812ecf03572747"
   end
 
   depends_on "go" => :build

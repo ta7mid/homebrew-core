@@ -2,8 +2,8 @@ class HelmAT3 < Formula
   desc "Kubernetes package manager"
   homepage "https://helm.sh/"
   url "https://github.com/helm/helm.git",
-      tag:      "v3.19.4",
-      revision: "7cfb6e486dac026202556836bb910c37d847793e"
+      tag:      "v3.20.1",
+      revision: "a2369ca71c0ef633bf6e4fccd66d634eb379b371"
   license "Apache-2.0"
 
   livecheck do
@@ -12,13 +12,12 @@ class HelmAT3 < Formula
   end
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "204902c2af2d77ce6bcad91a9bc280aaed1402c30179a573a811aec7147b6b83"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "c3d740da22efd1000634940fbf2beb6e9f15f81491db90343fdc405ea1370b8d"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "24cbe7a36d186c1179622a99c3b7ec3cd137d82ab7acf58e61dc1cf5f4536f97"
-    sha256 cellar: :any_skip_relocation, sonoma:        "79854d6dc9ab27f41270754f96bba3ae31d9063a40fde9733177be4843451a78"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "d5146c418f65d21776b2d6c37f5a58704d2aab553089ecc759dc31d152301b79"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "4a6ab8035d3e050efdad3594affc600e0d6b693813cde95469974ca5bfe9d752"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "9d42ac3a8731795af22bcb7a3a190928eeb24b1bfa0368a609226ce6f2a0b39d"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "58a650f1baa25287bb6db193d5512a3c92cb95468e23cd531142bb02c151f565"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "e173e586d54bb8cb94603dad28731d8be8121ca3f3cdb46c729a39396611145b"
+    sha256 cellar: :any_skip_relocation, sonoma:        "b87206e32fc73162d1cac299540490b14a2bacb0582d7fe6f059179db219bc82"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "1515324d82fdcfbb7b8b3babaf54e19b2583e0ed78db4edd919d87079cb9379b"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "81d13195980e52a4d01a33b3c3fd79e2e49c90cdf4d8c03380d01fb44ffb3d4c"
   end
 
   keg_only :versioned_formula

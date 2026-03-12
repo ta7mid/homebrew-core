@@ -4,7 +4,7 @@ class Efl < Formula
   url "https://download.enlightenment.org/rel/libs/efl/efl-1.28.1.tar.xz"
   sha256 "84cf6145f9cc82bfff690005be24392c8f3c52f8e00ff04d8eea371429c09424"
   license all_of: ["GPL-2.0-only", "LGPL-2.1-only", "BSD-2-Clause", "FTL", "zlib-acknowledgement"]
-  revision 1
+  revision 2
 
   livecheck do
     url "https://download.enlightenment.org/rel/libs/efl/"
@@ -12,12 +12,13 @@ class Efl < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "4f7931f7bbba7b77cdffec8ad7f786fbf391c751cca06e21bfd36db76b45a9c8"
-    sha256 arm64_sequoia: "ca39300711b68d4b9b204e11a26e087d653d07b820a566abb8f2571511bef9df"
-    sha256 arm64_sonoma:  "37008b1b96a2bcb02b6f107554e48064f18f45b749db0f59fe58f9b08dc801a2"
-    sha256 sonoma:        "b34db0280911ff0635abc86cc72887bdf894f0a308e1ec23b69afbe9b12db2c4"
-    sha256 arm64_linux:   "29ab5ac199b353fc6d3e2ee896f36e804f5745111c73e2e31405c7cec5f2a874"
-    sha256 x86_64_linux:  "5345f7a0bfe8001c148667d79ab69e5488f7619213a4dba32de5ae23cf239659"
+    rebuild 1
+    sha256 arm64_tahoe:   "0aedecfbc82dd64256f03aab33fa8ae335417d303f1ae5232312c7db3d83f807"
+    sha256 arm64_sequoia: "20d779a469c064dd9c5f0026d92088fd471072ff8892a198b4a4541e18be5ade"
+    sha256 arm64_sonoma:  "6f12d404e850445aa6f2e4022a661eda4125799f98e00ca8a33a6084c16f97b4"
+    sha256 sonoma:        "68674b9cc25d8d8553903bda991c6a27d96ee0c64cff9495385a7c43e6d4351a"
+    sha256 arm64_linux:   "5c03f04940d543eab7aa8229188ba8854693ad479b969da545c8fcb2f0ee305e"
+    sha256 x86_64_linux:  "9bbb7e3a1d35545a60a72cbe6f5c67ae49ae7e1bde124659822926cebb92284c"
   end
 
   depends_on "meson" => :build
@@ -50,8 +51,6 @@ class Efl < Formula
   depends_on "shared-mime-info"
   depends_on "webp"
 
-  uses_from_macos "zlib"
-
   on_macos do
     depends_on "gdk-pixbuf"
     depends_on "little-cms2"
@@ -59,6 +58,7 @@ class Efl < Formula
 
   on_linux do
     depends_on "mesa"
+    depends_on "zlib-ng-compat"
   end
 
   # Fix conflicting bool definition.

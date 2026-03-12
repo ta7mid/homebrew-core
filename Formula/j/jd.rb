@@ -1,18 +1,18 @@
 class Jd < Formula
   desc "JSON diff and patch"
   homepage "https://github.com/josephburnett/jd"
-  url "https://github.com/josephburnett/jd/archive/refs/tags/v2.3.1.tar.gz"
-  sha256 "914d6f131d6223b2805a33f6c39ceba647a2dd06e4cc3cf0eba8c20b9199bf63"
+  url "https://github.com/josephburnett/jd/archive/refs/tags/v2.5.0.tar.gz"
+  sha256 "f4d141122ad91d1e7628e9cfee95ca183113e144872cce61f6d3d56449efa19b"
   license "MIT"
   head "https://github.com/josephburnett/jd.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "cb83f5245139424bd69136276726976eeb7ffa18268683ca6a956b2d0bacd0a2"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "cb83f5245139424bd69136276726976eeb7ffa18268683ca6a956b2d0bacd0a2"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "cb83f5245139424bd69136276726976eeb7ffa18268683ca6a956b2d0bacd0a2"
-    sha256 cellar: :any_skip_relocation, sonoma:        "875bf4b51937e9416e8852543f7e7a8f9019cc4c6388ec5e346e3bf05c0abad7"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "db962df5ccd0873bbd9863700480b4ad59c7cca28ed85c6eea5b402a6fd4abb4"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "55397dc8e9b8f767b48999d42442f0f3ea3c92a5bdd55c71538fac0b9b78333f"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "dc0402bdb1aeb99940b6d32eae2eaf516722725b69a002f39122c248c01b037b"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "dc0402bdb1aeb99940b6d32eae2eaf516722725b69a002f39122c248c01b037b"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "dc0402bdb1aeb99940b6d32eae2eaf516722725b69a002f39122c248c01b037b"
+    sha256 cellar: :any_skip_relocation, sonoma:        "be1e7d510c4494671a669db0aa1e49229067565f3ffefa22a46d343a67845223"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "5c95f3a9f3c3781181a3686b9108f02befd26448297b877b2a58f9567e772fe2"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "a1e711c1e129381b62820ac48347eb8e55d19049ce76c6d8062b21cb1e973a42"
   end
 
   depends_on "go" => :build
@@ -28,6 +28,7 @@ class Jd < Formula
     (testpath/"b.json").write('{"foo":"baz"}')
     (testpath/"c.json").write('{"foo":"baz"}')
     expected = <<~EOF
+      ^ {"file":"a.json"}
       @ ["foo"]
       - "bar"
       + "baz"

@@ -1,8 +1,8 @@
 class Redis < Formula
   desc "Persistent key-value database, with built-in net interface"
   homepage "https://redis.io/"
-  url "https://download.redis.io/releases/redis-8.4.0.tar.gz"
-  sha256 "ca909aa15252f2ecb3a048cd086469827d636bf8334f50bb94d03fba4bfc56e8"
+  url "https://download.redis.io/releases/redis-8.6.1.tar.gz"
+  sha256 "6873fc933eeb7018aa329e868beac7228695f50c0d46f236a4ff1a6d7f7bb5b6"
   license all_of: [
     "AGPL-3.0-only",
     "BSD-2-Clause", # deps/jemalloc, deps/linenoise, src/lzf*
@@ -18,12 +18,12 @@ class Redis < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "9c8066d1449fe4409ceac586524fabe20ffbc5d0550dd51c6854cd44fb36dc18"
-    sha256 cellar: :any,                 arm64_sequoia: "47545c5a6b4111af674b84fb0ea731451a77c43ab7d14b30202c7952d56f455f"
-    sha256 cellar: :any,                 arm64_sonoma:  "da7ab72d1d8f23e7d4faf24c8819128eb209ca613d5baf7d5b093385e4051081"
-    sha256 cellar: :any,                 sonoma:        "4741855b02343ac4c68bde8aee23e6865cbdeb5ba2d16c67b46b991db06adc03"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "dcc94d4c8530780cd3cb0f4bda5952d3ce97c088a970ab561c114eeaf06b1efb"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8e8351a1d086b3a541b28fff6ae7aad46033045fd9440a707d10b972e1bbc41f"
+    sha256 cellar: :any,                 arm64_tahoe:   "ca41e968b63f67c895ea643e8779fec5d8415b5147a03c246af8deb80ed684f2"
+    sha256 cellar: :any,                 arm64_sequoia: "044fa147f99ec185be38a2f2d581c70781f9c476986864ac95dc4b4e6329ffdf"
+    sha256 cellar: :any,                 arm64_sonoma:  "8af62bc0aeeb898b94eb3838006a759b828219d8626505ed2f8f8e5b0cd0a18d"
+    sha256 cellar: :any,                 sonoma:        "a8611fb5838323d0e18ea12ad164edf73731952d6221fee11eb4404815b62294"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "bd42445613067005996dcb21e0af8c987c835e04e7d1fd8591287cfb15974a5a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "b11b567ada7461aa9638502533a446a8dc89021cca290214389d4693900fd5ed"
   end
 
   depends_on "openssl@3"

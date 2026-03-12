@@ -1,8 +1,8 @@
 class Libplctag < Formula
   desc "Portable and simple API for accessing AB PLC data over Ethernet"
   homepage "https://github.com/libplctag/libplctag"
-  url "https://github.com/libplctag/libplctag/archive/refs/tags/v2.6.13.tar.gz"
-  sha256 "cb204226a17459a44269302bf46fcda9aa3bf24f84ea9f25801aef6e5f42225e"
+  url "https://github.com/libplctag/libplctag/archive/refs/tags/v2.6.15.tar.gz"
+  sha256 "f695ecf9666a029d0cc40ba8bcc3e3b781f4a0f763ffc0f45545e38e8a95a514"
   license any_of: ["LGPL-2.0-or-later", "MPL-2.0"]
 
   livecheck do
@@ -11,15 +11,21 @@ class Libplctag < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "fa4a5fc3bda90f1d3c024a39de9de655ad4221698a47a76152ebd30936d2ac2b"
-    sha256 cellar: :any,                 arm64_sequoia: "49a52e1560cedaf548eea0101054cc51e7fc6a5477c3a455b3f8d144060f31cc"
-    sha256 cellar: :any,                 arm64_sonoma:  "a5927805a61cc92fd291f3bbaf1ac43f684ef1d7dd0acdcc75414000b890b054"
-    sha256 cellar: :any,                 sonoma:        "27ac7feafd0afdecc4e5e476467f6f46985fde068a93270b23147eb3b32565e2"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "dc974040343aa8351b8f26b1469cf8b2b0c42e9a1b42c7f79a3f2e5732d96cf4"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d997648911d08752f523583ba71501c32b0ef375571f18fe95369c74db173210"
+    sha256 cellar: :any,                 arm64_tahoe:   "aff64b8c92ab1386958f7854ac438f9227456c56a136fb6a948bed0682ddf554"
+    sha256 cellar: :any,                 arm64_sequoia: "ea2201a50404fef1fda788f42024922ac87d74e9ea624a798bb0e22696b9b4bb"
+    sha256 cellar: :any,                 arm64_sonoma:  "bc8aa1d8455ba736534030a43db0de757ee69fcfa0d19ac626da2598da3d57a6"
+    sha256 cellar: :any,                 sonoma:        "5722b3c2de6172a7bb19469e86065fa2be3fd7a6e472f2992d3efc0aa55871c1"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "73c996cb96cdd8414ed63c6ed62108da494508cf79ffd28315815c18f185b047"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "518cfe45d5e19a0a62f1fbc6b6d6e882c42c233b6c9add2d68c6bc11a3d770c1"
   end
 
   depends_on "cmake" => :build
+
+  # Backport "ab_server: scope CIP_SRV_UNCONNECTED_SEND case body", upstream pr ref, https://github.com/libplctag/libplctag/pull/618
+  patch do
+    url "https://github.com/chenrui333/libplctag/commit/b19081bc35bd93893b343091add7d638ee3fe532.patch?full_index=1"
+    sha256 "7b84abb42b4ba7b72b2b391f471acc56719481b590634cd1afd0576e7d1e1432"
+  end
 
   def install
     system "cmake", "-S", ".", "-B", "build", *std_cmake_args

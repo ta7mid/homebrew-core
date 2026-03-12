@@ -1,28 +1,23 @@
 class RubyLsp < Formula
   desc "Opinionated language server for Ruby"
   homepage "https://shopify.github.io/ruby-lsp"
-  url "https://github.com/Shopify/ruby-lsp/archive/refs/tags/v0.26.4.tar.gz"
-  sha256 "ee9765866d2c4e843acf3b434a332142513bba4ada54d30fd68888a1a60672c1"
+  url "https://github.com/Shopify/ruby-lsp/archive/refs/tags/v0.26.8.tar.gz"
+  sha256 "e152af85830348971bfd46ceef9709b531c5cb3bb90febb5aff2b111dccdfcfb"
   license "MIT"
-  revision 1
   head "https://github.com/Shopify/ruby-lsp.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "265daaf7d05be673f818daf1549d7560c634646bbac1a309241f9716c53a8ead"
-    sha256 cellar: :any,                 arm64_sequoia: "94a42977c366b99cf9bc685227f09bcff0727552013ced926586e3f46a8d118b"
-    sha256 cellar: :any,                 arm64_sonoma:  "f61a296b6b23562030a13c7dd7eb3908b1a6d8e9026437dee26ab640b8e46d6b"
-    sha256 cellar: :any,                 sonoma:        "dbc8afe80b4631d787baee3756b7453c8fd95c72ceeeaa45670a94fe309966ca"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "4cf8c0154725e0a57c2e2b576590a920ac5b6a5e4fc797e36a4ad6955aa757a8"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "c23a75d666c5fa871f2278b1e8da6327b48306eb3e26d015a75d9be88297dc7f"
+    sha256 cellar: :any,                 arm64_tahoe:   "ddd35e878d6a335d5c71664f1cfffb7d40a180f705535f9facd17da56c06786a"
+    sha256 cellar: :any,                 arm64_sequoia: "e9c4bc2fbd30950d032019495b69b076d32cd0be54f958ef2f994ba547b313ed"
+    sha256 cellar: :any,                 arm64_sonoma:  "545117d236d7cd98a08773e105f248ae936ab9b56452dcb02252d94a65d7006c"
+    sha256 cellar: :any,                 sonoma:        "b2b64fd3be168c2bfffaa96713963d3ff955a12734cdf560faac0be83ebb6ad3"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "b5a9b9ffe511c73a344570b18d1eb30a914c342f179d1bfac81dca58241b47a6"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "9cbae600afa01ab34b97c2bddaa9e9fc0453e0202b574aa59f2633cbf5488cd3"
   end
 
   depends_on "ruby"
 
   def install
-    # Support Bundler 4.x.x
-    # Upsgtream PR ref: https://github.com/Shopify/ruby-lsp/pull/3823
-    inreplace "Gemfile", "\"bundler\", \"~> 2.5\"", "\"bundler\", \"~> 4.0.0\""
-
     ENV["BUNDLE_VERSION"] = "system" # Avoid installing Bundler into the keg
     ENV["BUNDLE_WITHOUT"] = "development test"
     ENV["GEM_HOME"] = libexec

@@ -2,30 +2,25 @@ class Influxdb < Formula
   desc "Time series, events, and metrics database"
   homepage "https://influxdata.com/time-series-platform/influxdb/"
   url "https://github.com/influxdata/influxdb.git",
-      tag:      "v3.4.0",
-      revision: "9e26dadce59a3e453b80e8d2a9342da5bde3210a"
+      tag:      "v3.8.3",
+      revision: "73f689bb31d5ca13c4f950fefb40d5f6e6163019"
   license any_of: ["Apache-2.0", "MIT"]
   head "https://github.com/influxdata/influxdb.git", branch: "main"
 
-  # There can be a notable gap between when a version is tagged and a
-  # corresponding release is created, so we check releases instead of the Git
-  # tags. Upstream maintains multiple major/minor versions and the "latest"
-  # release may be for an older version, so we have to check multiple releases
-  # to identify the highest version.
+  # Upstream no longer creates releases for tags on GitHub, so we check the
+  # version in the install script instead.
   livecheck do
-    url :stable
-    regex(/^v?(\d+(?:\.\d+)+)$/i)
-    strategy :github_releases
+    url "https://www.influxdata.com/d/install_influxdb3.sh"
+    regex(/^INFLUXDB_VERSION=["']v?(\d+(?:\.\d+)+)["']$/i)
   end
 
   bottle do
-    rebuild 2
-    sha256 cellar: :any,                 arm64_tahoe:   "0b56eb69673cec96b6e0abc6fdeb5807f26971b63d9c9e59f243de2e6e0c4433"
-    sha256 cellar: :any,                 arm64_sequoia: "814ba255caf27a6a28ba8501e5d3d1e2a8ae8bee4fe5d95e6de138986ed2c359"
-    sha256 cellar: :any,                 arm64_sonoma:  "4417f00dcf3f9b1e8eb646a28d486c56220abcbee07699cef4a3fb38e4f5800a"
-    sha256 cellar: :any,                 sonoma:        "ad174931eba64ae5aa550d28619ec1aaaa9b387cfe4496759f14e4ff89fca399"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "bb100914676a5753dda3192c49da245e2d598d0daa54f4231dbbeff201ed5469"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5a90708ec7969b861c54b072b5c1b4f8e2e3fe5fe39e8719ed55afca095316e0"
+    sha256 cellar: :any,                 arm64_tahoe:   "e9a8c8dc7d8c743e5c5dd8328ef482bf92c4b862a94307fcc6a422170c027d88"
+    sha256 cellar: :any,                 arm64_sequoia: "9989f3b5c32d501341a5ebcff4e2517bd87c87b6140de7767dd37a9b4c74582c"
+    sha256 cellar: :any,                 arm64_sonoma:  "7116f4d542cfc9aabd21056356f04839e7d1b3d4692acb32c082f8e878eb8f1b"
+    sha256 cellar: :any,                 sonoma:        "0bdd5b3b9d68e1fe85e14080dfdbf5fcf7e86e69bd0704fa657297de2c8e570a"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "6471a254035e432890393bcf29020f4842887346a117838a406308b69911a2c7"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "acb4a0113469c90bd15a95407a66c914874fad6c9ba6fef379655be62795218f"
   end
 
   depends_on "pkgconf" => :build
@@ -39,13 +34,6 @@ class Influxdb < Formula
     on_intel do
       depends_on "lld" => :build
     end
-  end
-
-  # Fix to support Python 3.14
-  # PR ref: https://github.com/influxdata/influxdb/pull/26927
-  patch do
-    url "https://github.com/influxdata/influxdb/commit/b6fef2921d4ae1823e17d08c18eace1ae2cdeac1.patch?full_index=1"
-    sha256 "e568ef1151fb9f003d7e88f45427d43ac461f020ba79b19a0e6dc472a1eb71ad"
   end
 
   def install

@@ -1,18 +1,18 @@
 class Atuin < Formula
   desc "Improved shell history for zsh, bash, fish and nushell"
   homepage "https://atuin.sh/"
-  url "https://github.com/atuinsh/atuin/archive/refs/tags/v18.10.0.tar.gz"
-  sha256 "02228929976142f63b4464a35b8b29b29155e1814cf03e99c95381954c5d9e37"
+  url "https://github.com/atuinsh/atuin/releases/download/v18.12.1/source.tar.gz"
+  sha256 "94b38e6031bad2409c176beae63580da35a1c3a1c129cc7c4c8f74f1e2965638"
   license "MIT"
   head "https://github.com/atuinsh/atuin.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "235d017cc3111495c86fbc1d312474ac34bef3b437f87d06f863e0c9958be678"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "1bd0573a397e6971a1425c76bf1704e32aa1236d573c0fe0af9ad864cd153aad"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "2291c61ea446650b01fa0ea5015f5d8b2552735fdba7613d032cfdde341e7078"
-    sha256 cellar: :any_skip_relocation, sonoma:        "be9b90ff44ced78f53e2365435c0f168d4aa2218b8da2146c4354a5049a9905e"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "b1f59232ac04c3d7be883f9d65f7100a2209fca0a5e7b99206a24b2aa949a54b"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "82a016cbd0456b8af46f94f87e6e4ff178e5143363d4fb02958a83b110b8fbdd"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "59dcbee9c296a929e826aa0f45b4e8a2c40e5d0e78058324655b904b9c5a0d2f"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "324426bb22f49bd16d0ea51070c12e713ad116f07703917646fde4bb74e9527a"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "e0e51401941cf7ca558952da210e3f3d26b9e6546c3e2a306b9cc50d45230a05"
+    sha256 cellar: :any_skip_relocation, sonoma:        "14162bb60283a0e9bf4f26a6dabbdaa753f40f42086c2ee4f17785b2e8285668"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "96b720459ffc2532834e4951f3ba3d6d9ec45135b0e11a6cff0459921dd29a27"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e0b80611a6d78c64e0b7c66ba87f411c9006bc1b071cbee8cd35a0bd692aa0ed"
   end
 
   depends_on "protobuf" => :build

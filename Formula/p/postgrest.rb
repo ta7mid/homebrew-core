@@ -1,8 +1,8 @@
 class Postgrest < Formula
   desc "Serves a fully RESTful API from any existing PostgreSQL database"
   homepage "https://github.com/PostgREST/postgrest"
-  url "https://github.com/PostgREST/postgrest/archive/refs/tags/v14.3.tar.gz"
-  sha256 "8dbf8eff7ff94b592a7efd5e9f9987675581298233b3b9d549ecf8fa598ce104"
+  url "https://github.com/PostgREST/postgrest/archive/refs/tags/v14.5.tar.gz"
+  sha256 "ffdc596aaaa10254b0c92f9edadb54bdd83b2751efa2b8e05e0f2ae31f456c93"
   license "MIT"
   head "https://github.com/PostgREST/postgrest.git", branch: "main"
 
@@ -12,22 +12,24 @@ class Postgrest < Formula
   end
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any,                 arm64_tahoe:   "bffed42b459115c6831bdbde95eefa27cd94f1fb4c94c9d3517b6adedbe3d900"
-    sha256 cellar: :any,                 arm64_sequoia: "024fcad9eefff9dc23f9e2d3bc4dff2ad7a778ef25d72bd7d4df9c36178724b8"
-    sha256 cellar: :any,                 arm64_sonoma:  "8caabe204aa6435660cae20e86759c1299ec064784ec27c13291ffc37b18ca33"
-    sha256 cellar: :any,                 sonoma:        "832cc49b92ffd3add29a590f4933c55b7c7f2aca7f5fd449e902f39b56fe07a9"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "642805b73e8416c260f0dad1f6398b21d41625d534d16cf348763e9abfc55176"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d50bc9bb4fca7caca6e77f8952dc0b5983a6db852d7c3fa08a8c41055571ef48"
+    sha256 cellar: :any,                 arm64_tahoe:   "2e75c185ef1237b95628d3ca82dcdafc8ab14c629231106d9036cc9fb4137438"
+    sha256 cellar: :any,                 arm64_sequoia: "86832317b978599c2fa1fa8a019700a57edf0263285a337830823321bea7c902"
+    sha256 cellar: :any,                 arm64_sonoma:  "0d00459f941c960a98a4b5629c9276ad9c2abe68f334c5525fd7d2201bc08c95"
+    sha256 cellar: :any,                 sonoma:        "f2fbdd7fc20abd3517679701ad3646e5f81ba46999d82c07f7b42ce6133a6e06"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "7bbf2306f812d5cd090be39dec1a35d03dd3c85a2fc816fb97aae479621cf052"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0bc6147bfe85295e6770c349cd6e2a62e3295d28c9f798d3c36fff420c46642b"
   end
 
   depends_on "cabal-install" => :build
-  depends_on "ghc" => :build
+  depends_on "ghc@9.12" => :build
   depends_on "gmp"
   depends_on "libpq"
 
   uses_from_macos "libffi"
-  uses_from_macos "zlib"
+
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
 
   def install
     # Workaround to build with GHC >= 9.10

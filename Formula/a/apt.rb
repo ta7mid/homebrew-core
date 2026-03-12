@@ -2,8 +2,8 @@ class Apt < Formula
   desc "Advanced Package Tool"
   homepage "https://wiki.debian.org/Apt"
   # Using git tarball as Debian does not retain old versions at deb.debian.org
-  url "https://salsa.debian.org/apt-team/apt/-/archive/3.1.13/apt-3.1.13.tar.bz2"
-  sha256 "1d15f5d270a59f125822da535dbb036679ffd0e15e43e34bc576bc4fe8d8f6e1"
+  url "https://salsa.debian.org/apt-team/apt/-/archive/3.1.16/apt-3.1.16.tar.bz2"
+  sha256 "4c264dd6b21bb7543294dc7c5ecca9dca1d2a7e42e708108f0a1a9cafa6d62f5"
   license "GPL-2.0-or-later"
 
   livecheck do
@@ -12,8 +12,8 @@ class Apt < Formula
   end
 
   bottle do
-    sha256 arm64_linux:  "7c90bbc28ba0370a200bc06fb57ab205f574e28375032821e001e67fcb9ab4a1"
-    sha256 x86_64_linux: "c960f838b61d94bdd36e4673386b9e3f37df86135f2e873a28d332c2fe2ca949"
+    sha256 arm64_linux:  "1546f41f7c53e65dd6fc88c77abe102c234ee472bfa0373e6608a1b648689287"
+    sha256 x86_64_linux: "46c8307adabc6cf22e4c3c7347101d61a5699e817f5df78449033d42f3887426"
   end
 
   keg_only "it conflicts with system apt"
@@ -39,7 +39,7 @@ class Apt < Formula
   depends_on "systemd"
   depends_on "xxhash"
   depends_on "xz"
-  depends_on "zlib"
+  depends_on "zlib-ng-compat"
   depends_on "zstd"
 
   fails_with :gcc do
@@ -50,10 +50,12 @@ class Apt < Formula
   resource "triehash" do
     url "https://github.com/julian-klode/triehash/archive/refs/tags/v0.3.tar.gz"
     sha256 "289a0966c02c2008cd263d3913a8e3c84c97b8ded3e08373d63a382c71d2199c"
-  end
 
-  # Add missing <optional> header
-  patch :DATA
+    livecheck do
+      url :url
+      regex(/^v?(\d+(?:\.\d+)+)$/i)
+    end
+  end
 
   def install
     # Find our docbook catalog
@@ -82,17 +84,3 @@ class Apt < Formula
                  shell_output("#{bin}/apt list 2>&1")
   end
 end
-
-__END__
-diff --git a/apt-private/private-cmndline.cc b/apt-private/private-cmndline.cc
-index 7ea1878..117644d 100644
---- a/apt-private/private-cmndline.cc
-+++ b/apt-private/private-cmndline.cc
-@@ -17,6 +17,7 @@
- #include <cstdarg>
- #include <cstdlib>
- #include <cstring>
-+#include <optional>
- #include <unistd.h>
-
- #include <algorithm>

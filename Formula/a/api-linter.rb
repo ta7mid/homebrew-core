@@ -1,18 +1,18 @@
 class ApiLinter < Formula
   desc "Linter for APIs defined in protocol buffers"
   homepage "https://linter.aip.dev/"
-  url "https://github.com/googleapis/api-linter/archive/refs/tags/v2.1.0.tar.gz"
-  sha256 "820753a8f624e53777028c87a76566f25b6343e5ea5913ecd64d6357b807248d"
+  url "https://github.com/googleapis/api-linter/archive/refs/tags/v2.3.0.tar.gz"
+  sha256 "a6713f5d14be322eca0ae211412039cc69d558270766cdbf1b8e5e950c6a3625"
   license "Apache-2.0"
   head "https://github.com/googleapis/api-linter.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "36b6b6d8f3e6e9f92da96c80b324c7c6b0639c5db5832090ea9271abf0fc85db"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "36b6b6d8f3e6e9f92da96c80b324c7c6b0639c5db5832090ea9271abf0fc85db"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "36b6b6d8f3e6e9f92da96c80b324c7c6b0639c5db5832090ea9271abf0fc85db"
-    sha256 cellar: :any_skip_relocation, sonoma:        "5b05d0d1870fd26d15ad7ae6552a3febce29cf66e1ce842ee568bbcef712fc36"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "3af48c074b9bc6074f99d0069a7830209d45ecabb023cc3afe1298d56e0a3e22"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5566560cc4162b72b9ce0b34e58a4b2d34a2e83115ee26a03b609c0e1cb2c794"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "c537dac8b8934b8e18ee894e3b0633abadf0154bb86f15da5735d31ff58bd989"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "c537dac8b8934b8e18ee894e3b0633abadf0154bb86f15da5735d31ff58bd989"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "c537dac8b8934b8e18ee894e3b0633abadf0154bb86f15da5735d31ff58bd989"
+    sha256 cellar: :any_skip_relocation, sonoma:        "ef6034e71dee39a9983ff9b1443fea899bd8aff71285218394ffa146afa9703e"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "0339ad8ccee909b8e9809a38e46687bf2cb57ef1f14390e3d2df29adfca776ed"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "4d11740f5b77952fe67eedfd319735f75d7dab3b5c454b03a568944415f358a8"
   end
 
   depends_on "go" => :build

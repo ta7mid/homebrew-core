@@ -2,10 +2,9 @@ class Php < Formula
   desc "General-purpose scripting language"
   homepage "https://www.php.net/"
   # Should only be updated if the new version is announced on the homepage, https://www.php.net/
-  # TODO: Remove TAILCALL VM workaround in next release
-  url "https://www.php.net/distributions/php-8.5.1.tar.xz"
-  mirror "https://fossies.org/linux/www/php-8.5.1.tar.xz"
-  sha256 "3f5bf99ce81201f526d25e288eddb2cfa111d068950d1e9a869530054ff98815"
+  url "https://www.php.net/distributions/php-8.5.3.tar.xz"
+  mirror "https://fossies.org/linux/www/php-8.5.3.tar.xz"
+  sha256 "ce65725b8af07356b69a6046d21487040b11f2acfde786de38b2bfb712c36eb9"
   license all_of: [
     "PHP-3.01",
 
@@ -30,7 +29,6 @@ class Php < Formula
     "TCL",                   # 7
     "Zlib",                  # 8
   ]
-  revision 2
 
   livecheck do
     url "https://www.php.net/downloads?source=Y"
@@ -38,12 +36,12 @@ class Php < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "22175a5dac314b39bdce030764d9a4278cd50f97d42d6474673bdcca993613a5"
-    sha256 arm64_sequoia: "98fc86d979d5c033151d1f27771fa78150908fee777a750f8bead34a857cb623"
-    sha256 arm64_sonoma:  "8321b011a49f9683a07d1db18906ca9ca46a1c451488798f8730f7ddee21472d"
-    sha256 sonoma:        "fe4377a9d7ac30b5d342836c83ae83d171d1cca706520bbd45c0871938d4abbf"
-    sha256 arm64_linux:   "dcaf6a2606b51f988f7d15a79b19c6cdeec4e27153283e053882378c2bdf589e"
-    sha256 x86_64_linux:  "b7d5609eb141b6c1e0997eba25039ef77746afa57f8e0914bddaf84188639b94"
+    sha256 arm64_tahoe:   "c4e0a579aac4bf58804795dad75322a6fae863f2d53065f59e9c5963f66968f0"
+    sha256 arm64_sequoia: "856340f75733320389c981f9fcd8875a431a4af864f0753fd4d57c5b9a203664"
+    sha256 arm64_sonoma:  "c001a072255e03d629fdbc08748c242848e0cea59553d858ae3901254feeae49"
+    sha256 sonoma:        "32cab99f69b3bd794c2e6f1cd977b8e816997b430283dd59f812d715d60e69b3"
+    sha256 arm64_linux:   "4d95733207588428c1d8d0a53f5fdb78623de3e2be7b4cbadcbb29d3bfc3fd8f"
+    sha256 x86_64_linux:  "5abfb7dab90fef8b831e84b26d04a3f1b64d42c3df077cc4ef4e999c15d5650f"
   end
 
   head do
@@ -82,10 +80,13 @@ class Php < Formula
   uses_from_macos "libffi"
   uses_from_macos "libxml2"
   uses_from_macos "libxslt"
-  uses_from_macos "zlib"
 
   on_macos do
     depends_on "gettext"
+  end
+
+  on_linux do
+    depends_on "zlib-ng-compat"
   end
 
   def install
@@ -98,9 +99,6 @@ class Php < Formula
               "APXS_LIBEXECDIR='$(INSTALL_ROOT)#{lib}/httpd/modules'"
       s.gsub! "-z $($APXS -q SYSCONFDIR)",
               "-z ''"
-
-      # Workaround to enable TAILCALL VM, issue ref: https://github.com/php/php-src/issues/20546
-      s.gsub!(/("(?:call|bl)\s+)(fun\\n")/, "\\1_\\2") if OS.mac? && build.stable?
 
       # NOTE: `versioned_formula?` conditionals are to make sure correct changes
       # are applied if copied from `php`. Remove dead code when creating `php@x.y`
@@ -401,7 +399,7 @@ class Php < Formula
     EOS
 
     begin
-      pid = spawn Formula["httpd"].opt_bin/"httpd", "-X", "-f", "#{testpath}/httpd.conf"
+      pid = spawn Formula["httpd"].opt_bin/"httpd", "-X", "-f", testpath/"httpd.conf"
       sleep 10
       assert_match expected_output, shell_output("curl -s 127.0.0.1:#{port}")
 
@@ -409,7 +407,7 @@ class Php < Formula
       Process.wait(pid)
 
       fpm_pid = spawn sbin/"php-fpm", "-y", "fpm.conf"
-      pid = spawn Formula["httpd"].opt_bin/"httpd", "-X", "-f", "#{testpath}/httpd-fpm.conf"
+      pid = spawn Formula["httpd"].opt_bin/"httpd", "-X", "-f", testpath/"httpd-fpm.conf"
       sleep 10
       assert_match expected_output, shell_output("curl -s 127.0.0.1:#{port}")
     ensure

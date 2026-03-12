@@ -1,18 +1,18 @@
 class Pixlet < Formula
   desc "App runtime and UX toolkit for pixel-based apps"
   homepage "https://github.com/tronbyt/pixlet"
-  url "https://github.com/tronbyt/pixlet/archive/refs/tags/v0.49.8.tar.gz"
-  sha256 "5d8b8e6d1c625eadb7bf9bbf05a557e4fdde2387c56a67a71d765d61ed00e408"
+  url "https://github.com/tronbyt/pixlet/archive/refs/tags/v0.51.3.tar.gz"
+  sha256 "74064bc74d26ef982f5f306d897fe4ff820ec4ab6322f6c96d7e48659f8e2346"
   license "Apache-2.0"
   head "https://github.com/tronbyt/pixlet.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "9c9efbadd56687a2e8493b3a62dcb159b437b247e9907eb0f1c92b15ad73358d"
-    sha256 cellar: :any,                 arm64_sequoia: "89b9c3576f72f547ddcde81b19929fb48dd20cdcd2afe82ab5d0da5c1b1779f9"
-    sha256 cellar: :any,                 arm64_sonoma:  "e5f5648bffef74d33a6fee239bdcc086353c0fbed06095c255099cb2988a3fd3"
-    sha256 cellar: :any,                 sonoma:        "9a67f6566f17dcc42c3d598a7dd2e9fe3d4ed087494bf42dc896c316ded2277d"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "36f4dffa8c83d18d9dced3b5f1b07854dadd3f2a857e39cf8e167658c0f28e2c"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0a59f8ecadd7d539a4437bdb068d19c3cb642783b0d96c5b9af7eae2d8bceb5a"
+    sha256 cellar: :any,                 arm64_tahoe:   "e24afc41bf2bffe73c36ca49b0da7bf7b98c2a4a11e872f8ebdcf5c1f0f04cc3"
+    sha256 cellar: :any,                 arm64_sequoia: "5a41fb0298eff4baa87649b07311624fa39e55b3dfcd8f49fab20bde89cdd666"
+    sha256 cellar: :any,                 arm64_sonoma:  "3cc0c429a51c1ba377ce64e930d92072296e0d9bc477b7cb51196943a6e4cb48"
+    sha256 cellar: :any,                 sonoma:        "c23b800667e21edb0ce3eeb59fcf50bafb9e6f4c139e9dc0af6c7b09ad2ed72f"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "961f6ddb5b7f7d5a3e163aa0676e16d4d6d061abbbadcf42f64890065e5c637a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e716c33ed4cbcee72fe024c8cd380dad4bc8b1e04c2ec1f9e3a26399db3a8f80"
   end
 
   depends_on "go" => :build

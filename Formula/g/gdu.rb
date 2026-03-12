@@ -1,18 +1,18 @@
 class Gdu < Formula
   desc "Disk usage analyzer with console interface written in Go"
   homepage "https://github.com/dundee/gdu"
-  url "https://github.com/dundee/gdu/archive/refs/tags/v5.32.0.tar.gz"
-  sha256 "2b647c3b222392fcf25583acd2411ec05635055ef7272c7ab4bd2885e53065e0"
+  url "https://github.com/dundee/gdu/archive/refs/tags/v5.34.0.tar.gz"
+  sha256 "e7ff370d682563b71c2da0ad3162ecdb17db988cb2d2b5c1708405d31e63e816"
   license "MIT"
   head "https://github.com/dundee/gdu.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "e4f50a64390e414c0fc7e4fe51deec8d68ca9c40fab1f901e3f558c103618cc7"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "e4f50a64390e414c0fc7e4fe51deec8d68ca9c40fab1f901e3f558c103618cc7"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "e4f50a64390e414c0fc7e4fe51deec8d68ca9c40fab1f901e3f558c103618cc7"
-    sha256 cellar: :any_skip_relocation, sonoma:        "27ffd9ba1c0b6cb62598644ef82e14c11d92b1afc6a769dfb6bd0eefa77ec33e"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "e3b18296318dacd64cee755927eed908ca2abb97c8bec8a83aacb13e2cb27f60"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6f8305dc261058f94d0ee330a6f9fcb95160181622ae0148072ef99352a135a0"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "be7ad505558a21d361f6d2d5269a15e646e0332ea3979c7e831425a3036e2b05"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "be7ad505558a21d361f6d2d5269a15e646e0332ea3979c7e831425a3036e2b05"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "be7ad505558a21d361f6d2d5269a15e646e0332ea3979c7e831425a3036e2b05"
+    sha256 cellar: :any_skip_relocation, sonoma:        "75cca354c5ccf6c34821bd45ee3cabe9bcc028a0654e1fe206a2157eb1e42ca2"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "0a606867bdb25deddc04d8cb37d0c4d2b1c8f918fd9eedcea2235e715f0f0b90"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "880a65e40b06bbf21689630eb8f01a3bde69129d9a396f6c81b3730c4c260793"
   end
 
   depends_on "go" => :build

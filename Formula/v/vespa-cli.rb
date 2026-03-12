@@ -1,8 +1,8 @@
 class VespaCli < Formula
   desc "Command-line tool for Vespa.ai"
   homepage "https://vespa.ai"
-  url "https://github.com/vespa-engine/vespa/archive/refs/tags/v8.624.72.tar.gz"
-  sha256 "69f630927615059561091af3c452484830024b1ead144f88f5fb936330f67e5c"
+  url "https://github.com/vespa-engine/vespa/archive/refs/tags/v8.653.22.tar.gz"
+  sha256 "ed8d942ffa8cca7868e645b8ff86c2dd8e7b1871f905e92e39996bbe06932ab8"
   license "Apache-2.0"
 
   livecheck do
@@ -12,12 +12,12 @@ class VespaCli < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "e64bb5c738dda5cab703d2784fd0ad06e4f8a380ad70838fd7851c9d7a1c0ddf"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "7172a0fd0678adb243a0b4eaf5ebfc5e4c07fc78b2bd10f0c0f37e5bb0b115fa"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "0454593ec223822dc166bb1a456ad6197c781105cb65148306b869c70286427a"
-    sha256 cellar: :any_skip_relocation, sonoma:        "39eabcab7fe719957a2550e8757b94b6f5872115d7534837abb9798c1889cd10"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "db366d20b9a6597bbc2e2e7f1ed9053f49793d6558fcf4c9353040fba19d30f4"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "671bbfc4d1d8e2db5f800d46fe3fd775e2d14a59f6b6949ccdf8b3cea8360270"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "04e7b2ebb7a4fcb376a4287d8faa32901cc312413fd3712943daeb97046795ce"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "dc927ca1d3dc5f41ced1c6978494d56087d683ddc1a8332849a3a3a00180b1f1"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "53af9fd73ba175966998ec951c2ee4859bdab34a63e20f6c81fdb410ffb1e9a4"
+    sha256 cellar: :any_skip_relocation, sonoma:        "f53c9e938d1078a62f9657523296fc78c934aab71d64efde1aa5015a1fb0986e"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "a094724574653b6dfcac0be2664ae6376f95681513fc07ca3d74e687dbd08ac2"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e641c8458cc25257eb94a90fbc8923794ab4779204dc20aebe626c5585b3cc5a"
   end
 
   depends_on "go" => :build

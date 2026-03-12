@@ -1,8 +1,8 @@
 class Aqbanking < Formula
   desc "Generic online banking interface"
   homepage "https://www.aquamaniac.de/rdm/projects/aqbanking"
-  url "https://www.aquamaniac.de/rdm/attachments/download/650/aqbanking-6.9.0.tar.gz"
-  sha256 "1aad2ab582d60ddf0c253245bc1c2750fff1bd6a35aca43ad2bc0d225d32a8f6"
+  url "https://www.aquamaniac.de/rdm/attachments/download/652/aqbanking-6.9.1.tar.gz"
+  sha256 "fc94a2bebfbb4fc26b98dc93c8fa36a8026298cd7995f79821c480db35587f6b"
   license "GPL-2.0-or-later"
 
   livecheck do
@@ -13,12 +13,13 @@ class Aqbanking < Formula
   no_autobump! because: :incompatible_version_format
 
   bottle do
-    sha256 arm64_tahoe:   "2e186cd110a8e9f080460214071b4eaa69fe66da9339961d758a5e8b89b25cdf"
-    sha256 arm64_sequoia: "5c3c32180215f2cbd46fb676d9941a128acc8dcabe999f06f5df33bd20452325"
-    sha256 arm64_sonoma:  "8f7e8d527349355729ce844c677bea0b07535eee244565e169d0e8926b674520"
-    sha256 sonoma:        "672d99431bf05be79d6eb6565354584cae8ba007bb9435fcb980531accabd9f6"
-    sha256 arm64_linux:   "e6660ae83cabffce25cd105ad238a336700606c2de8b52a75089606aebe09bee"
-    sha256 x86_64_linux:  "8368797630c53452fb764274c232f0942136c390be376cb33eede69d596348fc"
+    rebuild 1
+    sha256 arm64_tahoe:   "4f05a3cddc798744d9174ad5ed28fb3f4bab78645d3cfa00a2420091aa3ff60b"
+    sha256 arm64_sequoia: "956ae7ad273964a10b36851c6482237d8ca60d212fd542be5b8dfee70a235bbf"
+    sha256 arm64_sonoma:  "2b97ebd2182dae86430f3e310dbcb54808b41b89352418afd7cabf3c9fc2c032"
+    sha256 sonoma:        "b920e6ccecfec70bb2e63b3ab787c648e5ecda32948735710b97ff43a3ea453a"
+    sha256 arm64_linux:   "787f1bdbca1850988b0e8c8541ede16e5ef95ab2bc03d885266fb82877df2c7c"
+    sha256 x86_64_linux:  "5b045c02d114e190ca69c13d0c878ac43c4cf6b27e629af9e259ac8bc554643d"
   end
 
   depends_on "gmp"
@@ -30,10 +31,12 @@ class Aqbanking < Formula
   depends_on "openssl@3"
   depends_on "pkgconf" # aqbanking-config needs pkg-config for execution
 
-  uses_from_macos "zlib"
-
   on_macos do
     depends_on "gettext"
+  end
+
+  on_linux do
+    depends_on "zlib-ng-compat"
   end
 
   def install

@@ -7,33 +7,32 @@ class Dotnet < Formula
 
   stable do
     # Source-build tag announced at https://github.com/dotnet/source-build/discussions
-    url "https://github.com/dotnet/dotnet/archive/refs/tags/v10.0.101.tar.gz"
-    sha256 "cac1181919374d061ff73e7e58cc9f7a5480acb0c8dc2e309c5bd844217f7962"
+    url "https://github.com/dotnet/dotnet/archive/refs/tags/v10.0.103.tar.gz"
+    sha256 "92fbc35b1b7ede2f4995e32aaa354c7d227e99179aaaa4661282a9d0ec977e4e"
 
     resource "release.json" do
-      url "https://github.com/dotnet/dotnet/releases/download/v10.0.101/release.json"
-      sha256 "9c27aa3643fa1562356bb8c4ab0a94fa22f7d2d23bdc546ecf61ed089cb4ffa1"
+      url "https://github.com/dotnet/dotnet/releases/download/v10.0.103/release.json"
+      sha256 "05154d070eebb81ef7b1eff89466956db93ee42f9d03059a9eb91c0f2bd745ba"
 
       livecheck do
         formula :parent
       end
     end
+  end
 
-    # Backport fix for https://github.com/dotnet/dotnet/issues/4037
-    patch do
-      url "https://github.com/dotnet/source-build-reference-packages/commit/1f538e55a45f4672186a68a08639160d5a4d3ce6.patch?full_index=1"
-      sha256 "3ae2156ee50e9351295a71551e8fc4a096b3bfa61a14a40b5266629afc6ae1bd"
-      directory "src/source-build-reference-packages"
-    end
+  livecheck do
+    url :stable
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "2d5fbb0e7b7c483898afb76d882e0bac871f7dfbdacde9f43c2b4669cbeb1e32"
-    sha256 cellar: :any,                 arm64_sequoia: "99efb1b371be439b59f16e6bfe918bbe923f283f49ac472c627349960e8bfbe6"
-    sha256 cellar: :any,                 arm64_sonoma:  "6135d2357bbebf28d1fa35d68e65acb5d4bf53ca921c761630fd1bb53a5a8faf"
-    sha256 cellar: :any,                 sonoma:        "88043ff87736c9dce2f25c7cc21e9bc4a5ec01ab1728c16e9e93c136feec9dbe"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "01cc5e37350b0d4de0de52f8a094863a21cdda2c1d0a01a344dd565312530d48"
-    sha256                               x86_64_linux:  "93d7fdd268437cc2e54a3378b08a5961f5f7208b1a6afad097837e36290c95cd"
+    rebuild 1
+    sha256 cellar: :any,                 arm64_tahoe:   "c7a20890580a32e135b5e72329962ed04b74bf308ceca4a945a4d562f91ff3ca"
+    sha256 cellar: :any,                 arm64_sequoia: "fb22c42da98af7d630e941fb91c0f966040ec212cea269159546b2b1d2ef85d6"
+    sha256 cellar: :any,                 arm64_sonoma:  "660b026358811e6c4f12853ddda218f24f8bf905f825147cf0d4d12b10d9e5a3"
+    sha256 cellar: :any,                 sonoma:        "96556ea4496f6e3fa7d2657f55697ae816ed7805d84afb2cc1bd2e18f4202dd3"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "85bc4fb6a26d2e9205ff544afea190088a8ac6bd1c89f25e15cf70585dcb7cdc"
+    sha256                               x86_64_linux:  "f115905c3bb05f74489b893f6d05792171d531ece66bd2bcefb93c6914498673"
   end
 
   depends_on "cmake" => :build
@@ -45,16 +44,15 @@ class Dotnet < Formula
 
   uses_from_macos "python" => :build
   uses_from_macos "krb5"
-  uses_from_macos "zlib"
 
   on_macos do
-    depends_on "bash" => :build
     depends_on "grep" => :build # grep: invalid option -- P
   end
 
   on_linux do
     depends_on "libunwind"
     depends_on "lttng-ust"
+    depends_on "zlib-ng-compat"
 
     on_intel do
       depends_on "llvm" => :build
@@ -108,7 +106,7 @@ class Dotnet < Formula
     end
 
     args = %w[
-      --branding rtm
+      --branding release
       --clean-while-building
       --source-build
       --with-system-libs all
@@ -119,7 +117,7 @@ class Dotnet < Formula
       buildpath.install resource("release.json")
     end
 
-    system "./prep-source-build.sh"
+    system "./prep-source-build.sh", "--"
     system "./build.sh", *args
 
     libexec.mkpath

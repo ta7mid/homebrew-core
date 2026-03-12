@@ -4,17 +4,15 @@ class Mosh < Formula
   url "https://github.com/mobile-shell/mosh/releases/download/mosh-1.4.0/mosh-1.4.0.tar.gz"
   sha256 "872e4b134e5df29c8933dff12350785054d2fd2839b5ae6b5587b14db1465ddd"
   license "GPL-3.0-or-later"
-  revision 34
-
-  no_autobump! because: :requires_manual_review
+  revision 37
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "b079c41c4677549a6ff6e7d94616a5e6f6abf46c3859676441b4f0daf3e94cd8"
-    sha256 cellar: :any,                 arm64_sequoia: "af82ce1ff5214494806e856395dd1bf247529d7bae7ff132c00a8a8e00e20e6b"
-    sha256 cellar: :any,                 arm64_sonoma:  "4e710ef5e6c7b1202835fe21258dbc843b8350e6ebf19fb4e47fbe2b06fc69f5"
-    sha256 cellar: :any,                 sonoma:        "ec777cdc64ba6241420c4d0f498cc209c8c8c74353cf5e93fe444dcc50975a57"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "cfb89bcdc908e614de13c3f7d0ab27cf0661b511462dffdf8315911295450027"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "afe1da214baa9919c19b4df44b829fc86c046e9a97d8488b09dea680266e0ce7"
+    sha256 cellar: :any,                 arm64_tahoe:   "41afa4f3d17102b6182dc54f3a93d2affe22d0f3ae468f917a4a2984b0b11b92"
+    sha256 cellar: :any,                 arm64_sequoia: "41f65942cb74318f33ed0316d8ce5a4b3823a71b7109e2539001595aeecee0f5"
+    sha256 cellar: :any,                 arm64_sonoma:  "7afb27800b0342074779fb90fe7ef77d0fa7defde88db69e180ea8b220b9ff47"
+    sha256 cellar: :any,                 sonoma:        "4a80ccd4d81643745eea6f56b86f976d12e576450af850144988c255a6674394"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "32b198ce224af46ee9086358f43e337f2918a51f2089e871192784a57a611c6e"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d97a120dcf3ecd7e841676aac364758a5f41a68254f6131f6b09a1774280d9d9"
   end
 
   head do
@@ -28,7 +26,6 @@ class Mosh < Formula
   depends_on "protobuf"
 
   uses_from_macos "ncurses"
-  uses_from_macos "zlib"
 
   on_macos do
     depends_on "tmux" => :build # for `make check`
@@ -36,6 +33,7 @@ class Mosh < Formula
 
   on_linux do
     depends_on "openssl@3" # Uses CommonCrypto on macOS
+    depends_on "zlib-ng-compat"
   end
 
   def install

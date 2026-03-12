@@ -3,28 +3,23 @@ class YtDlp < Formula
 
   desc "Feature-rich command-line audio/video downloader"
   homepage "https://github.com/yt-dlp/yt-dlp"
-  url "https://files.pythonhosted.org/packages/14/77/db924ebbd99d0b2b571c184cb08ed232cf4906c6f9b76eed763cd2c84170/yt_dlp-2025.12.8.tar.gz"
-  sha256 "b773c81bb6b71cb2c111cfb859f453c7a71cf2ef44eff234ff155877184c3e4f"
+  url "https://files.pythonhosted.org/packages/66/6f/7427d23609353e5ef3470ff43ef551b8bd7b166dd4fef48957f0d0e040fe/yt_dlp-2026.3.3.tar.gz"
+  sha256 "3db7969e3a8964dc786bdebcffa2653f31123bf2a630f04a17bdafb7bbd39952"
   license "Unlicense"
-  revision 1
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "f74efdcdc655fd8f94a9f68d35a93c59f9903dfda9a745ebf7ba24914946f474"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "0da94ad79a794eb394c03565e093ea51457d587cb5713a50a972f825de61ea01"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "b6dbf2745167434e0eb047e3932729105a15b20e264db8dad4f65c631167838c"
-    sha256 cellar: :any_skip_relocation, sonoma:        "77b9978c92811898c82c87e4702a15a1e05876410fb85eab4c2005acdaa31fb8"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "84514cdf0df392a4ab89a63be235bbca9fe7df66108f19c3acb80615bd123009"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "816972b8b4a2ee5cc617a5c4b6ce18a8f6415ca2379195e6f6d5f25b3100150a"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "622f6652258da46fafd7adf8f3615d1144e9199f527a59a3bafa56951be6fb78"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "f832f7a139bd9014f866a7a2ba7801367a35e54c2913823f756e1db1d221a481"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "946a3057f005c56258f111523212efdda590197c386b909da2f895863f3882cd"
+    sha256 cellar: :any_skip_relocation, sonoma:        "9b14fcfdc4e066e67bdf0d28e47e8eb7f8e3f14533bdc267ef7fcb669ca1bbb1"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "22c70896e2c80292643fd354a55653d7d573c7ffb02e5e8758b508805064c9b3"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "60c3fe4408507a4d5430c620566731e0909e23eafe921d7e8a88268a16da004f"
   end
 
   head do
     url "https://github.com/yt-dlp/yt-dlp.git", branch: "master"
 
     depends_on "pandoc" => :build
-
-    on_macos do
-      depends_on "make" => :build
-    end
   end
 
   depends_on "node" => :build # https://github.com/yt-dlp/ejs/issues/37
@@ -76,12 +71,12 @@ class YtDlp < Formula
   end
 
   resource "yt-dlp-ejs" do
-    url "https://files.pythonhosted.org/packages/de/72/57d02cf78eb45126bd171298d6a58a5bd48ce1a398b6b7ff00fc904f1f0c/yt_dlp_ejs-0.3.2.tar.gz"
-    sha256 "31a41292799992bdc913e03c9fac2a8c90c82a5cbbc792b2e3373b01da841e3e"
+    url "https://files.pythonhosted.org/packages/6b/0d/b9e4ab1b47cdeba0842df634b74b3c0144307640ad5b632a5e189c4ab7ce/yt_dlp_ejs-0.5.0.tar.gz"
+    sha256 "8dfae59e418232f485253dcf8e197fefa232423c3af7824fe19e4517b173293b"
   end
 
   def install
-    system "gmake", "lazy-extractors", "pypi-files" if build.head?
+    system "make", "lazy-extractors", "pypi-files" if build.head?
     virtualenv_install_with_resources
     bash_completion.install libexec/"share/bash-completion/completions/yt-dlp"
     zsh_completion.install libexec/"share/zsh/site-functions/_yt-dlp"

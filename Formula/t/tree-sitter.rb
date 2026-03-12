@@ -1,8 +1,8 @@
 class TreeSitter < Formula
   desc "Incremental parsing library"
   homepage "https://tree-sitter.github.io/"
-  url "https://github.com/tree-sitter/tree-sitter/archive/refs/tags/v0.26.3.tar.gz"
-  sha256 "7f4a7cf0a2cd217444063fe2a4d800bc9d21ed609badc2ac20c0841d67166550"
+  url "https://github.com/tree-sitter/tree-sitter/archive/refs/tags/v0.26.6.tar.gz"
+  sha256 "b4218185a48a791d4022ab3969709e271a70a0253e94792abbcf18d7fcf4291c"
   license "MIT"
   head "https://github.com/tree-sitter/tree-sitter.git", branch: "master"
 
@@ -12,12 +12,12 @@ class TreeSitter < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "a9814378eff0b42340bbff075c6e52b68dfb29edc6f0b264334809b02eedffbc"
-    sha256 cellar: :any,                 arm64_sequoia: "40213cc22c7b17e0d7265b72af2bf1c650203ea5379b3e91f5debb46c1104058"
-    sha256 cellar: :any,                 arm64_sonoma:  "e7ddb00fbb96876e17b73e7765f54bdf63104821d5656ae6cd4913f40540e25d"
-    sha256 cellar: :any,                 sonoma:        "426074ecd8fee3c336468daf48958a638274eecd0b305ff13d4bb11ef4ae82d2"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "01ae81da74c8f8f3b3cbcf3641e2a25a813987500ec42eaba0a44ca001320b63"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f9c21b563ee81bbe684db5743a5b6f4245ba7cf81c5102fb40d3c2dde3ea8add"
+    sha256 cellar: :any,                 arm64_tahoe:   "3ffa5c913de28a668be55b88b1ec4da3c78c2c36d4799aaf09fa3f81f3f4787c"
+    sha256 cellar: :any,                 arm64_sequoia: "df89c0e3d5826a4fca37f8dc312dfc67a0fc5c9d39348ee480a9b57a7c471b71"
+    sha256 cellar: :any,                 arm64_sonoma:  "91a6fdb54f33aeedb87c292b81ff6115cae4c26e6f4538f403cd03ed8cca70a9"
+    sha256 cellar: :any,                 sonoma:        "838ce0601f02d1ef61f020b2fc513b17c1f7e75cc226695660bbaf8007d971f7"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "f33a4c01f3269cadfd7384fdf200eed0e7bc0c6c3184cbaf6d5826184cee23e5"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f7fa92599098a02486788ff3180a686acfa4f9aa0bb611e6af1bd15a7a9b1f84"
   end
 
   def install

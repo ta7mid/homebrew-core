@@ -1,7 +1,10 @@
 [
+  "colordiff",
   "davmail",
+  "luarocks",
   "meson",
   "phpmyadmin",
   "python-setuptools",
-  "rabbitmq"
+  "rabbitmq",
+  "ruby-install"
 ]

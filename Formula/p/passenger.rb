@@ -1,19 +1,19 @@
 class Passenger < Formula
   desc "Server for Ruby, Python, and Node.js apps via Apache/NGINX"
   homepage "https://www.phusionpassenger.com/"
-  url "https://github.com/phusion/passenger/releases/download/release-6.1.1/passenger-6.1.1.tar.gz"
-  sha256 "26c37dba603e1e9dfa3f924484af39300621add7b0ab75e85acfd25d099703e8"
+  url "https://github.com/phusion/passenger/releases/download/release-6.1.2/passenger-6.1.2.tar.gz"
+  sha256 "94400a52e536cfdd8acf2accb47badb7a67dc309452f1b05600da67343f25bf8"
   license "MIT"
-  revision 1
+  revision 2
   head "https://github.com/phusion/passenger.git", branch: "stable-6.1"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "83accd6c0e4afe703f9db3bd3014199adf45ff9f66a8ccbfac048a94e3df48d9"
-    sha256 cellar: :any,                 arm64_sequoia: "069f2bcda6001ce9ef60d19060c272fc011b35a46d83987fbbd93cc3bb21eef7"
-    sha256 cellar: :any,                 arm64_sonoma:  "e028652db3362668fb0b41ecd394882762103f6bbc5c6adcbe41464a6ef96c6b"
-    sha256 cellar: :any,                 sonoma:        "786c43165addb08c3dd1838b950b59c59deef7cda437befe169cc8f9fd3e6f96"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "f09b6088cc06d1bc822979f92dce5c1b012a86c75bc7874dfa3a98303aa2a34f"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e759478b5c67a018368669207e9c38a5634b87483378aabc67d358504416f58f"
+    sha256 cellar: :any,                 arm64_tahoe:   "55d50cc990e19c458ad9e6af5e6fef244bd1ab9dfcb318754959aea2d6d78620"
+    sha256 cellar: :any,                 arm64_sequoia: "44a4a91f40d6f9ed25cb7c9eb8ebc060f5a34779627a2c32af56a9f4dfdf392a"
+    sha256 cellar: :any,                 arm64_sonoma:  "9d9d893dabbb67f2906b989aae0252c185ef107e00507c010d74dcc564ecd733"
+    sha256 cellar: :any,                 sonoma:        "de2d1221552d3d95d00ac072103b1eed2fba6c337756a894efc6b5f7d969c74a"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "6f43bd94c2c5fffa092c7fe1212cdeb930247332e48defdc723ed35788ec8ff9"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d0417dee1b732df1dc33e6a0449c8f9262326c4ad36abc6eb17679f9211fe1c7"
   end
 
   depends_on "httpd" => :build # to build the apache2 module
@@ -27,7 +27,10 @@ class Passenger < Formula
   uses_from_macos "curl"
   uses_from_macos "libxcrypt"
   uses_from_macos "ruby"
-  uses_from_macos "zlib"
+
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
 
   def install
     if OS.mac? && MacOS::CLT.installed?

@@ -1,21 +1,28 @@
 class Bookokrat < Formula
   desc "Terminal EPUB Book Reader"
   homepage "https://bugzmanov.github.io/bookokrat/index.html"
-  url "https://github.com/bugzmanov/bookokrat/archive/refs/tags/v0.2.3.tar.gz"
-  sha256 "24f68f902744138efb72f50388d96b95677b9455ce080263a5b5795ec1cd60d2"
-  license "MIT"
+  url "https://github.com/bugzmanov/bookokrat/archive/refs/tags/v0.3.8.tar.gz"
+  sha256 "9257c00ec69866c017264ae6ab3903c08a72372162a24ea5ccbb0b0bfbe68754"
+  license "AGPL-3.0-or-later"
   head "https://github.com/bugzmanov/bookokrat.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "8bdc6772234dcb8d88e2329d21c9e32a3bd58474c5e7705c127083b75faf668f"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "1af06a6374f5b4dd1cda123d9228ab7eda6bfc203f89a3f839bb3aa5b8eae475"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "007f02a9b5b079a6da0ba037babedee974ec21ec605cceabc89ddd4bc9a4bd9a"
-    sha256 cellar: :any_skip_relocation, sonoma:        "fe9c357138bd6685122cd59eabe38f12f9e82a5ce425971838f2c9c3cf97a09c"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "2933ae278eab8399c4cc4cdeffcdff602b5a389759720989400ba6b0194eb115"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "4d28f0ae83f56198f90e6815350f7af564d0842d2d71fcb43ddff24cd4a00ab3"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "56b48e13a60720ea835fa2b79c382676b46399edaf4943f3a0676ca793f68669"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "d4982721595e58ae305deed194ecc6c2973bb86900346516582d1312c9c8eda9"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "0fd8097f9e5ab3bcb278c3564454a9ff3b64fdd58938679e613ea07bebee48be"
+    sha256 cellar: :any_skip_relocation, sonoma:        "f5937eac5305ea00494eb09b25c9105adc7829e765205849d651efacd9a0857a"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "be10702fab72b7a1793ee543dfaf21ef9e421fd928a3a2bcf201f606d1da831a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "15b3e021bff357f18f1b94417c5afd0abef9c36f1994ed45cdb8d19a2cd4c4a9"
   end
 
+  depends_on "pkgconf" => :build
   depends_on "rust" => :build
+
+  uses_from_macos "llvm" => :build
+
+  on_linux do
+    depends_on "fontconfig"
+  end
 
   def install
     system "cargo", "install", *std_cargo_args
@@ -32,13 +39,14 @@ class Bookokrat < Formula
     end
 
     sleep 2
-    config_prefix = if OS.mac?
-      testpath/"Library/Application Support/bookokrat"
+    config_prefix, log_prefix = if OS.mac?
+      [testpath/"Library/Application Support/bookokrat", testpath/"Library/Caches/bookokrat"]
     else
-      testpath/".config/bookokrat"
+      [testpath/".config/bookokrat", testpath/".local/state/bookokrat"]
     end
+    system "ls", "-alR"
     assert_path_exists config_prefix/"config.yaml"
-    assert_match "Starting Bookokrat EPUB reader", (testpath/"bookokrat.log").read
+    assert_match "Starting Bookokrat EPUB reader", (log_prefix/"bookokrat.log").read
   ensure
     Process.kill("TERM", pid)
     Process.wait(pid)

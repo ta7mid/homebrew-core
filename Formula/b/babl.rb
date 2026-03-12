@@ -1,8 +1,8 @@
 class Babl < Formula
   desc "Dynamic, any-to-any, pixel format translation library"
   homepage "https://www.gegl.org/babl/"
-  url "https://download.gimp.org/pub/babl/0.1/babl-0.1.118.tar.xz"
-  sha256 "c3febe923e225c2a58f952689a89bb1db956788bfecb18a7eff6fc94da9e2469"
+  url "https://download.gimp.org/pub/babl/0.1/babl-0.1.124.tar.xz"
+  sha256 "1b0d544ab6f409f2b1b5f677226272d1e8c6d373f2f453ee870bfc7e5dd4f1b1"
   license "LGPL-3.0-or-later"
   # Use GitHub instead of GNOME's git. The latter is unreliable.
   head "https://github.com/GNOME/babl.git", branch: "master"
@@ -13,12 +13,12 @@ class Babl < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "87ecf025f36ec00b46d6e77269793b00fac96c86000654ea8f9d4703c222cd39"
-    sha256 arm64_sequoia: "bb190c58dd490a09ff191cee454152b7b0db0817d4f2db7f3c79e45f072a6be1"
-    sha256 arm64_sonoma:  "ad547a50d9712d7305bd0a30081b35a6f4a0b5ebfb91237e26be5efc1c2e0409"
-    sha256 sonoma:        "a2ab5694cf2a7ac3df3b1a5d6eddab69f28dbba0a5c41a52372efe94a0f6c053"
-    sha256 arm64_linux:   "fcabab13bc7fe4c134254b0cd89ee57277209d1f158cd06f1362abe231ff2780"
-    sha256 x86_64_linux:  "c77be467ca188c99bb4863463603cac4ca5fb3cd375d725f4d4c3df7a0a50c65"
+    sha256 cellar: :any, arm64_tahoe:   "27aea7a6f63a2e1ba8d6a595b59857562c68294c2eedd5c433b9a514c8ee6a1d"
+    sha256 cellar: :any, arm64_sequoia: "a580f00306ff64feef4979435e06b2e2f0b11e962f3a57dbfefbb511788a2b6b"
+    sha256 cellar: :any, arm64_sonoma:  "a60ac02f7b06ccfeeb08fbc3c7f67f82590d20bd6ad4540db3ab480aba314c91"
+    sha256 cellar: :any, sonoma:        "6f307d9c04db4f2dbeb71c17c35945f9c6c03523543637216a115437ebdad149"
+    sha256               arm64_linux:   "e47f059154814c4e8a72ebffa9ce751792e8f0851a2cb9ebd116f47e88d376c9"
+    sha256               x86_64_linux:  "9700ef030c0593a7768b0e3fd7040ed815ea02c369b2d2586bbbfb2ccee3c705"
   end
 
   depends_on "glib" => :build # to add to PKG_CONFIG_PATH for gobject-introspection

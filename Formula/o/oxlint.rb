@@ -1,30 +1,35 @@
 class Oxlint < Formula
-  desc "Suite of high-performance tools for JavaScript and TypeScript written in Rust"
+  desc "High-performance linter for JavaScript and TypeScript written in Rust"
   homepage "https://oxc.rs/"
-  url "https://registry.npmjs.org/oxlint/-/oxlint-1.38.0.tgz"
-  sha256 "6d3dc3934a2c2d26f2a0a24e0930cc8b1f86e180eecc46bf534f2de5190a3aa2"
+  url "https://github.com/oxc-project/oxc/archive/refs/tags/oxlint_v1.54.0.tar.gz"
+  sha256 "883293e6f30e0794a26b485592116a988cc47946602829c1142561cbb02f3277"
   license "MIT"
+  head "https://github.com/oxc-project/oxc.git", branch: "main"
 
-  bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "2e794633e24dc99af101760d0a28b7d58bc1e5b2ea4a67168c29832d2798cfcb"
-    sha256 cellar: :any,                 arm64_sequoia: "b6feff46278860d8c428a1fffbe545fa4ae449cbaf278562a0cd2f0c2f19479b"
-    sha256 cellar: :any,                 arm64_sonoma:  "b6feff46278860d8c428a1fffbe545fa4ae449cbaf278562a0cd2f0c2f19479b"
-    sha256 cellar: :any,                 sonoma:        "0b372e7615c72fe978b47f22939db9a2edafb46f4884dd05db727b92441ebbe8"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "881a2d5d32bbdf2da283d6525ff877ccfaa400d51f3ef49a08ff1e42ede0a902"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "cf2c9a4f332a2a654fc8fe8ef468d18c8bf56c7886c802c46c70896b2f9b0dd9"
+  livecheck do
+    url :stable
+    regex(/^oxlint_v?(\d+(?:\.\d+)+)$/i)
   end
 
-  depends_on "node"
+  bottle do
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "33390e8c62100b8152f299129f41c5951e7ed212276a72db7be25bd4ea72e282"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "447697dc8c4ad083c7d0f882c82dace1f40e9bb6486679487b6ace7c50aa7bdc"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "9732f0d87704e654f3f8ee36b21e0f2e8074b5b35980b503c8aa7bba27f2cab5"
+    sha256 cellar: :any_skip_relocation, sonoma:        "d0f8f93b744782746789be3a24d06fb991d33c9aae5d17199d602b738216e6d5"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "4d6342395be8f22fc0d405b0aa8c60d53278992ca302d4d3400966618d3b0462"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "dd80e58848ec8f7a3034f0d39f9f1ef361032deb68b3c60a5609f70d0483a955"
+  end
+
+  depends_on "rust" => :build
 
   def install
-    system "npm", "install", *std_npm_args
-    bin.install_symlink libexec.glob("bin/*")
+    system "cargo", "install", *std_cargo_args(path: "apps/oxlint")
   end
 
   test do
     (testpath/"test.js").write "const x = 1;"
     output = shell_output("#{bin}/oxlint test.js 2>&1")
-    assert_match "eslint(no-unused-vars): Variable 'x' is declared but never used", output
+    assert_match "eslint(no-unused-vars)::Variable 'x' is declared but never used", output
 
     assert_match version.to_s, shell_output("#{bin}/oxlint --version")
   end

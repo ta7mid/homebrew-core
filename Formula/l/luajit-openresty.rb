@@ -1,8 +1,8 @@
 class LuajitOpenresty < Formula
   desc "OpenResty's Branch of LuaJIT 2"
   homepage "https://github.com/openresty/luajit2"
-  url "https://github.com/openresty/luajit2/archive/refs/tags/v2.1-20251229.tar.gz"
-  sha256 "3dd64a194a9bb4f9fd06d9277d09282814260399beda29e988f4b0c7ed3e4705"
+  url "https://github.com/openresty/luajit2/archive/refs/tags/v2.1-20260227.tar.gz"
+  sha256 "5a0df315f88fea733f1f4296d119f0816eb395d1da39d49b4b1758d44d7dee31"
   license "MIT"
   version_scheme 1
   head "https://github.com/openresty/luajit2.git", branch: "v2.1-agentzh"
@@ -19,12 +19,12 @@ class LuajitOpenresty < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "d91b93a2a8a2e64f9e8043929e81de7ab25cd5c047a2b3559ba4aa8f46604981"
-    sha256 cellar: :any,                 arm64_sequoia: "32c50bacc4706d29b320806d6751f6ae44af22b0bf86472b0bb4d11988e0a1bd"
-    sha256 cellar: :any,                 arm64_sonoma:  "b4626674d149aec3119914f8f06933c31cffc98838a537a8ea911cb5d5681c92"
-    sha256 cellar: :any,                 sonoma:        "8f864834e7f0c734623ec2842013bd5f1a51e2562e1afb22bd030fea36150a17"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "4d4ec878007b576ba52d858fe212e5c81c9c7b8517c7dac1d88a1173dc6c871d"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "301a1a0dc182fd64ecc5353bf67a23e5d485ec9cd9c23f1dd1a97d3a2d5aea9f"
+    sha256 cellar: :any,                 arm64_tahoe:   "d065f4d6021bc99868ae55fb1cbd5404cbad74b8451704373f7e5117e65db79e"
+    sha256 cellar: :any,                 arm64_sequoia: "e6070190d65911adcd40349b1c0fe673d4367e0d23169072cb26ff74eaa4b47b"
+    sha256 cellar: :any,                 arm64_sonoma:  "e060ea41290245af6bdafafc3beb9412743b94740a9f868b3e961435ab7b1be3"
+    sha256 cellar: :any,                 sonoma:        "5b0c9af8c02e9ff223931e5cd524324d633af3fd8a568866137e018ca76dc8ee"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "8040c7e8723746596a099290989e88408776a1efe00a2de1b381e0e315a7b615"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ca79f29b1a4d166d22ced27771b4c84debd6a22c4040047241411bc0b4a4e538"
   end
 
   keg_only "it conflicts with the LuaJIT formula"

@@ -3,10 +3,10 @@ class SyslogNg < Formula
 
   desc "Log daemon with advanced processing pipeline and a wide range of I/O methods"
   homepage "https://www.syslog-ng.com"
-  url "https://github.com/syslog-ng/syslog-ng/releases/download/syslog-ng-4.10.1/syslog-ng-4.10.1.tar.gz"
-  sha256 "dea90cf1dc4b8674ff191e0032f9dabc24b291abfd7f110fd092ae5f21cde5d7"
+  url "https://github.com/syslog-ng/syslog-ng/releases/download/syslog-ng-4.11.0/syslog-ng-4.11.0.tar.gz"
+  sha256 "37ea0d4588533316de122df4e1b249867b0a0575f646c7478d0cc4d747462943"
   license all_of: ["LGPL-2.1-or-later", "GPL-2.0-or-later"]
-  revision 5
+  revision 2
   head "https://github.com/syslog-ng/syslog-ng.git", branch: "develop"
 
   livecheck do
@@ -15,12 +15,12 @@ class SyslogNg < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "23b61eba60896cc8e9c9f11e9c3b4f8ba176a511a52328392ecd3fba915173e4"
-    sha256 arm64_sequoia: "7ab52eb53d287c5c56ced089f011a6e72df6d8cf46916b8191da1c5109b146e4"
-    sha256 arm64_sonoma:  "6da5a21d8cabf2fcb4a4a55175c6086a31135b5cafd2b1d56120464cd4d7711b"
-    sha256 sonoma:        "16104c2999f4de04d7da9e44d1754ce03d1bceaf87676aa810afca67a82446e9"
-    sha256 arm64_linux:   "833df1e2a1bcf89d2dbb85c72bda7f2c3ed56e40e0d54d8984335fb9e840cb77"
-    sha256 x86_64_linux:  "adee11841dbafb0c5865c2fc38d443fb65c9be8038cde272a7a7b79d73013fbb"
+    sha256 arm64_tahoe:   "057739ae35413bcb82e996546b3e602f3c1cca7082be9b46d64112cbce406137"
+    sha256 arm64_sequoia: "630fc20405185a850aafc3b1c0680c80c082655c3f0c593f68dcff35ff4212cc"
+    sha256 arm64_sonoma:  "df8f1df09266b8c783bbcf1a09c1a621050d49d3806c792964094b8a1983a9c2"
+    sha256 sonoma:        "00481a9ab4685660f3d9a315ea244dfdca8b0300115c05a885411d1f15010131"
+    sha256 arm64_linux:   "7dcc453cf10bb9a5b27704ed4fc677ba01fec5baee91cc8f163506e0168887bd"
+    sha256 x86_64_linux:  "bdb75c0ecc988c4560c2fd74c8d34f500abbca416d7bbf2436dcfd3e9e54bb0c"
   end
 
   depends_on "pkgconf" => :build
@@ -48,14 +48,21 @@ class SyslogNg < Formula
   uses_from_macos "curl"
 
   on_macos do
+    depends_on "autoconf" => :build
+    depends_on "automake" => :build
+    depends_on "libtool" => :build
     depends_on "gettext"
+  end
+
+  on_linux do
+    depends_on "zlib-ng-compat"
   end
 
   def install
     ENV["VERSION"] = version
 
-    # Workaround to allow Python 3.13+
-    inreplace "requirements.txt", "PyYAML==6.0.1", "PyYAML==6.0.2"
+    # Need to regenerate configure on macOS to avoid undefined symbols, e.g. "_evt_tag_errno"
+    system "autoreconf", "--force", "--install", "--verbose" if OS.mac?
 
     python3 = "python3.14"
     venv = virtualenv_create(libexec, python3)
@@ -64,8 +71,6 @@ class SyslogNg < Formula
     args = std_pip_args(prefix: false, build_isolation: true).reject { |s| s["--no-deps"] }
     system python3, "-m", "pip", "--python=#{venv.root}/bin/python",
                           "install", *args, "--requirement=#{buildpath}/requirements.txt"
-
-    ENV.append "CXXFLAGS", "-std=c++17"
 
     system "./configure", "--disable-silent-rules",
                           "--enable-all-modules",

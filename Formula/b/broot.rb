@@ -1,25 +1,28 @@
 class Broot < Formula
   desc "New way to see and navigate directory trees"
   homepage "https://dystroy.org/broot/"
-  url "https://github.com/Canop/broot/archive/refs/tags/v1.54.0.tar.gz"
-  sha256 "92f88c6051c8ed7276d43a4ab45aacfe7b0dd1d65b3503d45ba1f9dad5e95cf1"
+  url "https://github.com/Canop/broot/archive/refs/tags/v1.55.0.tar.gz"
+  sha256 "3049d055f37bfdc3b2057a3e2186cfdb58b596e1586b6b129698b350a80cfda3"
   license "MIT"
   head "https://github.com/Canop/broot.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "aa2dee1a9f4bc486bb01b1437d579cb582a2c940bea8601bda4e1481054d3410"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "2272cf7bd24ea1fe14c14b9b1e94e01f639c51707dc43c165256b454fc01745c"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "4bea1db2edb44f126dba7da189729fba1763e3933ef0bcf2ac2b343e6d49587a"
-    sha256 cellar: :any_skip_relocation, sonoma:        "be917425848e6fbdc1255b3658a2800cd88358c6eb60494eff1281549e5c69e4"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "af6dc7bb7b757a7c6ab3dfd48c64ddd940a7207a323c57d3408157d7c12202b6"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "cb1a236b35eeb3ec14106e9ed53869ed027198e2f1b9ad78eaa557287a26a64a"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "d96b89249e040c7698aa4df2162affcfa9cd7c53ba829a439afa9695707cece3"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "db424a506333122caffd1b389ee1b81338d8c74ddf358905bde598190838ecb5"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "d66c44400c2e5ec13a2d92591e82595d5ada51eb24311ea149c0812e6836cec4"
+    sha256 cellar: :any_skip_relocation, sonoma:        "14ff39658185bbbbf3accc4d848b038ff72e8225b0c92e7809c7af6645543078"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "74f0ebab5147d0e0b648be28b96e62fe719a7a93b8c4dab8b58ebd5557a4d5a8"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "63b6d9b6287be016a97d08267c85d3bfce54f0f16976ada7733c9209db56d655"
   end
 
   depends_on "rust" => :build
   depends_on "libxcb"
 
   uses_from_macos "curl" => :build
-  uses_from_macos "zlib"
+
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
 
   def install
     system "cargo", "install", *std_cargo_args

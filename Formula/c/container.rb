@@ -1,13 +1,13 @@
 class Container < Formula
   desc "Create and run Linux containers using lightweight virtual machines"
   homepage "https://apple.github.io/container/documentation/"
-  url "https://github.com/apple/container/archive/refs/tags/0.7.1.tar.gz"
-  sha256 "b75b58d85071d2cbee0c5dd463bbfa1dccd0f6635382084f11c52910ebed1b62"
+  url "https://github.com/apple/container/archive/refs/tags/0.10.0.tar.gz"
+  sha256 "faecfbdf9c80747bbe3a20ca4994809540d6f8aa9c459b7fdcebf8f247647ce8"
   license "Apache-2.0"
   head "https://github.com/apple/container.git", branch: "main"
 
   bottle do
-    sha256 arm64_tahoe: "6546cae49446c8ed44a6552cf9855717b1ec5b66e55132e768270954d1b30da2"
+    sha256 arm64_tahoe: "1c25ce376e5947eb870cc7fc4e580a0f1fe6d09e5a8dbeb6ced163583694eafd"
   end
 
   depends_on xcode: ["26.0", :build]
@@ -71,7 +71,7 @@ class Container < Formula
   # so we stop the system service to ensure no components are out of sync.
   # Ref: https://github.com/apple/container/issues/551#issuecomment-3246928923
   def post_install
-    system libexec/"ensure-container-stopped.sh"
+    system libexec/"ensure-container-stopped.sh", "-a"
   end
 
   service do
@@ -86,7 +86,7 @@ class Container < Formula
     # Cannot fully test, as it needs to write outside testpath
     assert_match version.to_s, shell_output("#{bin}/container --version")
 
-    output = "Error: interrupted: \"internalError: \"failed to list containers\""
-    assert_match output, shell_output("#{bin}/container list 2>&1", 1)
+    assert_match(/Error: (?:interrupted: ")?internalError: "failed to list containers"/,
+                 shell_output("#{bin}/container list 2>&1", 1))
   end
 end

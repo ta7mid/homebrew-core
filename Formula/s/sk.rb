@@ -1,26 +1,31 @@
 class Sk < Formula
   desc "Fuzzy Finder in rust!"
   homepage "https://github.com/skim-rs/skim"
-  url "https://github.com/skim-rs/skim/archive/refs/tags/v0.20.5.tar.gz"
-  sha256 "c9b367bd37daa38b95a5da1e8f967279f4127168a38986b2f7d33a4b5fd413c2"
+  url "https://github.com/skim-rs/skim/archive/refs/tags/v4.0.0.tar.gz"
+  sha256 "4aea53cd711551f35e67e08a58c8e015009751989da990dde29c10e8c546f581"
   license "MIT"
   head "https://github.com/skim-rs/skim.git", branch: "master"
 
+  livecheck do
+    url :stable
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
+  end
+
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "8673c1f23e20a9046e5341e7f9bb2029966aad393adea9a92c839332e99a3807"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "0e64e2ab2050344a8e178d635f300acb272a27b414efcce6dc06296b6414c84c"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "ef46fab492395a38197dd582bb66e594b968ad7368598f96ba72568ed08b36f0"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "d93770fb5e79c73492e01038943ea22e440987d309aefe40f0b0379c68266843"
-    sha256 cellar: :any_skip_relocation, sonoma:        "385dc10fb64e302ccbb054ae5fed0d15dbebe8f203ac215fb865978d43d2d1f7"
-    sha256 cellar: :any_skip_relocation, ventura:       "d0eec0b3b53c89451193f3e81d44a70a2a1cd1a5895afd7c2e7523c0a5a74ca0"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "c2faf26cdaba0186091d6454bfb9904e5acb4a54c1c084fa3b9ba5293eb615aa"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "2631947f06f94f9f1f0bce68d0684da6770f379ebe15d6a323b0fbcda8a492d2"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "d6847b4a41e19f67928d5ac5992755052c30b144366bae81de516273e8b7cf11"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "76f31572b52d5871da72071f6b0a1531ed78a44b24fbce686dd589d337f78ede"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "33ae123eeb53386114c6e39b227f2cd2ce6cfb39dd408cf42f3a85698cf16976"
+    sha256 cellar: :any_skip_relocation, sonoma:        "f545af1f0de6a04893845347154ba646745aa0d6efcb0ed89a81d7110b95d299"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "8cfdba7e43e05c53de548a6b0a4d07722ee81490f9a1a09c13069d9ee813d065"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "102928929ad773d15e4822bfd8f99a69cfad38ea94338e4a81d376b5f54d1e91"
   end
 
   depends_on "rust" => :build
 
   def install
-    system "cargo", "install", *std_cargo_args(path: "skim")
+    # Restore default features when frizbee supports stable Rust
+    # Issue ref: https://github.com/skim-rs/skim/issues/905
+    system "cargo", "install", "--no-default-features", *std_cargo_args(features: "cli")
 
     generate_completions_from_executable(bin/"sk", "--shell")
     bash_completion.install "shell/key-bindings.bash"

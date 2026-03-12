@@ -3,18 +3,18 @@ class Tach < Formula
 
   desc "Tool to enforce dependencies using modular architecture"
   homepage "https://docs.gauge.sh/getting-started/introduction"
-  url "https://files.pythonhosted.org/packages/f9/c6/cee16d9b0e22bb184740f4c5485d5ab7616708f6eba0725af0dd4736e712/tach-0.33.0.tar.gz"
-  sha256 "92ffe91070636eee6b45a8512bdc594fd15c0f5be9300dbbe85d0b36d00f00d1"
+  url "https://files.pythonhosted.org/packages/37/3a/8b5a6da31b503b1e8d1c41583e7a538283dca89856b6d9fa99bf91c38ec5/tach-0.34.0.tar.gz"
+  sha256 "0d531623aaa0792deb58ebbcee16fe342cfcf8db92eee664f6a2749500216cbe"
   license "MIT"
   head "https://github.com/gauge-sh/tach.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "598b91b109561a3e87c4c0d959a63dafc8a01084d82b9eeb1c0dc6447dab7267"
-    sha256 cellar: :any,                 arm64_sequoia: "02e5caebff661f75c6d6ec48944f5fd9fcf820f597ce4905b8b9400006a8ee53"
-    sha256 cellar: :any,                 arm64_sonoma:  "b3bde55b440e7ff6e1b32d58f60bf6f1eeb1c006d1d08e334198cef0c23b5fda"
-    sha256 cellar: :any,                 sonoma:        "743c7227dc391ef8c6acc6b9a5bf0de2ee2d95ffe5e9cc1119e41f065222c4fd"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "084684a7d4522c664f93a0e1bdfea7f06bc0e5b9a0821d7588097c2883f7887f"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f21f5bbfc9e66b8f1b1c415402846b88c5b9b88d2039cd11a2c3fccb4fa91f5e"
+    sha256 cellar: :any,                 arm64_tahoe:   "d1d35ff68d74c060ab5dcf7c24926d51a5092042b0e207319147b4a413d0a127"
+    sha256 cellar: :any,                 arm64_sequoia: "5902e3cc4db2171dfeb125f62171741533b847b111395ef82a86f21420d5f50c"
+    sha256 cellar: :any,                 arm64_sonoma:  "e002347c9718d1a7361fb38e0e708b3486860158322a2c1c1b27daf0877f9346"
+    sha256 cellar: :any,                 sonoma:        "f54292c04ad4b28dcb74e03847b89c064edc8836cd20958956c79f0d3d06fdbf"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "4c6ab110116a5314c99bb7370f3c9ec3a3ba8cbd2a2b75952d8e1f10b145e297"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "732ee73490a126f705a77a27672b09381e72853f191e79d259e9191d9b1fefbd"
   end
 
   depends_on "rust" => :build
@@ -62,8 +62,8 @@ class Tach < Formula
   end
 
   resource "pyparsing" do
-    url "https://files.pythonhosted.org/packages/33/c1/1d9de9aeaa1b89b0186e5fe23294ff6517fce1bc69149185577cd31016b2/pyparsing-3.3.1.tar.gz"
-    sha256 "47fad0f17ac1e2cad3de3b458570fbc9b03560aa029ed5e16ee5554da9a2251c"
+    url "https://files.pythonhosted.org/packages/f3/91/9c6ee907786a473bf81c5f53cf703ba0957b23ab84c264080fb5a450416f/pyparsing-3.3.2.tar.gz"
+    sha256 "c777f4d763f140633dcb6d8a3eda953bf7a214dc4eff598413c070bcdc117cbc"
   end
 
   resource "pyyaml" do
@@ -72,8 +72,8 @@ class Tach < Formula
   end
 
   resource "rich" do
-    url "https://files.pythonhosted.org/packages/fb/d2/8920e102050a0de7bfabeb4c4614a49248cf8d5d7a8d01885fbb24dc767a/rich-14.2.0.tar.gz"
-    sha256 "73ff50c7c0c1c77c8243079283f4edb376f0f6442433aecb8ce7e6d0b92d1fe4"
+    url "https://files.pythonhosted.org/packages/b3/c6/f3b320c27991c46f43ee9d856302c70dc2d0fb2dba4842ff739d5f46b393/rich-14.3.3.tar.gz"
+    sha256 "b8daa0b9e4eef54dd8cf7c86c03713f53241884e814f4e2f5fb342fe520f639b"
   end
 
   resource "smmap" do
@@ -82,8 +82,8 @@ class Tach < Formula
   end
 
   resource "tomli" do
-    url "https://files.pythonhosted.org/packages/52/ed/3f73f72945444548f33eba9a87fc7a6e969915e7b1acc8260b30e1f76a2f/tomli-2.3.0.tar.gz"
-    sha256 "64be704a875d2a59753d80ee8a533c3fe183e3f06807ff7dc2232938ccb01549"
+    url "https://files.pythonhosted.org/packages/82/30/31573e9457673ab10aa432461bee537ce6cef177667deca369efb79df071/tomli-2.4.0.tar.gz"
+    sha256 "aa89c3f6c277dd275d8e243ad24f3b5e701491a860d5121f2cdd399fbb31fc9c"
   end
 
   resource "tomli-w" do
@@ -92,8 +92,8 @@ class Tach < Formula
   end
 
   resource "wcwidth" do
-    url "https://files.pythonhosted.org/packages/24/30/6b0809f4510673dc723187aeaf24c7f5459922d01e2f794277a3dfb90345/wcwidth-0.2.14.tar.gz"
-    sha256 "4d478375d31bc5395a3c55c40ccdf3354688364cd61c4f6adacaa9215d0b3605"
+    url "https://files.pythonhosted.org/packages/35/a2/8e3becb46433538a38726c948d3399905a4c7cabd0df578ede5dc51f0ec2/wcwidth-0.6.0.tar.gz"
+    sha256 "cdc4e4262d6ef9a1a57e018384cbeb1208d8abbc64176027e2c2455c81313159"
   end
 
   def install

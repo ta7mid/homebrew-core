@@ -1,8 +1,8 @@
 class Vtcode < Formula
   desc "CLI Semantic Coding Agent"
   homepage "https://github.com/vinhnx/vtcode"
-  url "https://static.crates.io/crates/vtcode/vtcode-0.60.0.crate"
-  sha256 "e74274035ad620ef8b7c73d7dbf5b096bd63a51c06bb60bb44cb9f394b33a567"
+  url "https://static.crates.io/crates/vtcode/vtcode-0.88.0.crate"
+  sha256 "8958d497a9c92cd945bcf938a460ea612050483a50af00e0ccf469ca43dea8c6"
   license "MIT"
   head "https://github.com/vinhnx/vtcode.git", branch: "main"
 
@@ -11,21 +11,21 @@ class Vtcode < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "6f026e0a388dfaf9a4d6eccf76204976d77ba7e605ee9643340ffa849ba1d522"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "78a9334f3e88233c763e69b5c61d47acbf98efcc463b6c58cc9e4300c62112be"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "aeedda8fce848cea902e15639eb04c2234daefa6b1c315e3e685523bfdfd842a"
-    sha256 cellar: :any_skip_relocation, sonoma:        "8b9ca5fa1ca738f55eb802ff40c416bbb49ef6fb1e5ca5a317a51a108abb33c9"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "25b17eea37add119e8764f3718cacca1823c3c555af7134fa90fe102a8f6b589"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "9e50f49a0d3901ffc2a25dc0184afc2afffc5569a63e477a5224387f6ab7f0cc"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "d7d2ebb19be7a2076b06364a71ffd494947f935e16ebe7d6612186bcaea4051e"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "cc18435d8c6de8f4b776854929f35003528073e7fdfd8effdf49a40a26cb10ff"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "caa908240f485a8244e5b3bcbfd9cdf505ed7356d67a43325b28d53b91917e75"
+    sha256 cellar: :any_skip_relocation, sonoma:        "ea0370067a0e4d2706b29ca218bbc3cf6e92fa366fda6f6d4e12876c19a3155c"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "1b73507424edc0de0d034bec83f621f492196fcd2170f6e7aed371710ce9f8a1"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "70087685a0739bca5196f170bd364435c8334917448cf0593725e34087553982"
   end
 
   depends_on "pkgconf" => :build
   depends_on "rust" => :build
-
-  uses_from_macos "zlib"
+  depends_on "ripgrep"
 
   on_linux do
     depends_on "openssl@3"
+    depends_on "zlib-ng-compat"
   end
 
   def install
@@ -35,7 +35,8 @@ class Vtcode < Formula
   test do
     assert_match version.to_s, shell_output("#{bin}/vtcode --version")
 
-    output = shell_output("#{bin}/vtcode init 2>&1", 1)
-    assert_match "No API key found for OpenAI provider", output
+    ENV["OPENAI_API_KEY"] = "test"
+    output = shell_output("#{bin}/vtcode models list --provider openai")
+    assert_match "gpt-5", output
   end
 end

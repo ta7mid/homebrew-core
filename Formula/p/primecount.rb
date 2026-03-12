@@ -1,17 +1,17 @@
 class Primecount < Formula
   desc "Fast prime counting function program and C/C++ library"
   homepage "https://github.com/kimwalisch/primecount"
-  url "https://github.com/kimwalisch/primecount/archive/refs/tags/v8.0.tar.gz"
-  sha256 "0265081f45fc938a892a1fd975edb4ff2c097359fc2bfeb739be3d7a759cd36c"
+  url "https://github.com/kimwalisch/primecount/archive/refs/tags/v8.2.tar.gz"
+  sha256 "870f2c17b660449d10a593b31d2c69e720ff8060ec1b5099c37f451c005f671e"
   license "BSD-2-Clause"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "9bb5ba1cb1290e5404358451860ebacd032ca38dfd75c3521d2bf01db106328a"
-    sha256 cellar: :any,                 arm64_sequoia: "0d847bbc8c40034a2778b79c5807c43ed52ce17cc7f49bfe4d9aa0fb7a4909da"
-    sha256 cellar: :any,                 arm64_sonoma:  "3570a0c1d257c49c958c2c02e9a98ebd3d521ee5904dfc89a7d3a239264dda0e"
-    sha256 cellar: :any,                 sonoma:        "135e0fc2e019a13f3601ae65c643bb4167eb58b401b132a8f6ca264f37317be1"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "a8983dee182f7ddb6a102b40c973c7a2bf8b348cee992d2058f3d6bce3ad9017"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "38f0a9a76b321a1995958644efb45f48d04e6395250aaf07013080e3855aa75f"
+    sha256 cellar: :any,                 arm64_tahoe:   "e5bafa9ed909a8f306433c3136eb0973b12c869854699a0b68b4f080b1754671"
+    sha256 cellar: :any,                 arm64_sequoia: "e20fc99778dd82d54076df60d688f56f40f72854c5de476eb514e537b8961d79"
+    sha256 cellar: :any,                 arm64_sonoma:  "518d165e5b989b8bc3b435f87ab0a5ca66d3310dc241c0140c8e48388405d146"
+    sha256 cellar: :any,                 sonoma:        "dc7d918669464ea47ed5a28d899acb222987b86f31973f447f28c52900f5fd78"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "caac747ff7853027853c52c240426d3d2c274a818ba73f494a4cd730be8065bf"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "018799ca38a0df81b385891690be551cc705301e02e4a22a9ff6366759538e85"
   end
 
   depends_on "cmake" => :build

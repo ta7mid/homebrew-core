@@ -1,8 +1,8 @@
 class Vfox < Formula
   desc "Version manager with support for Java, Node.js, Flutter, .NET & more"
   homepage "https://vfox.dev/"
-  url "https://github.com/version-fox/vfox/archive/refs/tags/v0.10.0.tar.gz"
-  sha256 "5c82575fd0ae78c2866862375861a7e69a92e1175d8f9bf89d48db14b993a4b7"
+  url "https://github.com/version-fox/vfox/archive/refs/tags/v1.0.6.tar.gz"
+  sha256 "9dde247005a6d287460a2309e8688403c14e4e80e9ac096ba48839f8b2bcce96"
   license "Apache-2.0"
   head "https://github.com/version-fox/vfox.git", branch: "main"
 
@@ -12,12 +12,12 @@ class Vfox < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "dee3e01bdcc226cd6fd5241c0c0966369cbe473b00574e042c981cc3e8a1d0ee"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "5053c020ad120834b7d0ce1e42da4d5cd001a4e2c79684a64dc91733367c9c73"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "6c3ad799784f955be767920bfbdc213aaf367aa88d7dfca90a7b6dc026491a0b"
-    sha256 cellar: :any_skip_relocation, sonoma:        "d56177cdc7c31af47b29f451d8878a753ab7c0e1fc7b28ec82760d32b01d5d12"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "2599e27bfc97c3da4470947714aafba0e0d5315f973cc699542e97e9c9674d6b"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "029d6dcaa4c8738e4b7562acc9d877d423ebba69065f4fca471ec87430c6d1dd"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "0c43c80b348584b57b9954b278f74459a2169a7b36fa992e2fc63c64033c6fc6"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "a4c85c6144c2a84eb646e5a3be5ef1d1ffdedf42d6d3613060380f055861e002"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "34e228fcaeb63d09aef4de6e13157e94009d354d1da69cd2e936b75abb644d06"
+    sha256 cellar: :any_skip_relocation, sonoma:        "34932b5b21cc994b79e51e3649b743dbe4575f39e177012bd5648a26a3b6d914"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "fbf4b8c817d90adeac7c55dcb4ba058b71a6549b84e26273221d895e0b56677d"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f7e1e3889e688f5962d3363f804f22cff2d829132a2c78b30aee9673944a4fe3"
   end
 
   depends_on "go" => :build

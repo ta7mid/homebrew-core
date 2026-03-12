@@ -1,18 +1,18 @@
 class Dprint < Formula
   desc "Pluggable and configurable code formatting platform written in Rust"
   homepage "https://dprint.dev/"
-  url "https://github.com/dprint/dprint/archive/refs/tags/0.51.1.tar.gz"
-  sha256 "a7aa7dfeffc2f671febbfe8f642cbdfbc624b1de3ea818ed146c0e86cc716031"
+  url "https://github.com/dprint/dprint/archive/refs/tags/0.52.1.tar.gz"
+  sha256 "e6720a18b5ddbc64524e9315c2dd27af674b2f23a313043adfb258111554ce7e"
   license "MIT"
   head "https://github.com/dprint/dprint.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "6d36bf6e9b744d4804c13f03d6180b9e7ff2c15b1bea971f20ae6c2df2fce3b1"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "aaa2d4824af19277ee36d96ef31ac5b27945c5b976c78ee7c19b6f1854f585ec"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "641eb96df9d62caf8d7bd9a7a0c554aa4de39a62c491ac94dc2c8fb341d7c87f"
-    sha256 cellar: :any_skip_relocation, sonoma:        "88092f3df210bc70c80515766293128738b772063e28a6c22450e5e93e10c285"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "3d81308441150f6f217a1e45320b35834f42920af02b02c7d6be817a2bb7ec18"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5656d6b3d563c2483fe562766ae7e4f5a49d1dd8c294dbddbad5bd373fe5fc70"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "1e54e04c46b3d33ec56b6ea2e4aa43d3493bec50d6ffe48c45a9235d042611a3"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "9693d05e96acfbf522ef278ee07b34184311cd8cec6092fdfdbd9ff081512008"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "1c5a88a14d1e4ac626ccb93a6dff123df9126951b7884b1cdd32714888b60f3f"
+    sha256 cellar: :any_skip_relocation, sonoma:        "ccc7d2f07e87722ea32ef1a69bb18482d929bb6e9037724448c82b2b821d8dd2"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "c3dab5c41ac589a9c7cc25cb2f8ce16e8162d1acfbdfb0e73bc8a3b1e0a79aff"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "2fd2e05a6132fdce6853ce40cafa97b3740c855c842e602912c85bf9d18e872d"
   end
 
   depends_on "pkgconf" => :build

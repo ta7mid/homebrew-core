@@ -1,23 +1,22 @@
 class LibvirtPython < Formula
   desc "Libvirt virtualization API python binding"
   homepage "https://www.libvirt.org/"
-  url "https://download.libvirt.org/python/libvirt-python-11.7.0.tar.gz"
-  sha256 "f65f80fe7dabb47c2ea887bec5f62509b756282acac4fa958ab74706c0b76c11"
+  url "https://download.libvirt.org/python/libvirt_python-12.1.0.tar.gz"
+  sha256 "2cc02c0b91a9abd140185feab46b33281091d4deffbc1bbfdb68ce682359f2b0"
   license "LGPL-2.1-or-later"
-  revision 1
 
   livecheck do
     url "https://download.libvirt.org/python/"
-    regex(/href=.*?libvirt-python[._-]v?(\d+(?:\.\d+)+)\.t/i)
+    regex(/href=.*?libvirt[_-]python[._-]v?(\d+(?:\.\d+)+)\.t/i)
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "1deb0cb0a2a9dcc861be14d1af45c8186f50da6e41a83937aec77225e5d7b71b"
-    sha256 cellar: :any,                 arm64_sequoia: "e8dfbb5929729f2f8a98afd8582bcc8948d536ec7bb978c92b72c03c419e2e7a"
-    sha256 cellar: :any,                 arm64_sonoma:  "13ee2840382e5675a9c757b6b54933d8447d2e7bf14375febff2056d74f22012"
-    sha256 cellar: :any,                 sonoma:        "bb57ace6bee4b27eb1bbd774f92c02408f73fd955292ac0479218cf3e280e502"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "d1b7a3eee6393647a63aceef7bfc190813fbc8107ee49ad23c3a0be660a8a88c"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "666e0f5e808e640568c99cddbe94bbf5c0793d0c61486edda3413786fd182a6c"
+    sha256 cellar: :any,                 arm64_tahoe:   "df82545cb92407cbb6bfb96f63fa7c1fac2a4b089369f4b90e674e26370a6e46"
+    sha256 cellar: :any,                 arm64_sequoia: "d3fe564eac106528dfb2092daf1ad94e2b31cc0d0a9f98a016437f0de74ed05b"
+    sha256 cellar: :any,                 arm64_sonoma:  "72d49e56c78cffb1cbbda76cd62eceb6e159432478d89b81897bb8a8899aad2d"
+    sha256 cellar: :any,                 sonoma:        "234a4a88a9037a5321e3e901c0a0d3fd84a93cd234ab81c2e72b2cd428ebfc50"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "2f1ddd535cefc97683075b6e2d2660a6829707b850538c26f31eb09cd1d84136"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "16b1fc2cf62ef1b1262e16d8f79c8d4702825637a98755a66da97a31c7aac697"
   end
 
   depends_on "pkgconf" => :build

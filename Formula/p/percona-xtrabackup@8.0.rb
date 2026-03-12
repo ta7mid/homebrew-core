@@ -1,10 +1,10 @@
 class PerconaXtrabackupAT80 < Formula
   desc "Open source hot backup tool for InnoDB and XtraDB databases"
   homepage "https://www.percona.com/software/mysql-database/percona-xtrabackup"
-  url "https://downloads.percona.com/downloads/Percona-XtraBackup-8.0/Percona-XtraBackup-8.0.35-34/source/tarball/percona-xtrabackup-8.0.35-34.tar.gz"
-  sha256 "6ca81cd647e7cb1d8fd341f97cd32248bd719f9104a63eb24f1edda6a2d2441c"
+  url "https://downloads.percona.com/downloads/Percona-XtraBackup-8.0/Percona-XtraBackup-8.0.35-35/source/tarball/percona-xtrabackup-8.0.35-35.tar.gz"
+  sha256 "012aa40e35d7186da1d0c4ccd20d703b2b56a69dc0d750056d969245226a3d67"
   license "GPL-2.0-only"
-  revision 8
+  revision 1
 
   livecheck do
     url "https://www.percona.com/products-api.php", post_form: {
@@ -21,12 +21,12 @@ class PerconaXtrabackupAT80 < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "119c0842d814b1e62e1e718462b11896657a5aef3a711f106dc48b42165745d2"
-    sha256 arm64_sequoia: "1e5418c288f9a188a28bbc4d08eac769be4fabf6955778e828736523cdd69e14"
-    sha256 arm64_sonoma:  "e2e6f6b024f13c88b994eb9c00e56ed71ef6a1f9785bfc150eef27126d92e626"
-    sha256 sonoma:        "bcb0d310be2d18ed42b4ca8bd50a4fbad215142826ba01ce2c37adddab104f57"
-    sha256 arm64_linux:   "a62e5003ef934d0106e629be152b7b1d21fb5ea9d19c10cae1e4b7b42f0ff8b8"
-    sha256 x86_64_linux:  "4e817f96783153c4af262ae973df731153dd757448cec6a46b0ddf905a401f40"
+    sha256 arm64_tahoe:   "dcdeddbf59e0b9218784bf99e76a642421d0ecf830e1c25b1a119fc9015cb2c2"
+    sha256 arm64_sequoia: "32430a32d8c4a9f6a936b07386d898115ca37565e909ed29423de4b480c81d1c"
+    sha256 arm64_sonoma:  "4d54e23ffbd3f9f425a59d3911928ed1d3c712b5e02874bd9508992980c7c753"
+    sha256 sonoma:        "d19ff4de3d97148b38fdaad3d4d19382fc86e7952b51c2dd93164859a7e39fcd"
+    sha256 arm64_linux:   "e5d21b91abb7a30819530c099e52665be41b8f823012c4ecc98a3335415c0f21"
+    sha256 x86_64_linux:  "79a8925340f84bab3b4ca91509c44e826fa5fd5cdac93ee9c6d51d760a309d32"
   end
 
   keg_only :versioned_formula
@@ -47,7 +47,7 @@ class PerconaXtrabackupAT80 < Formula
   depends_on "openssl@3"
   depends_on "perl-dbd-mysql"
   depends_on "protobuf"
-  depends_on "zlib"
+  depends_on "zlib-ng-compat" # Zlib 1.2.13+
   depends_on "zstd"
 
   uses_from_macos "cyrus-sasl" => :build

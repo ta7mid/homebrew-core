@@ -1,23 +1,26 @@
 class Headson < Formula
   desc "Head/tail for structured data"
   homepage "https://docs.rs/headson/latest/headson/"
-  url "https://github.com/kantord/headson/archive/refs/tags/headson-v0.13.1.tar.gz"
-  sha256 "b6d5bc2f00e29b8f3badeb33c7756a3ee0b6c06b557e7510b62484256ce39783"
+  url "https://github.com/kantord/headson/archive/refs/tags/headson-v0.16.1.tar.gz"
+  sha256 "485c221b28b361c9de2b8223f7985401d37f2c75a2870be6f59af4d83f499db7"
   license "MIT"
   head "https://github.com/kantord/headson.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "a183204447f3e0d36c01490d49154107df470f6dcfcf1564e2a22c308e56be85"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "e9b5c6c6c5819d2bd2a5602eaf50727542b6965757af3b22929d254561e2cac0"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "06c7e153ada9bbb2cff6571539e52656c08432bc975cdc5c5e5e61a3f3d2f606"
-    sha256 cellar: :any_skip_relocation, sonoma:        "e18389f40ba23ef4574acc0ad6604dca5a32fe235b92bd6c5851335474e5a786"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "91ff96c16d0788629f9bdde9b1b4c7e0c75332f3ec01c6d87774dfb0471f12e6"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8f2046616b0f7090457f75bb39e61d7f1b6fe81b6db53d17054b8f2b021d75a9"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "854c8655b692c19690c6151da4208ac9250dd88b180e0d2054472e9dd1af4a0a"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "2dc83400a096d97f6dab5e950bc8d2858ad36a522921f2f79790725cc83c24f4"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "cdd30098b76af6ca0de0d1f54b1cd723b6771efe8c70b1475f24ad9a9af9073f"
+    sha256 cellar: :any_skip_relocation, sonoma:        "6c8f68eba88fc692027f74798faaccdde4d47968564be5139d4219f661fcdc6c"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "f39390eec0049ead13d96c089221ca52a7f9d2f2dfaab2a10fd45c583ab09327"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ed7745c0a50256e9ab5f7d047308da959c7922116ba1785086244ebb4183dda1"
   end
 
   depends_on "rust" => :build
 
-  uses_from_macos "zlib"
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
 
   def install
     system "cargo", "install", *std_cargo_args

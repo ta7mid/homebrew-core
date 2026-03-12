@@ -3,8 +3,8 @@ class Sprocket < Formula
   homepage "https://sprocket.bio"
   # pull from git tag to get submodules
   url "https://github.com/stjude-rust-labs/sprocket.git",
-      tag:      "v0.19.0",
-      revision: "9b96d4f62e08c32bd4ba607fa2ce356a4748408a"
+      tag:      "v0.21.1",
+      revision: "16a97e58197031d3c07112192f23efceb7f036de"
   license any_of: ["Apache-2.0", "MIT"]
   head "https://github.com/stjude-rust-labs/sprocket.git", branch: "main"
 
@@ -14,19 +14,22 @@ class Sprocket < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "6f3bc4b2da43f700dde84628949ba1bf80e51d061fd11b8e9faf510b6d15fd03"
-    sha256 cellar: :any,                 arm64_sequoia: "ecec9312863b3a93b683b59785eaf5fd16fa50cd14623c09db06afb357c4ede7"
-    sha256 cellar: :any,                 arm64_sonoma:  "d3b04b0e1f11a9b3c9b49e0facfde8235ea5baa0dd59f6af36958d7d86ad69bf"
-    sha256 cellar: :any,                 sonoma:        "1342f28157a7991ba1a508a4996d8ce68c0b7ccc1e22fef8e64d0ac6c7129e81"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "7d4577d496666cff0468ca0353a99f531dce5b4821f1b1c8add75c7bf228e924"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "4ed50f47b1b7b9030d1af1a1fe0b4b58636c4c8ccac5a4becec2131036c74da2"
+    rebuild 1
+    sha256 cellar: :any,                 arm64_tahoe:   "cc05b7859da33e6ed068be803480085b6334279b8ed9eb9972c25a35932b2972"
+    sha256 cellar: :any,                 arm64_sequoia: "23640359ec0c0522a9390f5709fa5b8dc5f4a9f57db1130e384679e5e7efd6bb"
+    sha256 cellar: :any,                 arm64_sonoma:  "df24e6ef0aecec1ab5bb96069d3fcd5def8b91e687f466c29aac9555b52c713d"
+    sha256 cellar: :any,                 sonoma:        "befe3493c616e91c7c54a3d946dad1ec3f5ebc5842c1362943fed6b1222693a7"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "e13387d2fc9ae0c08c14f09647f4ace87c9e0a039ee2e76df3af8bf7d9dfeb37"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "4871f18839c5588d3931555870e2f41ee80f3495bcfde98e7eadcf5ed03b006c"
   end
 
   depends_on "pkgconf" => :build
   depends_on "rust" => :build
   depends_on "openssl@3"
 
-  uses_from_macos "zlib"
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
 
   def install
     system "cargo", "install", *std_cargo_args

@@ -6,8 +6,8 @@ class Ruby < Formula
 
   stable do
     # TODO: enable default_user_install when updating to Ruby 4.1
-    url "https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.0.tar.gz"
-    sha256 "2e8389c8c072cb658c93a1372732d9eac84082c88b065750db1e52a5ac630271"
+    url "https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.1.tar.gz"
+    sha256 "3924be2d05db30f4e35f859bf028be85f4b7dd01714142fd823e4af5de2faf9d"
 
     # Should be updated only when Ruby is updated (if an update is available).
     # The exception is Rubygem security fixes, which mandate updating this
@@ -29,12 +29,13 @@ class Ruby < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "ffcf4d95fcb57a386b607cf7ad0b27f7854c4e2c00d303c9df9bbcf762f642d7"
-    sha256 arm64_sequoia: "4da301fd3d1b2bfcb6a9a0f23913a6c5b8a89543285b7fec027296ce82a3ff4c"
-    sha256 arm64_sonoma:  "37c080c3eac2f30abc34f7cd19f43ba374ddbe6afd4a288c4a399610b9ceae7e"
-    sha256 sonoma:        "89bb9d9ca1da84424beb728554067dbfeb942f6098e3ca504236f619387285cd"
-    sha256 arm64_linux:   "28c510f962a9beaa5294849e4b1c7fd47852a9c6a8c7222e3689439b02775301"
-    sha256 x86_64_linux:  "171d6fd23383917db7fe413620edfff205f8745b590d4c8a4f64b15fd2c80d64"
+    rebuild 1
+    sha256 arm64_tahoe:   "99ba4d74dc9769146bbc717c340e548f5418b1b5ad634786745655f4b4be31ae"
+    sha256 arm64_sequoia: "a8585e1b706a9e96584d35bda9f4ec2f3ef378e0fede531cfacb276f63fc5868"
+    sha256 arm64_sonoma:  "1e154c859e040a9e7bdcd1e90298872f6551c6618677357c9bd146356fee1162"
+    sha256 sonoma:        "cdb41288da959462858a87352cee45567845d147bd162c67307023197cf5c168"
+    sha256 arm64_linux:   "6797becac7bc9fde35ac405d5cb8e1cbd5a6c16bf50b03a2798461d15d39d4e8"
+    sha256 x86_64_linux:  "6217bdaf74063c80cade025f1aaa9fb3101da08ac8f7622bb5ee0edf6f73a656"
   end
 
   keg_only :provided_by_macos
@@ -48,7 +49,10 @@ class Ruby < Formula
   uses_from_macos "gperf"
   uses_from_macos "libffi"
   uses_from_macos "libxcrypt"
-  uses_from_macos "zlib"
+
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
 
   def determine_api_version
     Utils.safe_popen_read(bin/"ruby", "-e", "print Gem.ruby_api_version")

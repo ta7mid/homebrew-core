@@ -6,6 +6,7 @@ class FfmpegAT6 < Formula
   # None of these parts are used by default, you have to explicitly pass `--enable-gpl`
   # to configure to activate them. In this case, FFmpeg's license changes to GPL v2+.
   license "GPL-2.0-or-later"
+  revision 2
 
   livecheck do
     url "https://ffmpeg.org/download.html"
@@ -13,12 +14,12 @@ class FfmpegAT6 < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "d9810751f734c06357db89e7fe085445afc046e9b95af867b5d01f9951fba106"
-    sha256 arm64_sequoia: "cc014b1a78effa32a96cb50a04e52249cc0b0d7b2a03505099d6eeb1c0a68e1b"
-    sha256 arm64_sonoma:  "4cd8d9dd427220c76e6b2c1792ed28b74e2268fef98ea55242e47e8aa9e6630e"
-    sha256 sonoma:        "a4a5ee337970a24332ebedeb3ce3db3226a16e03b0f4a0665a3796f38f5cfe24"
-    sha256 arm64_linux:   "673b4d6715b74ba45aed373abd5fe5747aa28e0648f68ba6005349fe9680eb1e"
-    sha256 x86_64_linux:  "daab35504afd471e75752462d1c5a9ff7b81d3c8a42fe907c7d958009666a98f"
+    sha256 arm64_tahoe:   "43cd0a0b5ad10850b84108aaf0f3293bf433c3c58a4b40667e3d76d7286d6731"
+    sha256 arm64_sequoia: "6e937ae0e4764a624097c566ba756d1a4f4a945485b65a1974d9bb538cbd6665"
+    sha256 arm64_sonoma:  "ce8371428f5bf0526e781469b79c073b6881cbd29138ea0d99140f783a2303a7"
+    sha256 sonoma:        "707d8315b4b2983c65b67fc815770aa149f347c858658f6469e7fefc67b27d25"
+    sha256 arm64_linux:   "ad2630ae05d97a6ea94f55e4070397249244617ad08200d2e6f42e608e571da7"
+    sha256 x86_64_linux:  "92ca150b0120de946e85884e02b8a6af789b088cee7102ca8262ba7fe342b157"
   end
 
   keg_only :versioned_formula
@@ -67,7 +68,6 @@ class FfmpegAT6 < Formula
 
   uses_from_macos "bzip2"
   uses_from_macos "libxml2"
-  uses_from_macos "zlib"
 
   on_macos do
     depends_on "libarchive"
@@ -79,6 +79,7 @@ class FfmpegAT6 < Formula
     depends_on "alsa-lib"
     depends_on "libxext"
     depends_on "libxv"
+    depends_on "zlib-ng-compat"
   end
 
   on_intel do
@@ -96,6 +97,12 @@ class FfmpegAT6 < Formula
   patch do
     url "https://github.com/FFmpeg/FFmpeg/commit/d1ed5c06e3edc5f2b5f3664c80121fa55b0baa95.patch?full_index=1"
     sha256 "0eb23ab90c0e5904590731dd3b81c86a4127785bc2b367267d77723990fb94a2"
+  end
+
+  # Backport support for svt-av1 4.x
+  patch do
+    url "https://git.ffmpeg.org/gitweb/ffmpeg.git/patch/a5d4c398b411a00ac09d8fe3b66117222323844c"
+    sha256 "1dbbc1a4cf9834b3902236abc27fefe982da03a14bcaa89fb90c7c8bd10a1664"
   end
 
   def install

@@ -1,8 +1,8 @@
 class PerconaServer < Formula
   desc "Drop-in MySQL replacement"
   homepage "https://www.percona.com"
-  url "https://downloads.percona.com/downloads/Percona-Server-8.4/Percona-Server-8.4.7-7/source/tarball/percona-server-8.4.7-7.tar.gz"
-  sha256 "e5405e81c4f6e5ad5052de1043a2e529607b5060677d01ba3cafc7c69f4661a6"
+  url "https://downloads.percona.com/downloads/Percona-Server-8.4/Percona-Server-8.4.8-8/source/tarball/percona-server-8.4.8-8.tar.gz"
+  sha256 "8ec19aa2fcb714d06ba6b0b6ed1edc3687c06664e3a922b6d54eb09fa4c48810"
   license "BSD-3-Clause"
 
   livecheck do
@@ -19,15 +19,13 @@ class PerconaServer < Formula
     end
   end
 
-  no_autobump! because: :requires_manual_review
-
   bottle do
-    sha256 arm64_tahoe:   "22755b31e5da70fb8f646928a10dff19956ffe76854f5d91be34724d07ef0332"
-    sha256 arm64_sequoia: "c4a76510b2679e21084bf20519bcb518e14ca5d833edee55d84ee311315f7b7c"
-    sha256 arm64_sonoma:  "808869a7b92693cb1587160a3fb624c807a672c21b80c061798bd3305f65ecc8"
-    sha256 sonoma:        "04c4ff85179104b3c9e131c15ca9a469bef58b1ad319a518e4eeac9519360b5c"
-    sha256 arm64_linux:   "3cbc6024ab5eec1fa8cdbcbf9f68e0d43b645dcd97f1e9424c7ae20a427755e1"
-    sha256 x86_64_linux:  "72a7d63c2f1b07bd21d14993267f6a454cef05d547cca0beeb5bfdbb326ac9ab"
+    sha256 arm64_tahoe:   "22046a65617502fb9b632eaacc7491d68008583145d2e1a951ffc04770d845b8"
+    sha256 arm64_sequoia: "466e1c4eeddbe6282cf93e39481ace1e3df0c537e3f43c5bf7efd95389f8ab30"
+    sha256 arm64_sonoma:  "df32d801d53c2d44bb74c676c93d6aa0fccdf7631b5a0631cf5849d08b51ed34"
+    sha256 sonoma:        "66d9044672614e59417678c0e8a853294a38ecf07b8411f8220a97b6b2cd0ad3"
+    sha256 arm64_linux:   "c6d1fbde7d1582ac0a7b8b0611483cebc1a18fe269486991c891f68794939709"
+    sha256 x86_64_linux:  "d56a939ecfdbbce2bf503fd244d704180a1dc91f7d1795f46ec38bbbb6f571ec"
   end
 
   depends_on "bison" => :build
@@ -40,7 +38,7 @@ class PerconaServer < Formula
   depends_on "openldap" # Needs `ldap_set_urllist_proc`, not provided by LDAP.framework
   depends_on "openssl@3"
   depends_on "protobuf"
-  depends_on "zlib" # Zlib 1.2.13+
+  depends_on "zlib-ng-compat" # Zlib 1.2.13+
   depends_on "zstd"
 
   uses_from_macos "curl"

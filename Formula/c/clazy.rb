@@ -1,8 +1,8 @@
 class Clazy < Formula
   desc "Qt oriented static code analyzer"
   homepage "https://www.kdab.com/"
-  url "https://download.kde.org/stable/clazy/1.15/src/clazy-1.15.tar.xz"
-  sha256 "43189460b366ea3126242878c36ee8a403e37ec4baef7e61ccfa124b1414e7a9"
+  url "https://download.kde.org/stable/clazy/1.17/src/clazy-1.17.tar.xz"
+  sha256 "8d7e97a056b1bfbfc730e69855857866729686b8c7e66a22aee81f1baeaab1ec"
   license "LGPL-2.0-or-later"
   revision 1
   head "https://invent.kde.org/sdk/clazy.git", branch: "master"
@@ -13,14 +13,12 @@ class Clazy < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "da50e82eb5510ebef091dd80296b72730a94d477bfa864ee87e8856f804c8e45"
-    sha256 cellar: :any,                 arm64_sequoia: "92b3ccdbef548d7966861ace46c31f90af6e8c0c641f68f1a0768fa817c5f862"
-    sha256 cellar: :any,                 arm64_sonoma:  "33da10d4e320a5730af1514d6e00ac84bc8d354b8a6d69a4e2578aa9524b7473"
-    sha256 cellar: :any,                 arm64_ventura: "f6af64aef4696d355d87c6def7d18b3cc7cd6d36a5a2932bccecc3d893371d99"
-    sha256 cellar: :any,                 sonoma:        "cf75552ce773a8e7b822c4b2f7c6bbbaef2b1977ed6715c022de3769fb0ff906"
-    sha256 cellar: :any,                 ventura:       "5152cbc2134bfcb219b9e0c95ec62500910cd775248a8168db30fe09057b8ddc"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "5864e4e777baf1d2c91a147981eded0fd897b199af58de11bfbfd7857afa31d8"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1ec42d9e2bb8e000491b657536396520554521bc03cf1d6f41638af98b007e20"
+    sha256 cellar: :any,                 arm64_tahoe:   "5bcb2600e1302c815509fc3e454cca551fb47dfa51a28db508f24bd695c1de59"
+    sha256 cellar: :any,                 arm64_sequoia: "221da1944debc0c0d614aeee305556abce3bad5ccddd6c2bee6b48aa394a45ce"
+    sha256 cellar: :any,                 arm64_sonoma:  "de271713dc02508e7ae1ae7275123ea71c7c250a94e4b6b65df6b361d067ba11"
+    sha256 cellar: :any,                 sonoma:        "941b9d823264678dca2c87ec94dd8411d176e04e33fec83b14ddbad604f81f86"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "696507d8a2bfe111ad00e871b55c77113c3527b27d529ef781a98915b5971bc3"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "9a5b96d9b276dd91bab3efb833365892be64a8101888f528375b980178561f8e"
   end
 
   depends_on "cmake" => [:build, :test]
@@ -31,8 +29,16 @@ class Clazy < Formula
     depends_on "coreutils" # for greadlink
   end
 
+  fails_with :clang do
+    cause "errors while linking LLVM's static libraries due to libLTO version"
+  end
+
   def install
-    system "cmake", "-S", ".", "-B", "build", "-DCLAZY_LINK_CLANG_DYLIB=ON", *std_cmake_args
+    # macOS has undefined symbols if only linking clang-cpp.
+    # This is just the default value already set by CMakeLists.txt.
+    args = ["-DCLAZY_LINK_CLANG_DYLIB=#{OS.mac? ? "OFF" : "ON"}"]
+
+    system "cmake", "-S", ".", "-B", "build", *args, *std_cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
   end

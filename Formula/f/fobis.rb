@@ -3,13 +3,12 @@ class Fobis < Formula
 
   desc "KISS build tool for automatically building modern Fortran projects"
   homepage "https://github.com/szaghi/FoBiS"
-  url "https://files.pythonhosted.org/packages/0c/b0/6c713be09d7d0cb3af98e3f5ec3d29aa74d85de571936242ba2cb0b51736/FoBiS.py-3.1.0.tar.gz"
-  sha256 "1c1df040c42596de49e402b00823e6feec1c06b2d6bc7ffcb1a6db605e75e9e1"
+  url "https://files.pythonhosted.org/packages/59/c8/541b8121ede7b1f127c0fcfb50ce3de337d86e6be6f30f9538211c33f38a/fobis_py-3.5.4.tar.gz"
+  sha256 "4686d3ccb268fd347be63f6026f444f1583efd77c59f8363c81e10915529d7d1"
   license "GPL-3.0-or-later"
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, all: "0ac6f39a110d8a9e66df175dcab8d272bb32f9ca2d968a5b9c73e2be5827ea95"
+    sha256 cellar: :any_skip_relocation, all: "a20eea9fc35d16547706c397d69dad23b89fd8396aa7dab93bd176665d275eb5"
   end
 
   depends_on "gcc" # for gfortran

@@ -3,13 +3,12 @@ class Httptap < Formula
 
   desc "HTTP request visualizer with phase-by-phase timing breakdown"
   homepage "https://httptap.dev"
-  url "https://files.pythonhosted.org/packages/e9/9f/1fc7044233dde6df750f43f934e9de80085d7a82c599b302667775d6b12d/httptap-0.4.1.tar.gz"
-  sha256 "fe61e3e4c97c98cf3213bce4b35417367e02345cd726977369f3fcd0da9fcbcc"
+  url "https://files.pythonhosted.org/packages/84/c8/a9492a237fde39e909ca06a7832ed05c87df3481934011d60134153fec4e/httptap-0.4.4.tar.gz"
+  sha256 "0780130007b076418867242458fabdfa938471f06d46e2be00ecd3db2b8a7317"
   license "Apache-2.0"
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, all: "4846d1cf9b0b752fd3cc272df18e1f8e132e2ea457338ec73362d0350ecdfa6e"
+    sha256 cellar: :any_skip_relocation, all: "6cefaf77bd07cad277caf6940a23e625067da8e17f319c5d09653be4e050d261"
   end
 
   depends_on "rust" => :build
@@ -20,8 +19,8 @@ class Httptap < Formula
                 exclude_packages: "certifi"
 
   resource "anyio" do
-    url "https://files.pythonhosted.org/packages/16/ce/8a777047513153587e5434fd752e89334ac33e379aa3497db860eeb60377/anyio-4.12.0.tar.gz"
-    sha256 "73c693b567b0c55130c104d0b43a9baf3aa6a31fc6110116509f27bf75e21ec0"
+    url "https://files.pythonhosted.org/packages/96/f0/5eb65b2bb0d09ac6776f2eb54adee6abe8228ea05b20a5ad0e4945de8aac/anyio-4.12.1.tar.gz"
+    sha256 "41cfcc3a4c85d3f05c932da7c26d0201ac36f72abd4435ba90d0464a3ffed703"
   end
 
   resource "argcomplete" do
@@ -85,8 +84,8 @@ class Httptap < Formula
   end
 
   resource "rich" do
-    url "https://files.pythonhosted.org/packages/fb/d2/8920e102050a0de7bfabeb4c4614a49248cf8d5d7a8d01885fbb24dc767a/rich-14.2.0.tar.gz"
-    sha256 "73ff50c7c0c1c77c8243079283f4edb376f0f6442433aecb8ce7e6d0b92d1fe4"
+    url "https://files.pythonhosted.org/packages/74/99/a4cab2acbb884f80e558b0771e97e21e939c5dfb460f488d19df485e8298/rich-14.3.2.tar.gz"
+    sha256 "e712f11c1a562a11843306f5ed999475f09ac31ffb64281f73ab29ffdda8b3b8"
   end
 
   resource "socksio" do
@@ -101,10 +100,6 @@ class Httptap < Formula
   end
 
   def install
-    # hatch does not support a SOURCE_DATE_EPOCH before 1980.
-    # Remove after https://github.com/pypa/hatch/pull/1999 is released.
-    ENV["SOURCE_DATE_EPOCH"] = "1451574000"
-
     venv = virtualenv_install_with_resources
 
     generate_completions_from_executable(

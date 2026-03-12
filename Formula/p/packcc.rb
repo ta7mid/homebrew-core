@@ -1,29 +1,41 @@
 class Packcc < Formula
   desc "Parser generator for C"
   homepage "https://github.com/arithy/packcc"
-  url "https://github.com/arithy/packcc/archive/refs/tags/v2.2.0.tar.gz"
-  sha256 "eeb123e2d328de60e0a4171649c7e4c78b25a08b60de35beffd14f3d8fdbdcc8"
+  url "https://github.com/arithy/packcc/archive/refs/tags/v3.0.0.tar.gz"
+  sha256 "6dc28154e04a5af6f1cfa89eb654cd4c691bbced75d2b2a5feb09c6e7d458ede"
   license "MIT"
-  head "https://github.com/arithy/packcc.git", branch: "master"
+  head "https://github.com/arithy/packcc.git", branch: "main"
+
+  livecheck do
+    url :stable
+    strategy :github_latest
+  end
 
   bottle do
     rebuild 1
-    sha256 arm64_tahoe:   "a985b781ba01f8200c457f8acf7e555c5a00d41e0c959dfb6cdd18ed77114b42"
-    sha256 arm64_sequoia: "7d5658437a0ceec144106d77f0bae460683421de720515cbad71e8538c4d7cbe"
-    sha256 arm64_sonoma:  "3011badb913ee3f4cb4482502e883c68a6b0a0d369c2a63a3a99ba170c946c4e"
-    sha256 arm64_ventura: "255f7aea2aa1751e6f4cefb5bdf94c39b8f467d13367b3e1f5a6ebb7bacb4106"
-    sha256 sonoma:        "d4536c19e74530b56251136175507807f63547cbc67cf77c93f6b4545569c046"
-    sha256 ventura:       "ff1768a9796d859f9ba44c04f5f7ed04692ea39d9ed62dbc8255713f8badb263"
-    sha256 arm64_linux:   "a8f0a5decaf1f6a96c01b770938182ff10da977292f249ffa6a67e94bc411eb4"
-    sha256 x86_64_linux:  "ace36e10dc14b5bfa32e9f13355c9b713723148ab1f34e7b9cb90c0782550e01"
+    sha256 arm64_tahoe:   "54055b2cfa7a1cfc71b4577a6675f81086f0dbc4c103e304786d1621c3a14bec"
+    sha256 arm64_sequoia: "9c902b3c71cbfe12ab67936ab985053ea7c7edadbbb24b1ea5a714aaed627ebc"
+    sha256 arm64_sonoma:  "7f116411aa3402af32ce7c676d8648300a1c61808530dcc449965680fc2d9610"
+    sha256 sonoma:        "c8540a200bed0a98772951daf21d62eea6ce37d9b8845abeca161e9305a3f3c1"
+    sha256 arm64_linux:   "376367fd3650589901aefe3b0217dba2c7f153f71bcd7dbff04b1b52d34a9780"
+    sha256 x86_64_linux:  "cc760b6612827f5c33e191d7d5102a1d8f48a80ee1ee8ff38ba2e31abaa6521a"
   end
 
+  depends_on "cmake" => :build
+
   def install
-    inreplace "src/packcc.c", "/usr/share/packcc/", "#{pkgshare}/"
-    build_dir = buildpath/"build"/ENV.compiler.to_s.sub(/-\d+$/, "")
-    system "make", "-C", build_dir
-    bin.install build_dir/"release/bin/packcc"
-    pkgshare.install "examples", "import"
+    import_path = if build.head?
+      pkgshare
+    else
+      prefix
+    end
+    inreplace "src/packcc.c", "/usr/share/packcc/", "#{import_path}/"
+
+    system "cmake", "-S", ".", "-B", "build", *std_cmake_args
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build"
+
+    pkgshare.install "examples"
   end
 
   test do

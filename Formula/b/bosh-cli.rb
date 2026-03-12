@@ -1,19 +1,18 @@
 class BoshCli < Formula
   desc "Cloud Foundry BOSH CLI v2"
   homepage "https://bosh.io/docs/cli-v2/"
-  url "https://github.com/cloudfoundry/bosh-cli/archive/refs/tags/v7.9.15.tar.gz"
-  sha256 "27461ec214e6d3ffef5c5b7b471f61a9fef9e866248726f9450bb78abe7fa22e"
+  url "https://github.com/cloudfoundry/bosh-cli/archive/refs/tags/v7.9.18.tar.gz"
+  sha256 "b4c302181346f541533c6b43d526c5d4aad04ca95e10bc736c8e5bc227fab148"
   license "Apache-2.0"
   head "https://github.com/cloudfoundry/bosh-cli.git", branch: "main"
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "364241ea84eaa99e11fbd16cb9e2a67455f9f46ea9d30a3cf5231bf59c09043e"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "364241ea84eaa99e11fbd16cb9e2a67455f9f46ea9d30a3cf5231bf59c09043e"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "364241ea84eaa99e11fbd16cb9e2a67455f9f46ea9d30a3cf5231bf59c09043e"
-    sha256 cellar: :any_skip_relocation, sonoma:        "58dbfd06394ecf749429b5b966e69afcd7f2713d8103af0ab56c618ac8e7109b"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "3237a5c29d5512934a160a415ca855de71afad1c050814101d834568b102283f"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1b031d3c6e14a2d3636706a8493419fa764b8719e9a50e690afdba7bd141ede5"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "9f6d126910b625017e1efc2c43f1409742e6f1775fa0211d58aafd3fb2270d73"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "9f6d126910b625017e1efc2c43f1409742e6f1775fa0211d58aafd3fb2270d73"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "9f6d126910b625017e1efc2c43f1409742e6f1775fa0211d58aafd3fb2270d73"
+    sha256 cellar: :any_skip_relocation, sonoma:        "9cf307f2765dfb0e425d43a24ce8cb6c320a4755eafff70c6178addf5ce8ff7e"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "7c80d9249b31fea3f84fbcf6119f79e119682dbb817ac6452d152b2006f26537"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0abeb88cbfeef9f66bfa6fcc34f4b18bba7e38d896999256bd3295c547cbc800"
   end
 
   depends_on "go" => :build

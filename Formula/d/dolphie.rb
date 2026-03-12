@@ -3,18 +3,17 @@ class Dolphie < Formula
 
   desc "Feature-rich top tool for monitoring MySQL"
   homepage "https://github.com/charles-001/dolphie"
-  url "https://files.pythonhosted.org/packages/16/1e/590744803ab53aa6a416db328764c2fe6e9615ad41f1a391bea1b4366fc4/dolphie-6.11.2.tar.gz"
-  sha256 "af203edb3efbecb0893209845d625f622ecd3f091ad2f57e0aaaadb4c00d3559"
+  url "https://files.pythonhosted.org/packages/e5/9d/a698bec0f8822c1d908ae1acbe879d03b6f77e30ab4dbd74a24507a4dd86/dolphie-6.13.4.tar.gz"
+  sha256 "dd1ac379f1b5531845f7c16fa0b07f004902d1a14e6c571a8edd9fa55be13f5c"
   license "GPL-3.0-or-later"
-  revision 1
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "1e3bebd7bbac9ab7e421c7bed1b14cd5bf1091febe5ca0d91b6bea775ca3cd95"
-    sha256 cellar: :any,                 arm64_sequoia: "3a94b55985d0b958197e8c45452a856a9f30990478487f2735c7850ea471e542"
-    sha256 cellar: :any,                 arm64_sonoma:  "c083c3a10c1c0f82d19bcfb071ad623d86fbc52000398daf6d97c97e9bfe29d0"
-    sha256 cellar: :any,                 sonoma:        "eb73b2253f9254ed20c062c7fcddc1451eaad4b8476c8630a82d05f90c1dc4f3"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "070acfdd476a597589dd53619be4703b14850277a0d6e3ae37fbb3b4e2fffdd9"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "65d17eb66c3814b73fb838c9139e1bbc986525aaf2b43b90372800661b81256a"
+    sha256 cellar: :any,                 arm64_tahoe:   "c2f1c2efa3db71e4c4f090deb9e0451c83ef6481faa972b0957c1e7b529e89b7"
+    sha256 cellar: :any,                 arm64_sequoia: "e120586610715fcb4bf9119f1d67786703638f7a91fdb47e2f3025e7e59263d6"
+    sha256 cellar: :any,                 arm64_sonoma:  "2d17672aa2d8e120f066b8885108dbf25c67e4ee30b106d905695d15abfd46ab"
+    sha256 cellar: :any,                 sonoma:        "66924fb72bc5491e6253bda17f5503e2afb819a9c38b1451b301cde86d7558d1"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "59df2a1ebac4d13aa46942b0a2ec506074aafb45d68fdb94b9e8489a25ba8d5e"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0335e70feb60efe9cc13987c52f29d19239913a5168203458ae4300529a3dead"
   end
 
   depends_on "rust" => :build # for orjson
@@ -35,8 +34,8 @@ class Dolphie < Formula
   end
 
   resource "linkify-it-py" do
-    url "https://files.pythonhosted.org/packages/2a/ae/bb56c6828e4797ba5a4821eec7c43b8bf40f69cda4d4f5f8c8a2810ec96a/linkify-it-py-2.0.3.tar.gz"
-    sha256 "68cda27e162e9215c17d786649d1da0021a451bdc436ef9e0fa0ba5234b9b048"
+    url "https://files.pythonhosted.org/packages/2e/c9/06ea13676ef354f0af6169587ae292d3e2406e212876a413bf9eece4eb23/linkify_it_py-2.1.0.tar.gz"
+    sha256 "43360231720999c10e9328dc3691160e27a718e280673d444c38d7d3aaa3b98b"
   end
 
   resource "loguru" do
@@ -65,18 +64,18 @@ class Dolphie < Formula
   end
 
   resource "orjson" do
-    url "https://files.pythonhosted.org/packages/04/b8/333fdb27840f3bf04022d21b654a35f58e15407183aeb16f3b41aa053446/orjson-3.11.5.tar.gz"
-    sha256 "82393ab47b4fe44ffd0a7659fa9cfaacc717eb617c93cde83795f14af5c2e9d5"
+    url "https://files.pythonhosted.org/packages/53/45/b268004f745ede84e5798b48ee12b05129d19235d0e15267aa57dcdb400b/orjson-3.11.7.tar.gz"
+    sha256 "9b1a67243945819ce55d24a30b59d6a168e86220452d2c96f4d1f093e71c0c49"
   end
 
   resource "packaging" do
-    url "https://files.pythonhosted.org/packages/a1/d4/1fc4078c65507b51b96ca8f8c3ba19e6a61c8253c72794544580a7b6c24d/packaging-25.0.tar.gz"
-    sha256 "d443872c98d677bf60f6a1f2f8c1cb748e8fe762d2bf9d3148b5599295b0fc4f"
+    url "https://files.pythonhosted.org/packages/65/ee/299d360cdc32edc7d2cf530f3accf79c4fca01e96ffc950d8a52213bd8e4/packaging-26.0.tar.gz"
+    sha256 "00243ae351a257117b6a241061796684b084ed1c516a08c48a3f7e147a9d80b4"
   end
 
   resource "platformdirs" do
-    url "https://files.pythonhosted.org/packages/cf/86/0248f086a84f01b37aaec0fa567b397df1a119f73c16f6c7a9aac73ea309/platformdirs-4.5.1.tar.gz"
-    sha256 "61d5cdcc6065745cdd94f0f878977f8de9437be93de97c1c12f853c9c0cdcbda"
+    url "https://files.pythonhosted.org/packages/1b/04/fea538adf7dbbd6d186f551d595961e564a3b6715bdf276b477460858672/platformdirs-4.9.2.tar.gz"
+    sha256 "9a33809944b9db043ad67ca0db94b14bf452cc6aeaac46a88ea55b26e2e9d291"
   end
 
   resource "plotext" do
@@ -85,8 +84,8 @@ class Dolphie < Formula
   end
 
   resource "psutil" do
-    url "https://files.pythonhosted.org/packages/73/cb/09e5184fb5fc0358d110fc3ca7f6b1d033800734d34cac10f4136cfac10e/psutil-7.2.1.tar.gz"
-    sha256 "f7583aec590485b43ca601dd9cea0dcd65bd7bb21d30ef4ddbf4ea6b5ed1bdd3"
+    url "https://files.pythonhosted.org/packages/aa/c6/d1ddf4abb55e93cebc4f2ed8b5d6dbad109ecb8d63748dd2b20ab5e57ebe/psutil-7.2.2.tar.gz"
+    sha256 "0746f5f8d406af344fd547f1c8daa5f5c33dbc293bb8d6a16d80b4bb88f59372"
   end
 
   resource "pygments" do
@@ -105,8 +104,8 @@ class Dolphie < Formula
   end
 
   resource "rich" do
-    url "https://files.pythonhosted.org/packages/fb/d2/8920e102050a0de7bfabeb4c4614a49248cf8d5d7a8d01885fbb24dc767a/rich-14.2.0.tar.gz"
-    sha256 "73ff50c7c0c1c77c8243079283f4edb376f0f6442433aecb8ce7e6d0b92d1fe4"
+    url "https://files.pythonhosted.org/packages/b3/c6/f3b320c27991c46f43ee9d856302c70dc2d0fb2dba4842ff739d5f46b393/rich-14.3.3.tar.gz"
+    sha256 "b8daa0b9e4eef54dd8cf7c86c03713f53241884e814f4e2f5fb342fe520f639b"
   end
 
   resource "sqlparse" do
@@ -115,8 +114,8 @@ class Dolphie < Formula
   end
 
   resource "textual" do
-    url "https://files.pythonhosted.org/packages/39/55/29416ef63de4c37b37da217b94439a28496a4dc585209f5bf1437a61d120/textual-6.12.0.tar.gz"
-    sha256 "a32e8edbf6abdb0c42d486e96bdf419eb3aa378edb1b1271b84637f3dbd64c73"
+    url "https://files.pythonhosted.org/packages/fb/e4/0f6b6c22a30d2dc2850b4d09c8684742cc4ab79501d4588ea05269c1de3f/textual-8.0.1.tar.gz"
+    sha256 "fe6544e57651a7c2a8249b90ec542b45fa945ce4560e69b0d563fb440e7c4db3"
   end
 
   resource "typing-extensions" do
@@ -125,8 +124,8 @@ class Dolphie < Formula
   end
 
   resource "uc-micro-py" do
-    url "https://files.pythonhosted.org/packages/91/7a/146a99696aee0609e3712f2b44c6274566bc368dfe8375191278045186b8/uc-micro-py-1.0.3.tar.gz"
-    sha256 "d321b92cff673ec58027c04015fcaa8bb1e005478643ff4a500882eaab88c48a"
+    url "https://files.pythonhosted.org/packages/78/67/9a363818028526e2d4579334460df777115bdec1bb77c08f9db88f6389f2/uc_micro_py-2.0.0.tar.gz"
+    sha256 "c53691e495c8db60e16ffc4861a35469b0ba0821fe409a8a7a0a71864d33a811"
   end
 
   resource "urllib3" do
@@ -140,10 +139,6 @@ class Dolphie < Formula
   end
 
   def install
-    # hatch does not support a SOURCE_DATE_EPOCH before 1980.
-    # Remove after https://github.com/pypa/hatch/pull/1999 is released.
-    ENV["SOURCE_DATE_EPOCH"] = "1451574000"
-
     virtualenv_install_with_resources
   end
 

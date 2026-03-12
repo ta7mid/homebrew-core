@@ -1,9 +1,10 @@
 class Netdata < Formula
   desc "Diagnose infrastructure problems with metrics, visualizations & alarms"
   homepage "https://www.netdata.cloud/"
-  url "https://github.com/netdata/netdata/releases/download/v2.8.4/netdata-v2.8.4.tar.gz"
-  sha256 "9bc469ff57edb4464864a8b463e509b5676888b1e2d71c4179f4c65e5eab510a"
+  url "https://github.com/netdata/netdata/releases/download/v2.9.0/netdata-v2.9.0.tar.gz"
+  sha256 "e3f2933aabf46970c31186a85078b5aff437bbb84fa8985d801575d40b1ad5e5"
   license "GPL-3.0-or-later"
+  revision 1
 
   livecheck do
     url :stable
@@ -12,12 +13,12 @@ class Netdata < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "8de493012eb79bd38c39d3504d276e16bc0774cb5d884cacc4d1fa09ca367ec2"
-    sha256 arm64_sequoia: "d910d6751767da5ff24e015fd8bbe6f9e8cfa2f91a83878e56e251c780efb23c"
-    sha256 arm64_sonoma:  "718573ca2ce883b42f171d4fc3430607cee685ebfe5200eedbefe0b531113935"
-    sha256 sonoma:        "1b6833117bee7b4176351b878a4d9f5fad5e73ea2831160e3ef9382bbb064e8a"
-    sha256 arm64_linux:   "ba9e1c4f794a41b256aabf3855bf43ae1f37f6b0a9cb9d1b8fb6d6329ff339da"
-    sha256 x86_64_linux:  "49749ac495278c78c3a6cb3b504c9db29c744409827e86e60619e81785e3d978"
+    sha256 arm64_tahoe:   "978c6a73ecb2b6ac4ff0594c0d0e0859ff870ecdbfe7970aa4a7036baa3b61a5"
+    sha256 arm64_sequoia: "8f20c56b33f9c22632b4315cb5ec31cfe83245a432e08ff371e8f7f53545630d"
+    sha256 arm64_sonoma:  "6829f625991624094cc54bac2b69c9fd7722748b7b129160cb42d24fc10a5008"
+    sha256 sonoma:        "313f6db9351b8d9e9d516f5983a79221fea38edeabb3f02cb7babc0d7d26fad4"
+    sha256 arm64_linux:   "c90b9d2be5dbb6db03eaedbd26c8bac2bc1f27e0dd170a7645b8bd3a7b9344a9"
+    sha256 x86_64_linux:  "7e18d543534c3e435a85a47a802c7b83e33577f48825d6cec97c977cb75a38c3"
   end
 
   depends_on "cmake" => :build
@@ -38,7 +39,6 @@ class Netdata < Formula
   depends_on "zstd"
 
   uses_from_macos "curl"
-  uses_from_macos "zlib"
 
   on_linux do
     depends_on "bison" => :build
@@ -50,6 +50,7 @@ class Netdata < Formula
     depends_on "libmnl"
     depends_on "systemd"
     depends_on "util-linux"
+    depends_on "zlib-ng-compat"
   end
 
   def install

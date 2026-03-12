@@ -1,17 +1,17 @@
 class NetlifyCli < Formula
   desc "Netlify command-line tool"
   homepage "https://www.netlify.com/docs/cli"
-  url "https://registry.npmjs.org/netlify-cli/-/netlify-cli-23.13.3.tgz"
-  sha256 "bf4d6fa389ebd6d916d88345cb55eae70a241edc90cad3182f3951e63339900c"
+  url "https://registry.npmjs.org/netlify-cli/-/netlify-cli-24.1.0.tgz"
+  sha256 "737e5f0e0f9bd46622944c39cf52c4080ada97eac6fca2a2089ae068c7f4c5da"
   license "MIT"
 
   bottle do
-    sha256                               arm64_tahoe:   "3cbdc54caf20eb20812cd5ba61f41bb609e0e94798e792d0744d42f02921cab4"
-    sha256                               arm64_sequoia: "ded2f366e3341c47e44933a5d1d3a46a4e0b13ad0316648d3b3fe5261da79e17"
-    sha256                               arm64_sonoma:  "e35060a48d76e5eb54b9a4976a05134a4cbaf75a6303f6628e4303f6c8664e3b"
-    sha256                               sonoma:        "dd633bb4a3660bd897e52dd1cf63cbd388f2e93ef0f219df5dc2923c93ef2bb2"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "cd875549c82dd28ce33fbcf2e9181cc3c1a9bb444938c696895ccd2767d6ade7"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ee494dceeccc729e14aa9a2f466f9d9681f2a27194c70d0709eaad57ef3ef156"
+    sha256                               arm64_tahoe:   "c7db775af87cb16a9d15d39069c6a5b648f1b12732cd567e40470219f655466b"
+    sha256                               arm64_sequoia: "2e54239f763d93f16e6230ca3b54f8cfb64ea40250bd2d8e9c44573ce99fa1db"
+    sha256                               arm64_sonoma:  "1efcff5c0025033dc5c84436ab697027131b543db83dc40724d5a382f69f611c"
+    sha256                               sonoma:        "f40eabc9b6a77136dd9dc322cc86e4c5e2eabccbda482b4a654478ddd55225c9"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "e00e20e479d201a6d27aa50673ed954b85175a96bd3fb80f7d0f1de98830815b"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6499f53c1e18057165c218a829bc23e1550038087ddfc599049b328dba33dc74"
   end
 
   depends_on "pkgconf" => :build
@@ -31,8 +31,8 @@ class NetlifyCli < Formula
   # Resource needed to build sharp from source to avoid bundled vips
   # https://sharp.pixelplumbing.com/install/#building-from-source
   resource "node-gyp" do
-    url "https://registry.npmjs.org/node-gyp/-/node-gyp-12.1.0.tgz"
-    sha256 "492bca8e813411386e61e488f95b375262aa8f262e6e8b20d162e26bdf025f16"
+    url "https://registry.npmjs.org/node-gyp/-/node-gyp-12.2.0.tgz"
+    sha256 "8689bbeb45a3219dfeb5b05a08d000d3b2492e12db02d46c81af0bee5c085fec"
   end
 
   def install
@@ -53,6 +53,12 @@ class NetlifyCli < Formula
       # Replace the vendored pre-built xsel with one we build ourselves
       ln_sf (Formula["xsel"].opt_bin/"xsel").relative_path_from(linux_dir), linux_dir
     end
+
+    # Remove incompatible pre-built `bare-fs`/`bare-os`/`bare-url` binaries
+    os = OS.kernel_name.downcase
+    arch = Hardware::CPU.intel? ? "x64" : Hardware::CPU.arch.to_s
+    node_modules.glob("{bare-fs,bare-os,bare-url}/prebuilds/*")
+                .each { |dir| rm_r(dir) if dir.basename.to_s != "#{os}-#{arch}" }
   end
 
   test do

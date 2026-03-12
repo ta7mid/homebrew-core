@@ -1,8 +1,8 @@
 class BlockGooseCli < Formula
   desc "Open source, extensible AI agent that goes beyond code suggestions"
   homepage "https://block.github.io/goose/"
-  url "https://github.com/block/goose/archive/refs/tags/v1.19.1.tar.gz"
-  sha256 "c011f64e5505c91e77afdb4c09f3bc917677e3cd9391357accd93770133cdf67"
+  url "https://github.com/block/goose/archive/refs/tags/v1.27.2.tar.gz"
+  sha256 "e2904bcebaef880bafc6177dea335f1d51aad5f104ed21b37936be0995bc4f40"
   license "Apache-2.0"
   head "https://github.com/block/goose.git", branch: "main"
 
@@ -12,23 +12,25 @@ class BlockGooseCli < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "c4003067265927a070b1a4a2da251ba2b404e516cdb39951a99d9b958b9276b5"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "21c1d67a24aae8fcf6357081ac6a5fb2c88d1e2b29a7831b927e08107c0b381e"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "30184f8d055b1e932a7961ee077c292fb29f296735b1d984c101c9def22564d2"
-    sha256 cellar: :any_skip_relocation, sonoma:        "2acf90837faf9c5b9a210044d475c2c03bdda74eb2d2b5970b533b4e832dbb72"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "5779122fa96966cf236ce9c88eae22b0766b0a21d899fd7c35a18b3a4925bf90"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "214d83c0d5cfadb3b6fb18f1236876b250f971cb79f73155c92b8a0d6eadabe0"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "33ae6c5c167d12b651d89bee0ec0cab0b770d841f601a7556824058c58e6f861"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "60fbde132024c9e7a5054c1e5890118e17750ffe660cd42c897b3800468779bb"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "8e06f0dc687355902edc697d8e62aba7bac78efca00250c94b2d4998c51669d8"
+    sha256 cellar: :any_skip_relocation, sonoma:        "16c4a00529ab20bf0d98e897c24ac67c30bbe6c2cf3441ea41636fa0bd8a324a"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "2152219d4a95589799ee16fe66da083b34863028df5331f3b85e5971839afd13"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "35d4936bcb263cf68c3305f9825630f3a6fea61d2225d602673b5c6f8311e86b"
   end
 
+  depends_on "cmake" => :build
   depends_on "pkgconf" => :build
   depends_on "protobuf" => :build # for lance-encoding
   depends_on "rust" => :build
 
-  uses_from_macos "zlib"
+  uses_from_macos "llvm" => :build # for libclang
 
   on_linux do
     depends_on "dbus"
     depends_on "libxcb"
+    depends_on "zlib-ng-compat"
   end
 
   conflicts_with "goose", because: "both install `goose` binaries"

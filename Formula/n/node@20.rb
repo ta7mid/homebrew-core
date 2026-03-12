@@ -1,8 +1,8 @@
 class NodeAT20 < Formula
   desc "Open-source, cross-platform JavaScript runtime environment"
   homepage "https://nodejs.org/"
-  url "https://nodejs.org/dist/v20.19.6/node-v20.19.6.tar.xz"
-  sha256 "2026f9ff52c286d7c7d99932b21be313d1736aea524c5aff1748d41ab0bd9a20"
+  url "https://nodejs.org/dist/v20.20.1/node-v20.20.1.tar.xz"
+  sha256 "e540efdd6750f838e867daf9ab9d90ea195423f915613d05d87105f4d2ecd186"
   license "MIT"
 
   livecheck do
@@ -11,12 +11,12 @@ class NodeAT20 < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "0edc905bc51f6b8d91f5bbf4e13fd1a9be5624a0ef91cfaa18a8f464ac6a1640"
-    sha256 arm64_sequoia: "289f3e166e10b5d8d0879f9043be771beac4d1056119f4b6710ebd6395f7ded0"
-    sha256 arm64_sonoma:  "f40771e2ba2e923ebf511a1c854a1a3be6c1cd7ed25f12a034ad7221fe9971bd"
-    sha256 sonoma:        "d62f13c779c6debac33cb13c0bba7e509b20828f8f77132b28c6c9c4dc4f915c"
-    sha256 arm64_linux:   "3c4cca0584cbfe892e49db2f303bf8c7250e7bcd795fcc56f88bf5a932d6142d"
-    sha256 x86_64_linux:  "4926e3225247f1dae9d6aeeed2b2d28adb769d0c1e11cb9b9130a739916b140f"
+    sha256 arm64_tahoe:   "2a91f49bf9f6befbf090ccc2c684a78ff1fcfc9ca4ab5e2121817d55f831ea99"
+    sha256 arm64_sequoia: "e17ea128372d2b6ad829189f24e3c01b426438f2e014a2788ff47e4e0711f248"
+    sha256 arm64_sonoma:  "075a26247dc555127d4dd88947e5a2b0507016aa21649559408fb2f2a9cc180e"
+    sha256 sonoma:        "d995f19302d32c903a25b3148bc015456e7ba5136e5e174c0a1f7059dde9a0c2"
+    sha256 arm64_linux:   "d053ea2a3284cd0dfa5f44d8e46eede89293f27f291574674468ef45fde5c6d4"
+    sha256 x86_64_linux:  "bfea9c8923c714f103e854c639c7f85a00a7e7f83ed5f9137d22d7fc35d549ab"
   end
 
   keg_only :versioned_formula
@@ -35,10 +35,13 @@ class NodeAT20 < Formula
   depends_on "openssl@3"
 
   uses_from_macos "python"
-  uses_from_macos "zlib"
 
   on_macos do
     depends_on "llvm" => :build if DevelopmentTools.clang_build_version <= 1100
+  end
+
+  on_linux do
+    depends_on "zlib-ng-compat"
   end
 
   fails_with :clang do
@@ -49,8 +52,6 @@ class NodeAT20 < Formula
   end
 
   def install
-    ENV.llvm_clang if OS.mac? && (DevelopmentTools.clang_build_version <= 1100)
-
     # The new linker crashed during LTO due to high memory usage.
     ENV.append "LDFLAGS", "-Wl,-ld_classic" if DevelopmentTools.clang_build_version >= 1500
 

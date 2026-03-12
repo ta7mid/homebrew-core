@@ -3,18 +3,23 @@ class Hk < Formula
   homepage "https://hk.jdx.dev"
   # pull from git tag to get submodules
   url "https://github.com/jdx/hk.git",
-      tag:      "v1.29.0",
-      revision: "b397b72f3791a4edb8d6dff25fcbb4f00a7510db"
+      tag:      "v1.38.0",
+      revision: "79723d03eaf2da70433c19b2425aaf3197cbcfc2"
   license "MIT"
   head "https://github.com/jdx/hk.git", branch: "main"
 
+  livecheck do
+    url :stable
+    strategy :github_latest
+  end
+
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "dd8d3a3d49cc6e2e4b55d773178454ebdb6df815d995f5ee3257c156533b50e6"
-    sha256 cellar: :any,                 arm64_sequoia: "1bfd758baf0c5ed6d1c23196ccef35bcec459b8e6ee6e5f4196ac4c58e4d3328"
-    sha256 cellar: :any,                 arm64_sonoma:  "64acdfb131512278aee33873aabe1dec587f29efe1a450aa629af633575af60e"
-    sha256 cellar: :any,                 sonoma:        "7699fac780ede047f14518be89ce6ee25ad06cd0cd53a013a91fb103444079ff"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "a1aa01dce24d72474fbff8a1387d27e280f5fed1b827169d22ecb483a580671c"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "783478f5fe3b8ccd74cbaf8e8f67eeeb0b9a807070b6eed1fa911e1da5524eaf"
+    sha256 cellar: :any,                 arm64_tahoe:   "b55a6dc6d8abfdc893798930aff0d43971d693ad860f5969ae2887465019f0be"
+    sha256 cellar: :any,                 arm64_sequoia: "67054f78db96676bdf42a2337fe3b223a1511fcf376f8bd7841ab83294a85169"
+    sha256 cellar: :any,                 arm64_sonoma:  "0e47fb870f557771ec3caa1e6ca00a33bb2f613d6d88ca948e02bebad4d0d7c4"
+    sha256 cellar: :any,                 sonoma:        "798bede591a9846f9c30693279348146d7423540428e1d13e45b0e36fdec8e49"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "80be20a7d43c7ed47f4ecefa5f4c80abc68f91e4fe3abfcfa6c2df6a4692720c"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1b8f5dce2e44fb60d3e3a2b6a4cc4ea43d9bd71a6482c1dbfb7078bf18d712ba"
   end
 
   depends_on "rust" => [:build, :test]
@@ -23,7 +28,11 @@ class Hk < Formula
   depends_on "pkl"
   depends_on "usage"
 
-  uses_from_macos "zlib"
+  uses_from_macos "python" => :build
+
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
 
   def install
     # Ensure the correct `openssl` will be picked up.
@@ -34,6 +43,8 @@ class Hk < Formula
 
     generate_completions_from_executable(bin/"hk", "completion")
 
+    # `mise run pkl:gen` - https://github.com/jdx/hk/blob/main/mise-tasks/pkl/gen
+    system "python3", "scripts/gen_builtins.py"
     pkgshare.install "pkl"
   end
 

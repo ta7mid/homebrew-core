@@ -3,20 +3,22 @@ class Commitizen < Formula
 
   desc "Defines a standard way of committing rules and communicating it"
   homepage "https://commitizen-tools.github.io/commitizen/"
-  url "https://files.pythonhosted.org/packages/c4/aa/e0188faa6eecd4293a1d4213ea2b2ddcbed7f8f248ef41594662a78bba92/commitizen-4.11.0.tar.gz"
-  sha256 "d311297a0165ef9f30e0877e04608b786d5fd69760f32245fbf1c21e793e91df"
+  url "https://files.pythonhosted.org/packages/a6/44/10f95e8178ab5a584298726a4a94ceb83a7f77e00741fec4680df05fedd5/commitizen-4.13.9.tar.gz"
+  sha256 "2b4567ed50555e10920e5bd804a6a4e2c42ec70bb74f14a83f2680fe9eaf9727"
   license "MIT"
   head "https://github.com/commitizen-tools/commitizen.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "39d4890c5652b7b30e10142fbe16121ea73c34232750ceb1347efe74c9a99694"
-    sha256 cellar: :any,                 arm64_sequoia: "4f8fe44650c0b9e73c5ca44f53840dd93e65480077a4f463b18d811adccb280e"
-    sha256 cellar: :any,                 arm64_sonoma:  "b6104bda493314d79893bb42536a947eb1090e1c78ffbf59a2d1d8a08dceb989"
-    sha256 cellar: :any,                 sonoma:        "94f553becd77cb9407794eedfb77b045327b0fe0816848b1356b374c3f4ca82a"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "a53bc2140c8ef398e52d3e5fe98df99cea427a6d5ce60029655b41b76b59c0c7"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "a5abcc178aada0d158239d229f9f4e816f2317033d75a99294eb713f33ff5760"
+    sha256 cellar: :any,                 arm64_tahoe:   "89db9ed9c30351ff31d1a338470e928cb0b237722d7b05fbd18de22e4db761ba"
+    sha256 cellar: :any,                 arm64_sequoia: "09a5c18b000b8265a13598ea9dcaa193fb88349ecb3dcd24a6ab7efe2ced8849"
+    sha256 cellar: :any,                 arm64_sonoma:  "39bedb8b6afa12b4ecea68d3c8f22805bbec7d13441d8de0d03964bdf0be457a"
+    sha256 cellar: :any,                 sonoma:        "c48f64af422c4b0e4517bf33e088f7f5263d69ac29df9decace5139e7bd5ac09"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "ef2806a78619d18bb5adeeb7b7d6e38a2266aaaaea67b6ebb4d97faaea5107c5"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f1b4e3cb05dd8329c9e248bea1932cddcef5a6bee4d4de9e6fa444db5d1d4e14"
   end
 
+  depends_on "maturin" => :build
+  depends_on "rust" => :build
   depends_on "libyaml"
   depends_on "python@3.14"
 
@@ -56,8 +58,8 @@ class Commitizen < Formula
   end
 
   resource "packaging" do
-    url "https://files.pythonhosted.org/packages/a1/d4/1fc4078c65507b51b96ca8f8c3ba19e6a61c8253c72794544580a7b6c24d/packaging-25.0.tar.gz"
-    sha256 "d443872c98d677bf60f6a1f2f8c1cb748e8fe762d2bf9d3148b5599295b0fc4f"
+    url "https://files.pythonhosted.org/packages/65/ee/299d360cdc32edc7d2cf530f3accf79c4fca01e96ffc950d8a52213bd8e4/packaging-26.0.tar.gz"
+    sha256 "00243ae351a257117b6a241061796684b084ed1c516a08c48a3f7e147a9d80b4"
   end
 
   resource "prompt-toolkit" do
@@ -81,25 +83,21 @@ class Commitizen < Formula
   end
 
   resource "tomlkit" do
-    url "https://files.pythonhosted.org/packages/cc/18/0bbf3884e9eaa38819ebe46a7bd25dcd56b67434402b66a58c4b8e552575/tomlkit-0.13.3.tar.gz"
-    sha256 "430cf247ee57df2b94ee3fbe588e71d362a941ebb545dec29b53961d61add2a1"
+    url "https://files.pythonhosted.org/packages/c3/af/14b24e41977adb296d6bd1fb59402cf7d60ce364f90c890bd2ec65c43b5a/tomlkit-0.14.0.tar.gz"
+    sha256 "cf00efca415dbd57575befb1f6634c4f42d2d87dbba376128adb42c121b87064"
   end
 
   resource "wcwidth" do
-    url "https://files.pythonhosted.org/packages/24/30/6b0809f4510673dc723187aeaf24c7f5459922d01e2f794277a3dfb90345/wcwidth-0.2.14.tar.gz"
-    sha256 "4d478375d31bc5395a3c55c40ccdf3354688364cd61c4f6adacaa9215d0b3605"
+    url "https://files.pythonhosted.org/packages/35/a2/8e3becb46433538a38726c948d3399905a4c7cabd0df578ede5dc51f0ec2/wcwidth-0.6.0.tar.gz"
+    sha256 "cdc4e4262d6ef9a1a57e018384cbeb1208d8abbc64176027e2c2455c81313159"
   end
 
   resource "wrapt" do
-    url "https://files.pythonhosted.org/packages/49/2a/6de8a50cb435b7f42c46126cf1a54b2aab81784e74c8595c8e025e8f36d3/wrapt-2.0.1.tar.gz"
-    sha256 "9c9c635e78497cacb81e84f8b11b23e0aacac7a136e73b8e5b2109a1d9fc468f"
+    url "https://files.pythonhosted.org/packages/f7/37/ae31f40bec90de2f88d9597d0b5281e23ffe85b893a47ca5d9c05c63a4f6/wrapt-2.1.1.tar.gz"
+    sha256 "5fdcb09bf6db023d88f312bd0767594b414655d58090fc1c46b3414415f67fac"
   end
 
   def install
-    # hatch does not support a SOURCE_DATE_EPOCH before 1980.
-    # Remove after https://github.com/pypa/hatch/pull/1999 is released.
-    ENV["SOURCE_DATE_EPOCH"] = "1451574000"
-
     virtualenv_install_with_resources
 
     generate_completions_from_executable(

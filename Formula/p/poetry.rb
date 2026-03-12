@@ -3,19 +3,18 @@ class Poetry < Formula
 
   desc "Python package management tool"
   homepage "https://python-poetry.org/"
-  url "https://files.pythonhosted.org/packages/19/28/f790e21769afaaa1f326d9634f9a5c700c4cdb4c468a1707c6db0b350505/poetry-2.2.1.tar.gz"
-  sha256 "bef9aa4bb00ce4c10b28b25e7bac724094802d6958190762c45df6c12749b37c"
+  url "https://files.pythonhosted.org/packages/7d/b7/4c242ff85f6263f411060336ef7370e444b1718de1122d0c145e92170b01/poetry-2.3.2.tar.gz"
+  sha256 "6e81526ae99a4f07f75174600bfe8b73e74c786dc18c9d1ce1800dd6f807414b"
   license "MIT"
-  revision 3
   head "https://github.com/python-poetry/poetry.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "e830c2b0e851220fc437b9d7cde56d16135ba8bb21092cf92534d652d5bb92ff"
-    sha256 cellar: :any,                 arm64_sequoia: "d265210fabadc2317b67af758d0bd4743fe5ff3d9ec1ea5ce194f2f3687b690d"
-    sha256 cellar: :any,                 arm64_sonoma:  "495b4766d81409eeef49b2e6044281a7ea3bf99e54438ac8d24149baa59782c4"
-    sha256 cellar: :any,                 sonoma:        "fc8d4fa33a8b010d8c593a9ee63decd7423a146619fafafe1ab32d00cc510afd"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "fa38eafd69abc8bfc0ef5d717c86eb390de19eaf4324115e8afee9fa40f1e2fe"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "94fdf59c063a0792eb1dc986f2e57faf10ff4e4cacdd2c93b363509faf06ff47"
+    sha256 cellar: :any,                 arm64_tahoe:   "a74fff675e1c2f8990c985d51b613e14ae7e972b92d727769c277f770eae95a0"
+    sha256 cellar: :any,                 arm64_sequoia: "6a6387f48f83a3970e7ede81d541ea1a634ed2bd5aca02692096ac712660a70a"
+    sha256 cellar: :any,                 arm64_sonoma:  "b53d496c809cda40bf3c5e51726c840ff699836728d7718af2ea69ab7fc0fd36"
+    sha256 cellar: :any,                 sonoma:        "a1a354897875ef37aaed7380a326fe5bf2c53601b7de943d4a6b7f084e67729e"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "a9fc7b704acbcd4685a702079c495dfcc7fd9c64a14939094e8ed57bdbb9c1fd"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "91e7d8de96095ab20b881208c677cfc07ce2fc4247afafe1f4ec1000619d7fb8"
   end
 
   depends_on "cmake" => :build # for rapidfuzz
@@ -72,8 +71,8 @@ class Poetry < Formula
   end
 
   resource "dulwich" do
-    url "https://files.pythonhosted.org/packages/3e/7c/cb4a5fb0d3d0f6585894759730ae9052e8dd9d2e5172bff544d369b24243/dulwich-0.24.10.tar.gz"
-    sha256 "30e028979b6fa7220c913da9c786026611c10746c06496149742602b36a11f6b"
+    url "https://files.pythonhosted.org/packages/ee/df/4178b6465e118e6e74fd78774b451953dd53c09fdec18f2c4b3319dd0485/dulwich-1.0.0.tar.gz"
+    sha256 "3d07104735525f22bfec35514ac611cf328c89b7acb059316a4f6e583c8f09bc"
   end
 
   resource "fastjsonschema" do
@@ -122,8 +121,8 @@ class Poetry < Formula
   end
 
   resource "jaraco-context" do
-    url "https://files.pythonhosted.org/packages/8d/7d/41acf8e22d791bde812cb6c2c36128bb932ed8ae066bcb5e39cb198e8253/jaraco_context-6.0.2.tar.gz"
-    sha256 "953ae8dddb57b1d791bf72ea1009b32088840a7dd19b9ba16443f62be919ee57"
+    url "https://files.pythonhosted.org/packages/cb/9c/a788f5bb29c61e456b8ee52ce76dbdd32fd72cd73dd67bc95f42c7a8d13c/jaraco_context-6.1.0.tar.gz"
+    sha256 "129a341b0a85a7db7879e22acd66902fda67882db771754574338898b2d5d86f"
   end
 
   resource "jaraco-functools" do
@@ -152,13 +151,13 @@ class Poetry < Formula
   end
 
   resource "packaging" do
-    url "https://files.pythonhosted.org/packages/a1/d4/1fc4078c65507b51b96ca8f8c3ba19e6a61c8253c72794544580a7b6c24d/packaging-25.0.tar.gz"
-    sha256 "d443872c98d677bf60f6a1f2f8c1cb748e8fe762d2bf9d3148b5599295b0fc4f"
+    url "https://files.pythonhosted.org/packages/65/ee/299d360cdc32edc7d2cf530f3accf79c4fca01e96ffc950d8a52213bd8e4/packaging-26.0.tar.gz"
+    sha256 "00243ae351a257117b6a241061796684b084ed1c516a08c48a3f7e147a9d80b4"
   end
 
   resource "pbs-installer" do
-    url "https://files.pythonhosted.org/packages/9c/64/5cf67f6347e518f7e63902b8d43fd2d5594ea1819754f507bf1dde752809/pbs_installer-2025.12.17.tar.gz"
-    sha256 "cf32043fadd168c17a1b18c1c3f801090281bd5c9ce101e2deb7e0e51c8279dd"
+    url "https://files.pythonhosted.org/packages/0c/f8/e9353d3f0aa03782ee0f774d8893869e0ad13df4899184986b834f936cb1/pbs_installer-2026.1.27.tar.gz"
+    sha256 "9abb95545d99a5f4c761fe042a4bdfdcadc635f3498792a17bd62ad7b2c4aafd"
   end
 
   resource "pkginfo" do
@@ -172,8 +171,8 @@ class Poetry < Formula
   end
 
   resource "poetry-core" do
-    url "https://files.pythonhosted.org/packages/54/ef/a16c11de95b638341961765e072dfdd4c9a0be51d6b22d594c5f3255e4bb/poetry_core-2.2.1.tar.gz"
-    sha256 "97e50d8593c8729d3f49364b428583e044087ee3def1e010c6496db76bd65ac5"
+    url "https://files.pythonhosted.org/packages/39/46/7cc89b6ef47803528673585bfa40fa729a7050d9eaedeb7e7f5816300c88/poetry_core-2.3.1.tar.gz"
+    sha256 "96f791d5d7d4e040f3983d76779425cf9532690e2756a24fd5ca0f86af19ef82"
   end
 
   resource "pyproject-hooks" do
@@ -207,13 +206,13 @@ class Poetry < Formula
   end
 
   resource "tomlkit" do
-    url "https://files.pythonhosted.org/packages/cc/18/0bbf3884e9eaa38819ebe46a7bd25dcd56b67434402b66a58c4b8e552575/tomlkit-0.13.3.tar.gz"
-    sha256 "430cf247ee57df2b94ee3fbe588e71d362a941ebb545dec29b53961d61add2a1"
+    url "https://files.pythonhosted.org/packages/c3/af/14b24e41977adb296d6bd1fb59402cf7d60ce364f90c890bd2ec65c43b5a/tomlkit-0.14.0.tar.gz"
+    sha256 "cf00efca415dbd57575befb1f6634c4f42d2d87dbba376128adb42c121b87064"
   end
 
   resource "trove-classifiers" do
-    url "https://files.pythonhosted.org/packages/80/e1/000add3b3e0725ce7ee0ea6ea4543f1e1d9519742f3b2320de41eeefa7c7/trove_classifiers-2025.12.1.14.tar.gz"
-    sha256 "a74f0400524fc83620a9be74a07074b5cbe7594fd4d97fd4c2bfde625fdc1633"
+    url "https://files.pythonhosted.org/packages/d8/43/7935f8ea93fcb6680bc10a6fdbf534075c198eeead59150dd5ed68449642/trove_classifiers-2026.1.14.14.tar.gz"
+    sha256 "00492545a1402b09d4858605ba190ea33243d361e2b01c9c296ce06b5c3325f3"
   end
 
   resource "urllib3" do
@@ -237,10 +236,6 @@ class Poetry < Formula
   end
 
   def install
-    # hatch does not support a SOURCE_DATE_EPOCH before 1980.
-    # Remove after https://github.com/pypa/hatch/pull/1999 is released.
-    ENV["SOURCE_DATE_EPOCH"] = "1451574000"
-
     without = ["zstandard"]
     without += OS.mac? ? ["jeepney", "secretstorage"] : ["xattr"]
     venv = virtualenv_install_with_resources(without:)

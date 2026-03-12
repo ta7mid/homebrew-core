@@ -1,8 +1,8 @@
 class Fastfetch < Formula
   desc "Like neofetch, but much faster because written mostly in C"
   homepage "https://github.com/fastfetch-cli/fastfetch"
-  url "https://github.com/fastfetch-cli/fastfetch/archive/refs/tags/2.56.1.tar.gz"
-  sha256 "6ffd75c32b2a885fd8497867645ac837ed37d588c94e0df05408cdaa0c8fd2c7"
+  url "https://github.com/fastfetch-cli/fastfetch/archive/refs/tags/2.60.0.tar.gz"
+  sha256 "001dd608ebe0d8b651069983690cc93fe7f3e41ac11a50fc591b22c2fe97d9a4"
   license "MIT"
   head "https://github.com/fastfetch-cli/fastfetch.git", branch: "dev"
 
@@ -12,12 +12,12 @@ class Fastfetch < Formula
   end
 
   bottle do
-    sha256               arm64_tahoe:   "9c0f4ced01e9af3268abb32f9d4c025b4654077bdbf88aa013023f359c7190d3"
-    sha256               arm64_sequoia: "944a3719e88d532401e9f79e8656b081153b254d61caa08fa45ca60083e97b9c"
-    sha256               arm64_sonoma:  "749342defe44a7b1bcf9bd92e7266afe8b31e99d199c454958f6439f9ecd32ff"
-    sha256 cellar: :any, sonoma:        "10a9b25b87a411f61d04bb13f674e84a9b0d5d09685e2ba5deb91a9ad2933c1b"
-    sha256               arm64_linux:   "126cb0b52c7a7e42caea6937e60acec1afe276ddcac67624d8342941cd11dd1d"
-    sha256               x86_64_linux:  "1b2f046165211855d636c1d7f0127e4117a1a97a753082dc369efc6f6dc400f1"
+    sha256               arm64_tahoe:   "5f885694a233ea1e3db8bdc5a799f00400f565e5cbdc3ed7c180aa29cd395c45"
+    sha256               arm64_sequoia: "a9106acb94542c571815b586d25ed78a4223a3eb854c586a8a70f15fe1bd222a"
+    sha256               arm64_sonoma:  "798d40615dd2a64df3125a4d1c9aca32918f7831c2b62d4c576d0c486d827087"
+    sha256 cellar: :any, sonoma:        "208171293215e7a1549dd4e1be8c6c92e068002a9edd0100b09bbac1677ef4d1"
+    sha256               arm64_linux:   "be63303a19ab3617c7d5cfb095a0ce76d70993b78bb4ef1cf1afc39da9ca13f1"
+    sha256               x86_64_linux:  "fd31a88c569c2d492c822571b9a6e518edf2933cd0055ceb87f39902ece16580"
   end
 
   depends_on "chafa" => :build
@@ -30,7 +30,6 @@ class Fastfetch < Formula
   depends_on "yyjson"
 
   uses_from_macos "sqlite" => :build
-  uses_from_macos "zlib" => :build
 
   on_linux do
     depends_on "dbus" => :build
@@ -45,6 +44,7 @@ class Fastfetch < Formula
     depends_on "pulseaudio" => :build
     depends_on "rpm" => :build
     depends_on "wayland" => :build
+    depends_on "zlib-ng-compat" => :build
   end
 
   def install

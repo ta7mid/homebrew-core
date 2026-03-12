@@ -1,41 +1,40 @@
 class Edencommon < Formula
   desc "Shared library for Watchman and Eden projects"
   homepage "https://github.com/facebookexperimental/edencommon"
-  url "https://github.com/facebookexperimental/edencommon/archive/refs/tags/v2026.01.05.00.tar.gz"
-  sha256 "e04e988984a778824879df38d35b078c6ca622c5f58538d969923cd470175cfb"
+  url "https://github.com/facebookexperimental/edencommon/archive/refs/tags/v2026.03.09.00.tar.gz"
+  sha256 "e90d7d94d06e4f7a87cfddd0ebf747c5b4a20112e7798c72873c583b282d15d7"
   license "MIT"
   head "https://github.com/facebookexperimental/edencommon.git", branch: "main"
 
   bottle do
-    sha256                               arm64_tahoe:   "4e133d8d82f6ace15ba55a07c90751d2238bcbe90a7e0a0b41daa9a34aba0404"
-    sha256                               arm64_sequoia: "e40c757aad19252445c6bd7606b71ea51159cae9d41cda67c7cb8a50405368e9"
-    sha256                               arm64_sonoma:  "007893c8710557c8f1e7c362ab564e45702eb58fab3255a3207efee75e47af5e"
-    sha256 cellar: :any,                 sonoma:        "a2b4c1662e79624da4d8a228cd607c155adbacb73547138889bf76384b2ec068"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "74ee5c4445af11e81e90be9b82f4b429525132c51bcf0c0b894675dfaf6852ca"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5b4170439237fc18d89e97a902cc7e80529310757fc6eefc277f4e5c57d76910"
+    sha256                               arm64_tahoe:   "3457fda00d252e4dbdeafdec1f782375a0adacb947182447894ccedc500efaf5"
+    sha256                               arm64_sequoia: "a4024dd67590b9e510533c1e9749e8ef03726e82e045240e07981a9bf9f9fcdc"
+    sha256                               arm64_sonoma:  "95544bfea1f6dbaca0b99e6d7d152d49b7edb08e8d064020464ec721b9370911"
+    sha256 cellar: :any,                 sonoma:        "4be7fa60f0a9e6edcb68df7fb2268ebb448548f1a79f5e7a9e08bf980e14b099"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "5cf9c744dc53a8df3489c72f218afc5f45ef95f4489f462feed6a2cc25ef3ea3"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "c8982437f130e543d72b2c86aed9cbaa691e62d7061a0b17c48eb8ced05753de"
   end
 
   depends_on "cmake" => :build
+  depends_on "fbthrift" => :build
+  depends_on "gflags" => :build
+  depends_on "glog" => :build
   depends_on "googletest" => :build
   depends_on "mvfst" => :build
   depends_on "wangle" => :build
   depends_on "boost"
   depends_on "fb303"
-  depends_on "fbthrift"
   depends_on "fmt"
   depends_on "folly"
-  depends_on "gflags"
-  depends_on "glog"
-  depends_on "openssl@3"
 
   def install
     # Fix "Process terminated due to timeout" by allowing a longer timeout.
-    inreplace buildpath.glob("eden/common/{os,utils}/test/CMakeLists.txt"),
-              /gtest_discover_tests\((.*)\)/,
-              "gtest_discover_tests(\\1 DISCOVERY_TIMEOUT 60)"
-    inreplace "eden/common/utils/test/CMakeLists.txt",
-              /gtest_discover_tests\((.*)\)/,
-              "gtest_discover_tests(\\1 DISCOVERY_TIMEOUT 60)"
+    # Related: https://gitlab.kitware.com/cmake/cmake/-/issues/26773
+    test_cmakelists = %w[
+      eden/common/os/test/CMakeLists.txt
+      eden/common/utils/test/CMakeLists.txt
+    ]
+    inreplace test_cmakelists, /(gtest_discover_tests\(.*)\)/, "\\1 DISCOVERY_TIMEOUT 60)"
 
     # Avoid having to build FBThrift py library
     inreplace "CMakeLists.txt", "COMPONENTS cpp2 py)", "COMPONENTS cpp2)"
@@ -45,9 +44,7 @@ class Edencommon < Formula
       -DBUILD_SHARED_LIBS=ON
       -DCMAKE_INSTALL_RPATH=#{rpath}
     ]
-    linker_flags = %w[-undefined dynamic_lookup -dead_strip_dylibs]
-    linker_flags << "-ld_classic" if OS.mac? && MacOS.version == :ventura
-    shared_args << "-DCMAKE_SHARED_LINKER_FLAGS=-Wl,#{linker_flags.join(",")}" if OS.mac?
+    shared_args << "-DCMAKE_SHARED_LINKER_FLAGS=-Wl,-undefined,dynamic_lookup -Wl,-dead_strip_dylibs" if OS.mac?
 
     system "cmake", "-S", ".", "-B", "_build", *shared_args, *std_cmake_args
     system "cmake", "--build", "_build"

@@ -1,8 +1,8 @@
 class Nss < Formula
   desc "Libraries for security-enabled client and server applications"
   homepage "https://firefox-source-docs.mozilla.org/security/nss/index.html"
-  url "https://ftp.mozilla.org/pub/security/nss/releases/NSS_3_120_RTM/src/nss-3.120.tar.gz"
-  sha256 "7ce5f5b3a172a41539ffc118d8ef4834974d0a6a782743e4a05a4e208dd6d22f"
+  url "https://ftp.mozilla.org/pub/security/nss/releases/NSS_3_121_RTM/src/nss-3.121.tar.gz"
+  sha256 "cb3a8f8781bea78b7b8edd3afb7a2cb58e4881bb0160d189a39b98216ba7632e"
   license "MPL-2.0"
 
   livecheck do
@@ -16,18 +16,21 @@ class Nss < Formula
   no_autobump! because: :incompatible_version_format
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "7f5d4a292ff909f62a43a065aa606cf13947f5f019b5c145bb7937f10df91c9b"
-    sha256 cellar: :any,                 arm64_sequoia: "fcb90df4c249c112b47f6039217ea67ad19917ab8968ce3438edbb8052e4aa3d"
-    sha256 cellar: :any,                 arm64_sonoma:  "27f5cad81beaf6511f24096532c28a5fff94927a8de7086c00612b9a3107491f"
-    sha256 cellar: :any,                 sonoma:        "0c92173031aadc71ae098ecac6c79237590d41091cb06c511478010341c04a74"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "a71eb1468cb270b2d8dbcddc393e605a8a23c6bc6c0d3dee9757672e76bb02b9"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "790e28560844fea12b5cee9e659c638fb5536995dac281a50f3cc561f8711ccb"
+    sha256 cellar: :any,                 arm64_tahoe:   "b0f0cfd94a201102f46c88231dc047be34ee130ea3b2ab5af5b0fc2fe3ce93a9"
+    sha256 cellar: :any,                 arm64_sequoia: "0ff85a54eac84a428c8666503f74b9e268a6457e093f782dff22eef71c38bec6"
+    sha256 cellar: :any,                 arm64_sonoma:  "97fb345b22be906fb0be18ed5d84acf5c144efeee297a8df345c3064a0b915bb"
+    sha256 cellar: :any,                 sonoma:        "7624d64d2379f66b9223c1696bc9a9109d1f9b90da8cfc5c5ce806aa98f5bf31"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "69895bb7fdabc338e5d53f76f94f5f6b6b8367c7a9c6d1943f111fbfde071f71"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "2fc409346cbdf838610024d6a355d46bd851ded0bbd786923106129d9200b08b"
   end
 
   depends_on "nspr"
 
   uses_from_macos "sqlite"
-  uses_from_macos "zlib"
+
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
 
   conflicts_with "arabica", because: "both install `mangle` binaries"
   conflicts_with "resty", because: "both install `pp` binaries"

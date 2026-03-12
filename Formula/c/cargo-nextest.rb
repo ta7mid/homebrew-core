@@ -1,8 +1,8 @@
 class CargoNextest < Formula
   desc "Next-generation test runner for Rust"
   homepage "https://nexte.st"
-  url "https://github.com/nextest-rs/nextest/archive/refs/tags/cargo-nextest-0.9.120.tar.gz"
-  sha256 "1bebfe429e2fc77ae49dcaee6ab833056b4d69646b25a3704534035b88d48b86"
+  url "https://github.com/nextest-rs/nextest/archive/refs/tags/cargo-nextest-0.9.130.tar.gz"
+  sha256 "1510769769310eca7b888317cf33fbe24c0203a8655f4b5802438f1e279788bf"
   license "Apache-2.0"
 
   livecheck do
@@ -11,20 +11,20 @@ class CargoNextest < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "e769a0b10d5009be8adb394684aa014c4462a57b7aaa2c160e609215e7dabad1"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "d5c54612d0d589551ebfaad457e2fe0c91c3cfd91f7ebe1c44afc564ec2496a7"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "494f6c079cda2b66e7f4525531a0a1e09995e5e4a00283edcbcc17bac1b53c07"
-    sha256 cellar: :any_skip_relocation, sonoma:        "b62b80a7d714cdcd2f359f63dfdaeb173c61465a81ffbd37c331f9473d22a569"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "f009abafd7cd877481ceb5faa1b3e85a5612cc2468a99c09f3e90c50b0a6e4de"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "14b09ebac46c8139c38e7644bb279931bbc8113f5ac06928605c7f9c2c8ff038"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "1046e2d7465d26d3c8851a652c945360e4631a30d4d5120ff835d75be302fadc"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "8ee6dea8cdacac1c6ca6608c818b51203bda445cfe318858a3f24b8c50a22c17"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "00a6bcfb66a75997bf634bde6dd3a2f64a0cf12a5813a4da152ce80e432aadaa"
+    sha256 cellar: :any_skip_relocation, sonoma:        "42785f56bebed34715da2ffcf7186b741c29afd8a2811c0c35d309d22c479805"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "74ce6a4b9c7491bb6a366fb74ff4b446bfe9ad7caf6258a4d7b51612dd72a4b1"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d692917d001d8452ab5102cea10a2ac484aee7457f448a3d825f1efef24a450d"
   end
 
   depends_on "rust" => :build
   depends_on "rustup" => :test
 
   def install
-    system "cargo", "install", "--no-default-features", "--features", "default-no-update",
-                    *std_cargo_args(path: "cargo-nextest")
+    features = "default-no-update"
+    system "cargo", "install", "--no-default-features", *std_cargo_args(path: "cargo-nextest", features:)
   end
 
   test do

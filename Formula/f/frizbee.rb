@@ -1,19 +1,18 @@
 class Frizbee < Formula
   desc "Throw a tag at and it comes back with a checksum"
   homepage "https://github.com/stacklok/frizbee"
-  url "https://github.com/stacklok/frizbee/archive/refs/tags/v0.1.7.tar.gz"
-  sha256 "71ad0532b478c942b74c53e5ddec45df4b737d4db05192bc899d2ba7ff0a2196"
+  url "https://github.com/stacklok/frizbee/archive/refs/tags/v0.1.9.tar.gz"
+  sha256 "d3105f8788ab9c0f58ea641c6350c9dd11f34038d18c3785cf79515a8822e085"
   license "Apache-2.0"
   head "https://github.com/stacklok/frizbee.git", branch: "main"
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "0e7dccf5ade7ee183fb6e8672e0bcc0aa18e8667c25e31ca2da54818e5cba372"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "0e7dccf5ade7ee183fb6e8672e0bcc0aa18e8667c25e31ca2da54818e5cba372"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "0e7dccf5ade7ee183fb6e8672e0bcc0aa18e8667c25e31ca2da54818e5cba372"
-    sha256 cellar: :any_skip_relocation, sonoma:        "57d0f4e933b040caaaf10263f457f0112ea4f77b59a848edebcf117841deede1"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "ed5ad38b59e10f8ee3853f6c542dd272185b638be61c3abba1408372b76735cd"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "58a62928bbff93823a2fadaef5c7d6f4ec145decbd199d4bd7e0c3966b1479b4"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "ee21e5891f0587fa9e6261a8f12c02914657b2cdd99aa3728d6bf3c4167b7136"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "ee21e5891f0587fa9e6261a8f12c02914657b2cdd99aa3728d6bf3c4167b7136"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "ee21e5891f0587fa9e6261a8f12c02914657b2cdd99aa3728d6bf3c4167b7136"
+    sha256 cellar: :any_skip_relocation, sonoma:        "6b0ff2455c9755eb52f40f45d80e9c8646deb6e207f246d2b0e70dfbd6b28347"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "33f2b17f4bdc8611c92ca92bd6beaf5c095b2fe22d7a7a572ea6557aa334b854"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6491608529728bdb8b9c613582b25c897509c363a1c6b0f3925cd4e50b14f978"
   end
 
   depends_on "go" => :build

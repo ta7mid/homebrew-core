@@ -1,13 +1,13 @@
 class Nerdfetch < Formula
   desc "POSIX *nix fetch script using Nerdfonts"
   homepage "https://github.com/ThatOneCalculator/NerdFetch"
-  url "https://github.com/ThatOneCalculator/NerdFetch/archive/refs/tags/v8.4.2.tar.gz"
-  sha256 "cad765074e4b3f442bf78813f690343d58d3dfd42c90ab83bf93d101f890b27e"
+  url "https://github.com/ThatOneCalculator/NerdFetch/archive/refs/tags/v8.5.2.tar.gz"
+  sha256 "e55bbf715173b339dbb5bcc5f1e5c92b6101800a9b572334742651360d13feeb"
   license "MIT"
   head "https://github.com/ThatOneCalculator/NerdFetch.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "e441ddc3a3129b74f1b924c3740411667addf14ee01339d2d38f63fb1e4b25a0"
+    sha256 cellar: :any_skip_relocation, all: "73058a8015491ad96ee41ab22299b4f8efe6c4c9c321ed93adc1d2f23abb5e0c"
   end
 
   def install

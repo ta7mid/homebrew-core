@@ -1,18 +1,19 @@
 class Libpulsar < Formula
   desc "Apache Pulsar C++ library"
   homepage "https://pulsar.apache.org/"
-  url "https://dlcdn.apache.org/pulsar/pulsar-client-cpp-4.0.0/apache-pulsar-client-cpp-4.0.0.tar.gz"
-  mirror "https://archive.apache.org/dist/pulsar/pulsar-client-cpp-4.0.0/apache-pulsar-client-cpp-4.0.0.tar.gz"
-  sha256 "8bad1ed09241ba62daa82b84446b3c45e9de5873c407ef09f533fac0332918bc"
+  url "https://dlcdn.apache.org/pulsar/pulsar-client-cpp-4.0.1/apache-pulsar-client-cpp-4.0.1.tar.gz"
+  mirror "https://archive.apache.org/dist/pulsar/pulsar-client-cpp-4.0.1/apache-pulsar-client-cpp-4.0.1.tar.gz"
+  sha256 "4eced48fe96639fb55a69673fb0eb62906d81d9e5dc924a0e7ca8e7c2fb9b978"
   license "Apache-2.0"
+  revision 1
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "4484abf642d604912a93d4acb4486c1660873a156b324cbe389d2fb7f528f460"
-    sha256 cellar: :any,                 arm64_sequoia: "32c8a45d86d01dbd6e09215493d42a1fb74d12f283f31f8736042c9ed9cfedaf"
-    sha256 cellar: :any,                 arm64_sonoma:  "01ae811c6a55650199fbeb469fb01ebce634b5acca1a60f746db5a6ebec2946c"
-    sha256 cellar: :any,                 sonoma:        "63677fbc61e7bab1dedd878286e264931b21da4bdec4af5847f7e5d9f92940ae"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "6faf9ade1e8aafdd1387b5c19c062d5191755165e5572b8d6a27a1722ea2ba06"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1e22ebd5aa7a6b414c19c817b31bc3074dfa5bf16e0c2ab5d6fd922c00300528"
+    sha256 cellar: :any,                 arm64_tahoe:   "79fe4c827b6fb763dba5f1f5bbb329adb00a2449d1ea2cad29e41cfe0978bd47"
+    sha256 cellar: :any,                 arm64_sequoia: "dd2dec33e66435cb600fa6fb6234ee6d6d56f8de2647e1578a5fb98900db57df"
+    sha256 cellar: :any,                 arm64_sonoma:  "0add7321b4f70d55644851ea940e4e6a08adaa2a6f14b92f25d03bce2379b195"
+    sha256 cellar: :any,                 sonoma:        "33b13602d737a393edc1691c9c9f5d43cf008ac96f010021071c933b6f1ce14f"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "61187641172d5d7f73e3cd35f5f5b0c6e5732daeb2d947a53d5262095337c73c"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "881923602a4dc184afcdeba7ce4d2e37d2e6cd056ff6e8b68d3a01fc3aad9c16"
   end
 
   depends_on "boost" => :build
@@ -25,7 +26,16 @@ class Libpulsar < Formula
   depends_on "zstd"
 
   uses_from_macos "curl"
-  uses_from_macos "zlib"
+
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
+
+  # Backport fix for newer Boost
+  patch do
+    url "https://github.com/apache/pulsar-client-cpp/commit/b3edc60c5ca46c1df7e0090f7e418a684fd21553.patch?full_index=1"
+    sha256 "020877581ab90806d05ea2d443ca70e4bab9cebc68a640f8607b442b4ecc95fc"
+  end
 
   def install
     args = %W[

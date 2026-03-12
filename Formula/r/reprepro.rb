@@ -1,8 +1,8 @@
 class Reprepro < Formula
   desc "Debian package repository manager"
   homepage "https://salsa.debian.org/debian/reprepro"
-  url "https://deb.debian.org/debian/pool/main/r/reprepro/reprepro_5.4.7.orig.tar.xz"
-  sha256 "df87e4168a580366cdeb3fdc31c5fa99b7d73140e7a7ca5d85ce64bb25370d6f"
+  url "https://deb.debian.org/debian/pool/main/r/reprepro/reprepro_5.4.8.orig.tar.xz"
+  sha256 "f25409cf50acfc8b01a8e1e7c4e176292107763beedb058b42d7bf8e56a8e9c2"
   license "GPL-2.0-only"
 
   livecheck do
@@ -11,12 +11,13 @@ class Reprepro < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "2844e0a31431948d7695c42943a5eca453e15ecf54d4bd31cbc7cb0863670443"
-    sha256 cellar: :any,                 arm64_sequoia: "5146c355e2be811b41d026ae77f5c0d51fcc91d19cbb15a5e0fc4e6b78808834"
-    sha256 cellar: :any,                 arm64_sonoma:  "e912a43c8faef1de37effce75d6b5665d5d8039c86e73c1cebf71e9845255b29"
-    sha256 cellar: :any,                 sonoma:        "d0894c2657bddb755593ef65724ad0da78d742d26c9092433f6886bad46db64b"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "d952be54d3928a47d9191c3e9b5218e19fb27c4b38a13c2c1e7a1da5e8383edc"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8b1f03fb797c16bdea4c00888be000b40ea8c6ef9b8d6f3cc189601093f70d6b"
+    rebuild 1
+    sha256 cellar: :any,                 arm64_tahoe:   "6172bb6e3ed24a3262ba0347cd673cff1c21aa9070a19e19fd0080a824249827"
+    sha256 cellar: :any,                 arm64_sequoia: "3e5e78adbbf2fe3b280ad12b0c0280cc111cdbbe969d2f8d351e38a1ceb2d898"
+    sha256 cellar: :any,                 arm64_sonoma:  "71cb5d6c6c730747893a2824d488915df53b9ab2363db85151fffeb988e23d35"
+    sha256 cellar: :any,                 sonoma:        "f6c637c7a806b7593e34aabe0fd9a48e325c0badf49bc4ee832fa7e6daa0d94f"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "e597daa3f957ba29c07f0d49e3248304498da424db9a412f52786a8a59b16a0e"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "3cc1062a1b192a2454bcde2ed80996bebba8d6561382b19309b2e307fcb30786"
   end
 
   depends_on "autoconf" => :build
@@ -29,10 +30,13 @@ class Reprepro < Formula
   depends_on "zstd"
 
   uses_from_macos "bzip2"
-  uses_from_macos "zlib"
 
   on_macos do
     depends_on "gcc"
+  end
+
+  on_linux do
+    depends_on "zlib-ng-compat"
   end
 
   fails_with :clang do
