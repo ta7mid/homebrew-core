@@ -1,18 +1,19 @@
 class Harfbuzz < Formula
   desc "OpenType text shaping engine"
   homepage "https://github.com/harfbuzz/harfbuzz"
-  url "https://github.com/harfbuzz/harfbuzz/releases/download/13.1.0/harfbuzz-13.1.0.tar.xz"
-  sha256 "a9959a0db77554d266803e1e524249ed4504695fef63524aebca749ac6260a7f"
+  url "https://github.com/harfbuzz/harfbuzz/releases/download/13.2.1/harfbuzz-13.2.1.tar.xz"
+  sha256 "6695da3eb7e1be0aa3092fe4d81433a33b47f4519259c759d729e3a9a55c1429"
   license "MIT"
+  compatibility_version 1
   head "https://github.com/harfbuzz/harfbuzz.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any, arm64_tahoe:   "987d5e6fe5f482087049e5bff3db9883eda79da47e54697ba519ce09976952c4"
-    sha256 cellar: :any, arm64_sequoia: "b5b9aee1e46362283d2edae809606b750e95b5caa0f5f2db571c09af9643d8b5"
-    sha256 cellar: :any, arm64_sonoma:  "24930f4e86049212cd64f03120e8746b19f5e530f2222d49f24325aadc447cc2"
-    sha256 cellar: :any, sonoma:        "a9f9f3e58710a6a3831f3bf5e94466984d3005fe6593333e560da6af0437e3c8"
-    sha256               arm64_linux:   "71c557fd6b2e059181795747dd71722688172c25d9128d41c42a3e06067d16c7"
-    sha256               x86_64_linux:  "efccaf938c20749ca788bc74bc9c950837dd7ab4a0cb82d2ab552947de7ade12"
+    sha256 cellar: :any, arm64_tahoe:   "9d8422fa3f07df372e508585dd4565beb9840d6fedb1e3eab50df8731ef268c2"
+    sha256 cellar: :any, arm64_sequoia: "c89965b0649295d187634cbeb101b2756a38afc5e33ec684d3a8ba5e142ff162"
+    sha256 cellar: :any, arm64_sonoma:  "aa9c04d361a25894351df0797b24ea5e6625bc57c6913e7480bf822c13791fd0"
+    sha256 cellar: :any, sonoma:        "d3c2db617ec38b61cf24ee0c3f032221e5f863040c571da009852ecb09f47edf"
+    sha256               arm64_linux:   "bfb9d364fe5df167174a640c6b63cb2ed106368189e761fdb70033d966fec217"
+    sha256               x86_64_linux:  "4efe593c84e32a7066b0a3f1f494af75b77d3bb71c54e9a9c97bcdcd53200126"
   end
 
   depends_on "gobject-introspection" => :build
@@ -27,6 +28,10 @@ class Harfbuzz < Formula
   depends_on "graphite2"
   depends_on "icu4c@78"
   depends_on "libpng"
+
+  on_linux do
+    depends_on "zlib-ng-compat"
+  end
 
   def install
     args = %w[

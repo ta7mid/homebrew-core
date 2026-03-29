@@ -3,18 +3,18 @@ class Hf < Formula
 
   desc "Client library for huggingface.co hub"
   homepage "https://huggingface.co/docs/huggingface_hub/guides/cli"
-  url "https://files.pythonhosted.org/packages/d5/7a/304cec37112382c4fe29a43bcb0d5891f922785d18745883d2aa4eb74e4b/huggingface_hub-1.6.0.tar.gz"
-  sha256 "d931ddad8ba8dfc1e816bf254810eb6f38e5c32f60d4184b5885662a3b167325"
+  url "https://files.pythonhosted.org/packages/8e/2a/a847fd02261cd051da218baf99f90ee7c7040c109a01833db4f838f25256/huggingface_hub-1.8.0.tar.gz"
+  sha256 "c5627b2fd521e00caf8eff4ac965ba988ea75167fad7ee72e17f9b7183ec63f3"
   license "Apache-2.0"
   head "https://github.com/huggingface/huggingface_hub.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "5d451bec59c74b5a3ddc10fa438968d8fd3f1c26054c84fc1def01fc313bcddf"
-    sha256 cellar: :any,                 arm64_sequoia: "3aaaf3c6261a02f471df2cf5fcff02a0488b22c40d929f93a8638b3b9e65e415"
-    sha256 cellar: :any,                 arm64_sonoma:  "56349b0e9a551d13b4163c7e7737745c51a0038f50cc8b5fc343b3380823506e"
-    sha256 cellar: :any,                 sonoma:        "9e9b944d705a82b309b260a508cfc413080fc80ad06edc4bb2048e38451d88a5"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "1c82f3a54293940560e2473d0cea1b32aa76d2c48c39134866d21c2f86e171da"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d7df20bcc8703a84ce0d77579cf03daf91f2d7dae93e9b47f5ba5c47638b2119"
+    sha256 cellar: :any,                 arm64_tahoe:   "52f4ad6b434603d2d7f73a7a6b87334fb92770bc0d7e644c36a3b06ce6ba7a13"
+    sha256 cellar: :any,                 arm64_sequoia: "7d5aa0d73e6843a4a975bc53b89aa5b54c4766266a45d99b12ca65513f6cda38"
+    sha256 cellar: :any,                 arm64_sonoma:  "22bbea96760bf9822c4e7912f9246e17637f47b80fee501e3fc4d3d9cb86403c"
+    sha256 cellar: :any,                 sonoma:        "16506ec6d2b26492316d107a40ba91574b1002ae181da04599dedc5bee2d559d"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "5f4a78308cddea653a2fc24ef03c0a1a1e59229f2cbcc8f4358218c7ac1006e4"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "07bf72de1255047a0a86d0bce6fbe814e14105e2b33c9228b3e0ede6f9c95d9b"
   end
 
   depends_on "pkgconf" => :build
@@ -38,8 +38,8 @@ class Hf < Formula
   end
 
   resource "anyio" do
-    url "https://files.pythonhosted.org/packages/96/f0/5eb65b2bb0d09ac6776f2eb54adee6abe8228ea05b20a5ad0e4945de8aac/anyio-4.12.1.tar.gz"
-    sha256 "41cfcc3a4c85d3f05c932da7c26d0201ac36f72abd4435ba90d0464a3ffed703"
+    url "https://files.pythonhosted.org/packages/19/14/2c5dd9f512b66549ae92767a9c7b330ae88e1932ca57876909410251fe13/anyio-4.13.0.tar.gz"
+    sha256 "334b70e641fd2221c1505b3890c69882fe4a2df910cba14d97019b90b24439dc"
   end
 
   resource "click" do
@@ -48,8 +48,8 @@ class Hf < Formula
   end
 
   resource "filelock" do
-    url "https://files.pythonhosted.org/packages/77/18/a1fd2231c679dcb9726204645721b12498aeac28e1ad0601038f94b42556/filelock-3.25.0.tar.gz"
-    sha256 "8f00faf3abf9dc730a1ffe9c354ae5c04e079ab7d3a683b7c32da5dd05f26af3"
+    url "https://files.pythonhosted.org/packages/94/b8/00651a0f559862f3bb7d6f7477b192afe3f583cc5e26403b44e59a55ab34/filelock-3.25.2.tar.gz"
+    sha256 "b64ece2b38f4ca29dd3e810287aa8c48182bbecd1ae6e9ae126c9b35f1382694"
   end
 
   resource "fsspec" do
@@ -63,8 +63,8 @@ class Hf < Formula
   end
 
   resource "hf-xet" do
-    url "https://files.pythonhosted.org/packages/8b/cb/9bb543bd987ffa1ee48202cc96a756951b734b79a542335c566148ade36c/hf_xet-1.3.2.tar.gz"
-    sha256 "e130ee08984783d12717444e538587fa2119385e5bd8fc2bb9f930419b73a7af"
+    url "https://files.pythonhosted.org/packages/09/08/23c84a26716382c89151b5b447b4beb19e3345f3a93d3b73009a71a57ad3/hf_xet-1.4.2.tar.gz"
+    sha256 "b7457b6b482d9e0743bd116363239b1fa904a5e65deede350fbc0c4ea67c71ea"
   end
 
   resource "httpcore" do
@@ -138,11 +138,11 @@ class Hf < Formula
     resource("hf-xet").stage do
       # Use native-tls instead since building bundled aws-lc is tricky to do indirectly within superenv.
       # Can consider switching if system copy is supported https://github.com/aws/aws-lc-rs/issues/936
-      inreplace "cas_client/Cargo.toml", 'default = ["rustls-tls"]', 'default = ["native-tls"]'
+      inreplace "xet_client/Cargo.toml", 'default = ["rustls-tls"]', 'default = ["native-tls"]'
 
       if ENV.effective_arch == :armv8
         # Disable sha2-asm which requires a minimum of -march=armv8-a+crypto
-        inreplace "data/Cargo.toml",
+        inreplace "xet_data/Cargo.toml",
                   'sha2 = { workspace = true, features = ["asm"] }',
                   "sha2 = { workspace = true }"
       end

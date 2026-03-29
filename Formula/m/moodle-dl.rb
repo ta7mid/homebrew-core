@@ -6,25 +6,26 @@ class MoodleDl < Formula
   url "https://files.pythonhosted.org/packages/0b/44/9c283a04b0ede0bcaa2f3595b523cb115c662fe349f215631484035126d1/moodle_dl-2.3.13.tar.gz"
   sha256 "7a6d813b3241497fb79a34a428aa266b2d2d3c175e05d46752e0a8040adaddce"
   license "GPL-3.0-or-later"
-  revision 6
+  revision 7
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "11dc6426420c4f0dfeb58d0d1db817a0e7d94def55c2d0edc337eb0c69a522fd"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "898e15db8736a9c425865e5ada1a4546bbc869b2557d37e109ca5ff710ed3797"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "e081c004876cbecc91eb603732ef2dd276cd10240d3b9869b391715a1b8dfcfe"
-    sha256 cellar: :any_skip_relocation, sonoma:        "b6650482fc16bdb2ba85f02d546865627d85ac76420cc6614f9c6ea51fe93956"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "706b40da335315f37a587774fb0c6188b5686f4f0edb7e5cb82cdb9179cfea4a"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "c9212c015959a4abc622e5310fa869e5c53e41bf29838030f27f198e0f41d90b"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "956c06601f8f684a3655021a776e775b80472048e3d76b282275cef69215259a"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "1d88a65c7cec44dbbdf1e3c15d4490995c16b764cdbbb49cd5cf8e0f5ceb59ee"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "8ff932d99b4e52d3f0f5ea9768e35c627182a1b07345fdc14c2ece9e995e53f3"
+    sha256 cellar: :any_skip_relocation, sonoma:        "0c5ea30e10ff34d59ff8df9b3bba6257e3f0b0cf08d0e717f69e2561c4961a62"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "8fd71460f678b8c562c48e1ca1169596721856f4b044d7f924136104ac07b465"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "cee8eb5ad416d47b22c2e161efd756adbc1b896f6aa07fbd059c90799727ae6d"
   end
 
   depends_on "cmake" => :build # for pycares
   depends_on "certifi" => :no_linkage
+  depends_on "cffi" => :no_linkage
   depends_on "ffmpeg"
   depends_on "python@3.14"
 
   uses_from_macos "libffi"
 
-  pypi_packages exclude_packages: "certifi"
+  pypi_packages exclude_packages: %w[certifi cffi]
 
   resource "aiodns" do
     url "https://files.pythonhosted.org/packages/10/da/97235e953109936bfeda62c1f9f1a7c5652d4dc49f2b5911f9ae1043afa9/aiodns-4.0.0.tar.gz"
@@ -52,18 +53,13 @@ class MoodleDl < Formula
   end
 
   resource "attrs" do
-    url "https://files.pythonhosted.org/packages/6b/5c/685e6633917e101e5dcb62b9dd76946cbb57c26e133bae9e0cd36033c0a9/attrs-25.4.0.tar.gz"
-    sha256 "16d5969b87f0859ef33a48b35d55ac1be6e42ae49d5e853b597db70c35c57e11"
-  end
-
-  resource "cffi" do
-    url "https://files.pythonhosted.org/packages/eb/56/b1ba7935a17738ae8453301356628e8147c79dbb825bcbc73dc7401f9846/cffi-2.0.0.tar.gz"
-    sha256 "44d1b5909021139fe36001ae048dbdde8214afa20200eda0f64c068cac5d5529"
+    url "https://files.pythonhosted.org/packages/9a/8e/82a0fe20a541c03148528be8cac2408564a6c9a0cc7e9171802bc1d26985/attrs-26.1.0.tar.gz"
+    sha256 "d03ceb89cb322a8fd706d4fb91940737b6642aa36998fe130a9bc96c985eff32"
   end
 
   resource "charset-normalizer" do
-    url "https://files.pythonhosted.org/packages/13/69/33ddede1939fdd074bce5434295f38fae7136463422fe4fd3e0e89b98062/charset_normalizer-3.4.4.tar.gz"
-    sha256 "94537985111c35f28720e43603b8e7b43a6ecfb2ce1d3058bbe955b73404e21a"
+    url "https://files.pythonhosted.org/packages/7b/60/e3bec1881450851b087e301bedc3daa9377a4d45f1c26aa90b0b235e38aa/charset_normalizer-3.4.6.tar.gz"
+    sha256 "1ae6b62897110aa7c79ea2f5dd38d1abca6db663687c0b1ad9aed6f6bae3d9d6"
   end
 
   resource "colorama" do
@@ -106,24 +102,19 @@ class MoodleDl < Formula
     sha256 "5a3c249c830432631439815f9a818463416f2a8cbdb1e988e78757de9ae75081"
   end
 
-  resource "pycparser" do
-    url "https://files.pythonhosted.org/packages/1b/7d/92392ff7815c21062bea51aa7b87d45576f649f16458d78b7cf94b9ab2e6/pycparser-3.0.tar.gz"
-    sha256 "600f49d217304a5902ac3c37e1281c9fe94e4d0489de643a9504c5cdfdfc6b29"
-  end
-
   resource "readchar" do
     url "https://files.pythonhosted.org/packages/dd/f8/8657b8cbb4ebeabfbdf991ac40eca8a1d1bd012011bd44ad1ed10f5cb494/readchar-4.2.1.tar.gz"
     sha256 "91ce3faf07688de14d800592951e5575e9c7a3213738ed01d394dcc949b79adb"
   end
 
   resource "requests" do
-    url "https://files.pythonhosted.org/packages/c9/74/b3ff8e6c8446842c3f5c837e9c3dfcfe2018ea6ecef224c710c85ef728f4/requests-2.32.5.tar.gz"
-    sha256 "dbba0bac56e100853db0ea71b82b4dfd5fe2bf6d3754a8893c3af500cec7d7cf"
+    url "https://files.pythonhosted.org/packages/34/64/8860370b167a9721e8956ae116825caff829224fbca0ca6e7bf8ddef8430/requests-2.33.0.tar.gz"
+    sha256 "c7ebc5e8b0f21837386ad0e1c8fe8b829fa5f544d8df3b2253bff14ef29d7652"
   end
 
   resource "sentry-sdk" do
-    url "https://files.pythonhosted.org/packages/d3/06/66c8b705179bc54087845f28fd1b72f83751b6e9a195628e2e9af9926505/sentry_sdk-2.53.0.tar.gz"
-    sha256 "6520ef2c4acd823f28efc55e43eb6ce2e6d9f954a95a3aa96b6fd14871e92b77"
+    url "https://files.pythonhosted.org/packages/de/df/5008954f5466085966468612a7d1638487596ee6d2fd7fb51783a85351bf/sentry_sdk-2.56.0.tar.gz"
+    sha256 "fdab72030b69625665b2eeb9738bdde748ad254e8073085a0ce95382678e8168"
   end
 
   resource "six" do
@@ -142,13 +133,13 @@ class MoodleDl < Formula
   end
 
   resource "yarl" do
-    url "https://files.pythonhosted.org/packages/57/63/0c6ebca57330cd313f6102b16dd57ffaf3ec4c83403dcb45dbd15c6f3ea1/yarl-1.22.0.tar.gz"
-    sha256 "bebf8557577d4401ba8bd9ff33906f1376c877aa78d1fe216ad01b4d6745af71"
+    url "https://files.pythonhosted.org/packages/23/6e/beb1beec874a72f23815c1434518bfc4ed2175065173fb138c3705f658d4/yarl-1.23.0.tar.gz"
+    sha256 "53b1ea6ca88ebd4420379c330aea57e258408dd0df9af0992e5de2078dc9f5d5"
   end
 
   resource "yt-dlp" do
-    url "https://files.pythonhosted.org/packages/58/d9/55ffff25204733e94a507552ad984d5a8a8e4f9d1f0d91763e6b1a41c79b/yt_dlp-2026.2.21.tar.gz"
-    sha256 "4407dfc1a71fec0dee5ef916a8d4b66057812939b509ae45451fa8fb4376b539"
+    url "https://files.pythonhosted.org/packages/8b/34/7c6b4e3f89cb6416d2cd7ab6dab141a1df97ab0fb22d15816db2c92148c9/yt_dlp-2026.3.17.tar.gz"
+    sha256 "ba7aa31d533f1ffccfe70e421596d7ca8ff0bf1398dc6bb658b7d9dec057d2c9"
   end
 
   def install

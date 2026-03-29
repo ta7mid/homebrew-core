@@ -1,23 +1,20 @@
 class MarpCli < Formula
   desc "Easily convert Marp Markdown files into static HTML/CSS, PDF, PPT and images"
   homepage "https://github.com/marp-team/marp-cli"
-  url "https://registry.npmjs.org/@marp-team/marp-cli/-/marp-cli-4.2.3.tgz"
-  sha256 "e5851716df96b0d5fbe3216e38b1f0ce8f7c6ea0bd1c00e712e77d9da56a2bc8"
+  url "https://registry.npmjs.org/@marp-team/marp-cli/-/marp-cli-4.3.1.tgz"
+  sha256 "162c5e06f022c75dd741f4e27bff8caf97f3283f3fa57475decea59d3b480a1e"
   license "MIT"
-  revision 1
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "7e9ceb263b61d6f55746ab7c5ab6f4e12ce5bb749a618b17912e49ae7315e417"
-    sha256 cellar: :any,                 arm64_sequoia: "17bc3847ffd84cf69b128b48a2220f0610e4715a45f76d9809bf376156a0083b"
-    sha256 cellar: :any,                 arm64_sonoma:  "17bc3847ffd84cf69b128b48a2220f0610e4715a45f76d9809bf376156a0083b"
-    sha256 cellar: :any,                 sonoma:        "b62c5e31eff56dae8f99b73947a2d343a32f321797b559d1eac71e6127776b34"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "17b66788e0faf313b438502fd14fa066c6c589073c7c2f4df78b3556b2cc7869"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6ea40b743d6849ed00af718af64ce987ca7564569eb42f6fda93430ca64566db"
+    sha256 cellar: :any,                 arm64_tahoe:   "b5e74d0cb2b6aba5ebc8fcb9066e2579143856e28565578344a0eec3177e7587"
+    sha256 cellar: :any,                 arm64_sequoia: "f7bb739c27563361aa91847c952bf100f98167b6662d61d5a30999a8ba12c2c8"
+    sha256 cellar: :any,                 arm64_sonoma:  "f7bb739c27563361aa91847c952bf100f98167b6662d61d5a30999a8ba12c2c8"
+    sha256 cellar: :any,                 sonoma:        "f68e38630e584815a3b4035ff5f8dfdc6665b00aa3940b7e51d340e257c2c2c9"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "234404880ee4628830255bd83cb3f37e63798cd3a7c029e7b4edec22db135a9e"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "7c684a488cc5073a2783e8bff1575f60955763c96b4576912dd7f793395e6d11"
   end
 
-  # Remove when Node 25 is fixed upstream: https://github.com/nodejs/node/issues/61971
-  # Formula-specific tracking: https://github.com/marp-team/marp-cli/issues/708
-  depends_on "node@24"
+  depends_on "node"
 
   def install
     system "npm", "install", *std_npm_args
@@ -50,7 +47,7 @@ class MarpCli < Formula
     assert_path_exists testpath/"deck.html"
     content = (testpath/"deck.html").read
     assert_match "theme:uncover", content
-    assert_match "<h1 id=\"hello-homebrew\">Hello, Homebrew!</h1>", content
+    assert_match '<h1 id="hello-homebrew">Hello, Homebrew!</h1>', content
     assert_match "background-color:blue", content
     assert_match "👍", content
   end

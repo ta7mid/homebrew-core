@@ -1,17 +1,17 @@
 class IcpCli < Formula
   desc "Development tool for building and deploying canisters on ICP"
   homepage "https://dfinity.github.io/icp-cli/"
-  url "https://github.com/dfinity/icp-cli/archive/refs/tags/v0.2.0.tar.gz"
-  sha256 "4bbe414eff4abe90f625628e2a4a0affcb7440869ba92234cb153ca68f673e97"
+  url "https://github.com/dfinity/icp-cli/archive/refs/tags/v0.2.2.tar.gz"
+  sha256 "62c371ea443217759eb5f784182f16414a4615c11c800c9b824059a1f41b2102"
   license "Apache-2.0"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "b758599c874159eadd8f4a4d6d265f6ee0ee7d3225db4ff4d919b907fa51bc38"
-    sha256 cellar: :any,                 arm64_sequoia: "14b570772217d85f4f89a3275d6f7e26632f235d693e8018adbf625b1702bed1"
-    sha256 cellar: :any,                 arm64_sonoma:  "1f64e4e225529925128fdc7887e1da79f29c47204b255ba8039e68b107e92b93"
-    sha256 cellar: :any,                 sonoma:        "77df5e697d326092b358842209a1e0e96520588b2c2be5b5520ff44e3af52898"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "48d63029edb04c0a82371f496c30ed770e2aec29b479449f05d94ad626ae42c1"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "033b82653683fa2f534868e38413d8d1ea3d001cb1e72ad6281267d23db72076"
+    sha256 cellar: :any,                 arm64_tahoe:   "39fd6cd129287585cda077a517e27726ba75714cde939b3d5a127758d11f7b16"
+    sha256 cellar: :any,                 arm64_sequoia: "5ae325071c3bb64b6e5c89133cf3570aa2c1f6bc59008ad7c6df8d8ad0c4ba99"
+    sha256 cellar: :any,                 arm64_sonoma:  "948ca8a5424eab628a28f57aa3c22f99fb825aaa6b4519655c17bcd24d90d764"
+    sha256 cellar: :any,                 sonoma:        "a41f7cb8825bcf24f64dae0feaf7178c2f0608a2694032eecdae123181088b07"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "6215412898ee87b1e1e6f40e8ba98c977c832767e43cc6e92e931603744cffb1"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "a78a1e7c2ee4dc6cb9d42577ccc319ecc3b11bea721cccfe739fac85f43f1aa6"
   end
 
   depends_on "rust" => :build
@@ -25,6 +25,7 @@ class IcpCli < Formula
   end
 
   def install
+    ENV["ICP_CLI_BUILD_DIST"] = "homebrew-core"
     ENV["OPENSSL_DIR"] = Formula["openssl@3"].opt_prefix
     ENV["OPENSSL_NO_VENDOR"] = "1"
 

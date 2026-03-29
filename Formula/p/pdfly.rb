@@ -6,15 +6,15 @@ class Pdfly < Formula
   url "https://files.pythonhosted.org/packages/48/ae/70f161c80b3f39d8fe4ff784c78045225820d10375c81c2097c0e85ac0fc/pdfly-0.5.1.tar.gz"
   sha256 "636e9736ca3296ed69ad7e14d997813ea5a662ba7a86c77d155e343494dcc3d7"
   license "BSD-3-Clause"
-  revision 10
+  revision 13
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "4ea44d78881d375b45a39b23b9acae8830750f59cc915832b188a639f2b3c61b"
-    sha256 cellar: :any,                 arm64_sequoia: "1b5ea2ae8d4c3fe60ad9e3c52e7ac2af6dbc7021eb47e192d853f61eb66118c2"
-    sha256 cellar: :any,                 arm64_sonoma:  "fb7112ffb5cc243f30a333a74135f9e883871c7e0b78daedcfdb72166fd49b78"
-    sha256 cellar: :any,                 sonoma:        "a7e6500812b02a7c5023404c7fcd91a467d389143e79642bab6eddfe95695173"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "ce1f7d78d6e744f7567c6c0e879cba4628c01fff6cc1a5795aa88dd4cb5016aa"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "06d6eaf42fce1264346ad1386555d31bf75c78e8c7e5b03f1beb29c1f97765ef"
+    sha256 cellar: :any,                 arm64_tahoe:   "24b13f89de15625c3dbc391d50caf6239719715c770ec8962dc2a5b01a78dd74"
+    sha256 cellar: :any,                 arm64_sequoia: "581af1628196e5bee34ac0e24a490c3b5ac336dedea5228fa5d6505b804040b5"
+    sha256 cellar: :any,                 arm64_sonoma:  "91b77c4db644420d9d7573b41b761289ea8c19f4c4247771f1d1cae34b472ed9"
+    sha256 cellar: :any,                 sonoma:        "100088986cbeeb214f6f246e71547bf74fe7697780b9d99b4e19f5632fa36edd"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "1712dde203fc04357470be5d6d686ef302a0a4f76d0760e7e8a36d77fcf2ae68"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8cbd1fdce8ec4930119a11fb1e83d5353cd7a177eb81481b9728a364b963016c"
   end
 
   depends_on "pkgconf" => :build
@@ -49,8 +49,8 @@ class Pdfly < Formula
   end
 
   resource "charset-normalizer" do
-    url "https://files.pythonhosted.org/packages/13/69/33ddede1939fdd074bce5434295f38fae7136463422fe4fd3e0e89b98062/charset_normalizer-3.4.4.tar.gz"
-    sha256 "94537985111c35f28720e43603b8e7b43a6ecfb2ce1d3058bbe955b73404e21a"
+    url "https://files.pythonhosted.org/packages/7b/60/e3bec1881450851b087e301bedc3daa9377a4d45f1c26aa90b0b235e38aa/charset_normalizer-3.4.6.tar.gz"
+    sha256 "1ae6b62897110aa7c79ea2f5dd38d1abca6db663687c0b1ad9aed6f6bae3d9d6"
   end
 
   resource "click" do
@@ -69,8 +69,8 @@ class Pdfly < Formula
   end
 
   resource "fonttools" do
-    url "https://files.pythonhosted.org/packages/ec/ca/cf17b88a8df95691275a3d77dc0a5ad9907f328ae53acbe6795da1b2f5ed/fonttools-4.61.1.tar.gz"
-    sha256 "6675329885c44657f826ef01d9e4fb33b9158e9d93c537d84ad8399539bc6f69"
+    url "https://files.pythonhosted.org/packages/9a/08/7012b00a9a5874311b639c3920270c36ee0c445b69d9989a85e5c92ebcb0/fonttools-4.62.1.tar.gz"
+    sha256 "e54c75fd6041f1122476776880f7c3c3295ffa31962dc6ebe2543c00dca58b5d"
   end
 
   resource "fpdf2" do
@@ -124,13 +124,13 @@ class Pdfly < Formula
   end
 
   resource "pypdf" do
-    url "https://files.pythonhosted.org/packages/f6/52/37cc0aa9e9d1bf7729a737a0d83f8b3f851c8eb137373d9f71eafb0a3405/pypdf-6.7.5.tar.gz"
-    sha256 "40bb2e2e872078655f12b9b89e2f900888bb505e88a82150b64f9f34fa25651d"
+    url "https://files.pythonhosted.org/packages/31/83/691bdb309306232362503083cb15777491045dd54f45393a317dc7d8082f/pypdf-6.9.2.tar.gz"
+    sha256 "7f850faf2b0d4ab936582c05da32c52214c2b089d61a316627b5bfb5b0dab46c"
   end
 
   resource "requests" do
-    url "https://files.pythonhosted.org/packages/c9/74/b3ff8e6c8446842c3f5c837e9c3dfcfe2018ea6ecef224c710c85ef728f4/requests-2.32.5.tar.gz"
-    sha256 "dbba0bac56e100853db0ea71b82b4dfd5fe2bf6d3754a8893c3af500cec7d7cf"
+    url "https://files.pythonhosted.org/packages/34/64/8860370b167a9721e8956ae116825caff829224fbca0ca6e7bf8ddef8430/requests-2.33.0.tar.gz"
+    sha256 "c7ebc5e8b0f21837386ad0e1c8fe8b829fa5f544d8df3b2253bff14ef29d7652"
   end
 
   resource "rich" do

@@ -1,18 +1,18 @@
 class Onnx < Formula
   desc "Open standard for machine learning interoperability"
   homepage "https://onnx.ai/"
-  url "https://github.com/onnx/onnx/archive/refs/tags/v1.20.1.tar.gz"
-  sha256 "9bcd6473c689b1ac3aeba8df572891756e01c1a151ae788df5cbc7a4499e5db5"
+  url "https://github.com/onnx/onnx/archive/refs/tags/v1.21.0.tar.gz"
+  sha256 "42ffedcd8c9b6363694300c6ffec1ada77f9620176465719acb27b13a4d6f2de"
   license "Apache-2.0"
-  revision 4
+  compatibility_version 1
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "f22d77e26cb864c3990c516952526a30fa2b8a5492054ec8384f10cd28459540"
-    sha256 cellar: :any,                 arm64_sequoia: "01951a01a4af1ce69ad047373712b72767c2c33b847819104ee52f88b014143e"
-    sha256 cellar: :any,                 arm64_sonoma:  "a70ccf2167ecf579e3fd5c5a6ccc0222d44bfd1856cc3643daa2be3defb2571a"
-    sha256 cellar: :any,                 sonoma:        "e05df17cd26ecc9f591a0df00c385b698a52ea5c1f1d52cde39774681b22b15b"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "3bf55c1b857347776dc0c2d355e492f27c4fa3fdf430ec1860523799330bcef2"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6e7a4dfd057c361fb43014b1f85e29bb9da7b5649d96af923a328bc38f7e33f7"
+    sha256 cellar: :any,                 arm64_tahoe:   "8cd8c0daff9b8c47f945a07a7eb43c0e2fc34520341734ca93af877e9ddb03d9"
+    sha256 cellar: :any,                 arm64_sequoia: "c5afe37ccfc484e10911a41f277dc1c18ee7ca7f8a49db1133c8efafd4be4c5a"
+    sha256 cellar: :any,                 arm64_sonoma:  "758b9bd4424040396ba0028de0a21020af720b2f7e1eef8976efd42b727c9cfc"
+    sha256 cellar: :any,                 sonoma:        "5b37df5d538ab2d9663dc3d36d4b387c22c368f854b9105a0d90f3e856ee5cbe"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "e6f1e737833f65c753da7cc5734137ba1b0ff21f6403b1d92afa442b26e1144b"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "dc50ad4ddbb1e6df2a603697e0a211daf210c6619621ac6da16bcbcee0ef23a1"
   end
 
   depends_on "cmake" => [:build, :test]

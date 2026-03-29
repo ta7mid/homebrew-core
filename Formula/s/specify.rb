@@ -3,17 +3,17 @@ class Specify < Formula
 
   desc "Toolkit to help you get started with Spec-Driven Development"
   homepage "https://github.com/github/spec-kit"
-  url "https://github.com/github/spec-kit/archive/refs/tags/v0.2.1.tar.gz"
-  sha256 "331a50156a7a27eb1770c5afc755e217e51f470026f1890a0d9371d8c22fbd11"
+  url "https://github.com/github/spec-kit/archive/refs/tags/v0.4.3.tar.gz"
+  sha256 "32c7bc0fcae97de71124af650c45f78144f7f391d050270defeec1d12b1efebd"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "25c3450c36f5d93adf5a143b2981b307bd20e93f82b964176cb69f061f0277be"
-    sha256 cellar: :any,                 arm64_sequoia: "4f7f1c18e8be267042f8059d1b2c95e30387fcd2e012639f38cf715385e37f18"
-    sha256 cellar: :any,                 arm64_sonoma:  "96ef3a4de2de551b5d3695648703cf30529f3a511ce96f32e7e24caa20f98d72"
-    sha256 cellar: :any,                 sonoma:        "575243a0a1065e9d98b8ac8242f76e584c6e0c56dee968d329d5ba193d4db3a9"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "4986249a275c95aa373556e87f206a88b41abba664deba53aa43dabedf513d96"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "12491b3efe8b493e2593c63930bbac03c9d64a1124721cb8ed34d02af5000f42"
+    sha256 cellar: :any,                 arm64_tahoe:   "84b64be9b1599aa08ff40a09bb4ee81bd9662c5340aba2495dcbf2dabd9cd47a"
+    sha256 cellar: :any,                 arm64_sequoia: "092be9ecd4f8c25634fb8c20872287a060338e2f963759f105c29991874ca1fa"
+    sha256 cellar: :any,                 arm64_sonoma:  "9a4e030d3c6f78e216a7f0ec6647244cb9b534257e2075da9ad90bbd54fa3533"
+    sha256 cellar: :any,                 sonoma:        "31f4c69d4da4efa812b5b5a06962014ae8b5e042822b3c38c2db56d2c58a3c71"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "2fc121bd1c3af338adf1d78bd99dbfc26e0e4aec34f79755706f11839aeb81d6"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "64d63315f873fbb16503d2acbb71824f07a3c58914e722ba00b7580c0f149c0b"
   end
 
   depends_on "certifi" => :no_linkage
@@ -55,6 +55,11 @@ class Specify < Formula
   resource "idna" do
     url "https://files.pythonhosted.org/packages/6f/6d/0703ccc57f3a7233505399edb88de3cbd678da106337b9fcde432b65ed60/idna-3.11.tar.gz"
     sha256 "795dafcc9c04ed0c1fb032c2aa73654d8e8c5023a7df64a53f39190ada629902"
+  end
+
+  resource "json5" do
+    url "https://files.pythonhosted.org/packages/77/e8/a3f261a66e4663f22700bc8a17c08cb83e91fbf086726e7a228398968981/json5-0.13.0.tar.gz"
+    sha256 "b1edf8d487721c0bf64d83c28e91280781f6e21f4a797d3261c7c828d4c165bf"
   end
 
   resource "markdown-it-py" do

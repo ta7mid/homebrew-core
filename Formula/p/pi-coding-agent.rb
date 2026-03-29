@@ -1,17 +1,17 @@
 class PiCodingAgent < Formula
   desc "AI agent toolkit"
   homepage "https://pi.dev/"
-  url "https://registry.npmjs.org/@mariozechner/pi-coding-agent/-/pi-coding-agent-0.57.1.tgz"
-  sha256 "8648e71d5553388ed710f1ef4165d9f090e1783e446629410c545875ac564b6f"
+  url "https://registry.npmjs.org/@mariozechner/pi-coding-agent/-/pi-coding-agent-0.63.1.tgz"
+  sha256 "ba99bff9f9f32eb3341c061ed95a8f65b6680c1a8913dd5c4da2ba6e92bcd5b6"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "2881ab448a0a0db87279c4373acdcdbcd5715007a9f617320c7e37780b9c609e"
-    sha256 cellar: :any,                 arm64_sequoia: "5f01d5bac6bff0fc7676b0e67bacbbb9d0a9c5e992c1a26474895e8b603161bf"
-    sha256 cellar: :any,                 arm64_sonoma:  "5f01d5bac6bff0fc7676b0e67bacbbb9d0a9c5e992c1a26474895e8b603161bf"
-    sha256 cellar: :any,                 sonoma:        "166dda291bb9a729e10b00f5392ad00cfe8b8927078ec43f13f39dc12ab617f2"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "cc2bf2982cadeb071a7549ed28e7d72c9834534dab9fef5366dd734a6c951a47"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "57fae502a86023aa61f27db5761badc6b9d507926353760121d938c1ece50877"
+    sha256 cellar: :any,                 arm64_tahoe:   "ea0a6d15f6a898b92f32c61e45852871644b4fe6ed71b6283628c1c4cdb7a64b"
+    sha256 cellar: :any,                 arm64_sequoia: "c3b48bf1d57a021f1d8865ca0743c2bfc702be8e3245d78c34ccff18ae798a5a"
+    sha256 cellar: :any,                 arm64_sonoma:  "c3b48bf1d57a021f1d8865ca0743c2bfc702be8e3245d78c34ccff18ae798a5a"
+    sha256 cellar: :any,                 sonoma:        "24f05cf02296aa1aa58fa5a4d34b7ddcacc006e5842997330537d960ca0efb7e"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "f3b40c5176a4da785d0c92bbd17459fcf48695f6b834bcf488623404957bb000"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "35dd8d119606d7071916004badc330e28714e12b43865cfe6800260ab6ee5862"
   end
 
   depends_on "node"
@@ -32,7 +32,7 @@ class PiCodingAgent < Formula
   end
 
   test do
-    assert_match version.to_s, shell_output("#{bin}/pi --version")
+    assert_match version.to_s, shell_output("#{bin}/pi --version 2>&1")
 
     ENV["GEMINI_API_KEY"] = "invalid_key"
     output = shell_output("#{bin}/pi -p 'foobar' 2>&1", 1)

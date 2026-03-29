@@ -2,8 +2,8 @@ class Powershell < Formula
   desc "Command-line shell and scripting language"
   homepage "https://github.com/PowerShell/PowerShell"
   url "https://github.com/PowerShell/PowerShell.git",
-      tag:      "v7.5.4",
-      revision: "7c8d9e7e0ed2fc1f2caf50746fe9fef720ca2a0a"
+      tag:      "v7.6.0",
+      revision: "767990ba06f8579d69f99eec46057541374aa892"
   license "MIT"
 
   livecheck do
@@ -12,21 +12,22 @@ class Powershell < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "0f9e423fb1fee82f58b712cbd2a6fe119bf389aaec6936594579d07f566c3a80"
-    sha256 cellar: :any,                 arm64_sequoia: "9c83abf90d133412278bc76f6842bf064ddd425acb14069b91df623fe9356d3a"
-    sha256 cellar: :any,                 arm64_sonoma:  "8569cf80986498d035648ddb081436e08f83dafe40e31833e9acdf1838cf2eb1"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "0b9d273567b506ac8362df6a91f9d2012299c3e5f32cc8266299b104aceaf111"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "711a84538375f0a0746a206aa1c5f54d8affeabed704e06519f432a6ec611002"
+    sha256 cellar: :any,                 arm64_tahoe:   "7430f2dd3562a0dfd86f5db7c08109a6c521e31f4b3f3bbde9ffd0d7e4bd8dfa"
+    sha256 cellar: :any,                 arm64_sequoia: "cc21c1b7966748ff22db72903b1a92b81b90e23f18526cdcc02bb1b69d5d27ae"
+    sha256 cellar: :any,                 arm64_sonoma:  "e7889154ffc56942e29b8a836e59e9dda16d1014c788ec541ca8c91466cb9bc4"
+    sha256 cellar: :any,                 sonoma:        "e91409d0da417cf0eafbfb2edb32a32bb5da850489ebe39df80bd7ed266172a6"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "8e6c7cb0229b139c600f5d62fad7bd3fa33a36c30f90c50d4d5c265626da71d3"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "442a9357bcedade96b7ea246c110ca1ff649ccd7520ba87e9d9adf998aceb298"
   end
 
-  depends_on "dotnet@9"
+  depends_on "dotnet"
 
   on_linux do
     depends_on "openssl@3"
   end
 
   def install
-    dotnet = Formula["dotnet@9"]
+    dotnet = Formula["dotnet"]
     ENV["DOTNET_CLI_TELEMETRY_OPTOUT"] = "1"
     ENV["DOTNET_CLI_HOME"] = buildpath
     ENV["NUGET_PACKAGES"] = buildpath/".nuget/packages"
@@ -148,21 +149,6 @@ class Powershell < Formula
     rm deps_path
     deps_path.write(JSON.pretty_generate(deps))
     rm publish_path/diasym_file, force: true
-  end
-
-  def caveats
-    <<~EOS
-      CurrentUser configs are at:
-        ~/.local/share/powershell/
-      CurrentUserAllHosts configs are at:
-        ~/.config/powershell/
-
-      To use Homebrew in PowerShell, run:
-        New-Item -Path (Split-Path -Parent -Path $PROFILE.CurrentUserAllHosts) -ItemType Directory -Force
-        Add-Content -Path $PROFILE.CurrentUserAllHosts -Value '$(#{HOMEBREW_PREFIX}/bin/brew shellenv) | Invoke-Expression'
-
-      To add Homebrew pwsh completions see: https://docs.brew.sh/Shell-Completion#configuring-completions-in-pwsh
-    EOS
   end
 
   test do

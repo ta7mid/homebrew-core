@@ -3,17 +3,18 @@ class Dolphie < Formula
 
   desc "Feature-rich top tool for monitoring MySQL"
   homepage "https://github.com/charles-001/dolphie"
-  url "https://files.pythonhosted.org/packages/e5/9d/a698bec0f8822c1d908ae1acbe879d03b6f77e30ab4dbd74a24507a4dd86/dolphie-6.13.4.tar.gz"
-  sha256 "dd1ac379f1b5531845f7c16fa0b07f004902d1a14e6c571a8edd9fa55be13f5c"
+  url "https://files.pythonhosted.org/packages/46/36/19ba18fc576c8228272f683c15bbfc518453728a4b79a6355cf9135c11b2/dolphie-6.14.0.tar.gz"
+  sha256 "6ca09e85f182fc53f02ad9d4102d98ff7826fb87baa312c17801be6f50eba882"
   license "GPL-3.0-or-later"
+  revision 1
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "c2f1c2efa3db71e4c4f090deb9e0451c83ef6481faa972b0957c1e7b529e89b7"
-    sha256 cellar: :any,                 arm64_sequoia: "e120586610715fcb4bf9119f1d67786703638f7a91fdb47e2f3025e7e59263d6"
-    sha256 cellar: :any,                 arm64_sonoma:  "2d17672aa2d8e120f066b8885108dbf25c67e4ee30b106d905695d15abfd46ab"
-    sha256 cellar: :any,                 sonoma:        "66924fb72bc5491e6253bda17f5503e2afb819a9c38b1451b301cde86d7558d1"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "59df2a1ebac4d13aa46942b0a2ec506074aafb45d68fdb94b9e8489a25ba8d5e"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0335e70feb60efe9cc13987c52f29d19239913a5168203458ae4300529a3dead"
+    sha256 cellar: :any,                 arm64_tahoe:   "ed196b0dedd6a2c0ea90a47968d722366386c4a9cb72a379a5daf46235c880eb"
+    sha256 cellar: :any,                 arm64_sequoia: "f4fce205f14d28fc4335c0e8d5a8d71695a5ed827d5951df784517bc0259b11d"
+    sha256 cellar: :any,                 arm64_sonoma:  "0a773faff5a9c069eea842e6a26b0651edc99425213a5f20fea6b09524312f7b"
+    sha256 cellar: :any,                 sonoma:        "e8a1cc4b79dd6fd20e7a2c38078f9b7fafdde207d3a3a270f75d42db317828a4"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "50b2f8859faa335b4c10a5878fc3527725a0f311b6282a6994c30e88630b6d5b"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "eeaf648262e99455974ba1adbdfcc892bc86e640496ae70889a8758a88c384e9"
   end
 
   depends_on "rust" => :build # for orjson
@@ -24,8 +25,8 @@ class Dolphie < Formula
   pypi_packages exclude_packages: ["certifi", "cryptography"]
 
   resource "charset-normalizer" do
-    url "https://files.pythonhosted.org/packages/13/69/33ddede1939fdd074bce5434295f38fae7136463422fe4fd3e0e89b98062/charset_normalizer-3.4.4.tar.gz"
-    sha256 "94537985111c35f28720e43603b8e7b43a6ecfb2ce1d3058bbe955b73404e21a"
+    url "https://files.pythonhosted.org/packages/7b/60/e3bec1881450851b087e301bedc3daa9377a4d45f1c26aa90b0b235e38aa/charset_normalizer-3.4.6.tar.gz"
+    sha256 "1ae6b62897110aa7c79ea2f5dd38d1abca6db663687c0b1ad9aed6f6bae3d9d6"
   end
 
   resource "idna" do
@@ -74,8 +75,8 @@ class Dolphie < Formula
   end
 
   resource "platformdirs" do
-    url "https://files.pythonhosted.org/packages/1b/04/fea538adf7dbbd6d186f551d595961e564a3b6715bdf276b477460858672/platformdirs-4.9.2.tar.gz"
-    sha256 "9a33809944b9db043ad67ca0db94b14bf452cc6aeaac46a88ea55b26e2e9d291"
+    url "https://files.pythonhosted.org/packages/19/56/8d4c30c8a1d07013911a8fdbd8f89440ef9f08d07a1b50ab8ca8be5a20f9/platformdirs-4.9.4.tar.gz"
+    sha256 "1ec356301b7dc906d83f371c8f487070e99d3ccf9e501686456394622a01a934"
   end
 
   resource "plotext" do
@@ -99,8 +100,8 @@ class Dolphie < Formula
   end
 
   resource "requests" do
-    url "https://files.pythonhosted.org/packages/c9/74/b3ff8e6c8446842c3f5c837e9c3dfcfe2018ea6ecef224c710c85ef728f4/requests-2.32.5.tar.gz"
-    sha256 "dbba0bac56e100853db0ea71b82b4dfd5fe2bf6d3754a8893c3af500cec7d7cf"
+    url "https://files.pythonhosted.org/packages/34/64/8860370b167a9721e8956ae116825caff829224fbca0ca6e7bf8ddef8430/requests-2.33.0.tar.gz"
+    sha256 "c7ebc5e8b0f21837386ad0e1c8fe8b829fa5f544d8df3b2253bff14ef29d7652"
   end
 
   resource "rich" do
@@ -114,8 +115,8 @@ class Dolphie < Formula
   end
 
   resource "textual" do
-    url "https://files.pythonhosted.org/packages/fb/e4/0f6b6c22a30d2dc2850b4d09c8684742cc4ab79501d4588ea05269c1de3f/textual-8.0.1.tar.gz"
-    sha256 "fe6544e57651a7c2a8249b90ec542b45fa945ce4560e69b0d563fb440e7c4db3"
+    url "https://files.pythonhosted.org/packages/72/23/8c709655c5f2208ee82ab81b8104802421865535c278a7649b842b129db1/textual-8.1.1.tar.gz"
+    sha256 "eef0256a6131f06a20ad7576412138c1f30f92ddeedd055953c08d97044bc317"
   end
 
   resource "typing-extensions" do

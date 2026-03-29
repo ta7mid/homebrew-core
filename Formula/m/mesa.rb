@@ -3,8 +3,8 @@ class Mesa < Formula
 
   desc "Graphics Library"
   homepage "https://www.mesa3d.org/"
-  url "https://archive.mesa3d.org/mesa-26.0.1.tar.xz"
-  sha256 "bb5104f9f9a46c9b5175c24e601e0ef1ab44ce2d0fdbe81548b59adc8b385dcc"
+  url "https://archive.mesa3d.org/mesa-26.0.3.tar.xz"
+  sha256 "ddb7443d328e89aa45b4b6b80f077bf937f099daeca8ba48cabe32aab769e134"
   license all_of: [
     "MIT",
     "Apache-2.0", # include/{EGL,GLES*,vk_video,vulkan}, src/egl/generate/egl.xml, src/mapi/glapi/registry/gl.xml
@@ -20,16 +20,16 @@ class Mesa < Formula
     { "GPL-1.0-or-later" => { with: "Linux-syscall-note" } }, # include/drm-uapi/sync_file.h
     { "GPL-2.0-only" => { with: "Linux-syscall-note" } }, # include/drm-uapi/{d3dkmthk.h,dma-buf.h,etnaviv_drm.h}
   ]
-  revision 1
+  compatibility_version 1
   head "https://gitlab.freedesktop.org/mesa/mesa.git", branch: "main"
 
   bottle do
-    sha256 arm64_tahoe:   "ad3247da75feeb23237a62c1989a5cd42c1d6d7ddb43b0dd140c51971a561957"
-    sha256 arm64_sequoia: "df37946e540c263badfaad6f820651560769102f954465430a42e0efe16974ae"
-    sha256 arm64_sonoma:  "5e5d5674b226095ea1e138fef0b29f6f958ffb18210393c9523e67a9b8f7b862"
-    sha256 sonoma:        "eb77c52f103fd471c6d363d7c6229d239100e0fa3413d1359ea8c127b6277189"
-    sha256 arm64_linux:   "2d9b737ccd31a23fedb14e2326e797ffb5148bef579a97dfd34d9550081df1b6"
-    sha256 x86_64_linux:  "8d99ce7c50f7cc71f05580a089464a445c76987cf335ece131dd8b30e24a6e94"
+    sha256 arm64_tahoe:   "2d44b1c6a56d5515bc39f64db971061062bf919d50d8da2267ef9113925f3416"
+    sha256 arm64_sequoia: "bca001469f6c7a61b9429bb6c1b033e1b9c83bf9e04e0431cbbf859ee536950a"
+    sha256 arm64_sonoma:  "0aa8b313f0d568caa734f3e3ef30da251f5656e0a2747eb34d7566c2ed5141bc"
+    sha256 sonoma:        "f5dfefc8ddcba6c37ebceb677c0be8d9182bc6d6db93f4676a7ae44403b89a12"
+    sha256 arm64_linux:   "ad8ac09653e487af8c85828196e4533d1a991e2838e7369131481ece2fbf0cd3"
+    sha256 x86_64_linux:  "a1af6df2f4ba3e1aafa62d15658df306d6dbfdbfebbe1cabab2464bcc6a1f02b"
   end
 
   depends_on "bindgen" => :build

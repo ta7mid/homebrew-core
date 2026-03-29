@@ -7,8 +7,8 @@ class Llvm < Formula
   head "https://github.com/llvm/llvm-project.git", branch: "main"
 
   stable do
-    url "https://github.com/llvm/llvm-project/releases/download/llvmorg-22.1.0/llvm-project-22.1.0.src.tar.xz"
-    sha256 "25d2e2adc4356d758405dd885fcfd6447bce82a90eb78b6b87ce0934bd077173"
+    url "https://github.com/llvm/llvm-project/releases/download/llvmorg-22.1.2/llvm-project-22.1.2.src.tar.xz"
+    sha256 "62f2f13ff25b1bb28ea507888e858212d19aafb65e8e72b4a65ee0629ec4ae0c"
 
     # Fix triple config loading for clang-cl
     # https://github.com/llvm/llvm-project/pull/111397
@@ -24,12 +24,12 @@ class Llvm < Formula
   end
 
   bottle do
-    sha256                               arm64_tahoe:   "ef95eb5bd579675ed6ebb1097eafbafd869edea6382f36ddeb81b61b57d633ee"
-    sha256                               arm64_sequoia: "1058b02573991c383e72401471fd04014328f91f8837e5f60fc46df9bb064f25"
-    sha256                               arm64_sonoma:  "55d8c49d481d92f4727c55d98fe304dc6da6111ec36e49018e67f2b75a6ab46a"
-    sha256 cellar: :any,                 sonoma:        "6c40a0ed8743ac0d912ae44f5d2b0acd704af0f8e8c2e8edf748cb9537d9a2bf"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "bf85df7aaf0c24ec091b40fcbbf01bb076fa8b415c8f98ba7ca628347ec87199"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "66c9cc821848081191a7bff9c9a1b7f8c862d91b95ff4c3b69d6d1ccfe0ccb6a"
+    sha256                               arm64_tahoe:   "09f30d5095de11886a14ee7c8c8e854a5c14f2d1ed93aa75de1afd781434635a"
+    sha256                               arm64_sequoia: "976b306899aa1f87e66c996229f5d774ab8109f1da77b3448aee7f1782f2fcd9"
+    sha256                               arm64_sonoma:  "328b6e8bcf2d2c4085bcc6937597e2b79f84c9dd32b9f9f069c2e567fc6208d3"
+    sha256 cellar: :any,                 sonoma:        "2a12232cdb2b680edce864866b882410babf90b6df643904fbf41e9c17ea49ea"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "75ba1704584b95b803c389105d6643bfb82ac2d4e86154a22615c5fb26ee0dc8"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "7b4cdf50c0d30fa75f4de09f82705e3276c8e6e1732686aeaef50345571e0ad8"
   end
 
   keg_only :provided_by_macos
@@ -132,7 +132,7 @@ class Llvm < Formula
       -DCLANG_PYTHON_BINDINGS_VERSIONS=#{python_versions.join(";")}
       -DLLVM_CREATE_XCODE_TOOLCHAIN=OFF
       -DCLANG_FORCE_MATCHING_LIBCLANG_SOVERSION=OFF
-      -DCLANG_CONFIG_FILE_SYSTEM_DIR=#{clang_config_file_dir.relative_path_from(bin)}
+      -DCLANG_CONFIG_FILE_SYSTEM_DIR=../etc/clang
       -DCLANG_CONFIG_FILE_USER_DIR=~/.config/clang
     ]
 
@@ -395,6 +395,10 @@ class Llvm < Formula
       system "cmake", "--build", "."
       system "cmake", "--build", ".", "--target", "install"
     end
+
+    clang_config_file_dir.mkpath
+    touch clang_config_file_dir/".keepme"
+    (prefix/"etc").install_symlink clang_config_file_dir
 
     if OS.mac?
       # Get the version from `llvm-config` to get the correct HEAD or RC version too.
@@ -833,5 +837,11 @@ class Llvm < Formula
         end
       end
     end
+
+    return if OS.linux?
+    return unless clang_config_file_dir.exist? # https://github.com/Homebrew/homebrew-test-bot/issues/805
+
+    assert_match("Configuration file: #{opt_prefix}/etc/clang/",
+                 shell_output("#{opt_bin}/clang --version -no-canonical-prefixes"))
   end
 end

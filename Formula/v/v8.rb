@@ -3,8 +3,8 @@ class V8 < Formula
   homepage "https://v8.dev/docs"
   # Track V8 version from Chrome stable: https://chromiumdash.appspot.com/releases?platform=Mac
   # Check `brew livecheck --resources v8` for any resource updates
-  url "https://github.com/v8/v8/archive/refs/tags/14.6.202.11.tar.gz"
-  sha256 "26ee39a0524cc825b24ffafe77e303b026c27a80c18ac19a8f8f8a6582086125"
+  url "https://github.com/v8/v8/archive/refs/tags/14.6.202.26.tar.gz"
+  sha256 "9967736b8381fdf34de72c3f84eebbdb30a867cb94d9a8ff6993504549cc65b5"
   license "BSD-3-Clause"
 
   livecheck do
@@ -24,12 +24,12 @@ class V8 < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "a9e5e2451fb147b78733a95b9770c11ac11e1d1960ac6fdbb530924b66b85752"
-    sha256 cellar: :any,                 arm64_sequoia: "05b6af969622e7a0681fdca72f21cf35e1af08c4fed7d8a3751334eadb11498d"
-    sha256 cellar: :any,                 arm64_sonoma:  "e60cc35c8aee08f7d838497769537d3164a80482f66725534de98dac2d077df9"
-    sha256 cellar: :any,                 sonoma:        "c8aa78c5430e960c30bb637ebead342af63a1149fc10f935084535c8a88fb562"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "4740f4fe26a86072aecf816c1bc6a1b87e863d6bd22e799255d7a12b502d3910"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "b7d6e1534771443117c5f861ab00402475a7e020d80fc3bf025ddd67c0ae90d9"
+    sha256 cellar: :any,                 arm64_tahoe:   "c2c4b350695dfd65277a690d9b178ed22062cdea0d23730022836e1d347dd2bb"
+    sha256 cellar: :any,                 arm64_sequoia: "392d31610bd1b0177b666fe95dcf2125c751abc8e732b978b668c81043516842"
+    sha256 cellar: :any,                 arm64_sonoma:  "3710210fb8be5b3f5766556ce2d8178bd1c8911b87fa89850d16b9e82477193e"
+    sha256 cellar: :any,                 sonoma:        "3dca0f9ac63bd56cbfff5d20f49f71e0fbf7d6a3797874105244909cbd4b9875"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "2bf0ab7ec28c0aff19bef09a399a1e752ae559374a8849236d103f0d329c6a50"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "855f737f074644ae183b72f05dee11416db263baae8eea8a12cb51ccd6529208"
   end
 
   depends_on "llvm" => :build

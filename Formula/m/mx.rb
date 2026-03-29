@@ -1,8 +1,8 @@
 class Mx < Formula
   desc "Command-line tool used for the development of Graal projects"
   homepage "https://github.com/graalvm/mx"
-  url "https://github.com/graalvm/mx/archive/refs/tags/7.74.1.tar.gz"
-  sha256 "fc51e1687c3722783fdd9dc68ad6bf0bd0e8065ec4f3fcd3a6f00f2765e7777a"
+  url "https://github.com/graalvm/mx/archive/refs/tags/7.78.0.tar.gz"
+  sha256 "20b0e02b32467c037b86fba88b3f996c1c3758693b70d172cffc14c0f94e2ab8"
   license "GPL-2.0-only"
 
   livecheck do
@@ -11,10 +11,10 @@ class Mx < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "bc3e5f6079813c11afe6a87a5ff043ccfd7b037042971befd315c4dc65a64361"
+    sha256 cellar: :any_skip_relocation, all: "98d391f314282f9f5160c0004711ecea71b46ad282329a698beac763617f39b0"
   end
 
-  depends_on "openjdk" => :test
+  depends_on "openjdk" => [:build, :test]
   depends_on "python@3.14"
 
   def install
@@ -23,6 +23,7 @@ class Mx < Formula
     bash_completion.install libexec/"bash_completion/mx" => "mx"
 
     # Run a simple `mx` command to create required directories inside libexec
+    ENV["JAVA_HOME"] = Language::Java.java_home
     ENV.remove "PATH", Superenv.shims_path # avoid ninja shim
     chmod 0555, bin/"mx"
     system bin/"mx", "version"

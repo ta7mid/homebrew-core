@@ -3,18 +3,18 @@ class Standardebooks < Formula
 
   desc "Tools for producing ebook files"
   homepage "https://github.com/standardebooks/tools"
-  url "https://files.pythonhosted.org/packages/2d/12/0d6d34107353be2bc74c24473d242debaaf1655fcecb7e6264ef030d3809/standardebooks-3.0.1.tar.gz"
-  sha256 "7fb8b2d81b0d7db36114963a15ac924e19f786779d455504c08f1ccdb93c8fb0"
+  url "https://files.pythonhosted.org/packages/c6/90/ca0014663fe4c431e213d4e7e710edcb65713111a9b47df3a1c20f030ac5/standardebooks-3.0.3.tar.gz"
+  sha256 "f794b71758892532609111b225a2b8c38c6c6e12c60b9d596c4f435a912183f6"
   license "GPL-3.0-or-later"
   head "https://github.com/standardebooks/tools.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "e582f322a44e500750ce9a0ea7737d21f9563936a4f32761e94ca531efc277f6"
-    sha256 cellar: :any,                 arm64_sequoia: "1b7903196fb6a8312cc1381c5365ede161798e1c179a8878a2de3e04fcf9ef51"
-    sha256 cellar: :any,                 arm64_sonoma:  "51335b14f4646faac30ba18bc7875dd7967cfa75f5cd9dc4d01f57172a96b4e4"
-    sha256 cellar: :any,                 sonoma:        "9c07743e30c8e7f11c7310adaaf430e2d7f8dc65076e33b05e5bdd75603f17c4"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "4a907c6d7058a98dad7060d075303ffb0f75e42ce94e952246c394ac570b244c"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "25e9dfb212cf538daf7ded74e8153e5770eabcd5dccfa22923aeda5b63c8cd58"
+    sha256 cellar: :any,                 arm64_tahoe:   "ca7039271f446f6ddc2457b8a62ad45387effe9d36c25796053486440722958b"
+    sha256 cellar: :any,                 arm64_sequoia: "34e7693b434d409db9f76a66417c8d635179343debd3bc16657ffee3c0c957c3"
+    sha256 cellar: :any,                 arm64_sonoma:  "dbfa53aa9178a504d30fc5ec9f5e38bbc8925b54022a48bd700ed5cfae63254b"
+    sha256 cellar: :any,                 sonoma:        "522653fd7c9f89c7cbb4968cc8c63b1710f1fc465ded8f824efed46649e94acc"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "a3c994499f561e440d03442c8b0f3580d8ec0d6e4acbd01651d5c7a3d895dcc3"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d75b5218c69c5b61be6e3263e4541c1e03cda88298a1a6dc420f97927a6e6641"
   end
 
   depends_on "rust" => :build # for selenium
@@ -36,8 +36,8 @@ class Standardebooks < Formula
   pypi_packages exclude_packages: %w[certifi cffi pillow pycairo]
 
   resource "attrs" do
-    url "https://files.pythonhosted.org/packages/6b/5c/685e6633917e101e5dcb62b9dd76946cbb57c26e133bae9e0cd36033c0a9/attrs-25.4.0.tar.gz"
-    sha256 "16d5969b87f0859ef33a48b35d55ac1be6e42ae49d5e853b597db70c35c57e11"
+    url "https://files.pythonhosted.org/packages/9a/8e/82a0fe20a541c03148528be8cac2408564a6c9a0cc7e9171802bc1d26985/attrs-26.1.0.tar.gz"
+    sha256 "d03ceb89cb322a8fd706d4fb91940737b6642aa36998fe130a9bc96c985eff32"
   end
 
   resource "cairocffi" do
@@ -46,8 +46,8 @@ class Standardebooks < Formula
   end
 
   resource "cairosvg" do
-    url "https://files.pythonhosted.org/packages/ab/b9/5106168bd43d7cd8b7cc2a2ee465b385f14b63f4c092bb89eee2d48c8e67/cairosvg-2.8.2.tar.gz"
-    sha256 "07cbf4e86317b27a92318a4cac2a4bb37a5e9c1b8a27355d06874b22f85bef9f"
+    url "https://files.pythonhosted.org/packages/38/07/e8412a13019b3f737972dea23a2c61ca42becafc16c9338f4ca7a0caa993/cairosvg-2.9.0.tar.gz"
+    sha256 "1debb00cd2da11350d8b6f5ceb739f1b539196d71d5cf5eb7363dbd1bfbc8dc5"
   end
 
   resource "chardet" do
@@ -56,8 +56,8 @@ class Standardebooks < Formula
   end
 
   resource "charset-normalizer" do
-    url "https://files.pythonhosted.org/packages/13/69/33ddede1939fdd074bce5434295f38fae7136463422fe4fd3e0e89b98062/charset_normalizer-3.4.4.tar.gz"
-    sha256 "94537985111c35f28720e43603b8e7b43a6ecfb2ce1d3058bbe955b73404e21a"
+    url "https://files.pythonhosted.org/packages/7b/60/e3bec1881450851b087e301bedc3daa9377a4d45f1c26aa90b0b235e38aa/charset_normalizer-3.4.6.tar.gz"
+    sha256 "1ae6b62897110aa7c79ea2f5dd38d1abca6db663687c0b1ad9aed6f6bae3d9d6"
   end
 
   resource "cssselect" do
@@ -206,8 +206,8 @@ class Standardebooks < Formula
   end
 
   resource "smmap" do
-    url "https://files.pythonhosted.org/packages/44/cd/a040c4b3119bbe532e5b0732286f805445375489fceaec1f48306068ee3b/smmap-5.0.2.tar.gz"
-    sha256 "26ea65a03958fa0c8a1c7e8c7a58fdc77221b8910f6be2131affade476898ad5"
+    url "https://files.pythonhosted.org/packages/1f/ea/49c993d6dfdd7338c9b1000a0f36817ed7ec84577ae2e52f890d1a4ff909/smmap-5.0.3.tar.gz"
+    sha256 "4d9debb8b99007ae47165abc08670bd74cb74b5227dda7f643eccc4e9eb5642c"
   end
 
   resource "sniffio" do

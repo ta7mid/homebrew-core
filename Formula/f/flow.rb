@@ -1,20 +1,20 @@
 class Flow < Formula
   desc "Static type checker for JavaScript"
   homepage "https://flow.org/"
-  url "https://github.com/facebook/flow/archive/refs/tags/v0.304.0.tar.gz"
-  sha256 "a8fa3b08802fa4ac4f016103686ea8a2f57c11fee38678e533cb76f07bcccc1f"
+  url "https://github.com/facebook/flow/archive/refs/tags/v0.307.0.tar.gz"
+  sha256 "61620552a8f69fb2534bef337260a36d75d0b329232d676d5737e90ab00e7242"
   license "MIT"
   head "https://github.com/facebook/flow.git", branch: "main"
 
   no_autobump! because: :bumped_by_upstream
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "78502391fdada01bfdbea591acf2331ee108eb5a86b6c0b78631a76bbd4a532d"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "82dab62853f773f709740c646f27f18620621fc5fb8b599cd904475c062cf8a9"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "80c803f9beac5eb9fed95d2584318c9fd4e4e02cce4fa864944fa98b18ff04c5"
-    sha256 cellar: :any_skip_relocation, sonoma:        "43ce1fd3e7cecc44a886220074cb978876f6c089a5805f5ca987537dae2740ef"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "1d2b20382df02256897e2678836d79edf7268f58c840752a93d4c2a8c076bb0f"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0356ac3608f7755b19e7e212a36981fa498628ccf71ad44d0fb77971fbb7f3b1"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "86f1fc0f9bea50c70cbce0b4c6bfd756463386c61df931d2cecc089d04897f75"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "ca8d7af7abce88e4a4d45f661020e7d6026fa961e50603e0934d4bd837b6154f"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "1708ad8c796fdca0230a746a9ba7b14b8f2a8f9287a48799c23756cd76d4fa53"
+    sha256 cellar: :any_skip_relocation, sonoma:        "0366e9c49ed10adcc3b43cbeb4c41b4eef57d0337c7551c782442c935b6c3343"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "40896a9c26da48d2a04bb357e5aadfc469b26301463eb511bb86f3d1e325d1c7"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "2e1e6b4227462bc3dbd74566c106462b3802e09a7d1f15d33b11f4e654fbe8d9"
   end
 
   depends_on "ocaml" => :build

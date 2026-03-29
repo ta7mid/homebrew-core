@@ -1,8 +1,8 @@
 class C2patool < Formula
   desc "CLI for working with C2PA manifests and media assets"
   homepage "https://contentauthenticity.org"
-  url "https://github.com/contentauth/c2pa-rs/archive/refs/tags/c2patool-v0.26.35.tar.gz"
-  sha256 "67b275f51fff7a331ca9ea590da6d05827e1c6ef30d7641d20d8e2d431412c0f"
+  url "https://github.com/contentauth/c2pa-rs/archive/refs/tags/c2patool-v0.26.42.tar.gz"
+  sha256 "54f9032ab779942032ddcc37a6108afc24daff19bfca0a19d9af184fade8d4ec"
   license any_of: ["Apache-2.0", "MIT"]
   head "https://github.com/contentauth/c2pa-rs.git", branch: "main"
 
@@ -12,12 +12,12 @@ class C2patool < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "6d1c1846ca9db8d0fecb6fbbe663bab39ad06158f3dcc2e0975a00e37e051f97"
-    sha256 cellar: :any,                 arm64_sequoia: "a12e3ea95e9304e36d3389f60c79fe761ace7ef0f14404911889799ec7e9d4d9"
-    sha256 cellar: :any,                 arm64_sonoma:  "d91562d8f7eb363c398a97a81859e761c083ba05bafac1ef44580284f625ac79"
-    sha256 cellar: :any,                 sonoma:        "38549a5cc37feac1e25df76b399cc03ffd4449bba2f5f6d4e76c9e3dcf633926"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "e72537e920f3cf819a894373914e853ade031fc4fe3e4517366a8bc23df81023"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ed8640018d26ab65acaf3459947d02739be3c6bc047f779a09ffe032be8811a6"
+    sha256 cellar: :any,                 arm64_tahoe:   "43f14d7ae57aedbaf7baa62749ba9293b88b0ba934c54e3385e4c75d1a8f7bda"
+    sha256 cellar: :any,                 arm64_sequoia: "0b12e5f61530750a7d0148a23dd61702df61424df81e71ef915c007422f34bce"
+    sha256 cellar: :any,                 arm64_sonoma:  "1dfdaa38b737fd93c95426c7211dca0f4f288b0ca324bb0374f27c2316200bc1"
+    sha256 cellar: :any,                 sonoma:        "686331d42b017c78062f050564c2ab2eb99c14acf8835458277c307e518050c1"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "12333e44e624fe5cfc04d6131fed646494b2a41b3527af9a93ca4780e145a38e"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "cea985b0b74757fe3bf16f494143bf7eba70efb4088109fe2f2a48d34df84436"
   end
 
   depends_on "pkgconf" => :build

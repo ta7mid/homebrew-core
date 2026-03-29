@@ -1,8 +1,8 @@
 class Electric < Formula
   desc "Real-time sync for Postgres"
   homepage "https://electric-sql.com"
-  url "https://github.com/electric-sql/electric/archive/refs/tags/@core/sync-service@1.4.13.tar.gz"
-  sha256 "985fabcbaab84f1f7def99b304bfd772c406b078ccdf8bba02512bc738b37c94"
+  url "https://github.com/electric-sql/electric/archive/refs/tags/@core/sync-service@1.4.15.tar.gz"
+  sha256 "afa80778a087983704f1f43da332ab8d907b01dc573518e393af5dafa2af79b1"
   license "Apache-2.0"
 
   livecheck do
@@ -11,16 +11,16 @@ class Electric < Formula
   end
 
   bottle do
-    sha256 cellar: :any, arm64_tahoe:   "85fd132c9430fc45e681273b1a57e720de20987c04746906fd2babf1c90a102c"
-    sha256 cellar: :any, arm64_sequoia: "ffcf4e68eea9d1087f0533a144cabe86cb5b42721354ec9836f0248134ab5ef5"
-    sha256 cellar: :any, arm64_sonoma:  "044dc3605ad07f2e9143746feebab9a1cabf99549a46b9f411b667b13723be2e"
-    sha256 cellar: :any, sonoma:        "d58b5f8d3ffde921f6b1cb89bf3c1b69c8ce377fc8d18f306bb6d0fa7b27a82c"
-    sha256               arm64_linux:   "b108f186e3ee4a571c409ae585c452abe2b60573779eb16ebbb9732911518dbd"
-    sha256               x86_64_linux:  "e45e6005b1682867535dfa3bad41de5b5f2d8c4fde5b52161b3c0a1dd06cf1de"
+    sha256 cellar: :any, arm64_tahoe:   "1cf5d5cb52c60b89b5445792b3befc39552b47093616c9b031412ba39de2e830"
+    sha256 cellar: :any, arm64_sequoia: "915d27c97b515cbfeac4e008e08dcbafb9d8aac894ef81fe29fe8c7c09a188a3"
+    sha256 cellar: :any, arm64_sonoma:  "f973dcc30317a45143563e4ce0754c33f070076bde2e8f3173f988d9dd847d85"
+    sha256 cellar: :any, sonoma:        "c26fcbc285956f7da2defacd332a33a72efd41160038c38523dae77b8283a7b9"
+    sha256               arm64_linux:   "daa89c7b4c3fc084dc26362f356e9129d9f7eeae41bbb4dc1ff59842a0fe1845"
+    sha256               x86_64_linux:  "08ab1f22bc1ee4527cd8ecadf0e957f912cf43b0a08f9550c51db4d9f26e68d7"
   end
 
   depends_on "elixir" => :build
-  depends_on "postgresql@17" => :test
+  depends_on "postgresql@18" => :test
   depends_on "erlang"
   depends_on "openssl@3"
 
@@ -53,33 +53,38 @@ class Electric < Formula
   test do
     assert_match version.to_s, shell_output("#{bin}/electric version")
 
-    ENV["LC_ALL"] = "C"
-
-    postgresql = Formula["postgresql@17"]
+    postgresql = Formula["postgresql@18"]
     pg_ctl = postgresql.opt_bin/"pg_ctl"
     port = free_port
 
-    system pg_ctl, "initdb", "-D", testpath/"test"
-    (testpath/"test/postgresql.conf").write <<~EOS, mode: "a+"
-      port = #{port}
-      wal_level = logical
-    EOS
-    system pg_ctl, "start", "-D", testpath/"test", "-l", testpath/"log"
+    ENV["DATABASE_URL"] = "postgres://#{ENV["USER"]}:@localhost:#{port}/postgres?sslmode=disable"
+    ENV["ELECTRIC_INSECURE"] = "true"
+    ENV["ELECTRIC_PORT"] = free_port.to_s
+    ENV["LC_ALL"] = "C"
+    ENV["PGDATA"] = testpath/"test"
+
+    system pg_ctl, "initdb", "--options=-c port=#{port} -c wal_level=logical"
+    system pg_ctl, "start", "-l", testpath/"log"
 
     begin
-      ENV["DATABASE_URL"] = "postgres://#{ENV["USER"]}:@localhost:#{port}/postgres?sslmode=disable"
-      ENV["ELECTRIC_INSECURE"] = "true"
-      ENV["ELECTRIC_PORT"] = free_port.to_s
-
-      mkdir_p testpath/"persistent/shapes/single_stack/.meta/backups/shape_status_backups"
+      (testpath/"persistent/shapes/single_stack/.meta/backups/shape_status_backups").mkpath
 
       spawn bin/"electric", "start"
       sleep 5 if OS.mac? && Hardware::CPU.intel?
 
-      output = shell_output("curl -s --retry 5 --retry-connrefused localhost:#{ENV["ELECTRIC_PORT"]}/v1/health")
-      assert_match "active", output
+      tries = 0
+      begin
+        output = shell_output("curl -s --retry 5 --retry-connrefused localhost:#{ENV["ELECTRIC_PORT"]}/v1/health")
+        assert_match "active", output
+      rescue Minitest::Assertion
+        # https://github.com/electric-sql/electric/blob/main/website/docs/guides/deployment.md#health-checks
+        raise if !output&.match?(/starting|waiting/) || (tries += 1) >= 3
+
+        sleep 10
+        retry
+      end
     ensure
-      system pg_ctl, "stop", "-D", testpath/"test"
+      system pg_ctl, "stop"
     end
   end
 end

@@ -1,18 +1,18 @@
 class Rtk < Formula
   desc "CLI proxy to minimize LLM token consumption"
   homepage "https://www.rtk-ai.app/"
-  url "https://github.com/rtk-ai/rtk/archive/refs/tags/v0.28.2.tar.gz"
-  sha256 "ca19772378422756c5ed2212e228986cfc5e791695c5025317b58fa475d4c427"
-  license "MIT"
+  url "https://github.com/rtk-ai/rtk/archive/refs/tags/v0.34.1.tar.gz"
+  sha256 "4711db9ae333bd2555003fb8ca292399d444726fc5c613359c2c6d4e71601f09"
+  license "Apache-2.0"
   head "https://github.com/rtk-ai/rtk.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "ffd89cf87a75470967c0c1b1e4cbdbdcb3286a43e9027734b29202f6f0ef268b"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "f39960744078061a8caf99e9e0a31c1dcdad028359efd8421cbeec7e566e298d"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "91c4fb0d6b0f8c91459cfa0d0a5ce77765e118161c290e9eb32adf87b4128fd6"
-    sha256 cellar: :any_skip_relocation, sonoma:        "26ba4b60dc11ed075de0ea9cb69415b25fb5d1c5e50dcc93a0e196f1b84f9c84"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "39e630cd5995e398018f3d708470bbd313112bde51e1328e1a3cbe4414841880"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d3fb1c092f25a3a992da43a7f4eb2d8ce96217bb9432af30d53fa56080ebfaf3"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "5c004d0fe30c7dc1aed2801ce0f831303281e883c57ab028e313b9e28f70965a"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "72fd7bcea1110efdd9e66ad6437fcfa8df949f62ae9cc747fcee3aec90933ae7"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "f974b1ea9fe408a38f9212758126a5e45efb899bd2a4b0e66971da478fffd053"
+    sha256 cellar: :any_skip_relocation, sonoma:        "a2355453a6f1c62844cd51f2e34370796decb126cf72198227e7c086d51b3a38"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "345069b4347c52d78c6e8f5d49cc99d5dea35f3d7ea7b26e107feadc53d19022"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "cffa1c4e9655f341674d73da63f57fdac24651b55bb001afa69b3ba9c55a2a94"
   end
 
   depends_on "rust" => :build

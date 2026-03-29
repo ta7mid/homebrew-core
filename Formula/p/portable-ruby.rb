@@ -3,8 +3,8 @@ require File.expand_path("../../Abstract/portable-formula", __dir__)
 class PortableRuby < PortableFormula
   desc "Powerful, clean, object-oriented scripting language"
   homepage "https://www.ruby-lang.org/"
-  url "https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.1.tar.gz"
-  sha256 "3924be2d05db30f4e35f859bf028be85f4b7dd01714142fd823e4af5de2faf9d"
+  url "https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.2.tar.gz"
+  sha256 "51502b26b50b68df4963336ca41e368cde92c928faf91654de4c4c1791f82aac"
   license "Ruby"
 
   # This regex restricts matching to versions other than X.Y.0.
@@ -14,10 +14,10 @@ class PortableRuby < PortableFormula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_big_sur: "cef6f881f516d2cdbd0a5bfc7e20318da8b047cf2674ee27c5d4858d3ecd6430"
-    sha256 cellar: :any_skip_relocation, catalina:      "e4f27cef5f72bf7a99c748c0650fe3718fe661a56960dedaeec9c2c98de1d3bc"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "f2be97b1a8197bed52727448b6a6c5aae99b81f04a6dc40c5e0a0b4f86686573"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e5868bc36f93b2d9caf5457ddaa0e790637c0962d84bae078f7200c4092c936e"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur: "a506fdbd4f01f2ef9578944e932d2eb2dfb291a69e5806dece426259b6e9f22c"
+    sha256 cellar: :any_skip_relocation, catalina:      "6581aceb09afafab23bac3f3926850066c45a17d4a02e6e16f607cd33ebb4c7a"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "cdad9a44102a50c1d0e61f9d6f78b1b3974ff26aee72f24b05c3afef0ee8c7cf"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "74f0635fef7133470c1a3fa91a26c57f3ecc8dacbc430bbb5ac8e1baf08bb2ed"
   end
 
   depends_on "pkgconf" => :build
@@ -43,8 +43,8 @@ class PortableRuby < PortableFormula
   end
 
   resource "bootsnap" do
-    url "https://rubygems.org/downloads/bootsnap-1.21.1.gem"
-    sha256 "9373acfe732da35846623c337d3481af8ce77c7b3a927fb50e9aa92b46dbc4c4"
+    url "https://rubygems.org/downloads/bootsnap-1.23.0.gem"
+    sha256 "c1254f458d58558b58be0f8eb8f6eec2821456785b7cdd1e16248e2020d3f214"
 
     livecheck do
       url "https://rubygems.org/api/v1/versions/bootsnap.json"
@@ -63,7 +63,8 @@ class PortableRuby < PortableFormula
     # - irb
     #   - reline
     #   - rdoc
-    allowed_gems = %w[debug fiddle irb reline rdoc]
+    # - rake
+    allowed_gems = %w[debug fiddle irb rake reline rdoc]
     bundled_gems = File.foreach("gems/bundled_gems").select do |line|
       line.blank? || line.start_with?("#") || allowed_gems.any? { |gem| line.match?(/\A#{Regexp.escape(gem)}\s/) }
     end
@@ -201,6 +202,7 @@ class PortableRuby < PortableFormula
       require "fiddle"
       require "bootsnap"
     EOS
+    system testpath/"bin/rake", "--version"
     system testpath/"bin/irb", "--version"
     system testpath/"bin/gem", "environment"
     system testpath/"bin/bundle", "init"

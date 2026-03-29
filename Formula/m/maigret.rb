@@ -6,16 +6,16 @@ class Maigret < Formula
   url "https://files.pythonhosted.org/packages/3d/29/ef75d365917075a72ad88b7b1027bc6f93d6e45f27aec1ee6410607eb5f6/maigret-0.5.0.tar.gz"
   sha256 "d85c7f799cce51b6edf7179dda36019d0081bba528ce77284925499b07a49be7"
   license "MIT"
-  revision 8
+  revision 11
   head "https://github.com/soxoj/maigret.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "26aa8c28be8662f6baafb7002e8d09c041a214b8e00ada921e24111c31f64579"
-    sha256 cellar: :any,                 arm64_sequoia: "3d9b3e2e4958a1ad935a3bbaf74795eb694396b92ca97e168bfacc4474127c6a"
-    sha256 cellar: :any,                 arm64_sonoma:  "0c667e96a56e67dd4d0d49781df5c41abf86f7f3cbcb64b44aad75801439fcb1"
-    sha256 cellar: :any,                 sonoma:        "7757aed55d72172c49a7d553ce108938867906b21fd5be5a60972243b56598d3"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "f3a025414cbe947b1490210c65d302756f4181036fed58f90a1af5fc494ad73b"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "79ae785149447cb3ce068c258426d56a65b8c2bfe8aecb4da7ceff326363c94e"
+    sha256 cellar: :any,                 arm64_tahoe:   "cf90861b40fe3bf67a50ade7eeffa65373dfb0fff8524e15176a8dd60d9696e3"
+    sha256 cellar: :any,                 arm64_sequoia: "6937b0e371803dfbe365cb5913e450b08ea8ea23825c226f5ec18752a953d692"
+    sha256 cellar: :any,                 arm64_sonoma:  "f6fdbe18f920dc4ba7acddf69e9043617047815ec9d04a65da01c8d7f2d491d0"
+    sha256 cellar: :any,                 sonoma:        "0c8f5f5413d202a5999218a1e7b28c8113e43a1841bec79a06fce1347068b974"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "35b084eea14596958691e52558ef0066c2b56502cb28e25e6c3eb270aa23a24f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d79a24a02fe03a06dfb16d0f50a5f5528fcf51a2a57bc0c05c4b92698c4f268f"
   end
 
   depends_on "rust" => :build
@@ -115,8 +115,8 @@ class Maigret < Formula
   end
 
   resource "charset-normalizer" do
-    url "https://files.pythonhosted.org/packages/13/69/33ddede1939fdd074bce5434295f38fae7136463422fe4fd3e0e89b98062/charset_normalizer-3.4.4.tar.gz"
-    sha256 "94537985111c35f28720e43603b8e7b43a6ecfb2ce1d3058bbe955b73404e21a"
+    url "https://files.pythonhosted.org/packages/7b/60/e3bec1881450851b087e301bedc3daa9377a4d45f1c26aa90b0b235e38aa/charset_normalizer-3.4.6.tar.gz"
+    sha256 "1ae6b62897110aa7c79ea2f5dd38d1abca6db663687c0b1ad9aed6f6bae3d9d6"
   end
 
   resource "click" do
@@ -192,8 +192,8 @@ class Maigret < Formula
   end
 
   resource "ipython" do
-    url "https://files.pythonhosted.org/packages/a6/60/2111715ea11f39b1535bed6024b7dec7918b71e5e5d30855a5b503056b50/ipython-9.10.0.tar.gz"
-    sha256 "cd9e656be97618a0676d058134cd44e6dc7012c0e5cb36a9ce96a8c904adaf77"
+    url "https://files.pythonhosted.org/packages/86/28/a4698eda5a8928a45d6b693578b135b753e14fa1c2b36ee9441e69a45576/ipython-9.11.0.tar.gz"
+    sha256 "2a94bc4406b22ecc7e4cb95b98450f3ea493a76bec8896cda11b78d7752a6667"
   end
 
   resource "ipython-pygments-lexers" do
@@ -267,8 +267,8 @@ class Maigret < Formula
   end
 
   resource "platformdirs" do
-    url "https://files.pythonhosted.org/packages/1b/04/fea538adf7dbbd6d186f551d595961e564a3b6715bdf276b477460858672/platformdirs-4.9.2.tar.gz"
-    sha256 "9a33809944b9db043ad67ca0db94b14bf452cc6aeaac46a88ea55b26e2e9d291"
+    url "https://files.pythonhosted.org/packages/19/56/8d4c30c8a1d07013911a8fdbd8f89440ef9f08d07a1b50ab8ca8be5a20f9/platformdirs-4.9.4.tar.gz"
+    sha256 "1ec356301b7dc906d83f371c8f487070e99d3ccf9e501686456394622a01a934"
   end
 
   resource "prompt-toolkit" do
@@ -307,13 +307,13 @@ class Maigret < Formula
   end
 
   resource "pyhanko" do
-    url "https://files.pythonhosted.org/packages/91/d4/b21ff6c75294b7c329017fc48fa0eeb79ad78196657e0199c23e7a8e7211/pyhanko-0.34.0.tar.gz"
-    sha256 "2811c4c09f6eff01ce51975f03418225b58650c4dc37c33b1f870654d4c12dd0"
+    url "https://files.pythonhosted.org/packages/95/0e/32f538908f8b49c1e9d95c5098949f145110637331af520ea511fa8ff242/pyhanko-0.34.1.tar.gz"
+    sha256 "a4c288552f61607e031aa93f22f834759a3f5201107f80c2d5d266161ad11216"
   end
 
   resource "pyhanko-certvalidator" do
-    url "https://files.pythonhosted.org/packages/e9/94/22ffa1f8d7d94eaebcb39b6135d44ff72bc498a4cbbba7488dca12c69f43/pyhanko_certvalidator-0.30.0.tar.gz"
-    sha256 "1a33b67d83fac56e0868b484e0b05fe79c92e8a6b17b355fc7223fc725daba09"
+    url "https://files.pythonhosted.org/packages/c6/9a/0fc4a955bc432eb8598ba3481e19df4706cace594c9fbe760587ea3dfd1c/pyhanko_certvalidator-0.30.1.tar.gz"
+    sha256 "a37e7b11a4afc85594916abdf64b16c42e8b61cd3fa73a53652d16ac8958df18"
   end
 
   resource "pyparsing" do
@@ -322,8 +322,8 @@ class Maigret < Formula
   end
 
   resource "pypdf" do
-    url "https://files.pythonhosted.org/packages/f6/52/37cc0aa9e9d1bf7729a737a0d83f8b3f851c8eb137373d9f71eafb0a3405/pypdf-6.7.5.tar.gz"
-    sha256 "40bb2e2e872078655f12b9b89e2f900888bb505e88a82150b64f9f34fa25651d"
+    url "https://files.pythonhosted.org/packages/31/83/691bdb309306232362503083cb15777491045dd54f45393a317dc7d8082f/pypdf-6.9.2.tar.gz"
+    sha256 "7f850faf2b0d4ab936582c05da32c52214c2b089d61a316627b5bfb5b0dab46c"
   end
 
   resource "pypdf2" do
@@ -367,8 +367,8 @@ class Maigret < Formula
   end
 
   resource "requests" do
-    url "https://files.pythonhosted.org/packages/c9/74/b3ff8e6c8446842c3f5c837e9c3dfcfe2018ea6ecef224c710c85ef728f4/requests-2.32.5.tar.gz"
-    sha256 "dbba0bac56e100853db0ea71b82b4dfd5fe2bf6d3754a8893c3af500cec7d7cf"
+    url "https://files.pythonhosted.org/packages/34/64/8860370b167a9721e8956ae116825caff829224fbca0ca6e7bf8ddef8430/requests-2.33.0.tar.gz"
+    sha256 "c7ebc5e8b0f21837386ad0e1c8fe8b829fa5f544d8df3b2253bff14ef29d7652"
   end
 
   resource "requests-futures" do
@@ -462,8 +462,8 @@ class Maigret < Formula
   end
 
   resource "werkzeug" do
-    url "https://files.pythonhosted.org/packages/61/f1/ee81806690a87dab5f5653c1f146c92bc066d7f4cebc603ef88eb9e13957/werkzeug-3.1.6.tar.gz"
-    sha256 "210c6bede5a420a913956b4791a7f4d6843a43b6fcee4dfa08a65e93007d0d25"
+    url "https://files.pythonhosted.org/packages/b5/43/76ded108b296a49f52de6bac5192ca1c4be84e886f9b5c9ba8427d9694fd/werkzeug-3.1.7.tar.gz"
+    sha256 "fb8c01fe6ab13b9b7cdb46892b99b1d66754e1d7ab8e542e865ec13f526b5351"
   end
 
   resource "xhtml2pdf" do

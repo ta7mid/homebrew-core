@@ -1,8 +1,8 @@
 class RattlerIndex < Formula
   desc "Index conda channels using rattler"
   homepage "https://github.com/conda/rattler"
-  url "https://github.com/conda/rattler/archive/refs/tags/rattler_index-v0.27.16.tar.gz"
-  sha256 "6fce69b0135102e821014dc806153efdcec3be0c435d26220a747964ac509f26"
+  url "https://github.com/conda/rattler/archive/refs/tags/rattler_index-v0.27.20.tar.gz"
+  sha256 "25f850798084e4c01472d90b33f965c237486b363df814bee8cc06f1b38abb8a"
   license "BSD-3-Clause"
   head "https://github.com/conda/rattler.git", branch: "main"
 
@@ -12,13 +12,12 @@ class RattlerIndex < Formula
   end
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "e7425788ed27fb9eb459f0afd7f9d28430b569265653c5de3ccff908c2f51ae0"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "53e5ded0de4b208a5bb2d78fb650137a2113e04470d53387257dd87423b52b86"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "c682b54397234ad80a25e5e6123e964fb4584ba62f054eff3d29e2de43977176"
-    sha256 cellar: :any_skip_relocation, sonoma:        "9554078fa9252b2cd160e49f3a3cd2a7d0cf904c452f43e4ceae841272a51105"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "621f203274e94e71a9f5e6bf02e56e6b9448fe99c9fe1b5758fa03b80c129f53"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "b9207b7ae7f5f3257f77dd67e98588fc6be26bb5194298cb6819b2df609e1992"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "491e12e422b3bd4cfab09d96f8f1e4cfbec08c5e6ca82d50a222c54a369be5ac"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "47e56ef730092dbfd1c153a7009e8601cceccbe9e959e7754e05f62d6cac9528"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "d00c5130f6e1df6d3fd3d649aa8ba4dc0f1c49171dcd6ad10dffb7dd503ffef5"
+    sha256 cellar: :any_skip_relocation, sonoma:        "f37f4c91618e404e00de7be0f555c4a09d8856c284955212dbb2a6bdb230f8bd"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "e3502f6b100bcc224f6aa933b74b353a354b7410259d8c79c3eaffb986523203"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "321cc44c7d34939fedd9c7cb483010865bcaf03fb3efb1f87fefa5d6a24e561c"
   end
 
   depends_on "pkgconf" => :build

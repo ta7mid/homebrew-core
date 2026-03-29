@@ -1,18 +1,18 @@
 class Prek < Formula
   desc "Pre-commit re-implemented in Rust"
   homepage "https://github.com/j178/prek"
-  url "https://github.com/j178/prek/archive/refs/tags/v0.3.5.tar.gz"
-  sha256 "3d0bf93af3591762b2fce97965fb88f8dc4b750164451162f57f866e26e4bb67"
+  url "https://github.com/j178/prek/archive/refs/tags/v0.3.8.tar.gz"
+  sha256 "fdca3ff08b10d4d8fc3dc820c704eb32f32bc838bf755ac11dbb8ae182fee774"
   license "MIT"
   head "https://github.com/j178/prek.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "c3f01172c12e7c3cd7a53471b8d595bbb4bc5d7c6c646e73315d12901e4ff9e8"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "685d4140f0ef6ef9ab1ad15c8e582491642a89bb21ce0d99382eaebee4eb397c"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "e4cc1b257eaf03666e082c9f3ba6bfacbb571be266de37d6af36826b5f85e4b0"
-    sha256 cellar: :any_skip_relocation, sonoma:        "b871f62edf026b9e361020d8f59a608b74ce47bd56e46287b6253d28948abfb4"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "550677da7ec81d03bd23371006d40c606373c14cf38aee6e66f09088fe203f10"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6e43a10c56245f5cf7d069b47df8118d78b1e195d67de40c4994c7058e450b24"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "a4998f20ee2577031e5e8c28736760818ed70a10c3f750424d051dd139034fd1"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "75741ec3c5d136554ded5de36656ffe6cbbbc87f39b6afa2026d20c885bc29e8"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "8a9879b2f5002ace6254ebaebaeeae95620cc2e71d3047628fbfade85768b2c1"
+    sha256 cellar: :any_skip_relocation, sonoma:        "033d8738b3b203150382ee653a3d174f358a4bf58ae2583d2363189e4cbb9c85"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "98af4b29821b0c60dffe7d8a540acf85283e880cba907aafdae35159898dcedd"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "54f3f4d747fee5ab6767a227ed605ebb17805f5f9cc623481d5828a6f38d25f3"
   end
 
   depends_on "rust" => :build

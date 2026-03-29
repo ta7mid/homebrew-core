@@ -6,23 +6,24 @@ class Psutils < Formula
   url "https://files.pythonhosted.org/packages/45/ff/4af412351a21ee38835b7597555936c547830d9a8246a2b7d2aa41aabdd3/psutils-3.3.14.tar.gz"
   sha256 "6212167dd8c09f59c9535d5e416c4f8c01431b7a5beab0ee68f4ec416ca3980c"
   license "GPL-3.0-or-later"
-  revision 8
+  revision 11
+  compatibility_version 1
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "61e57f4a4e83f06768c9c2930e9f7027a6ec37ccb36f8ca41dc571a220cd3457"
+    sha256 cellar: :any_skip_relocation, all: "ffca83d3267692a197acb79c94a130bf4b197c7025644db15b56180caa945c8e"
   end
 
   depends_on "libpaper"
   depends_on "python@3.14"
 
   resource "puremagic" do
-    url "https://files.pythonhosted.org/packages/dc/df/a2ee3bbf55f036acb9725b35732e3a785cb06f5c5b9fe47bde8c05ab873a/puremagic-2.0.0.tar.gz"
-    sha256 "224fe42b6b3467276a45914e12b5f40905dea0e87963adbe5289667e7c607851"
+    url "https://files.pythonhosted.org/packages/eb/df/3725f4b848095ef634c0b2226c97901e64ee2d5a82981d89d4b784ae8ce1/puremagic-2.1.1.tar.gz"
+    sha256 "b156c4ae63d84842f92a85cd49c9b9029a4f107f98ad14e7584ed652954feff4"
   end
 
   resource "pypdf" do
-    url "https://files.pythonhosted.org/packages/f6/52/37cc0aa9e9d1bf7729a737a0d83f8b3f851c8eb137373d9f71eafb0a3405/pypdf-6.7.5.tar.gz"
-    sha256 "40bb2e2e872078655f12b9b89e2f900888bb505e88a82150b64f9f34fa25651d"
+    url "https://files.pythonhosted.org/packages/31/83/691bdb309306232362503083cb15777491045dd54f45393a317dc7d8082f/pypdf-6.9.2.tar.gz"
+    sha256 "7f850faf2b0d4ab936582c05da32c52214c2b089d61a316627b5bfb5b0dab46c"
   end
 
   def install

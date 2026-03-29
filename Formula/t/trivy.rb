@@ -4,6 +4,7 @@ class Trivy < Formula
   url "https://github.com/aquasecurity/trivy/archive/refs/tags/v0.69.3.tar.gz"
   sha256 "3ca5fa62932273dd7eef3b6ec762625da42304ebb8f13e4be9fdd61545ca1773"
   license "Apache-2.0"
+  compatibility_version 1
   head "https://github.com/aquasecurity/trivy.git", branch: "main"
 
   bottle do

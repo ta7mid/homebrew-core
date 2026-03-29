@@ -1,9 +1,10 @@
 class Liblerc < Formula
-  desc "Ersi LERC library (Limited Error Raster Compression)"
+  desc "Esri LERC library (Limited Error Raster Compression)"
   homepage "https://github.com/Esri/lerc"
   url "https://github.com/Esri/lerc/archive/refs/tags/v4.1.0.tar.gz"
   sha256 "f05b24d2368becab9144873878655bb718910631550d4f786262378c16ab94a7"
   license "Apache-2.0"
+  compatibility_version 1
 
   livecheck do
     url :stable

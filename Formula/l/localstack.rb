@@ -3,17 +3,19 @@ class Localstack < Formula
 
   desc "Fully functional local AWS cloud stack"
   homepage "https://localstack.cloud/"
-  url "https://files.pythonhosted.org/packages/e5/a5/ad352fa626de1514500abf6ec002e479cf854d9a250e254ca2a1925bbbb6/localstack-4.14.0.tar.gz"
-  sha256 "68f27e2c30a0e9b476eb5ee9b76cb8d78a1871031d9842d6b6d79cc0c182df90"
+  url "https://files.pythonhosted.org/packages/a2/16/8231e7b97a3e0c5187754b65be2d7a6c550dea6d71a00318068e95953560/localstack-2026.3.0.tar.gz"
+  sha256 "c06b06ed205ae6c52637b75b6f72640f2876ebbb1981fc4ae22d71ab047851b6"
   license "Apache-2.0"
+  revision 1
+  compatibility_version 1
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "ccd113f27ad95facbc3c18e2bc237397fb4ed6aed0cb0c6bb111c0c5dd6dddc7"
-    sha256 cellar: :any,                 arm64_sequoia: "663e85a4fbde1669d17c67b4f078587bfc2603f8a5f58e4caaf52fcdcb7dbfd7"
-    sha256 cellar: :any,                 arm64_sonoma:  "4b183c74b442ff96e4da482cb8d3e10a4ffbf00708bed9d6ece86f9887ec0267"
-    sha256 cellar: :any,                 sonoma:        "fcea2f0dc077e255d9a92625247017f3e9012bb830803f19374d2c8b745e72e3"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "5d96448b1abde830f51459eb00fd91d4047088781a9ea3af41593cf5eb72f2e7"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "2dcded7c7e98d93a4957888804eeb9b49109b6e375cd82aba1adb803ba472c03"
+    sha256 cellar: :any,                 arm64_tahoe:   "3d5bb64ac4c5edeec7ce068e77dc8a2514330e6e3ccf744f772919e2dacb04df"
+    sha256 cellar: :any,                 arm64_sequoia: "f6af7ed10d91e1cc04400abcefccb515067f9ce77fe622358201b84461e3e18a"
+    sha256 cellar: :any,                 arm64_sonoma:  "7bc1328091c9578e19a952c46d4b05ee004b1efd2c7dc571b8eef023a0b180ac"
+    sha256 cellar: :any,                 sonoma:        "b1f674f4a354b98a519425afdc2927b046e3d5d04098fe5424edb87a4f02ee5b"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "d732ec2950831daf2e1e300e2a35f5b01c12c20ccd04ca274363c58fa6dc25d9"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "7fba08ac09b9a399c84b0adcc0fde885f6e90c53d3ebd25b8e4a331cf79f671f"
   end
 
   depends_on "pkgconf" => :build # for localstack_ext
@@ -33,13 +35,13 @@ class Localstack < Formula
   end
 
   resource "cachetools" do
-    url "https://files.pythonhosted.org/packages/d4/07/56595285564e90777d758ebd383d6b0b971b87729bbe2184a849932a3736/cachetools-7.0.1.tar.gz"
-    sha256 "e31e579d2c5b6e2944177a0397150d312888ddf4e16e12f1016068f0c03b8341"
+    url "https://files.pythonhosted.org/packages/af/dd/57fe3fdb6e65b25a5987fd2cdc7e22db0aef508b91634d2e57d22928d41b/cachetools-7.0.5.tar.gz"
+    sha256 "0cd042c24377200c1dcd225f8b7b12b0ca53cc2c961b43757e774ebe190fd990"
   end
 
   resource "charset-normalizer" do
-    url "https://files.pythonhosted.org/packages/13/69/33ddede1939fdd074bce5434295f38fae7136463422fe4fd3e0e89b98062/charset_normalizer-3.4.4.tar.gz"
-    sha256 "94537985111c35f28720e43603b8e7b43a6ecfb2ce1d3058bbe955b73404e21a"
+    url "https://files.pythonhosted.org/packages/7b/60/e3bec1881450851b087e301bedc3daa9377a4d45f1c26aa90b0b235e38aa/charset_normalizer-3.4.6.tar.gz"
+    sha256 "1ae6b62897110aa7c79ea2f5dd38d1abca6db663687c0b1ad9aed6f6bae3d9d6"
   end
 
   resource "click" do
@@ -83,8 +85,8 @@ class Localstack < Formula
   end
 
   resource "plux" do
-    url "https://files.pythonhosted.org/packages/b5/6f/8502a12f12c49a5e2e7c5f9bbb23ec5a4b35cd4cbe9bce4382e5b2078fe3/plux-1.14.0.tar.gz"
-    sha256 "e335d0bb4b67e1cb18abce8b92370568394f75edfb8505398f51c577525467fe"
+    url "https://files.pythonhosted.org/packages/97/4c/d8010483a47f54143d0e0d949a821b94bf3ce82f8b2e13c17034e5ceda25/plux-1.15.0.tar.gz"
+    sha256 "974193735c420efcb99ac4e0d198072b55e8edd7dc42564bcd5aff2276f72ee5"
   end
 
   resource "psutil" do
@@ -98,8 +100,8 @@ class Localstack < Formula
   end
 
   resource "pyjwt" do
-    url "https://files.pythonhosted.org/packages/5c/5a/b46fa56bf322901eee5b0454a34343cdbdae202cd421775a8ee4e42fd519/pyjwt-2.11.0.tar.gz"
-    sha256 "35f95c1f0fbe5d5ba6e43f00271c275f7a1a4db1dab27bf708073b75318ea623"
+    url "https://files.pythonhosted.org/packages/c2/27/a3b6e5bf6ff856d2509292e95c8f57f0df7017cf5394921fc4e4ef40308a/pyjwt-2.12.1.tar.gz"
+    sha256 "c74a7a2adf861c04d002db713dd85f84beb242228e671280bf709d765b03672b"
   end
 
   resource "pyotp" do
@@ -113,8 +115,8 @@ class Localstack < Formula
   end
 
   resource "python-dotenv" do
-    url "https://files.pythonhosted.org/packages/f0/26/19cadc79a718c5edbec86fd4919a6b6d3f681039a2f6d66d14be94e75fb9/python_dotenv-1.2.1.tar.gz"
-    sha256 "42667e897e16ab0d66954af0e60a9caa94f0fd4ecf3aaf6d2d260eec1aa36ad6"
+    url "https://files.pythonhosted.org/packages/82/ed/0301aeeac3e5353ef3d94b6ec08bbcabd04a72018415dcb29e588514bba8/python_dotenv-1.2.2.tar.gz"
+    sha256 "2c371a91fbd7ba082c2c1dc1f8bf89ca22564a087c2c287cd9b662adde799cf3"
   end
 
   resource "pyyaml" do
@@ -123,8 +125,8 @@ class Localstack < Formula
   end
 
   resource "requests" do
-    url "https://files.pythonhosted.org/packages/c9/74/b3ff8e6c8446842c3f5c837e9c3dfcfe2018ea6ecef224c710c85ef728f4/requests-2.32.5.tar.gz"
-    sha256 "dbba0bac56e100853db0ea71b82b4dfd5fe2bf6d3754a8893c3af500cec7d7cf"
+    url "https://files.pythonhosted.org/packages/34/64/8860370b167a9721e8956ae116825caff829224fbca0ca6e7bf8ddef8430/requests-2.33.0.tar.gz"
+    sha256 "c7ebc5e8b0f21837386ad0e1c8fe8b829fa5f544d8df3b2253bff14ef29d7652"
   end
 
   resource "rich" do
@@ -143,8 +145,8 @@ class Localstack < Formula
   end
 
   resource "tabulate" do
-    url "https://files.pythonhosted.org/packages/ec/fe/802052aecb21e3797b8f7902564ab6ea0d60ff8ca23952079064155d1ae1/tabulate-0.9.0.tar.gz"
-    sha256 "0095b12bf5966de529c0feb1fa08671671b3368eec77d7ef7ab114be2c068b3c"
+    url "https://files.pythonhosted.org/packages/46/58/8c37dea7bbf769b20d58e7ace7e5edfe65b849442b00ffcdd56be88697c6/tabulate-0.10.0.tar.gz"
+    sha256 "e2cfde8f79420f6deeffdeda9aaec3b6bc5abce947655d17ac662b126e48a60d"
   end
 
   resource "urllib3" do
@@ -166,7 +168,7 @@ class Localstack < Formula
     assert_match version.to_s, shell_output("#{bin}/localstack --version")
 
     output = shell_output("#{bin}/localstack start --docker 2>&1", 1)
-
-    assert_match "License activation failed!", output
+    expected = OS.mac? ? "failed to connect to the docker API" : "Docker not available"
+    assert_match expected, output
   end
 end

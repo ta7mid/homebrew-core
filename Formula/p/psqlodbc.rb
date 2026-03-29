@@ -1,8 +1,8 @@
 class Psqlodbc < Formula
   desc "Official PostgreSQL ODBC driver"
   homepage "https://odbc.postgresql.org"
-  url "https://github.com/postgresql-interfaces/psqlodbc/archive/refs/tags/REL-17_00_0008.tar.gz"
-  sha256 "2718aba2929f5d8ce07f921901b27fa27c424fc297db89d3e025a436595f6626"
+  url "https://github.com/postgresql-interfaces/psqlodbc/archive/refs/tags/REL-18_00_0001.tar.gz"
+  sha256 "2cf6f19d72765f0b8c2a8a9f4000f1ae1835e737c4899dc931dd6d7a7a0c87dc"
   license "LGPL-2.0-or-later"
   head "https://github.com/postgresql-interfaces/psqlodbc.git", branch: "main"
 
@@ -17,12 +17,12 @@ class Psqlodbc < Formula
   no_autobump! because: :incompatible_version_format
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "7907a538ee2650e756d49d26ce6b1b8ad11ea309ce17333cb1252e67ecf0f73f"
-    sha256 cellar: :any,                 arm64_sequoia: "b92c46f4de344b8ba92e5d18dc472e062db9f0b7160e96d232f1297f015c13f7"
-    sha256 cellar: :any,                 arm64_sonoma:  "2448e912ca0a765fa3982aec2c3dc0084551a18dd450553f441f5b5a9a2a80d5"
-    sha256 cellar: :any,                 sonoma:        "b67332646649c54b710177d45b13b172afef57f842aba21f590de513608caf17"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "a964a977706c3ac8a2b27abdd6ab638267309624253c3ce04667108401913257"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "13d30c267174ba037e9636221ff6a12eb52236baf5d3de0e47feebbf294a988a"
+    sha256 cellar: :any,                 arm64_tahoe:   "8ea1a4ecf8e6a609fdc9b2c38efc6a1f48c905420eee73abc502e466de797328"
+    sha256 cellar: :any,                 arm64_sequoia: "904625a0bf31b2b254a7e6832a98a4e9cd9ac738895564a69ade039223b22b90"
+    sha256 cellar: :any,                 arm64_sonoma:  "85e059770deb50b4132d96040507431fe243470b4273102432ba9b6a84a1f6ba"
+    sha256 cellar: :any,                 sonoma:        "319330d341a6d3bab2fe8f0c197f9f647fb3255cb07e8f539199dcee639014c1"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "f0ddc9cac55df470dfe893d2bc17678471f17723acadbcebb82615539c3872f8"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f7ef65df1154b69caecb031b91196a70c3c9c2f46561149f5655a2909ee1bdb7"
   end
 
   depends_on "autoconf" => :build

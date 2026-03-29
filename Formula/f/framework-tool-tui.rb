@@ -1,13 +1,13 @@
 class FrameworkToolTui < Formula
   desc "TUI for controlling and monitoring Framework Computers hardware"
   homepage "https://github.com/grouzen/framework-tool-tui"
-  url "https://github.com/grouzen/framework-tool-tui/archive/refs/tags/v0.8.0.tar.gz"
-  sha256 "ac0e322d8f1c338361a89c657299ccdeca8c7d7b7713adf7d48511ab60373255"
+  url "https://github.com/grouzen/framework-tool-tui/archive/refs/tags/v0.8.3.tar.gz"
+  sha256 "91538a52ad3ba221b77c29900f70a79f6b4235254544a16ced21fba284ecd285"
   license "MIT"
   head "https://github.com/grouzen/framework-tool-tui.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "a23f3db1468f286c2fef3de5375467f9264d2c47f023ed8d3c9502df4d48eb3f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "a42dc0d170abcc7ce2595854bdc9b8e29b65af3ea4479cb2171e286161c70d5b"
   end
 
   depends_on "pkgconf" => :build

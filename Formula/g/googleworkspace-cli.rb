@@ -2,17 +2,17 @@ class GoogleworkspaceCli < Formula
   desc "CLI for Drive, Gmail, Calendar, Sheets, Docs, Chat, Admin, and more"
   homepage "https://developers.google.com/workspace"
   # We cannot install from the npm registry because it installs precompiled binaries
-  url "https://github.com/googleworkspace/cli/archive/refs/tags/v0.11.1.tar.gz"
-  sha256 "431d03a02482a733d6ab4b752524a49e0ec6af28cc45e4eb7c4fd0ca4b74935f"
+  url "https://github.com/googleworkspace/cli/archive/refs/tags/v0.22.3.tar.gz"
+  sha256 "0cfea71e99c5159c3f30b639670a71e75c31557398e2dfa83ba6f5192555e30a"
   license "Apache-2.0"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "68c644338a5aefbf23895e0614fc9a3e142b63e403de2850fb2c43e9d652b40e"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "f94dc1715c18c7081407544c226be3996f9da2e5aaa3cd9f41921b65e4d94ea7"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "ae115cd8ba0fd503e8416ef7d58eb5b4c38a8976a2c86a02ef22aea4f8f8347f"
-    sha256 cellar: :any_skip_relocation, sonoma:        "23495916701736d0dd8d322a974c05a6703fbfb85c3f9e060fd1afba97aa4702"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "af5ab47d5b02d31d7a258a1abac3233382b0912317a8e908e0e92f7405ba76fd"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d39fc25189ddb53d78dbfbf013a66bdfd15fb317d5452b33037fbfd72e2c5dd0"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "a3c560ccabec785454025f15c68ff3995b0755538f48c37a8ecbdca8bd83ec5b"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "21d484eb2a4eafcf2622f8e2e9e6d92b93b4be70f0ca619380f22b2d16462865"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "09adac8fdc6ee40a5386d114935d00b5e69e48ccec2c4d683adaf4c05dfd6fde"
+    sha256 cellar: :any_skip_relocation, sonoma:        "eb68935c91b19348100ae3ab39b47405b56f068d6ac05757c6e6e677dc22bd84"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "4483dd7ebd204e52a725ac69f79afabd66080e29e899196dd63529d2a4f5c94c"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "9a27116e80eed6219c175ccbcfc09a15dce76488baa43c6dbbd91d19fbdf3418"
   end
 
   depends_on "rust" => :build
@@ -20,12 +20,12 @@ class GoogleworkspaceCli < Formula
   conflicts_with "gws", because: "both install a `gws` binary"
 
   def install
-    system "cargo", "install", *std_cargo_args
+    system "cargo", "install", *std_cargo_args(path: "crates/google-workspace-cli")
   end
 
   test do
     assert_match version.to_s, shell_output("#{bin}/gws --version")
-    output = shell_output("#{bin}/gws drive files list --params '{\"pageSize\": 10}'", 1)
+    output = shell_output("#{bin}/gws drive files list --params '{\"pageSize\": 10}'", 2)
     assert_match "Access denied. No credentials provided.", output
   end
 end

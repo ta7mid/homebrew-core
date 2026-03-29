@@ -1,8 +1,8 @@
 class Clarinet < Formula
   desc "Command-line tool and runtime for the Clarity smart contract language"
   homepage "https://stackslabs.com/"
-  url "https://github.com/stx-labs/clarinet/archive/refs/tags/v3.14.1.tar.gz"
-  sha256 "35ed02faec2cb37a3898a89280359031d22d78c45692eb1cf100c68aaff9f525"
+  url "https://github.com/stx-labs/clarinet/archive/refs/tags/v3.15.1.tar.gz"
+  sha256 "61127efcd73e72b4af4dad3bd18a51eb7a372d8d44b6b4ca5c9212deba3f3264"
   license "GPL-3.0-only"
   head "https://github.com/stx-labs/clarinet.git", branch: "main"
 
@@ -12,12 +12,12 @@ class Clarinet < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "e3941d768095bc5dc2f37bcde92c070572f1c617e9835fac8176e3c5c48f22d0"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "f73f2a2686bb403ae48b1677b65cc1ad450345ff4bf03675923e871567b3bbdf"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "4f4cc7a18bff87e09a42e9f06c71aa5ae24b48de1623bb99cec084265edb8d13"
-    sha256 cellar: :any_skip_relocation, sonoma:        "8d60873c3a1746930be801dacae40a5e48435d85f09c7d66caf2bb37ff5db6b9"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "ea3a5783f1cf1f0a1c5a95dc93a48840e4c937e66ae724c8b049fb11545428b6"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e9bb69f8daf2b5f2123dae3590777ae484d08279b082cfcdb8e2f0804b4355b3"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "55209b4c673c85347375078d73577e22a10ce954a69f66e9a1aa95a1f13e8fbd"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "9285058b48c50b079f0b794ec5364a93777e643de9767ca377d5921920967021"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "c19e0544691ef810c62cd6d1856704ee8df97f738b255544e47096efc800d9cb"
+    sha256 cellar: :any_skip_relocation, sonoma:        "037d03a9ecf28cf3d5b5c6e5b377dccb3485c8373ca459ea2e5efd13bda08866"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "d4167578e22cf98e014f7ca1463a12aa562a4933f1bfecb8a70324c69670a0bd"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "59cd75502884c738f6526fc0ebcc7490b9203da509c51e517f8c1cd78fbdfad1"
   end
 
   depends_on "rust" => :build

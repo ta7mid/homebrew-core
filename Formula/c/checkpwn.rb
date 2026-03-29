@@ -1,18 +1,18 @@
 class Checkpwn < Formula
   desc "Check Have I Been Pwned and see if it's time for you to change passwords"
   homepage "https://github.com/brycx/checkpwn"
-  url "https://github.com/brycx/checkpwn/archive/refs/tags/0.5.4.tar.gz"
-  sha256 "f7802910b93932587b8a73aec3b33db24fd8088615a0be89b7c0945500059aae"
+  url "https://static.crates.io/crates/checkpwn/checkpwn-0.6.0.crate"
+  sha256 "483f848624bcba52a409c3043fae702ba0e90ed4e0cdf44e18e9897574abc5d3"
   license "MIT"
   head "https://github.com/brycx/checkpwn.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "f44949d541a5090722b28b7476c2e2ecd71dea26c57496e9f301478e1fee73b5"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "231523bcebdd1c6bae0fe105089e7e8de4200f3487e91c7858fa23c32851c4af"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "f7fce288f337d494af4d34d5c9125a222f05d2f5a35de1757870a8f5cfcea627"
-    sha256 cellar: :any_skip_relocation, sonoma:        "79e425de48f6f832a02233f0643995d7f1d4656788fb4a5c760599a4e447104b"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "cb39905fbf588058e688b7122d29ca7d029fc297808f1849e3d5fb4c127ba293"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8aec0949f0c719a7bd263984378f48bbf58a0b922a6b2bc3fc06cc5c1f9daedb"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "247d39a4ed73db6c07ea0f9d401779401d65fc8b8b57b6c4f07bcb87770b698e"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "6e93af1bcf4bd347443e44c0fbb5455481985deb338766f2fbcdff9fcf9a8da6"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "a75b7f8e6f8231893f90fb2399e863d87f738ae3fcc9fb90d2d7e8c62544087c"
+    sha256 cellar: :any_skip_relocation, sonoma:        "d482bbc30d4ed2ff6c947c75205dcfe60485bcc549bcc46a1662b53c8221adb2"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "c68a5a8ba299cfe05ced5b08e46e659e9d0c95c3bb4ed610b2cbe8ed87f47489"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8acec269fbd8bb8623f7354a658670649c8f1cedc28bf0f68b50db4d523e0f7c"
   end
 
   depends_on "rust" => :build

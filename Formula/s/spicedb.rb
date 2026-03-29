@@ -1,18 +1,18 @@
 class Spicedb < Formula
   desc "Open Source, Google Zanzibar-inspired database"
   homepage "https://authzed.com/docs/spicedb/getting-started/discovering-spicedb"
-  url "https://github.com/authzed/spicedb/archive/refs/tags/v1.49.2.tar.gz"
-  sha256 "375343717e81ace4108aed7442a6a0827a5b404f00d66a8527f37ca6e610c029"
+  url "https://github.com/authzed/spicedb/archive/refs/tags/v1.51.0.tar.gz"
+  sha256 "88c785a990b78e1653fba5277ff7002a0cb25f9a72b89cc2a8faf5902b34a9c1"
   license "Apache-2.0"
   head "https://github.com/authzed/spicedb.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "1b20e83a9057d45f64909c11f2ddbd17670e53a1c3306a2aebf9d24623192463"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "e403420bdaeca87fcc3b042af3f544f82baf8261b47d4e322068b28da556c697"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "0254f25654f8d641d2e1b6780a3f705810074cd7e1e1c60f23869641771af30f"
-    sha256 cellar: :any_skip_relocation, sonoma:        "3434be339a68d83257b1419bb72472e283e7459532f89ff5c296ddfd0916d4df"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "a8db1f47f3a5276bd44ecb93fa046d963e53937257ed1f316340be63c3012aea"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "566651576b6c2336d79828131fc2acf8bbefab8e0c96f93a81abe27c046c205e"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "733467766c98ab39700a1bc958415677b0815830888e912c881b791d7e9a1165"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "b9e724555f5448085cd044d363511422095f152fc63629c6036e807358f099d9"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "4d9d94718cf9060b41998f25cca0e8faecf77e3dfe926a225583dcddb304fbbe"
+    sha256 cellar: :any_skip_relocation, sonoma:        "7e196a8ea84d1d65a0d17155aecf0d7848e2d888b239ba0308c6bb26528af406"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "4d9198096e34b19480e3f237a4c2321a97a6ace0c352dcd8fd9375e2938ed163"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1321f164b3d9f8fef2135e87858d2b805d2d9005dd9a7b88bd1fd49bbc30e34d"
   end
 
   depends_on "go" => :build
