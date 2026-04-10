@@ -3,18 +3,18 @@ class Hf < Formula
 
   desc "Client library for huggingface.co hub"
   homepage "https://huggingface.co/docs/huggingface_hub/guides/cli"
-  url "https://files.pythonhosted.org/packages/8e/2a/a847fd02261cd051da218baf99f90ee7c7040c109a01833db4f838f25256/huggingface_hub-1.8.0.tar.gz"
-  sha256 "c5627b2fd521e00caf8eff4ac965ba988ea75167fad7ee72e17f9b7183ec63f3"
+  url "https://files.pythonhosted.org/packages/cf/65/fb800d327bf25bf31b798dd08935d326d064ecb9b359059fecd91b3a98e8/huggingface_hub-1.9.2.tar.gz"
+  sha256 "8d09d080a186bd950a361bfc04b862dfb04d6a2b41d48e9ba1b37507cfd3f1e1"
   license "Apache-2.0"
   head "https://github.com/huggingface/huggingface_hub.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "52f4ad6b434603d2d7f73a7a6b87334fb92770bc0d7e644c36a3b06ce6ba7a13"
-    sha256 cellar: :any,                 arm64_sequoia: "7d5aa0d73e6843a4a975bc53b89aa5b54c4766266a45d99b12ca65513f6cda38"
-    sha256 cellar: :any,                 arm64_sonoma:  "22bbea96760bf9822c4e7912f9246e17637f47b80fee501e3fc4d3d9cb86403c"
-    sha256 cellar: :any,                 sonoma:        "16506ec6d2b26492316d107a40ba91574b1002ae181da04599dedc5bee2d559d"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "5f4a78308cddea653a2fc24ef03c0a1a1e59229f2cbcc8f4358218c7ac1006e4"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "07bf72de1255047a0a86d0bce6fbe814e14105e2b33c9228b3e0ede6f9c95d9b"
+    sha256 cellar: :any,                 arm64_tahoe:   "0ce6033ee8229fdd20ebc75957fb606a7e069a314d681c25439cd318243985a2"
+    sha256 cellar: :any,                 arm64_sequoia: "212fe4109cdedb101879f15fc29643bfcb931569c679e43c88804f2ed56682bb"
+    sha256 cellar: :any,                 arm64_sonoma:  "4858b775d10be1418dffc43b045ccb091c8d2a0f9844f685453c7004ceaa9789"
+    sha256 cellar: :any,                 sonoma:        "d8f51bea60afd4e4165ca336d9bd7637f64453052c4879410da886efdbbf595d"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "8b6109c1851fcaf025ba63b917d7fa3cf6abbd45d57d72f3e45eb725a6e1663b"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "dd58b5893827dce1014f9617b353671cf2b7731e4fa8929145ac6dfa5e476df7"
   end
 
   depends_on "pkgconf" => :build
@@ -43,8 +43,8 @@ class Hf < Formula
   end
 
   resource "click" do
-    url "https://files.pythonhosted.org/packages/3d/fa/656b739db8587d7b5dfa22e22ed02566950fbfbcdc20311993483657a5c0/click-8.3.1.tar.gz"
-    sha256 "12ff4785d337a1bb490bb7e9c2b1ee5da3112e94a8622f26a6c77f5d2fc6842a"
+    url "https://files.pythonhosted.org/packages/57/75/31212c6bf2503fdf920d87fee5d7a86a2e3bcf444984126f13d8e4016804/click-8.3.2.tar.gz"
+    sha256 "14162b8b3b3550a7d479eafa77dfd3c38d9dc8951f6f69c78913a8f9a7540fd5"
   end
 
   resource "filelock" do
@@ -53,8 +53,8 @@ class Hf < Formula
   end
 
   resource "fsspec" do
-    url "https://files.pythonhosted.org/packages/51/7c/f60c259dcbf4f0c47cc4ddb8f7720d2dcdc8888c8e5ad84c73ea4531cc5b/fsspec-2026.2.0.tar.gz"
-    sha256 "6544e34b16869f5aacd5b90bdf1a71acb37792ea3ddf6125ee69a22a53fb8bff"
+    url "https://files.pythonhosted.org/packages/e1/cf/b50ddf667c15276a9ab15a70ef5f257564de271957933ffea49d2cdbcdfb/fsspec-2026.3.0.tar.gz"
+    sha256 "1ee6a0e28677557f8c2f994e3eea77db6392b4de9cd1f5d7a9e87a0ae9d01b41"
   end
 
   resource "h11" do
@@ -63,8 +63,8 @@ class Hf < Formula
   end
 
   resource "hf-xet" do
-    url "https://files.pythonhosted.org/packages/09/08/23c84a26716382c89151b5b447b4beb19e3345f3a93d3b73009a71a57ad3/hf_xet-1.4.2.tar.gz"
-    sha256 "b7457b6b482d9e0743bd116363239b1fa904a5e65deede350fbc0c4ea67c71ea"
+    url "https://files.pythonhosted.org/packages/53/92/ec9ad04d0b5728dca387a45af7bc98fbb0d73b2118759f5f6038b61a57e8/hf_xet-1.4.3.tar.gz"
+    sha256 "8ddedb73c8c08928c793df2f3401ec26f95be7f7e516a7bee2fbb546f6676113"
   end
 
   resource "httpcore" do
@@ -98,8 +98,8 @@ class Hf < Formula
   end
 
   resource "pygments" do
-    url "https://files.pythonhosted.org/packages/b0/77/a5b8c569bf593b0140bde72ea885a803b82086995367bf2037de0159d924/pygments-2.19.2.tar.gz"
-    sha256 "636cb2477cec7f8952536970bc533bc43743542f70392ae026374600add5b887"
+    url "https://files.pythonhosted.org/packages/c3/b2/bc9c9196916376152d655522fdcebac55e66de6603a76a02bca1b6414f6c/pygments-2.20.0.tar.gz"
+    sha256 "6757cd03768053ff99f3039c1a36d6c0aa0b263438fcab17520b30a303a82b5f"
   end
 
   resource "pyyaml" do
@@ -155,7 +155,7 @@ class Hf < Formula
   test do
     ENV["HUGGINGFACE_HUB_CACHE"] = testpath
     ENV["NO_COLOR"] = "1"
-    assert_match "Not logged in", shell_output("#{bin}/hf auth whoami")
+    assert_match "Not logged in", shell_output("#{bin}/hf auth whoami 2>&1", 1)
     assert_match "No cached repositories found.", shell_output("#{bin}/hf cache ls")
   end
 end

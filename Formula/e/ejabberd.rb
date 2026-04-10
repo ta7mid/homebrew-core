@@ -3,7 +3,7 @@ class Ejabberd < Formula
   homepage "https://www.ejabberd.im"
   url "https://github.com/processone/ejabberd/archive/refs/tags/26.03.tar.gz"
   sha256 "584b9d43a1f67e929fdb08fa7429f359fabc022923aca311666b1073ed709a52"
-  license "GPL-2.0-only"
+  license "GPL-2.0-or-later"
   head "https://github.com/processone/ejabberd.git", branch: "master"
 
   # There can be a notable gap between when a version is tagged and a
@@ -25,7 +25,7 @@ class Ejabberd < Formula
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build
-  depends_on "elixir" => :build
+  depends_on "elixir"
   depends_on "erlang"
   depends_on "gd"
   depends_on "libyaml"
@@ -120,11 +120,13 @@ class Ejabberd < Formula
     cp etc/"ejabberd/ejabberd.yml", testpath/"ejabberd.yml"
     inreplace testpath/"ejabberd.yml", "port: 1883", "port: #{free_port}"
 
-    pid = spawn(sbin/"ejabberdctl", "--node", node, "foreground", pgroup: true)
+    output_log = testpath/"output.log"
+    pid = spawn(sbin/"ejabberdctl", "--node", node, "foreground", pgroup: true, [:out, :err] => output_log.to_s)
     sleep 5
     assert_equal "pong\n", shell_output("#{sbin}/ejabberdctl --node #{node} ping")
+    refute_match(/ERROR/i, output_log.read)
   ensure
-    Process.kill "TERM", -pid
+    Process.kill "TERM", pid
     Process.wait pid
   end
 end

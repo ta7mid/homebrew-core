@@ -6,13 +6,13 @@ class Gstreamer < Formula
   compatibility_version 1
 
   stable do
-    url "https://gitlab.freedesktop.org/gstreamer/gstreamer/-/archive/1.28.1/gstreamer-1.28.1.tar.bz2"
-    sha256 "86ec0179104664a1ca6de57d7c886d3a8aa0491d1a243d02514b306885272b91"
+    url "https://gitlab.freedesktop.org/gstreamer/gstreamer/-/archive/1.28.2/gstreamer-1.28.2.tar.bz2"
+    sha256 "3eb15429a2721b91fe8339c321867462eb87b98cdad2109292a0aa42cdd6e2c3"
 
     # When updating this resource, use the tag that matches the GStreamer version.
     resource "rs" do
-      url "https://gitlab.freedesktop.org/gstreamer/gst-plugins-rs/-/archive/gstreamer-1.28.1/gst-plugins-rs-gstreamer-1.28.1.tar.bz2"
-      sha256 "5488965db0fbb491810188ff144ec5a43055a6a5fc3412bef6b7a81cb504e60d"
+      url "https://gitlab.freedesktop.org/gstreamer/gst-plugins-rs/-/archive/gstreamer-1.28.2/gst-plugins-rs-gstreamer-1.28.2.tar.bz2"
+      sha256 "f736a9e3cad1c71a736ffc6749a076bb0939274bbe6f2635a3c4ea65bae7e910"
 
       livecheck do
         formula :parent
@@ -26,12 +26,12 @@ class Gstreamer < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "75331c0fab7d9d309a3ea234cc52c9c32e05d32e7ea8ba1254217eceb1394b2e"
-    sha256 arm64_sequoia: "e33e1f7f50a707189c99bb1178844b5d5d405b2385a8044417e9f369dc45ad5a"
-    sha256 arm64_sonoma:  "77ed98f4de4486ef2ecbc4c5035c286f49d875716772060015f77255d3414e93"
-    sha256 sonoma:        "d7d8f73d695687a768bb01eee7a772199bed980dae59a9f7ec7ccb117be5753c"
-    sha256 arm64_linux:   "b4cf93110905bce375158be2d16b5f09ec89998f81a8a4e338f7f98f531dcc4f"
-    sha256 x86_64_linux:  "65838c00ee5ef28889fd6aab631dfed1fe2efbd6dd588bc1a65d30a58c115d6e"
+    sha256 arm64_tahoe:   "686c4147b5a3c19386889074453ed91daf43a2ddf7a36710e17f6d6b845f4074"
+    sha256 arm64_sequoia: "9ac558ca4955c40ac2a0668dff46d6e406f7becdeab30b853b400a0174803e11"
+    sha256 arm64_sonoma:  "72dace31cd2d7b8310d2171bb143044c3ced27ea7de09fa02bc9429e2a5cfe57"
+    sha256 sonoma:        "21802ac276ec61e0be907af8305c8c96636cdf80ee9acc80aef00cc22b480428"
+    sha256 arm64_linux:   "6d6b85fddb5d3182ca94733f3f4389ab1d06fedc2eacfa103f953e3a8571939a"
+    sha256 x86_64_linux:  "8ef9feee5754e58733d76c7089bebf7da119d727d44928cbd5f1cf4c33c6bc13"
   end
 
   head do
@@ -126,6 +126,7 @@ class Gstreamer < Formula
 
   on_linux do
     depends_on "alsa-lib"
+    depends_on "elfutils" => :no_linkage
     depends_on "fontconfig"
     depends_on "freetype"
     depends_on "libdrm"
@@ -205,6 +206,7 @@ class Gstreamer < Formula
       -Dgst-plugins-rs:sodium=enabled
       -Dgst-plugins-rs:csound=disabled
       -Dgst-plugins-rs:gtk4=enabled
+      -Dgst-plugins-rs:webrtchttp=enabled
       -Dgst-plugins-rs:sodium-source=system
     ]
 

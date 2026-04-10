@@ -1,12 +1,12 @@
 class Portless < Formula
   desc "Replace port numbers with stable, named local URLs for humans and agents"
   homepage "https://port1355.dev"
-  url "https://registry.npmjs.org/portless/-/portless-0.7.2.tgz"
-  sha256 "cdf3f28494ff5a516467ed7df29da3ed7976667c698f755147eeb3657d3f74ae"
+  url "https://registry.npmjs.org/portless/-/portless-0.10.1.tgz"
+  sha256 "2c3003c2c6c404cc29c05b439578bab457fd9260bc61a4c6c8b4fa761882dbc4"
   license "Apache-2.0"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "c163bf44114c48f5329290b07f8ed136a690150cdf94b14f204fa741dcc85299"
+    sha256 cellar: :any_skip_relocation, all: "bc9f888a92a790d25836cb50c6d46c26494404844a1a905152f99c8d8af6d069"
   end
 
   depends_on "node"
@@ -35,6 +35,7 @@ class Portless < Formula
     ENV["HOME"] = testpath
     ENV["PORTLESS_PORT"] = proxy_port.to_s
     ENV["PORTLESS_STATE_DIR"] = (testpath/".portless").to_s
+    ENV["PORTLESS_HTTPS"] = "0"
 
     pid = spawn bin/"portless", "myapp", Formula["node"].opt_bin/"node", server
 

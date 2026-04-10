@@ -3,17 +3,17 @@ class Ocrmypdf < Formula
 
   desc "Adds an OCR text layer to scanned PDF files"
   homepage "https://ocrmypdf.readthedocs.io/en/latest/"
-  url "https://files.pythonhosted.org/packages/88/b9/01f5cbd062f680af8a3f8f883f8e71de8be7979c3256f509661c1e2e2065/ocrmypdf-17.4.0.tar.gz"
-  sha256 "4bbc53249f3981599565f670c5de774d6440832eede87c515e6608880fa02a34"
+  url "https://files.pythonhosted.org/packages/88/8a/a26624198afad38847dfb6c01bf157858eb545f00316d62f8db95572837d/ocrmypdf-17.4.1.tar.gz"
+  sha256 "f4013df8ce5e6a6670e942999de304f2f0d671a8131bc7e6a1779c071041a587"
   license "MPL-2.0"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "23b4e995d58b5658178eee7c7c611180f43634d9662671747c67d354a56f5c52"
-    sha256 cellar: :any,                 arm64_sequoia: "fb2e1e749d48022bf6bdb99269593504bb2cc674d9b64b74bcf6acbfd94b3d1c"
-    sha256 cellar: :any,                 arm64_sonoma:  "07913f732682b742e3a7fdabb194ee09cd888dfeeb49851ac7fa3ccc4b290068"
-    sha256 cellar: :any,                 sonoma:        "c44bdbca757de437f8433930a0ab28868b682c2aed1d61d44d54064cc9cd53ab"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "9f6612f11250a4ec8272a2ed74ad33f5b5277e7b56e83c9eb9e20d819af2605e"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5be518c07ae34f82a34dde91f785968a058ff0490da12eead5fc5b9168bd500e"
+    sha256 cellar: :any,                 arm64_tahoe:   "6e56749f230dfe5ab42c4772e59affa8a7eee970e9bfcc5c145294daff4717ba"
+    sha256 cellar: :any,                 arm64_sequoia: "a411c539d76750d960b26c4e9f513f7634987433047326c9aef8dd16d27af593"
+    sha256 cellar: :any,                 arm64_sonoma:  "b8902dc63f5a3bc90b528b525ab8b7484cf67ea35e56c0d0884b8c89b196a848"
+    sha256 cellar: :any,                 sonoma:        "c87ea7f880d3d2cd4ace75076384cd416dfe2ca075392364f53607c0d20fffe0"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "b204e43e77d51db1c4e15b2bb9cd29e1ea4bd2f81ff2e920cc97a172875ff45a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "baee498a506e8963c99fa784898bdcf14cf719f2247a92d1cb92b6ddd83ae160"
   end
 
   depends_on "cmake" => :build # for pikepdf
@@ -41,8 +41,8 @@ class Ocrmypdf < Formula
   pypi_packages exclude_packages: %w[cryptography pillow pydantic]
 
   resource "charset-normalizer" do
-    url "https://files.pythonhosted.org/packages/7b/60/e3bec1881450851b087e301bedc3daa9377a4d45f1c26aa90b0b235e38aa/charset_normalizer-3.4.6.tar.gz"
-    sha256 "1ae6b62897110aa7c79ea2f5dd38d1abca6db663687c0b1ad9aed6f6bae3d9d6"
+    url "https://files.pythonhosted.org/packages/e7/a1/67fe25fac3c7642725500a3f6cfe5821ad557c3abb11c9d20d12c7008d3e/charset_normalizer-3.4.7.tar.gz"
+    sha256 "ae89db9e5f98a11a4bf50407d4363e7b09b31e55bc117b4f7d80aab97ba009e5"
   end
 
   resource "defusedxml" do
@@ -116,8 +116,8 @@ class Ocrmypdf < Formula
   end
 
   resource "pygments" do
-    url "https://files.pythonhosted.org/packages/b0/77/a5b8c569bf593b0140bde72ea885a803b82086995367bf2037de0159d924/pygments-2.19.2.tar.gz"
-    sha256 "636cb2477cec7f8952536970bc533bc43743542f70392ae026374600add5b887"
+    url "https://files.pythonhosted.org/packages/c3/b2/bc9c9196916376152d655522fdcebac55e66de6603a76a02bca1b6414f6c/pygments-2.20.0.tar.gz"
+    sha256 "6757cd03768053ff99f3039c1a36d6c0aa0b263438fcab17520b30a303a82b5f"
   end
 
   resource "pypdfium2" do
@@ -131,8 +131,8 @@ class Ocrmypdf < Formula
   end
 
   resource "uharfbuzz" do
-    url "https://files.pythonhosted.org/packages/1c/8d/7c82298bfa5c96f018541661bc2ccdf90dfe397bb2724db46725bf495466/uharfbuzz-0.53.3.tar.gz"
-    sha256 "9a87175c14d1361322ce2a3504e63c6b66062934a5edf47266aed5b33416806c"
+    url "https://files.pythonhosted.org/packages/4a/c2/25b61744d726809f313070d0e2b83ae1c80f891072b341b6926bc048d9a3/uharfbuzz-0.53.6.tar.gz"
+    sha256 "d5bbf33ea5bcb0bfda5436e2ada91b39d4a63cc29fa81022932209aafefba28e"
   end
 
   resource "wrapt" do

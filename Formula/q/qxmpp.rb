@@ -1,22 +1,23 @@
 class Qxmpp < Formula
   desc "Cross-platform C++ XMPP client and server library"
   homepage "https://invent.kde.org/libraries/qxmpp"
-  url "https://invent.kde.org/libraries/qxmpp/-/archive/v1.14.4/qxmpp-v1.14.4.tar.bz2"
-  sha256 "e5bcc95546e9f1fc5452934f6795dd1f2874e75da9139aa1330436f62f550c31"
+  url "https://invent.kde.org/libraries/qxmpp/-/archive/v1.15.1/qxmpp-v1.15.1.tar.bz2"
+  sha256 "3a492ed1a175f16101f6dae86074ec027b4bc068356a0cf881dd34a0b4130e61"
   license "LGPL-2.1-or-later"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "bee10b891fc2d262be28313229a0f74b8cc431e36b621fdf8a400a8f6ad17987"
-    sha256 cellar: :any,                 arm64_sequoia: "b6a27320056ae94be2148f94c1f2da5d770f75eb9336fa9568eb14d2b9fe728b"
-    sha256 cellar: :any,                 arm64_sonoma:  "a4b3477d2e7cc6b4cda2837c12687158ad3adc8d3f9a70b6901961559792a44b"
-    sha256 cellar: :any,                 sonoma:        "e10721ab7aae8db4eb9fbc15cd3d867a1c41fad8cf052619130aecbb6a635d8b"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "03f838280c655cdbcb4cc2ac6bf413d40363f914056ee4773308f5f92a3c71e1"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "43717f3203d96967046ca5df1939fee03fbb59e7fc6f819baffe762020539f45"
+    sha256 cellar: :any,                 arm64_tahoe:   "3d6148bf2a7b06b7a383220e7441159828140ca7f9080f87a232b25a2b3e0564"
+    sha256 cellar: :any,                 arm64_sequoia: "6f79da5128f78bcab6bfbf55236e0f53e50a6bad2de56b7fcd9f5a5c9e6c2a84"
+    sha256 cellar: :any,                 arm64_sonoma:  "dc2dc9a32f2177e4962d2393e5f411634efd2b1630a02d07925943874991afe4"
+    sha256 cellar: :any,                 sonoma:        "98996a0437486736cea5ec75aa93a4021dc4ebf117649c869554d5fbe0ff0850"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "ddbef993a997e0c6abb5d28d59323a73974d14fb275c54cb53c8bc009f6c64ab"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1fe50d190bd252a30f6ab3ce737043ec4a609a76d934203aa8e376d38ce5e39d"
   end
 
   depends_on "cmake" => :build
   depends_on "pkgconf" => :build
   depends_on xcode: :build
+  depends_on "openssl@3"
   depends_on "qtbase"
 
   on_macos do

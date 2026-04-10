@@ -3,18 +3,18 @@ class Uvicorn < Formula
 
   desc "ASGI web server"
   homepage "https://www.uvicorn.org/"
-  url "https://files.pythonhosted.org/packages/e3/ad/4a96c425be6fb67e0621e62d86c402b4a17ab2be7f7c055d9bd2f638b9e2/uvicorn-0.42.0.tar.gz"
-  sha256 "9b1f190ce15a2dd22e7758651d9b6d12df09a13d51ba5bf4fc33c383a48e1775"
+  url "https://files.pythonhosted.org/packages/5e/da/6eee1ff8b6cbeed47eeb5229749168e81eb4b7b999a1a15a7176e51410c9/uvicorn-0.44.0.tar.gz"
+  sha256 "6c942071b68f07e178264b9152f1f16dfac5da85880c4ce06366a96d70d4f31e"
   license "BSD-3-Clause"
   head "https://github.com/encode/uvicorn.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "8f8cee1c2d512e0a8d4319220ae7e9aea22471449e2f047233077566a9e24206"
-    sha256 cellar: :any,                 arm64_sequoia: "f03450ed6aa296540ea649eca077985a162bd23a2141f65abadd3f08ebdd3651"
-    sha256 cellar: :any,                 arm64_sonoma:  "871e07612520aa9f1bb827d5bfa909fae315e426b18c027a8be9b1406a804859"
-    sha256 cellar: :any,                 sonoma:        "acc1cb8b2372e58325b2a3fd0d80ad5b336603cd2f513a5f2ec44d546573e112"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "34dec876a747583f9399fd0c822ac28c49b1fec4e97a65c523b9a50ccbc6a9fc"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "501e783130b2ecbe623aaaafd7c91de530706c428040946d78e9a34bec7d21f0"
+    sha256 cellar: :any,                 arm64_tahoe:   "85ee776b0cdfec4baa9a542f90e6fd6f34a8afce076e27832d9c3a7c8a9f592c"
+    sha256 cellar: :any,                 arm64_sequoia: "325d282db627ef1773dc0df9ca261de247fc88566af37b82e9c70319bcc05623"
+    sha256 cellar: :any,                 arm64_sonoma:  "3d456f6cc5d3cf437ee1274f08f903e1207a7616c37af7f8fa908874631f1a91"
+    sha256 cellar: :any,                 sonoma:        "785808d233f5fa4ed8f0e17d274fb67bd4fa8ecbc2dea5483c5c510c6e3a43ed"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "258eaab87ef10ae4c27382b99ff612ec8f789a59a018a21b15875765ad126aef"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "200304ed5b7df4d1ef58e9929f19fb8c6672f514ec4ed60d2c549d7103f23602"
   end
 
   depends_on "rust" => :build
@@ -24,13 +24,13 @@ class Uvicorn < Formula
   pypi_packages package_name: "uvicorn[standard]"
 
   resource "anyio" do
-    url "https://files.pythonhosted.org/packages/96/f0/5eb65b2bb0d09ac6776f2eb54adee6abe8228ea05b20a5ad0e4945de8aac/anyio-4.12.1.tar.gz"
-    sha256 "41cfcc3a4c85d3f05c932da7c26d0201ac36f72abd4435ba90d0464a3ffed703"
+    url "https://files.pythonhosted.org/packages/19/14/2c5dd9f512b66549ae92767a9c7b330ae88e1932ca57876909410251fe13/anyio-4.13.0.tar.gz"
+    sha256 "334b70e641fd2221c1505b3890c69882fe4a2df910cba14d97019b90b24439dc"
   end
 
   resource "click" do
-    url "https://files.pythonhosted.org/packages/3d/fa/656b739db8587d7b5dfa22e22ed02566950fbfbcdc20311993483657a5c0/click-8.3.1.tar.gz"
-    sha256 "12ff4785d337a1bb490bb7e9c2b1ee5da3112e94a8622f26a6c77f5d2fc6842a"
+    url "https://files.pythonhosted.org/packages/57/75/31212c6bf2503fdf920d87fee5d7a86a2e3bcf444984126f13d8e4016804/click-8.3.2.tar.gz"
+    sha256 "14162b8b3b3550a7d479eafa77dfd3c38d9dc8951f6f69c78913a8f9a7540fd5"
   end
 
   resource "h11" do

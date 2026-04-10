@@ -1,17 +1,17 @@
 class StripeCli < Formula
   desc "Command-line tool for Stripe"
   homepage "https://docs.stripe.com/stripe-cli"
-  url "https://github.com/stripe/stripe-cli/archive/refs/tags/v1.39.0.tar.gz"
-  sha256 "5deebbb310096eefaee62c6843496e1f22fe846684a5789466404c8e7097e117"
+  url "https://github.com/stripe/stripe-cli/archive/refs/tags/v1.40.3.tar.gz"
+  sha256 "4289392dc9444d1e7899bea6e4f387d7d24ade75523a301ace7e26d1603b5477"
   license "Apache-2.0"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "cf7d035b3885f5e27becf72887cad84d8fa60397584f7d2dca6c3315559a34e0"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "952d98ffce3c8bffde3f469873e0c704e8e4ad01c5cbc70e8b8ddf8bd8a31c0d"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "ac42f41238c91337a362e469262ef6dfc785f0ffe52f3d3308c59a52de54626c"
-    sha256 cellar: :any_skip_relocation, sonoma:        "0d09a9ccd79660ccc72514f991f4768b05bd6c5b1da33e7aafffc7aaf72c9da4"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "713680944984faeeee5d56ea3cba4c9a48305c8b5ab936bc29a8f3d7bbe70d48"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "cfbc95b9b23c9875860f2f3a106d779778571c1eef058a9df124ddba77133817"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "79938a718389794bae4279ba357784e13a034832ea4c648770d04a6db6bc2c80"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "99ee48cfca884e00da13621cc5f7631ca135375159a5a62fd8f8d6ad2625ae6c"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "fc4bcb4d37fca561f6ceb294d58dbf6cc9328d01087b722d980b3c708484e15e"
+    sha256 cellar: :any_skip_relocation, sonoma:        "b996250cbd700eac2b19c446c7977ee5b749732e2887be699ca1cfa1807f6ef9"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "afe6843fc35b04a428e2c1e9515d0bbd745e945a15098a1a556e3d1d4dbd8d0f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "fc9767c6c5d61537c4a737e3121ad7d7e1e47befafaabd6f5f7e23c2c6338913"
   end
 
   depends_on "go" => :build
@@ -30,7 +30,7 @@ class StripeCli < Formula
   test do
     assert_match version.to_s, shell_output("#{bin}/stripe version")
     assert_match "secret or restricted key",
-                 shell_output("#{bin}/stripe --api-key=not_real_key get ch_1EGYgUByst5pquEtjb0EkYha", 1)
+                 shell_output("#{bin}/stripe --api-key=not_real_key get ch_1EGYgUByst5pquEtjb0EkYha 2>&1", 1)
     assert_match "-F __start_stripe",
                  shell_output("bash -c 'source #{bash_completion}/stripe && complete -p stripe'")
   end

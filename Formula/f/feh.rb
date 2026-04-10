@@ -1,8 +1,8 @@
 class Feh < Formula
   desc "X11 image viewer"
   homepage "https://feh.finalrewind.org/"
-  url "https://feh.finalrewind.org/feh-3.11.3.tar.bz2"
-  sha256 "f2cca3592a433922c0db7a9365fd63e5402c121d932a9327e279c71be6501063"
+  url "https://feh.finalrewind.org/feh-3.12.1.tar.bz2"
+  sha256 "6772f48e7956a16736e4c165a8367f357efc413b895f5b04133366e01438f95d"
   license "MIT-feh"
 
   livecheck do
@@ -11,12 +11,12 @@ class Feh < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "855a10dc5899354d94b6dda82e715f05d56e53bb31d8977da1088536a7da7c0e"
-    sha256 arm64_sequoia: "6df8767b5680c95825e5b482432f53c308f8c27451b93852bcecd4255c6f198c"
-    sha256 arm64_sonoma:  "6f417a18c16c26939c37770ad0410f4a83d747b9ec62c78074a1b6e299c05d23"
-    sha256 sonoma:        "19dc6999bb9cc255c23ecb81920181539d7bd7a906898fc9d5382f5d6cb9d0a4"
-    sha256 arm64_linux:   "23653e63d4d90c61fb8790ff35c4b4983794e6946428dc200d5d7d0d8ac48d5d"
-    sha256 x86_64_linux:  "cac79626c41c6eade6c1a8f59afaf420659a11537eb287973341667e75e07b3e"
+    sha256 arm64_tahoe:   "d125fcc727286d6f936a304c25b9aaea87190a9c1610a5ea61d4b69600db57d9"
+    sha256 arm64_sequoia: "c2c3feb79abb0904ce88f4448c4e9f2e9505d474cf97c255ec3be0cbceb08b6c"
+    sha256 arm64_sonoma:  "ea3fb1a1c4bb0a98bb0398df78aa0b4dee45162de111ec18b58b48edeec54e00"
+    sha256 sonoma:        "e439ec50cecd61bf2f5fbdd8ff52116b3f6ba70ea17dddd0eb1005ac7d7d1a94"
+    sha256 arm64_linux:   "3a45c29c3294ef9e5a0046ddbaed2d10b8763ed7e24cf2672a8f538a3ed44823"
+    sha256 x86_64_linux:  "979d35e8be0131e6b7cbd508a91692ccfbc93f555921204fba4a178294f75bd9"
   end
 
   depends_on "imlib2"

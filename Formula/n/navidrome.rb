@@ -1,18 +1,18 @@
 class Navidrome < Formula
   desc "Modern Music Server and Streamer compatible with Subsonic/Airsonic"
   homepage "https://www.navidrome.org"
-  url "https://github.com/navidrome/navidrome/archive/refs/tags/v0.60.3.tar.gz"
-  sha256 "afb07417b2d38ee6d757bc4e1ea1ff635f2666e149c44a883560a5bcda2d8556"
+  url "https://github.com/navidrome/navidrome/archive/refs/tags/v0.61.1.tar.gz"
+  sha256 "68273cf2a8938a167d68fd6c6b341f0e06c1f23acfca83698f5673048f9beaae"
   license "GPL-3.0-only"
   head "https://github.com/navidrome/navidrome.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "4377d4b038741e364d4a999203535693751245156c44faf2b2f38c834aab1ae1"
-    sha256 cellar: :any,                 arm64_sequoia: "c7660513e9613acb671d35c93185e19e864bb7d10909917cf9a5952a3fadf58b"
-    sha256 cellar: :any,                 arm64_sonoma:  "28bbd739a694231714a471439610481695f572de8159e31d43458843a5855759"
-    sha256 cellar: :any,                 sonoma:        "99c826707517a5115d53ad5226f6999858bb1edf671e816896abb5d1823b6673"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "f53618093f2d2d82edf06d9a400e8c1851e708b207cfb727ba4635bb4c119f24"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "be972c8527b6bbdb10f08ae3e71bca6037686258fd1693619258fdc6b3f4e765"
+    sha256 cellar: :any,                 arm64_tahoe:   "f7d8415155300d9b5a1550c5d207a6fcb0ed88f5206c94c2f0d2aa017789085e"
+    sha256 cellar: :any,                 arm64_sequoia: "eb18a5a459650c3321f9dd4ad039db8454bd11a6be699b1edd1d3befd123d768"
+    sha256 cellar: :any,                 arm64_sonoma:  "1bd6acf4cb673832a67fdb2c1d8cfd4a5f00bf85b2b47f18d15298980ec94f84"
+    sha256 cellar: :any,                 sonoma:        "a754b3e1531df4fd122068b720e0a389e294627c3695b0cc1a4082a1ac3adb58"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "6a0599fd96803ae2cee6fd1ca418da5332b1e60ee5e3519535ef4f578e840111"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "b75be3fa53be1a1b8c6ad96bf7580d9d531e684d0bcaac1aef6f7df81f5521cd"
   end
 
   depends_on "go" => :build
@@ -37,7 +37,7 @@ class Navidrome < Formula
 
     system "make", "setup"
     system "make", "buildjs"
-    system "go", "build", *std_go_args(ldflags:, tags: "netgo"), "-buildvcs=false"
+    system "go", "build", *std_go_args(ldflags:, tags: "netgo,sqlite_fts5"), "-buildvcs=false"
 
     generate_completions_from_executable(bin/"navidrome", shell_parameter_format: :cobra)
   end

@@ -3,18 +3,18 @@ class Xml2rfc < Formula
 
   desc "Tool to convert XML RFC7749 to the original ASCII or the new HTML look-and-feel"
   homepage "https://xml2rfc.tools.ietf.org/"
-  url "https://files.pythonhosted.org/packages/80/2b/8d90886577883e9d4e4cc60a1d9587923c1b3dc2890a61bdd3176ebf2c53/xml2rfc-3.32.0.tar.gz"
-  sha256 "506d6fb5ff0bc029991c0d7fa8e429863005e2892c1dfe49fcc3e69ee94b76c9"
+  url "https://files.pythonhosted.org/packages/29/0b/44c69b36f09eb20ba238007b39fa2b0e366156477431b32188fb12413591/xml2rfc-3.33.0.tar.gz"
+  sha256 "feee8140e394dbc26bc61b1e803f5403a8844aaf4d918703c7f2ab1e850b639c"
   license "BSD-3-Clause"
   head "https://github.com/ietf-tools/xml2rfc.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "c37d653ea236d71294b7a190f825c52c2d48ab679c3b780cdb122882eab2fa05"
-    sha256 cellar: :any,                 arm64_sequoia: "8e4bcacb99de95af6a3d1f68ae2fb30d59a71616c9dfd044d16a10b3a7db7906"
-    sha256 cellar: :any,                 arm64_sonoma:  "b54b97b6cd393b28f6bcaaa89774875cec06cc8619321c24f5882346bbe510ce"
-    sha256 cellar: :any,                 sonoma:        "e3cd62690e7fb7688ff2a5957acf6d8e8a7c7b87e50db001e19290646770e5d0"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "b3f60bf394e9d03f12429d7b4c4a92aa5ce34b72c2333e04568169846c68a18e"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "fea41f2283366cbf77526f3c1c6a3d73ba0857843f5d7dc2b41a1414263aa514"
+    sha256 cellar: :any,                 arm64_tahoe:   "52ad1b0f5a2d6a067ce53c079e62862e254c2b8dcdef873c05324edbbefbd623"
+    sha256 cellar: :any,                 arm64_sequoia: "54831384aff027e7f558848da107aa7744bfc61f592f0eba89925e52d40048c5"
+    sha256 cellar: :any,                 arm64_sonoma:  "92571581d5d9d5a950ed0ec8a52cf877a0154c2b3fd974f44916b2aab0dd5bcb"
+    sha256 cellar: :any,                 sonoma:        "5c9962342b926cdc5afb6aad1c7095f52c52299a2200765ed3c7a927fa482b7a"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "83b0dc5bdf029f80cac3fb989aeb9a1c9d50a6d0f1a297b0cbcb849f27cad31e"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "28d06a62dad9206357b458276c1468a143cf97992dc0068196e0503455386b57"
   end
 
   depends_on "certifi" => :no_linkage
@@ -33,13 +33,13 @@ class Xml2rfc < Formula
   # if not then there will be an ModuleNotFoundError: No module named 'i18naddress'
 
   resource "charset-normalizer" do
-    url "https://files.pythonhosted.org/packages/13/69/33ddede1939fdd074bce5434295f38fae7136463422fe4fd3e0e89b98062/charset_normalizer-3.4.4.tar.gz"
-    sha256 "94537985111c35f28720e43603b8e7b43a6ecfb2ce1d3058bbe955b73404e21a"
+    url "https://files.pythonhosted.org/packages/e7/a1/67fe25fac3c7642725500a3f6cfe5821ad557c3abb11c9d20d12c7008d3e/charset_normalizer-3.4.7.tar.gz"
+    sha256 "ae89db9e5f98a11a4bf50407d4363e7b09b31e55bc117b4f7d80aab97ba009e5"
   end
 
   resource "configargparse" do
-    url "https://files.pythonhosted.org/packages/85/4d/6c9ef746dfcc2a32e26f3860bb4a011c008c392b83eabdfb598d1a8bbe5d/configargparse-1.7.1.tar.gz"
-    sha256 "79c2ddae836a1e5914b71d58e4b9adbd9f7779d4e6351a637b7d2d9b6c46d3d9"
+    url "https://files.pythonhosted.org/packages/3f/0b/30328302903c55218ffc5199646d0e9d28348ff26c02ba77b2ffc58d294a/configargparse-1.7.5.tar.gz"
+    sha256 "e3f9a7bb6be34d66b2e3c4a2f58e3045f8dfae47b0dc039f87bcfaa0f193fb0f"
   end
 
   resource "google-i18n-address" do
@@ -73,8 +73,8 @@ class Xml2rfc < Formula
   end
 
   resource "platformdirs" do
-    url "https://files.pythonhosted.org/packages/1b/04/fea538adf7dbbd6d186f551d595961e564a3b6715bdf276b477460858672/platformdirs-4.9.2.tar.gz"
-    sha256 "9a33809944b9db043ad67ca0db94b14bf452cc6aeaac46a88ea55b26e2e9d291"
+    url "https://files.pythonhosted.org/packages/9f/4a/0883b8e3802965322523f0b200ecf33d31f10991d0401162f4b23c698b42/platformdirs-4.9.6.tar.gz"
+    sha256 "3bfa75b0ad0db84096ae777218481852c0ebc6c727b3168c1b9e0118e458cf0a"
   end
 
   resource "pycountry" do
@@ -88,8 +88,8 @@ class Xml2rfc < Formula
   end
 
   resource "requests" do
-    url "https://files.pythonhosted.org/packages/c9/74/b3ff8e6c8446842c3f5c837e9c3dfcfe2018ea6ecef224c710c85ef728f4/requests-2.32.5.tar.gz"
-    sha256 "dbba0bac56e100853db0ea71b82b4dfd5fe2bf6d3754a8893c3af500cec7d7cf"
+    url "https://files.pythonhosted.org/packages/5f/a4/98b9c7c6428a668bf7e42ebb7c79d576a1c3c1e3ae2d47e674b468388871/requests-2.33.1.tar.gz"
+    sha256 "18817f8c57c6263968bc123d237e3b8b08ac046f5456bd1e307ee8f4250d3517"
   end
 
   resource "sortedcontainers" do

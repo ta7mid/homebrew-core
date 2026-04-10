@@ -1,17 +1,17 @@
 class NetlifyCli < Formula
   desc "Netlify command-line tool"
   homepage "https://www.netlify.com/docs/cli"
-  url "https://registry.npmjs.org/netlify-cli/-/netlify-cli-24.8.1.tgz"
-  sha256 "c4e62e2488b3fe9312a942194c7742bf24112dad4b68f09b30277ad6dab0c921"
+  url "https://registry.npmjs.org/netlify-cli/-/netlify-cli-24.11.0.tgz"
+  sha256 "443638781c7f9210784a81b5b0c397449259cdef0755737fd43725b4b9253190"
   license "MIT"
 
   bottle do
-    sha256                               arm64_tahoe:   "21449050b562a6c6f9317b51cf7412a1d469f02939e6a6b1928170ab3194df90"
-    sha256                               arm64_sequoia: "ae9386d545df9075b3f2db8b4591401ad92101aae74b3fb39918e069292f3c75"
-    sha256                               arm64_sonoma:  "eb3e9cbb254dd4c5623234b7a1f4bf3b11d746a0f83cf00993f54d210778b758"
-    sha256                               sonoma:        "9b96edec714a5aef52ced764bb0f03f045084f8336787c6e339ae61010ac1e25"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "df99c31e89a13ccd81ec8e912716a7485ae61786b9f75770cac9d2657c717fdd"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d2047a04dfcf9332d517bf1a3fd5068929d2dbfb3b5a394538adfdaf4854a49c"
+    sha256                               arm64_tahoe:   "47421d90c5a0b6baf5a510907b859a127d43f5d17ef94db41495156f15da0806"
+    sha256                               arm64_sequoia: "6112bc8ebe3f0ff34223a8a725e434c2f62babc9b8f96e4760fd8f58f5335439"
+    sha256                               arm64_sonoma:  "7bfff4e0329db36b1f2ae41ac42b046470bd50025d79c45baeae5968111e5f00"
+    sha256                               sonoma:        "1a0a4a3ee491c7b76d1899fb24efef6a402fc44250d22a97c966d3678ef17ad1"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "8cf2dc0679c3f35192d34333e81cd74aff3395e1aae9680a0a690ce6e84c1578"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "2e54d27b231247b0e4950fe444aeebdfd342182992c6bda1af4feaf5190efd1c"
   end
 
   depends_on "pkgconf" => :build
@@ -46,7 +46,7 @@ class NetlifyCli < Formula
     rm_r(node_modules.glob("@parcel/watcher-{darwin,linux}*"))
 
     clipboardy_fallbacks_dir = node_modules/"clipboardy/fallbacks"
-    rm_r(clipboardy_fallbacks_dir) # remove pre-built binaries
+    rm_r(clipboardy_fallbacks_dir, force: true) # remove pre-built binaries
     if OS.linux?
       linux_dir = clipboardy_fallbacks_dir/"linux"
       linux_dir.mkpath

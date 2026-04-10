@@ -1,20 +1,20 @@
 class Xrootd < Formula
   desc "High performance, scalable, fault-tolerant access to data"
   homepage "https://xrootd.slac.stanford.edu/"
-  url "https://github.com/xrootd/xrootd/releases/download/v5.9.1/xrootd-5.9.1.tar.gz"
-  mirror "https://xrootd.slac.stanford.edu/download/v5.9.1/xrootd-5.9.1.tar.gz"
-  sha256 "39946509a50e790ab3fcc77ba0f4c9b66abef221262756aa8bb2494f00a0e321"
+  url "https://github.com/xrootd/xrootd/releases/download/v6.0.0/xrootd-6.0.0.tar.gz"
+  mirror "https://xrootd.slac.stanford.edu/download/v6.0.0/xrootd-6.0.0.tar.gz"
+  sha256 "bc8d00b6c0b48f9186e3ad09e8e4e6eedf1067fad68f6d6a4f4e939bcf87007c"
   license "LGPL-3.0-or-later"
+  compatibility_version 1
   head "https://github.com/xrootd/xrootd.git", branch: "master"
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any,                 arm64_tahoe:   "1278b69fc8fa1e6fa1dc37f09315147671cc28b352b261052fb28b3788747135"
-    sha256 cellar: :any,                 arm64_sequoia: "645d195b2add0484efd35889218b7d697b60541d5229dd154cf4979ed6bdf98d"
-    sha256 cellar: :any,                 arm64_sonoma:  "223703167d111befddccda5ddd9f6e4acba8d8165a7693c0f4f42bb97a80d068"
-    sha256 cellar: :any,                 sonoma:        "0b011704d071049320e8915002d889f72c348ffe22017565dc4f1a3698e1b751"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "c131286fd8a2b9f33d120b72fd83439e97668b02322433d63d3d496f4df27d38"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "a5f3cfa19a96faa8b60fb0300f01b171cae453e8f073327e545918d65de0f68f"
+    sha256 cellar: :any,                 arm64_tahoe:   "bea56759270c77ebc33d0e108a570d274a153cad2d593fbc6c06f2cc48de4c8b"
+    sha256 cellar: :any,                 arm64_sequoia: "7c82206f58a10dd6a45db0c374551ace5576fd78373f0e451110267ab9a6aba6"
+    sha256 cellar: :any,                 arm64_sonoma:  "56e36426032e8d3c1b654a629124c3d48cb2b9fc4ea2410d1750959b2016ccd9"
+    sha256 cellar: :any,                 sonoma:        "500ede15a4bbc8aaebf23b7bedc73e1c18e3f06f4c5a5250b2bc606f8259f4aa"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "97c0b41a34676d902b0135a0cea811c12cbb5ae369aa227d7d3a4beb4904917f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "2aa893509ccb40dc14c9ace235c61e615e1ce0c9c85a8bcc0f2cf49fcf778bc6"
   end
 
   depends_on "cmake" => :build
@@ -22,6 +22,7 @@ class Xrootd < Formula
   depends_on "python@3.14" => [:build, :test]
   depends_on "davix"
   depends_on "krb5"
+  depends_on "libzip"
   depends_on "openssl@3"
   depends_on "readline"
 

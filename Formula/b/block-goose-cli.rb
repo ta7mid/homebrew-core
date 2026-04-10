@@ -1,8 +1,8 @@
 class BlockGooseCli < Formula
   desc "Open source, extensible AI agent that goes beyond code suggestions"
   homepage "https://block.github.io/goose/"
-  url "https://github.com/block/goose/archive/refs/tags/v1.29.0.tar.gz"
-  sha256 "74f0aac3b31ccf439ebce7cbd28406f7a523edc9d3532fdc0423bb44375d201a"
+  url "https://github.com/block/goose/archive/refs/tags/v1.30.0.tar.gz"
+  sha256 "2f825588136f20d34d39589d1c747e8d509f0c72aaaa1f6b09ce83a4b51f8f1c"
   license "Apache-2.0"
   head "https://github.com/block/goose.git", branch: "main"
 
@@ -12,12 +12,12 @@ class BlockGooseCli < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "a7cfef5be567369a7ebf1b536333b9df965103b23b1c99c022fc40c8e21f52dc"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "74b8c7d29bfadb3b7abe5ee52eac4bb103b7de494f9d5e870974326a882595b9"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "10032dc0b06c850c1e58afe80fd17809840c24666d184773ea1eb8c9022bc776"
-    sha256 cellar: :any_skip_relocation, sonoma:        "1b92a38e4fa80787843444055e71dc327204caeaa04e6348385f270a0d507a3e"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "ac5d641be1adbaa80098e78f63e11817e13873e677c3789b0e1a159eeb42708e"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "db6e932f829d0b8bade1b074e9982bcd89ed65d0fc485fbe4e0fbfbbdafe25fe"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "46fdf5a717cbc2a190573494dfaab6da23da91a8492aa9802615862164321036"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "a19f3cf3a0b4e80eefa3dcedfbb62533914a584e83c7c6e5a3d51e95ca6b6674"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "5ece372a3141dbe8a7623f74ac9c9e0614c18cea0bafffa7c2baaf9de9758cd5"
+    sha256 cellar: :any_skip_relocation, sonoma:        "f203884a5ed94955057e7def71485c4e307b49be6802793b4b7bbb4dfc174588"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "eddb4dc102265cffd0a987a7aa9855286265d29cd6f42b2d2ab01e33550f033f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e27fccaa2a33c99d2c66d3856fdc8c3e046ff4bfa0797da3ec8c7c5cf00695f7"
   end
 
   depends_on "cmake" => :build
@@ -37,6 +37,8 @@ class BlockGooseCli < Formula
 
   def install
     system "cargo", "install", *std_cargo_args(path: "crates/goose-cli")
+
+    generate_completions_from_executable(bin/"goose", "completion", shells: [:bash, :zsh, :fish, :pwsh])
   end
 
   test do

@@ -2,8 +2,8 @@ class DockerEngine < Formula
   desc "Pack, ship and run any application as a lightweight container (Daemon)"
   homepage "https://www.docker.com/"
   url "https://github.com/moby/moby.git",
-      tag:      "docker-v29.3.1",
-      revision: "f78c987ad3710cacffe47fce696975ecb337148d"
+      tag:      "docker-v29.4.0",
+      revision: "daa0cb7f23594cdbcce5002e370027d3fd36ffd7"
   license "Apache-2.0"
   head "https://github.com/moby/moby.git", branch: "master"
 
@@ -13,8 +13,8 @@ class DockerEngine < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_linux:  "ae2b8389147e1385aa231ec46b1134abe052cc3c1bc06c40ba3c49ef754c72f4"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "875ff54967392fec58ba0a78be0ea501cc7ed85751cbf390b94db5fa9c9bd8e3"
+    sha256 cellar: :any_skip_relocation, arm64_linux:  "4128cb729cd535f6df88e941df82ed5645c372615e7f4b6e8e6ab666a6d04018"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "198003a5515e052cd67633ac371c69f7b7b80ff7d28bcf327922ab3dc086428d"
   end
 
   depends_on "go" => :build
@@ -24,6 +24,7 @@ class DockerEngine < Formula
   depends_on :linux
   depends_on "nftables"
   depends_on "runc"
+  depends_on "tini"
 
   def install
     ldflags = %W[

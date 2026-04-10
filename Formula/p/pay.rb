@@ -1,8 +1,8 @@
 class Pay < Formula
   desc "HTTP client that automatically handles 402 Payment Required"
   homepage "https://github.com/solana-foundation/pay"
-  url "https://github.com/solana-foundation/pay/archive/refs/tags/pay-v0.1.0.tar.gz"
-  sha256 "d2287646252fd8f24d628963b2c8b36ede2203d1d107aa2283c8dc98c1c65567"
+  url "https://github.com/solana-foundation/pay/archive/refs/tags/pay-v0.4.0.tar.gz"
+  sha256 "63f0cc9535214a16ab3fa3d546a1d83d01114e46677605d74c4e6a1f04264d96"
   license "Apache-2.0"
   head "https://github.com/solana-foundation/pay.git", branch: "main"
 
@@ -12,12 +12,12 @@ class Pay < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "33d4228674d3300180b912bb6926bdb597cfb8a4bad5163ab11f2dc9b7c67c9b"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "f619a56e0b1b306aa325efdd870963926f1ca3587a9e71bbb22dda86b7ddaa36"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "06e7179dc4f7d90fc44663f2a4976d59a82af42d1ea6f9c1680ea85846c61d53"
-    sha256 cellar: :any_skip_relocation, sonoma:        "c5215f16afbdeabac41a3415bc41026920b263e0f7db24735573c2119bed962a"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "8bfac7996e30d19e40b39eb7b2c222161956d5b9633b99f351cc316f76927756"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "368336f2edaaa44339cf4517e62450ee81189e0be7ab33e8668c989e51f00f3b"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "e7386605e511ab16b1e06f215c4c1b9098b3398a800c11bea84106caed8375bf"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "0c90b0381ac0a41af7b4fa2cc0752b08bd473891ae9bb8c6bcf999cf2e8b4059"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "bb09c19b052b8b585574d3772d3be6f18eddba8847f477173b2bc5064bd440bb"
+    sha256 cellar: :any_skip_relocation, sonoma:        "7b26c0bde9c51099ff49bcfaba6cc210507bd41bdfdddc827ec72f888d1e38b2"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "10952b7cb4163bd0fbbcdd432a8e193a91d83a6a1ddf140f6de1e11e606e1b22"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "c0d228a319224d82ecc226326976b5d64e563402328583f9fd59b90eca97ae0e"
   end
 
   depends_on "pkgconf" => :build

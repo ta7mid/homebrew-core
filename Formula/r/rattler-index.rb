@@ -1,8 +1,8 @@
 class RattlerIndex < Formula
   desc "Index conda channels using rattler"
   homepage "https://github.com/conda/rattler"
-  url "https://github.com/conda/rattler/archive/refs/tags/rattler_index-v0.27.20.tar.gz"
-  sha256 "25f850798084e4c01472d90b33f965c237486b363df814bee8cc06f1b38abb8a"
+  url "https://github.com/conda/rattler/archive/refs/tags/rattler_index-v0.27.22.tar.gz"
+  sha256 "d3dc1b64dcd081abf68e0d900d91818fd5063b1ff392d2f62bd64680456381d2"
   license "BSD-3-Clause"
   head "https://github.com/conda/rattler.git", branch: "main"
 
@@ -12,12 +12,12 @@ class RattlerIndex < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "491e12e422b3bd4cfab09d96f8f1e4cfbec08c5e6ca82d50a222c54a369be5ac"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "47e56ef730092dbfd1c153a7009e8601cceccbe9e959e7754e05f62d6cac9528"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "d00c5130f6e1df6d3fd3d649aa8ba4dc0f1c49171dcd6ad10dffb7dd503ffef5"
-    sha256 cellar: :any_skip_relocation, sonoma:        "f37f4c91618e404e00de7be0f555c4a09d8856c284955212dbb2a6bdb230f8bd"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "e3502f6b100bcc224f6aa933b74b353a354b7410259d8c79c3eaffb986523203"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "321cc44c7d34939fedd9c7cb483010865bcaf03fb3efb1f87fefa5d6a24e561c"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "7a6864c487e9069caba05015b48b544820e7befe8d0051f19dd538cd22961d5d"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "907752908160a42f94ce0538d1c7b88d2bed444ca5cd4b6200bba70e5e57301f"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "c83dd7b80fb73c9a406199768afdc5c65088ce8e0cb9a6d0e3fd3c53c7eed6e5"
+    sha256 cellar: :any_skip_relocation, sonoma:        "ca252859c44478fe377dbcadd783a548980069140f1518a66e9aa11ce580bfd3"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "3b8eac7271218fabcace3e564fd2e32569ef3b1e8392f8536a0084433cbee07f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "b9e03c35ef3913ef2ac1136bd478091fff8e95c4abd8efcebf7d5c5d9b876eaf"
   end
 
   depends_on "pkgconf" => :build

@@ -1,18 +1,18 @@
 class Mark < Formula
   desc "Sync your markdown files with Confluence pages"
   homepage "https://github.com/kovetskiy/mark"
-  url "https://github.com/kovetskiy/mark/archive/refs/tags/v16.0.2.tar.gz"
-  sha256 "80a23335f30135a0fa0fa3cae74295f56fe1e6ee6474f64cc0c7b6145573f4e3"
+  url "https://github.com/kovetskiy/mark/archive/refs/tags/v16.3.0.tar.gz"
+  sha256 "0a0f6f894c555bb99063dfdfd9bb612cb1c3ee2828be7cc0a0b0c9292640482f"
   license "Apache-2.0"
   head "https://github.com/kovetskiy/mark.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "53fb8a8be3b0964ad551c5744bc3834374038f8d6dbd83f9ad4664c2a4e8ce52"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "53fb8a8be3b0964ad551c5744bc3834374038f8d6dbd83f9ad4664c2a4e8ce52"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "53fb8a8be3b0964ad551c5744bc3834374038f8d6dbd83f9ad4664c2a4e8ce52"
-    sha256 cellar: :any_skip_relocation, sonoma:        "a9ba6d3fb58fdbbfd14574ce569197990d18dcc922e5ad0b7a16267ea837075d"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "7d78e765032742dff4ea0c1ee6d07fd66abc14a6648e259b910e360f9c57d750"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "4a5e7d79fcdbc6a389280830e660d7d7b520891d14ec476c806d3e07122b2259"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "3fb67bf38b6c3dfd9d017d7e09b3faba8a692b4f98c08eaa57d8c186033741a4"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "3fb67bf38b6c3dfd9d017d7e09b3faba8a692b4f98c08eaa57d8c186033741a4"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "3fb67bf38b6c3dfd9d017d7e09b3faba8a692b4f98c08eaa57d8c186033741a4"
+    sha256 cellar: :any_skip_relocation, sonoma:        "c8c3a72663e576bed76ef2e0e40a8f3a8408cfb6f35725b57be1ae6708fb59c8"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "c2fdba8e2d69baa25c92a5e7d4105c2851714e9e61a98799733939f44aaa82bd"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "aca8d55baf333acd12f6052b898755ac361945d56f7069702382c2e12a5b0a4b"
   end
 
   depends_on "go" => :build
@@ -30,6 +30,6 @@ class Mark < Formula
     MARKDOWN
 
     output = shell_output("#{bin}/mark --config nonexistent.yaml sync 2>&1", 1)
-    assert_match "FATAL confluence password should be specified", output
+    assert_match "confluence password should be specified", output
   end
 end

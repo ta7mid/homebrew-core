@@ -3,19 +3,18 @@ class Vunnel < Formula
 
   desc "Tool for collecting vulnerability data from various sources"
   homepage "https://github.com/anchore/vunnel"
-  url "https://files.pythonhosted.org/packages/31/5c/c578bd7b6ab563d2aea887cdf8a318fe523a796367f7e841d12364ed8ddf/vunnel-0.55.3.tar.gz"
-  sha256 "97b99f7f5385c961086e99ff13cc258911a4a9519ece342a3b63b4ee3d42254b"
+  url "https://files.pythonhosted.org/packages/a2/8d/355e2eff757e249dafbada03eb1c5c6c0e7b4cdc0c54dee5bc036caa45d3/vunnel-0.56.0.tar.gz"
+  sha256 "bb576d181fa1e11fe396ca55006958574bb34ef816364e0cc39aff96d6ab5e0b"
   license "Apache-2.0"
-  revision 1
   head "https://github.com/anchore/vunnel.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "fa11d2fd5a6ac1e5e5ddf1cf838683203aa38b6a812009ae46b22e1b5a645f1c"
-    sha256 cellar: :any,                 arm64_sequoia: "161e70eb0d0f81d170b15fd26c542ddbfe38c0329c845528c82db018889945c0"
-    sha256 cellar: :any,                 arm64_sonoma:  "253ca4efde990f6fc77100706261ed7ddd281ff47db55013e2d59ee4b6988542"
-    sha256 cellar: :any,                 sonoma:        "2db28544458551cd7e5440ec67a1986d7e3d19c03da40568567edea2c3c8720c"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "0ee90715391f1f64ab095b7dc1ac3d0146729870911863330a78f15c4ef1359c"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e03fb7820651c9a740115bae317d59dc0df63412886e51ba9a7ea84aa64781f8"
+    sha256 cellar: :any,                 arm64_tahoe:   "8ab0c9547453aa2fc8066ee1d6aaa299ef25eb9dbef2faa60a864330ec7ed55d"
+    sha256 cellar: :any,                 arm64_sequoia: "49addc969cde27c779e96fdb10f6c7d1b81dcba5e9fdec4a64bf3fb01313778c"
+    sha256 cellar: :any,                 arm64_sonoma:  "d17cb225040d063443103d852e92aad64e17ab5c6ec58f66424542497ebaa9f7"
+    sha256 cellar: :any,                 sonoma:        "78384e3981c33b7adfc383cfaa625e56b90f9d41664d453bbc443cbad6af0b3a"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "f82c144b29c14d7e8a3a5b25430692ca9eb89f243e6c7cb3332b71ea9b8a58d9"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "15b5508b7db27c6756cb5a70b7015f278554d2e9a2e2ec670be2fb74acd785c9"
   end
 
   depends_on "rust" => :build
@@ -35,13 +34,13 @@ class Vunnel < Formula
   end
 
   resource "charset-normalizer" do
-    url "https://files.pythonhosted.org/packages/7b/60/e3bec1881450851b087e301bedc3daa9377a4d45f1c26aa90b0b235e38aa/charset_normalizer-3.4.6.tar.gz"
-    sha256 "1ae6b62897110aa7c79ea2f5dd38d1abca6db663687c0b1ad9aed6f6bae3d9d6"
+    url "https://files.pythonhosted.org/packages/e7/a1/67fe25fac3c7642725500a3f6cfe5821ad557c3abb11c9d20d12c7008d3e/charset_normalizer-3.4.7.tar.gz"
+    sha256 "ae89db9e5f98a11a4bf50407d4363e7b09b31e55bc117b4f7d80aab97ba009e5"
   end
 
   resource "click" do
-    url "https://files.pythonhosted.org/packages/3d/fa/656b739db8587d7b5dfa22e22ed02566950fbfbcdc20311993483657a5c0/click-8.3.1.tar.gz"
-    sha256 "12ff4785d337a1bb490bb7e9c2b1ee5da3112e94a8622f26a6c77f5d2fc6842a"
+    url "https://files.pythonhosted.org/packages/57/75/31212c6bf2503fdf920d87fee5d7a86a2e3bcf444984126f13d8e4016804/click-8.3.2.tar.gz"
+    sha256 "14162b8b3b3550a7d479eafa77dfd3c38d9dc8951f6f69c78913a8f9a7540fd5"
   end
 
   resource "colorlog" do
@@ -57,6 +56,11 @@ class Vunnel < Formula
   resource "defusedxml" do
     url "https://files.pythonhosted.org/packages/0f/d5/c66da9b79e5bdb124974bfe172b4daf3c984ebd9c2a06e2b8a4dc7331c72/defusedxml-0.7.1.tar.gz"
     sha256 "1bb3032db185915b62d7c6209c5a8792be6a32ab2fedacc84e01b52c51aa3e69"
+  end
+
+  resource "greenlet" do
+    url "https://files.pythonhosted.org/packages/86/94/a5935717b307d7c71fe877b52b884c6af707d2d2090db118a03fbd799369/greenlet-3.4.0.tar.gz"
+    sha256 "f50a96b64dafd6169e595a5c56c9146ef80333e67d4476a65a9c55f400fc22ff"
   end
 
   resource "idna" do
@@ -125,8 +129,8 @@ class Vunnel < Formula
   end
 
   resource "orjson" do
-    url "https://files.pythonhosted.org/packages/53/45/b268004f745ede84e5798b48ee12b05129d19235d0e15267aa57dcdb400b/orjson-3.11.7.tar.gz"
-    sha256 "9b1a67243945819ce55d24a30b59d6a168e86220452d2c96f4d1f093e71c0c49"
+    url "https://files.pythonhosted.org/packages/9d/1b/2024d06792d0779f9dbc51531b61c24f76c75b9f4ce05e6f3377a1814cea/orjson-3.11.8.tar.gz"
+    sha256 "96163d9cdc5a202703e9ad1b9ae757d5f0ca62f4fa0cc93d1f27b0e180cc404e"
   end
 
   resource "packageurl-python" do
@@ -145,13 +149,13 @@ class Vunnel < Formula
   end
 
   resource "pygments" do
-    url "https://files.pythonhosted.org/packages/b0/77/a5b8c569bf593b0140bde72ea885a803b82086995367bf2037de0159d924/pygments-2.19.2.tar.gz"
-    sha256 "636cb2477cec7f8952536970bc533bc43743542f70392ae026374600add5b887"
+    url "https://files.pythonhosted.org/packages/c3/b2/bc9c9196916376152d655522fdcebac55e66de6603a76a02bca1b6414f6c/pygments-2.20.0.tar.gz"
+    sha256 "6757cd03768053ff99f3039c1a36d6c0aa0b263438fcab17520b30a303a82b5f"
   end
 
   resource "pytest" do
-    url "https://files.pythonhosted.org/packages/d1/db/7ef3487e0fb0049ddb5ce41d3a49c235bf9ad299b6a25d5780a89f19230f/pytest-9.0.2.tar.gz"
-    sha256 "75186651a92bd89611d1d9fc20f0b4345fd827c41ccd5c299a868a05d70edf11"
+    url "https://files.pythonhosted.org/packages/7d/0d/549bd94f1a0a402dc8cf64563a117c0f3765662e2e668477624baeec44d5/pytest-9.0.3.tar.gz"
+    sha256 "b86ada508af81d19edeb213c681b1d48246c1a91d304c6c81a427674c17eb91c"
   end
 
   resource "pytest-snapshot" do
@@ -175,13 +179,13 @@ class Vunnel < Formula
   end
 
   resource "requests" do
-    url "https://files.pythonhosted.org/packages/34/64/8860370b167a9721e8956ae116825caff829224fbca0ca6e7bf8ddef8430/requests-2.33.0.tar.gz"
-    sha256 "c7ebc5e8b0f21837386ad0e1c8fe8b829fa5f544d8df3b2253bff14ef29d7652"
+    url "https://files.pythonhosted.org/packages/5f/a4/98b9c7c6428a668bf7e42ebb7c79d576a1c3c1e3ae2d47e674b468388871/requests-2.33.1.tar.gz"
+    sha256 "18817f8c57c6263968bc123d237e3b8b08ac046f5456bd1e307ee8f4250d3517"
   end
 
   resource "ruff" do
-    url "https://files.pythonhosted.org/packages/14/b0/73cf7550861e2b4824950b8b52eebdcc5adc792a00c514406556c5b80817/ruff-0.15.8.tar.gz"
-    sha256 "995f11f63597ee362130d1d5a327a87cb6f3f5eae3094c620bcc632329a4d26e"
+    url "https://files.pythonhosted.org/packages/e6/97/e9f1ca355108ef7194e38c812ef40ba98c7208f47b13ad78d023caa583da/ruff-0.15.9.tar.gz"
+    sha256 "29cbb1255a9797903f6dde5ba0188c707907ff44a9006eb273b5a17bfa0739a2"
   end
 
   resource "six" do
@@ -190,8 +194,8 @@ class Vunnel < Formula
   end
 
   resource "sqlalchemy" do
-    url "https://files.pythonhosted.org/packages/1f/73/b4a9737255583b5fa858e0bb8e116eb94b88c910164ed2ed719147bde3de/sqlalchemy-2.0.48.tar.gz"
-    sha256 "5ca74f37f3369b45e1f6b7b06afb182af1fd5dde009e4ffd831830d98cbe5fe7"
+    url "https://files.pythonhosted.org/packages/09/45/461788f35e0364a8da7bda51a1fe1b09762d0c32f12f63727998d85a873b/sqlalchemy-2.0.49.tar.gz"
+    sha256 "d15950a57a210e36dd4cec1aac22787e2a4d57ba9318233e2ef8b2daf9ff2d5f"
   end
 
   resource "toposort" do

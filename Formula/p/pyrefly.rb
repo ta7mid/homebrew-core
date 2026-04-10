@@ -1,18 +1,18 @@
 class Pyrefly < Formula
   desc "Fast type checker and IDE for Python"
   homepage "https://pyrefly.org/"
-  url "https://github.com/facebook/pyrefly/archive/refs/tags/0.58.0.tar.gz"
-  sha256 "319ee099c12ba31fb68e286fb298f7ae7dcb85c10ab879246deac568b70fb2f0"
+  url "https://github.com/facebook/pyrefly/archive/refs/tags/0.60.1.tar.gz"
+  sha256 "a2f0b2da1c82efb5b7c1d724f89851742e05df812128d470dd66ad6a1e642e7c"
   license "MIT"
   head "https://github.com/facebook/pyrefly.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "03e129813d7ce232265b8efba18ed4ebda29e5898a7212eacd3f0ec1b269b7e1"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "192de7815cc8a85ebd56a415b8c6936f1437419ccecd5a3dbb88869349d749e2"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "2f340a5ee000bcd8d56ef62d41c533ce7fab4f6df377374629b15c6b58244a15"
-    sha256 cellar: :any_skip_relocation, sonoma:        "1b8c5a101101cfdbb919e1902b7fad4503de13dc4e7c6b7974c457e3d6ef027e"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "c802f5729550fff967735d345e88907def7f84280a24e6851cb8a739b8512340"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "9b27b889daea5e24f86a0a83590583ff5bf2b72a6411c3ea9ad318f99f9a05d9"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "3b72ede4b3ef8dfba8170756c1f570495931cdc91d0ac92c04242093e9b9d236"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "32e8bf8ff53b06e1c1b6e24a6f577650d378ca8d95370821e001230d849cd512"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "a7dec1263ec5212c5c1f8986b3f6db129077b28b353482a56834ba35496f3201"
+    sha256 cellar: :any_skip_relocation, sonoma:        "863a9feb290e008c020d510930763ff535b1c192d0414ad8337bf596482d7cbb"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "ac3cfaec4847834bf1ceaf888bb72239ed856d621ae48828e5cef55109c693c9"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "c4e7d1f57bfbf214e067e0b62d77c91f8122a07df2913ab2ad4dbde80a9a4fb8"
   end
 
   depends_on "rust" => :build

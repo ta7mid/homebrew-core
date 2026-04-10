@@ -1,18 +1,18 @@
 class Recc < Formula
   desc "Remote Execution Caching Compiler"
   homepage "https://buildgrid.gitlab.io/recc"
-  url "https://gitlab.com/BuildGrid/buildbox/buildbox/-/archive/1.4.1/buildbox-1.4.1.tar.gz"
-  sha256 "3463e6ed7100dc8ae601cfa38badc3fd9e771873980defc5a583fd8d251f9118"
+  url "https://gitlab.com/BuildGrid/buildbox/buildbox/-/archive/1.4.3/buildbox-1.4.3.tar.gz"
+  sha256 "87ebed00ad061bbc3c4faa1fb3e764222ab9b8b0397c610aebb071eace3aedf4"
   license "Apache-2.0"
   head "https://gitlab.com/BuildGrid/buildbox/buildbox.git", branch: "master"
 
   bottle do
-    sha256 arm64_tahoe:   "1394f89351299f5dfef34ff3fe7f7a7148695b5bcf509dd9018a1722131b1fc2"
-    sha256 arm64_sequoia: "7d28850e12535c33493ad4fd73decc1f1b31d50f74a4c6bbeabc94325fa827fb"
-    sha256 arm64_sonoma:  "a8a5427d5f4cb4c6a13f8d155759ac1e9d49ce8b37d1f608a439dc4cc24bca0e"
-    sha256 sonoma:        "e198d4887ff661ba147010aefe39940f340b34efd76ab330cdc26a118d4e011b"
-    sha256 arm64_linux:   "cad7589f759e4f3f8352aac0c32e2aff968daa8ae73b05bfaba07832ae04af2e"
-    sha256 x86_64_linux:  "f2406374498c07c6a31e8a3a12f9b9160401eb3b9c09f6b9885c1ba7e6ffa121"
+    sha256 arm64_tahoe:   "ecc455fcd43cda17016ccc1080fdd74da82f2975eeba17cb2d19d3437bdb933e"
+    sha256 arm64_sequoia: "2d8019b114e086189be9f909a34ee6169a4f2bf8bf99e0ca35e046fd320d1c90"
+    sha256 arm64_sonoma:  "1d7d7a5b747a311e7ad3be1aa3a1b974eb67bcc66865fec9353f6aa8480a7973"
+    sha256 sonoma:        "c0c90f3c5ffbf6d8f71ad049b1311729752581332f6e409f29848c916971eb21"
+    sha256 arm64_linux:   "b85f69cd7d58b3f5497133b3a9b8196052b3cc4f5f9899b703ce04a61e26779e"
+    sha256 x86_64_linux:  "f8e97a70de6bd28f9e0bdbbc75417a5a63b23d6111a0c762df695a1f4099cecb"
   end
 
   depends_on "cmake" => :build
@@ -22,7 +22,6 @@ class Recc < Formula
   depends_on "tomlplusplus" => :build
   depends_on "abseil"
   depends_on "c-ares"
-  depends_on "glog"
   depends_on "grpc"
   depends_on macos: :sonoma # Needs C++20 features not in Ventura
   depends_on "openssl@3"
@@ -30,10 +29,6 @@ class Recc < Formula
   depends_on "re2"
 
   uses_from_macos "curl"
-
-  on_macos do
-    depends_on "gflags"
-  end
 
   on_linux do
     depends_on "pkgconf" => :build

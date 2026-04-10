@@ -3,18 +3,18 @@ class Sqlite3ToMysql < Formula
 
   desc "Transfer data from SQLite to MySQL"
   homepage "https://github.com/techouse/sqlite3-to-mysql"
-  url "https://files.pythonhosted.org/packages/3d/ed/1758693d7005db7fdb09e5db56f245fdce45904bbeb37dabab6f91689192/sqlite3_to_mysql-2.5.6.tar.gz"
-  sha256 "f5b615954d59481ff6291d813a138b8a52152ffdfe97337c2997def8f84811f2"
+  url "https://files.pythonhosted.org/packages/cf/6d/0ebb22477a2098792d3c32532d63698720768fca1d4d0a74df1f6680795d/sqlite3_to_mysql-2.5.8.tar.gz"
+  sha256 "fae2d0d7760dfbb7de7b17b24f3ebeb1586cc81f11094b8f388879da6cc6a8ad"
   license "MIT"
   head "https://github.com/techouse/sqlite3-to-mysql.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "a0c27548905d04bada36c54239848a758081c6636a7375656af017f78c90dc94"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "037aa36412f84f000b6eceba1da50e99b5cd5c5224cc622741166299f27e7671"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "2dfc2b7ffec009ce4af1b09f71b4f63efd2bedb11653f225101b1d6d768a893c"
-    sha256 cellar: :any_skip_relocation, sonoma:        "94ecad399043145dfcd5bb93cbcbe342cf54f0f797fd269c1265e983df4c68cb"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "e1839d49d12ff625b6a2a1c8c7434b413682b87a595a6fb9ff7512fd4f174ee7"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f46f95f45ec49a76a90b2b82fd02a857a82dc5060082991eb8b695e8b35f0ccf"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "a286e83c99416aca47b10dbfb06b995ed89070e029e1fcd46b627d76c80d45dd"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "957a65164dc50b479b5640a09485741dc63b768d43c9bb6466cc23546fa5f205"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "768c186ab0ec1ca89e2b03fe87f8f1e651a6ab5d45c2166337e53fae934e1c5a"
+    sha256 cellar: :any_skip_relocation, sonoma:        "4f09cfc4e1a4e5c41fbc3eab057e09a66ca30e60f20299916ccfaaed073688b8"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "40ad3ac6686a0f7cc1e69f4975496ef64d0d58274d18b9116ec5888745a86af4"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8596199e42bb32ff8e58c91faedcedc144f29d9c768e3552ee5ac3dde17517a3"
   end
 
   depends_on "python@3.14"
@@ -22,8 +22,8 @@ class Sqlite3ToMysql < Formula
   uses_from_macos "sqlite"
 
   resource "click" do
-    url "https://files.pythonhosted.org/packages/3d/fa/656b739db8587d7b5dfa22e22ed02566950fbfbcdc20311993483657a5c0/click-8.3.1.tar.gz"
-    sha256 "12ff4785d337a1bb490bb7e9c2b1ee5da3112e94a8622f26a6c77f5d2fc6842a"
+    url "https://files.pythonhosted.org/packages/57/75/31212c6bf2503fdf920d87fee5d7a86a2e3bcf444984126f13d8e4016804/click-8.3.2.tar.gz"
+    sha256 "14162b8b3b3550a7d479eafa77dfd3c38d9dc8951f6f69c78913a8f9a7540fd5"
   end
 
   resource "mysql-connector-python" do
@@ -57,8 +57,8 @@ class Sqlite3ToMysql < Formula
   end
 
   resource "sqlglot" do
-    url "https://files.pythonhosted.org/packages/61/12/c3f7533fde302fcd59bebcd4c2e46d5bf0eef21f183c67995bbb010fb578/sqlglot-29.0.1.tar.gz"
-    sha256 "0010b4f77fb996c8d25dd4b16f3654e6da163ff1866ceabc70b24e791c203048"
+    url "https://files.pythonhosted.org/packages/ff/5a/b8149963cd479a7e5b71f43d11d678f5e4b8633ab4de5b25e7a5d6eefa20/sqlglot-30.2.1.tar.gz"
+    sha256 "ef4a67cc6f66a8043085eb8ea95fa9541c1625dffa9145ad4e9815a7ba60a199"
   end
 
   resource "tabulate" do

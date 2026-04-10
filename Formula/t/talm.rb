@@ -1,18 +1,18 @@
 class Talm < Formula
   desc "Manage Talos Linux configurations the GitOps way"
   homepage "https://github.com/cozystack/talm"
-  url "https://github.com/cozystack/talm/archive/refs/tags/v0.22.4.tar.gz"
-  sha256 "bc9747620ae00aca33a1899b4ddb200f42d277ac6d5f58901aba616129f8a3ba"
+  url "https://github.com/cozystack/talm/archive/refs/tags/v0.23.1.tar.gz"
+  sha256 "6bad90ebc5d6753c8fa895e7303d74b48b5e6835c6960cc8500fc56598cbb044"
   license "Apache-2.0"
   head "https://github.com/cozystack/talm.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "443b653666457341c84dd9e7b7a5fc870b58d72fa224bc2359a6390e5a8115c0"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "31be8ef8678004aad2779f79684ce7368623d6714f89b8ea1ca6ef71f90eb4d1"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "ec213049940280b1fc85d93ff05153a03c3ae2a255cf38b6aac5c986b97a8e3c"
-    sha256 cellar: :any_skip_relocation, sonoma:        "d4fa60122449a479729222b6aa498749dc29f2c954a20e0b17dcc2e3aa2aa151"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "a0f398012dbe5e2c50b8500b78884b1c1663eb8358bdd91e5b3e2c087daacc2f"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "dc8b9c97ad1c1f9b3ee0f1d3f9e07eee123098028f4836339cf84eecb30476c4"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "953d83ac552b0804a258e896b7e8d8249b8eb90d2f7b33a9059b29cb0afaf6fd"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "ccd8e7c812c3339dc0d4a3bf3c89888d305a6b61d89201b205a3d23521d50cfb"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "23bedd08a39b10853a6433ff17b95ff02efb9e17df10a3dbf468f0404e11ac44"
+    sha256 cellar: :any_skip_relocation, sonoma:        "2a45f36f1cf5bade2047ec63d182fa769d579c2c350a87b9b8bb57f508af213e"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "ef4a5dcc78caff46568451107f8bf7e22fffbbc8420df364a6790f39c23cfcf4"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5588bf1df0e8240237e67180311b514a00229a6ce39f04190e477070912a1053"
   end
 
   depends_on "go" => :build

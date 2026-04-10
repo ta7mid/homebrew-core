@@ -3,21 +3,20 @@ class KeeperCommander < Formula
 
   desc "Command-line and SDK interface to Keeper Password Manager"
   homepage "https://docs.keeper.io/en/privileged-access-manager/commander-cli/overview"
-  url "https://files.pythonhosted.org/packages/32/da/0de4649a73c0e59ed4a61f723ca51528e204a8803c003d0706a09dd17a75/keepercommander-17.2.10.tar.gz"
-  sha256 "7770ce74cf93a0260e094c0ef66a055b3c9d7e19fa3564cb3acd2790502bdf33"
+  url "https://files.pythonhosted.org/packages/f4/fe/8b272a0dfca0b1049ff49335979fd22f3a5dced759e9dfb62ae059768c49/keepercommander-17.2.11.tar.gz"
+  sha256 "984d5f9996735163be8b66a734a7496ea9d03b0097dd30c75bbf6caba9a2dc21"
   license "MIT"
-  revision 2
   head "https://github.com/Keeper-Security/Commander.git", branch: "master"
 
   no_autobump! because: "macOS resources cannot be updated on linux CI"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "204e1b67e353dcd72605be0d11c70f422452bd16c2dcdb64c50985281bcd7a19"
-    sha256 cellar: :any,                 arm64_sequoia: "78ae52dc92be9de02c5fe442ffb99a3559e53319a5e983e308014b65a32ec742"
-    sha256 cellar: :any,                 arm64_sonoma:  "2329f7376f1ec3739a444d0c7ef1838df66a4af38eff05ed324ce97195fe2c0e"
-    sha256 cellar: :any,                 sonoma:        "dd1e2a880bc94568c7100aaef8675f39b6baf1a54c7f1d3e82916dd0ef52d182"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "82ee79035210ba1039566c8b686a347af49e9e7467c2a725ffac2be6d753481a"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "b64628a9c343f11f08c57f18304d32947873ad83a965e55f5e7b9eb44da8e284"
+    sha256 cellar: :any,                 arm64_tahoe:   "67fafe771d1b5c5df85b4767092f7e3f7314009350ca9080ea3dbcb90baa9e09"
+    sha256 cellar: :any,                 arm64_sequoia: "72e8146c509ff2b6c1e9cbfc85ce75f070f67456a928da59533ca82b22a8f426"
+    sha256 cellar: :any,                 arm64_sonoma:  "21464ee087a1e4cb8e3c4797182b5235d135a82fbbad110f5e8199ba00b42dca"
+    sha256 cellar: :any,                 sonoma:        "226345e7a0302fc3b2c5d644ec81b986178cdffe86114468cd5fe4c4fd4213b1"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "94f9a6dca8b65c42081d0e54568dbcf052112479c0b7bdca5b28cdbfc8880be2"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "45b121670117823c40f93eef0997a3c1a6a210af7301b25055c02906c2a0a113"
   end
 
   depends_on "pkgconf" => :build
@@ -218,13 +217,13 @@ class KeeperCommander < Formula
   end
 
   resource "pygments" do
-    url "https://files.pythonhosted.org/packages/b0/77/a5b8c569bf593b0140bde72ea885a803b82086995367bf2037de0159d924/pygments-2.19.2.tar.gz"
-    sha256 "636cb2477cec7f8952536970bc533bc43743542f70392ae026374600add5b887"
+    url "https://files.pythonhosted.org/packages/c3/b2/bc9c9196916376152d655522fdcebac55e66de6603a76a02bca1b6414f6c/pygments-2.20.0.tar.gz"
+    sha256 "6757cd03768053ff99f3039c1a36d6c0aa0b263438fcab17520b30a303a82b5f"
   end
 
   resource "pyngrok" do
-    url "https://files.pythonhosted.org/packages/9e/8b/a254d57f6d5ec8797daa57510abd8e82eb7f7992fc1c455677f28e805893/pyngrok-7.5.1.tar.gz"
-    sha256 "934ec8a899ace8ec61c39120a27a8212aeb40293cad2f4ffc8a3d1a4bb6a8d6c"
+    url "https://files.pythonhosted.org/packages/ec/7a/6f9b08044be356d228533f6a8454377e2d31dd1309adf13209906019762d/pyngrok-8.0.0.tar.gz"
+    sha256 "6e7aaf90b43086ad25508a1122423608003f712d9988319ddf7be50431028101"
   end
 
   resource "pyobjc-core" do
@@ -263,8 +262,8 @@ class KeeperCommander < Formula
   end
 
   resource "requests" do
-    url "https://files.pythonhosted.org/packages/34/64/8860370b167a9721e8956ae116825caff829224fbca0ca6e7bf8ddef8430/requests-2.33.0.tar.gz"
-    sha256 "c7ebc5e8b0f21837386ad0e1c8fe8b829fa5f544d8df3b2253bff14ef29d7652"
+    url "https://files.pythonhosted.org/packages/5f/a4/98b9c7c6428a668bf7e42ebb7c79d576a1c3c1e3ae2d47e674b468388871/requests-2.33.1.tar.gz"
+    sha256 "18817f8c57c6263968bc123d237e3b8b08ac046f5456bd1e307ee8f4250d3517"
   end
 
   resource "rich" do
@@ -278,8 +277,8 @@ class KeeperCommander < Formula
   end
 
   resource "textual" do
-    url "https://files.pythonhosted.org/packages/72/23/8c709655c5f2208ee82ab81b8104802421865535c278a7649b842b129db1/textual-8.1.1.tar.gz"
-    sha256 "eef0256a6131f06a20ad7576412138c1f30f92ddeedd055953c08d97044bc317"
+    url "https://files.pythonhosted.org/packages/4f/07/766ad19cf2b15cae2d79e0db46a1b783b62316e9ff3e058e7424b2a4398b/textual-8.2.1.tar.gz"
+    sha256 "4176890e9cd5c95dcdd206541b2956b0808e74c8c36381c88db53dcb45237451"
   end
 
   resource "uc-micro-py" do

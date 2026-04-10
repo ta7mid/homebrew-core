@@ -1,8 +1,8 @@
 class ChainloopCli < Formula
   desc "CLI for interacting with Chainloop"
   homepage "https://docs.chainloop.dev"
-  url "https://github.com/chainloop-dev/chainloop/archive/refs/tags/v1.88.1.tar.gz"
-  sha256 "b4634795f198174c2cfad08e9820dd6b5678193599550e7d93b189afadc4b964"
+  url "https://github.com/chainloop-dev/chainloop/archive/refs/tags/v1.90.0.tar.gz"
+  sha256 "57f6a714c2a33394bc278760859d599d378e395735f2b689dd1339524a65c4a5"
   license "Apache-2.0"
   head "https://github.com/chainloop-dev/chainloop.git", branch: "main"
 
@@ -12,12 +12,12 @@ class ChainloopCli < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "08306ec4aaa41ee014a250e83c7c16d787451761b52a525b8a4997bd8f1bc65f"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "0d7439dbd63b8a038120fc0de9779fc0b127726fb64b539b952d72c98cc582f6"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "e176be86373d90e7b56261399d34886f53ff3835bfad4dba9c7a876831292fc8"
-    sha256 cellar: :any_skip_relocation, sonoma:        "447c6c4e4a51045ce7538a725cdb2cbfe75afc4701cf9d4499ba92dccbf2f54a"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "3cdaec4297433c2695b4f53573a5d6971a1cc7d2b80803364652edd7ad615979"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "47e566573e87ee6dbbf722cce7a5dba43c31898c8e2c45809a2db2ffacdd8c9d"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "ec1be2c6d5138ec53c1fc24cea5d272dc895745b2705fe137f282e2c21256976"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "90cf6997c6f0bc91f1a2699247689fb48b991cd95d7a9ee288d0aa4ada6bc510"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "eab886a5f263b66ff003be8c5cc0b30633ecd2db02a1a36688dcaedba77e2f5e"
+    sha256 cellar: :any_skip_relocation, sonoma:        "540de7a3e4faadc919ff2b096a235f2e9c3df516145a7cb56aee471a99aa5acd"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "5f0b47f620b20d947c880aaadfa2558efd6b6cf0ac62a0fbc1c7e4cecfa417b7"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "800a0a314057953a6fab65cec57427e314405af31a5a1b2ecd8b2ef68c11cd09"
   end
 
   depends_on "go" => :build
@@ -36,6 +36,6 @@ class ChainloopCli < Formula
     assert_match version.to_s, shell_output("#{bin}/chainloop version 2>&1")
 
     output = shell_output("#{bin}/chainloop artifact download 2>&1", 1)
-    assert_match "run chainloop auth login", output
+    assert_match "chainloop auth login", output
   end
 end

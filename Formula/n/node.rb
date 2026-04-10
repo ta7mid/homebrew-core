@@ -1,9 +1,10 @@
 class Node < Formula
   desc "Open-source, cross-platform JavaScript runtime environment"
   homepage "https://nodejs.org/"
-  url "https://nodejs.org/dist/v25.8.2/node-v25.8.2.tar.xz"
-  sha256 "3efb19e757dc59bb21632507200d2de782369d5226a68955e9372c925fdf2471"
+  url "https://nodejs.org/dist/v25.9.0/node-v25.9.0.tar.xz"
+  sha256 "8f78af3ee55fb278668b5f801db58bd1a38ea161318eb5ce2128ddbc9cd813aa"
   license "MIT"
+  revision 1
   compatibility_version 1
   head "https://github.com/nodejs/node.git", branch: "main"
 
@@ -13,12 +14,12 @@ class Node < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "245baa6999d5884892274353f821380382ed69a763e7de22dd845980ab255c88"
-    sha256 cellar: :any,                 arm64_sequoia: "b8970d6e00b7ebe95b19f1e421a4e797c414b9c72a4916cb74cc87a52236cf7e"
-    sha256 cellar: :any,                 arm64_sonoma:  "04133ddf2d05affeac290adf62316dbf2a777b739292505a1f621ae3d82dd106"
-    sha256 cellar: :any,                 sonoma:        "4b2d4a702b22139c31b72087af82f90c0e1f872246d523dbf2700da3a19818d7"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "311a4d4a9124d7ef028c353eb7d9b101293d5f5b553551b367440bc823a8f876"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "71295a6d5fdfe8329d8a4f7147a07733e5a1311124634ebd2d5cf86191a3903a"
+    sha256 cellar: :any,                 arm64_tahoe:   "14064395ca2b9af98bdf6d5cf1189e3a5cd99db368d4d22e185ce5c7d7d10827"
+    sha256 cellar: :any,                 arm64_sequoia: "9d124ecee37a843304b39f597721cec387a7d69b21c43aaa91aecce9f264489f"
+    sha256 cellar: :any,                 arm64_sonoma:  "254b53ee990c76cb384cbb303360d9653b3d499156ffa3341b42538e7ca9de4c"
+    sha256 cellar: :any,                 sonoma:        "10702cf6a92bd12ba84c62173964308e8c98e4c8697b47b0f7a12b67895b3956"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "1a0c1bd349242c9708d0d940aaf12ae5fbbd8f89e8cdc5d06782b98b96041397"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "29db02b2c6038a347b1c208bfaf3b8b98a21911c99872dfc64b99e435b2317dd"
   end
 
   depends_on "pkgconf" => :build
@@ -67,8 +68,8 @@ class Node < Formula
   # We track major/minor from upstream Node releases.
   # We will accept *important* npm patch releases when necessary.
   resource "npm" do
-    url "https://registry.npmjs.org/npm/-/npm-11.11.1.tgz"
-    sha256 "a3b2dbeb2544809a75f186cbae27adc5ceb5adc1ee696e17dfed689d7f46fcf2"
+    url "https://registry.npmjs.org/npm/-/npm-11.12.1.tgz"
+    sha256 "e679850e663b16f5f146ee425d0eb0e3442c1d2bda3d513bbfd7c81f5ee5db38"
 
     livecheck do
       url "https://raw.githubusercontent.com/nodejs/node/refs/tags/v#{LATEST_VERSION}/deps/npm/package.json"
