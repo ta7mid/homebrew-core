@@ -1,26 +1,10 @@
 class Tectonic < Formula
   desc "Modernized, complete, self-contained TeX/LaTeX engine"
   homepage "https://tectonic-typesetting.github.io/"
+  url "https://github.com/tectonic-typesetting/tectonic/archive/refs/tags/tectonic@0.16.0.tar.gz"
+  sha256 "b4eda21afa1ccc6a0d32cc3cd970acbedf9fe95bd13c8e5fc44bd6aac1cfe84d"
   license "MIT"
-  revision 5
   head "https://github.com/tectonic-typesetting/tectonic.git", branch: "master"
-
-  stable do
-    url "https://github.com/tectonic-typesetting/tectonic/archive/refs/tags/tectonic@0.15.0.tar.gz"
-    sha256 "3c13de312c4fe39ff905ad17e64a15a3a59d33ab65dacb0a8b9482c57e6bc6aa"
-
-    # Backport `time` update to build on newer Rust
-    patch do
-      url "https://github.com/tectonic-typesetting/tectonic/commit/6b49ca8db40aaca29cb375ce75add3e575558375.patch?full_index=1"
-      sha256 "86e5343d1ce3e725a7dab0227003dddd09dcdd5913eb9e5866612cb77962affb"
-    end
-
-    # Backport fix for icu4c 75
-    patch do
-      url "https://github.com/tectonic-typesetting/tectonic/commit/d260961426b01f7643ba0f35f493bdb671eeaf3f.patch?full_index=1"
-      sha256 "7d2014a1208569a63fca044b8957e2d2256fa169ea2ebe562aed6f490eec17d1"
-    end
-  end
 
   # As of writing, only the tags starting with `tectonic@` are release versions.
   # NOTE: The `GithubLatest` strategy cannot be used here because the "latest"
@@ -31,13 +15,12 @@ class Tectonic < Formula
   end
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any,                 arm64_tahoe:   "145a7685f5de0d93a3c60cf68e83ea82d7d17ae8ede4dcb24413cb50a6c6c258"
-    sha256 cellar: :any,                 arm64_sequoia: "2262f768187009453cd9effc4e2a119d3a71a980b3089ebfc8f10b8da1258bc0"
-    sha256 cellar: :any,                 arm64_sonoma:  "03df9945f9ddd870a2ce353c2e1139f07f7a4815f6f83f2bea10b40739ccddb4"
-    sha256 cellar: :any,                 sonoma:        "af3203894e6285a96ff995fe00649b80305505c66ab6c6a77b7e1676b60c0112"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "4b4325f7f957ab41aa7fec285eae1ff5c5d74563098062343b8b5bea4b336044"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f9e31afdd7aa5513cc754db0abb6fd66f75acb63866301fd6ee46b86dfc12a10"
+    sha256 cellar: :any,                 arm64_tahoe:   "7fbfd97cfb3e84a0959f32472c684487e328825659eaf476c54a596acf682f07"
+    sha256 cellar: :any,                 arm64_sequoia: "1a05713fee4e4c8218d93fb54600382d47504487934192da2648c9c7517da891"
+    sha256 cellar: :any,                 arm64_sonoma:  "20270b77e9d90ad4f5b549731a04ba7bada496dd1d4959e8ea5a50ff91f84189"
+    sha256 cellar: :any,                 sonoma:        "3a4ee303aedb41e5f06d9098ab1f1a7912050aa39b01212200e65a5cdad2b5e6"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "25ad71dd8158bba5607f071680dadca10c42f660203d0afafe31bfdedc1b19e6"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6ea5920f52be18fafc043942d910708426ee5d09587d4d9a83b3d3c9a1b380e1"
   end
 
   depends_on "pkgconf" => :build
@@ -56,10 +39,6 @@ class Tectonic < Formula
 
   def install
     ENV["MACOSX_DEPLOYMENT_TARGET"] = MacOS.version.to_s if OS.mac? # needed for CLT-only builds
-
-    # Fix to error: implicit autoref creates a reference to the dereference of a raw pointer
-    # for rust 1.89+, remove with next release
-    inreplace "crates/engine_bibtex/src/xbuf.rs", "(*old).len()", "(&(*old)).len()" if build.stable?
 
     # Ensure that the `openssl` crate picks up the intended library.
     # https://crates.io/crates/openssl#manual-configuration
