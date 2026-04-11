@@ -22,13 +22,15 @@ class Ctre < Formula
   end
 
   test do
-    (testpath/"test.c++").write <<~CXX
+    (testpath/"test.c++").write <<~'CXX'
       #include <ctre-unicode.hpp>
 
       int main()
       {
-        constexpr auto m = ctre::match<"[a-z]+([0-9]+)">("test123");
-        static_assert(m && m.get<1>() == "123");
+        constexpr auto url = "https://github.com/org/repo/archive/refs/tags/v1.6.18.tar.gz";
+        constexpr auto regex = ctll::fixed_string{R"(\d+(?:\.\d+)+)"};
+        constexpr auto version = ctre::search<regex>(url);
+        static_assert(version && version.get<0>() == "1.6.18");
       }
     CXX
     system ENV.cxx, "test.c++", "-o", "test", "-std=c++20", "-I#{include}"
