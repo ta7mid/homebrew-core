@@ -1,9 +1,10 @@
 class ActionsLanguageserver < Formula
   desc "Language server for GitHub Actions YAML files"
   homepage "https://github.com/actions/languageservices/tree/main/languageserver"
-  url "https://github.com/actions/languageservices/archive/refs/tags/release-v0.3.58.tar.gz"
+  url "https://registry.npmjs.org/@actions/languageserver/-/languageserver-0.3.58.tgz"
   sha256 "83d24888f9b328aaf84a382f1fff718968df4255dca1ec097765131ae993d558"
   license "MIT"
+  head "https://github.com/actions/languageservices.git", branch: "main"
 
   bottle do
     sha256 cellar: :any_skip_relocation, arm64_tahoe:   "79cc9b6e4c41112c039af269f4fe1a1378e59a30aaa8059a1b74bf3d953a8361"
@@ -20,7 +21,7 @@ class ActionsLanguageserver < Formula
     system "npm", "install", *std_npm_args(prefix: false)
     system "npm", "run", "build", "--workspaces"
     libexec.install "languageserver/bin", "languageserver/dist"
-    bin.install_symlink Dir[libexec/"bin/*"]
+    bin.install_symlink libexec.glob("bin/*")
   end
 
   test do
