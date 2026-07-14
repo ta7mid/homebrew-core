@@ -1,0 +1,19 @@
+include:
+  - "**/*.rb"
+  # Include Homebrew Core Logic (Formula class, etc)
+  - "/opt/homebrew/Library/Homebrew/**/*.rb"
+  # Include the Sorbet RBIs for the DSL
+  - "/opt/homebrew/Library/Homebrew/sorbet/rbi/**/*.rbi"
+
+exclude:
+  - "spec/**/*"
+  - "test/**/*"
+  - "vendor/**/*"
+  # Exclude Homebrew's tests and vendor to speed up indexing
+  - "/opt/homebrew/Library/Homebrew/test/**/*"
+  - "/opt/homebrew/Library/Homebrew/vendor/**/*"
+
+require:
+  - "formula"
+  - "cask/cask"
+  - "cask"
