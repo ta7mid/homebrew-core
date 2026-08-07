@@ -23,6 +23,7 @@ class Chisel < Formula
   depends_on xcode: :build
   depends_on :macos
 
+  conflicts_with "canonical-chisel", because: "both install `chisel` binaries"
   conflicts_with "chisel-tunnel", because: "both install `chisel` binaries"
 
   def install

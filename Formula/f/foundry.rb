@@ -30,6 +30,7 @@ class Foundry < Formula
     depends_on "libusb"
   end
 
+  conflicts_with "canonical-chisel", because: "both install `chisel` binaries"
   conflicts_with "chisel-tunnel", because: "both install `chisel` binaries"
   conflicts_with "jboss-forge", because: "both install `forge` binaries"
 
